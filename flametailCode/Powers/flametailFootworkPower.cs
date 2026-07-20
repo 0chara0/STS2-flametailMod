@@ -21,9 +21,10 @@ public sealed class flametailFootworkPower : ModPowerTemplate
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
 
-    public override PowerAssetProfile AssetProfile => new(
+    private static readonly PowerAssetProfile _assetProfile = new(
         IconPath: $"{Entry.ResPath}/images/powers/flametailFootworkPower.png",
         BigIconPath: $"{Entry.ResPath}/images/powers/flametailFootworkPower.png");
+    public override PowerAssetProfile AssetProfile => _assetProfile;
 
     // 防止在 AfterPowerAmountChanged 中修改步法时触发无限递归。
     private bool _isConverting;

@@ -22,9 +22,10 @@ public sealed class flametailHighVelocityImpactTempStrengthPower : ModPowerTempl
     public override PowerStackType StackType => PowerStackType.Counter;
     protected override bool IsVisibleInternal => false;
 
-    public override PowerAssetProfile AssetProfile => new(
+    private static readonly PowerAssetProfile _assetProfile = new(
         IconPath: $"{Entry.ResPath}/images/powers/flametailHighVelocityImpactTempStrengthPower.png",
         BigIconPath: $"{Entry.ResPath}/images/powers/flametailHighVelocityImpactTempStrengthPower.png");
+    public override PowerAssetProfile AssetProfile => _assetProfile;
 
     public override async Task AfterPlayerTurnStartEarly(PlayerChoiceContext choiceContext, Player player)
     {
@@ -51,9 +52,10 @@ public sealed class flametailHighVelocityImpactPower : ModPowerTemplate
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
 
-    public override PowerAssetProfile AssetProfile => new(
+    private static readonly PowerAssetProfile _assetProfile = new(
         IconPath: $"{Entry.ResPath}/images/powers/flametailHighVelocityImpactPower.png",
         BigIconPath: $"{Entry.ResPath}/images/powers/flametailHighVelocityImpactPower.png");
+    public override PowerAssetProfile AssetProfile => _assetProfile;
 
     public override async Task AfterPowerAmountChanged(
         PlayerChoiceContext choiceContext,

@@ -19,8 +19,9 @@ public sealed class flametailArmorUpgradePlatedOption : ModCardTemplate
     private const TargetType CardTarget = TargetType.Self;
     private const bool ShowInCardLibrary = false;
 
-    public override CardAssetProfile AssetProfile => new(
-        PortraitPath: $"{Entry.ResPath}/images/cards/{GetType().Name}.png");
+    private static readonly CardAssetProfile _assetProfile = new(
+        PortraitPath: $"{Entry.ResPath}/images/cards/{"flametailArmorUpgradePlatedOption"}.png");
+    public override CardAssetProfile AssetProfile => _assetProfile;
 
     public flametailArmorUpgradePlatedOption() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)
     {

@@ -21,9 +21,10 @@ public sealed class flametailExtraCounterRetainPower : ModPowerTemplate
     public override PowerStackType StackType => PowerStackType.Counter;
     protected override bool IsVisibleInternal => false;
 
-    public override PowerAssetProfile AssetProfile => new(
+    private static readonly PowerAssetProfile _assetProfile = new(
         IconPath: $"{Entry.ResPath}/images/powers/flametailExtraCounterRetainPower.png",
         BigIconPath: $"{Entry.ResPath}/images/powers/flametailExtraCounterRetainPower.png");
+    public override PowerAssetProfile AssetProfile => _assetProfile;
 
     public override async Task AfterPlayerTurnStartEarly(PlayerChoiceContext choiceContext, Player player)
     {

@@ -26,10 +26,11 @@ public sealed class PinusSylvestrisOrigins : ModRelicTemplate
         new IntVar("Footwork", 1)
     ];
 
-    public override RelicAssetProfile AssetProfile => new(
+    private static readonly RelicAssetProfile _assetProfile = new(
         IconPath: $"{Entry.ResPath}/images/relics/flametailRelic.png",
         IconOutlinePath: $"{Entry.ResPath}/images/relics/flametailRelic.png",
         BigIconPath: $"{Entry.ResPath}/images/relics/flametailRelic.png");
+    public override RelicAssetProfile AssetProfile => _assetProfile;
 
     public override async Task BeforeCombatStart()
     {

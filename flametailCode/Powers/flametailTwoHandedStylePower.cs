@@ -18,9 +18,10 @@ public sealed class flametailTwoHandedStylePower : ModPowerTemplate
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
 
-    public override PowerAssetProfile AssetProfile => new(
+    private static readonly PowerAssetProfile _assetProfile = new(
         IconPath: $"{Entry.ResPath}/images/powers/flametailTwoHandedStylePower.png",
         BigIconPath: $"{Entry.ResPath}/images/powers/flametailTwoHandedStylePower.png");
+    public override PowerAssetProfile AssetProfile => _assetProfile;
 
     private decimal _pendingBlock;
 

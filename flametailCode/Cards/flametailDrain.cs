@@ -24,8 +24,9 @@ public sealed class flametailDrain : ModCardTemplate
     private const TargetType CardTarget = TargetType.Self;
     private const bool ShowInCardLibrary = true;
 
-    public override CardAssetProfile AssetProfile => new(
-        PortraitPath: $"{Entry.ResPath}/images/cards/{GetType().Name}.png");
+    private static readonly CardAssetProfile _assetProfile = new(
+        PortraitPath: $"{Entry.ResPath}/images/cards/{"flametailDrain"}.png");
+    public override CardAssetProfile AssetProfile => _assetProfile;
 
     public flametailDrain() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)
     {
@@ -33,9 +34,26 @@ public sealed class flametailDrain : ModCardTemplate
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        List<CardModel> candidates = new();
-        candidates.AddRange(Owner.PlayerCombatState?.Hand.Cards ?? Enumerable.Empty<CardModel>());
-        candidates.AddRange(Owner.PlayerCombatState?.DrawPile.Cards ?? Enumerable.Empty<CardModel>());
+        var hand = Owner.PlayerCombatState?.Hand;
+        var drawPile = Owner.PlayerCombatState?.DrawPile;
+        int estimatedCount = (hand?.Cards.Count ?? 0) + (drawPile?.Cards.Count ?? 0);
+        List<CardModel> candidates = new(estimatedCount);
+
+        if (hand != null)
+        {
+            foreach (CardModel card in hand.Cards)
+            {
+                candidates.Add(card);
+            }
+        }
+
+        if (drawPile != null)
+        {
+            foreach (CardModel card in drawPile.Cards)
+            {
+                candidates.Add(card);
+            }
+        }
 
         if (candidates.Count == 0)
         {

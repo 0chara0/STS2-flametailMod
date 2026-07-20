@@ -27,11 +27,12 @@ public sealed class flametailDodgePower : ModPowerTemplate
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
 
-    public override PowerAssetProfile AssetProfile => new(
+    private static readonly PowerAssetProfile _assetProfile = new(
         IconPath: $"{Entry.ResPath}/images/powers/flametailDodgePower.png",
         BigIconPath: $"{Entry.ResPath}/images/powers/flametailDodgePower.png");
+    public override PowerAssetProfile AssetProfile => _assetProfile;
 
-    public override async Task BeforeDamageReceived(
+    public override Task BeforeDamageReceived(
         PlayerChoiceContext choiceContext,
         Creature target,
         decimal amount,
@@ -41,17 +42,17 @@ public sealed class flametailDodgePower : ModPowerTemplate
     {
         if (target != Owner)
         {
-            return;
+            return Task.CompletedTask;
         }
 
         if (!props.IsPoweredAttack())
         {
-            return;
+            return Task.CompletedTask;
         }
 
         if (dealer == null || !dealer.IsEnemy)
         {
-            return;
+            return Task.CompletedTask;
         }
 
         // 每次受攻击时先重置闪避标记，若本次消耗了闪避再设为 true。
@@ -59,9 +60,14 @@ public sealed class flametailDodgePower : ModPowerTemplate
 
         if (Amount <= 0 || amount <= 0)
         {
-            return;
+            return Task.CompletedTask;
         }
 
+        return ConsumeDodgeAsync(choiceContext);
+    }
+
+    private async Task ConsumeDodgeAsync(PlayerChoiceContext choiceContext)
+    {
         // 消耗 1 层闪避，并通知补丁跳过本次格挡消耗。
         await PowerCmd.ModifyAmount(choiceContext, this, -1, Owner, null);
         CounterSystem.WasAttackDodged = true;

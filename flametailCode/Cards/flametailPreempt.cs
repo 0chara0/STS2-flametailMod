@@ -25,8 +25,9 @@ public sealed class flametailPreempt : ModCardTemplate, ICounterCard
     private const TargetType CardTarget = TargetType.AnyEnemy;
     private const bool ShowInCardLibrary = true;
 
-    public override CardAssetProfile AssetProfile => new(
-        PortraitPath: $"{Entry.ResPath}/images/cards/{GetType().Name}.png");
+    private static readonly CardAssetProfile _assetProfile = new(
+        PortraitPath: $"{Entry.ResPath}/images/cards/{"flametailPreempt"}.png");
+    public override CardAssetProfile AssetProfile => _assetProfile;
 
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
         new[] { CardKeyword.Innate, CardKeyword.Exhaust, FlametailKeywords.Counter };
@@ -49,9 +50,18 @@ public sealed class flametailPreempt : ModCardTemplate, ICounterCard
             .Targeting(cardPlay.Target)
             .Execute(choiceContext);
 
-        List<CardModel> counters = Owner.PlayerCombatState?.DrawPile.Cards
-            .Where(c => c is ICounterCard)
-            .ToList() ?? new List<CardModel>();
+        var drawPile = Owner.PlayerCombatState?.DrawPile;
+        var counters = new List<CardModel>(drawPile?.Cards.Count ?? 0);
+        if (drawPile != null)
+        {
+            foreach (CardModel card in drawPile.Cards)
+            {
+                if (card is ICounterCard)
+                {
+                    counters.Add(card);
+                }
+            }
+        }
 
         if (counters.Count == 0)
         {

@@ -22,8 +22,9 @@ public sealed class flametailSwiftStrike : ModCardTemplate
     private const TargetType CardTarget = TargetType.AnyEnemy;
     private const bool ShowInCardLibrary = true;
 
-    public override CardAssetProfile AssetProfile => new(
-        PortraitPath: $"{Entry.ResPath}/images/cards/{GetType().Name}.png");
+    private static readonly CardAssetProfile _assetProfile = new(
+        PortraitPath: $"{Entry.ResPath}/images/cards/{"flametailSwiftStrike"}.png");
+    public override CardAssetProfile AssetProfile => _assetProfile;
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [

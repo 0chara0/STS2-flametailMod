@@ -19,9 +19,10 @@ public sealed class flametailHardenedVanguardPower : ModPowerTemplate
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Single;
 
-    public override PowerAssetProfile AssetProfile => new(
+    private static readonly PowerAssetProfile _assetProfile = new(
         IconPath: $"{Entry.ResPath}/images/powers/flametailHardenedVanguardPower.png",
         BigIconPath: $"{Entry.ResPath}/images/powers/flametailHardenedVanguardPower.png");
+    public override PowerAssetProfile AssetProfile => _assetProfile;
 
     public override async Task AfterCardPlayedLate(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {

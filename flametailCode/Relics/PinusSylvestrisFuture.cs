@@ -25,10 +25,11 @@ public sealed class PinusSylvestrisFuture : ModRelicTemplate
         new IntVar("Footwork", 2)
     ];
 
-    public override RelicAssetProfile AssetProfile => new(
+    private static readonly RelicAssetProfile _assetProfile = new(
         IconPath: $"{Entry.ResPath}/images/relics/flametailRelicFuture.png",
         IconOutlinePath: $"{Entry.ResPath}/images/relics/flametailRelicFuture.png",
         BigIconPath: $"{Entry.ResPath}/images/relics/flametailRelicFuture.png");
+    public override RelicAssetProfile AssetProfile => _assetProfile;
 
     public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
     {

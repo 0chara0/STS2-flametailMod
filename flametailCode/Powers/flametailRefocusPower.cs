@@ -19,9 +19,10 @@ public sealed class flametailRefocusPower : ModPowerTemplate
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
 
-    public override PowerAssetProfile AssetProfile => new(
+    private static readonly PowerAssetProfile _assetProfile = new(
         IconPath: $"{Entry.ResPath}/images/powers/flametailRefocusPower.png",
         BigIconPath: $"{Entry.ResPath}/images/powers/flametailRefocusPower.png");
+    public override PowerAssetProfile AssetProfile => _assetProfile;
 
     private readonly HashSet<CardModel> _processing = new();
 

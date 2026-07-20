@@ -23,9 +23,10 @@ public sealed class flametailReflexMovePower : ModPowerTemplate
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
 
-    public override PowerAssetProfile AssetProfile => new(
+    private static readonly PowerAssetProfile _assetProfile = new(
         IconPath: $"{Entry.ResPath}/images/powers/flametailReflexMovePower.png",
         BigIconPath: $"{Entry.ResPath}/images/powers/flametailReflexMovePower.png");
+    public override PowerAssetProfile AssetProfile => _assetProfile;
 
     public override async Task BeforeFlushLate(PlayerChoiceContext choiceContext, Player player)
     {
@@ -34,11 +35,22 @@ public sealed class flametailReflexMovePower : ModPowerTemplate
             return;
         }
 
-        var candidates = player.PlayerCombatState?.Hand.Cards
-            .Where(c => c is IGainFootworkCard)
-            .ToList();
+        var hand = player.PlayerCombatState?.Hand;
+        if (hand == null)
+        {
+            return;
+        }
 
-        if (candidates == null || candidates.Count == 0)
+        var candidates = new List<CardModel>(hand.Cards.Count);
+        foreach (CardModel card in hand.Cards)
+        {
+            if (card is IGainFootworkCard)
+            {
+                candidates.Add(card);
+            }
+        }
+
+        if (candidates.Count == 0)
         {
             return;
         }

@@ -36,7 +36,7 @@ public sealed class flametailCharacter : ModCharacterTemplate<flametailCardPool,
 
 	// CharacterAssetProfile 按类别拆分。你只写需要替换的部分，其他字段会保留回退。
 	// AssetProfile 只指定模板自带的静态占位资源；没有复制的音频、拖尾、转场等资源继续从占位角色回退。
-	public override CharacterAssetProfile AssetProfile => new(
+	private static readonly CharacterAssetProfile _assetProfile = new(
 		Scenes: new CharacterSceneAssetSet(
 			// 人物模型 tscn 路径。
 			VisualsPath: CharacterScenePath,
@@ -61,6 +61,7 @@ public sealed class flametailCharacter : ModCharacterTemplate<flametailCardPool,
 			CharacterSelectLockedIconPath: $"{ImageRoot}/flametail_character_select_locked.png",
 			// 地图上的角色标记图标、表情轮盘上的角色头像。
 			MapMarkerPath: $"{ImageRoot}/flametail_map_marker.png"));
+	public override CharacterAssetProfile AssetProfile => _assetProfile;
 
 	// 某个字段没写时，RitsuLib 会从占位角色配置里补齐。
 	// public override string? PlaceholderCharacterId => "ironclad";

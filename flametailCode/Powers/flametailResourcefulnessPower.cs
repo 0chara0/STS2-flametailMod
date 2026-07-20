@@ -24,9 +24,10 @@ public sealed class flametailResourcefulnessPower : ModPowerTemplate
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Single;
 
-    public override PowerAssetProfile AssetProfile => new(
+    private static readonly PowerAssetProfile _assetProfile = new(
         IconPath: $"{Entry.ResPath}/images/powers/flametailResourcefulnessPower.png",
         BigIconPath: $"{Entry.ResPath}/images/powers/flametailResourcefulnessPower.png");
+    public override PowerAssetProfile AssetProfile => _assetProfile;
 
     public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, ICombatState combatState)
     {
@@ -41,15 +42,25 @@ public sealed class flametailResourcefulnessPower : ModPowerTemplate
             return;
         }
 
-        List<CardModel> counters = state.DrawPile.Cards
-            .Where(c => c is ICounterCard)
-            .ToList();
+        List<CardModel> counters = new(state.DrawPile.Cards.Count);
+        foreach (CardModel card in state.DrawPile.Cards)
+        {
+            if (card is ICounterCard)
+            {
+                counters.Add(card);
+            }
+        }
 
         if (counters.Count == 0)
         {
-            counters = state.DiscardPile.Cards
-                .Where(c => c is ICounterCard)
-                .ToList();
+            counters = new List<CardModel>(state.DiscardPile.Cards.Count);
+            foreach (CardModel card in state.DiscardPile.Cards)
+            {
+                if (card is ICounterCard)
+                {
+                    counters.Add(card);
+                }
+            }
         }
 
         if (counters.Count == 0)

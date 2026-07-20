@@ -22,9 +22,10 @@ public sealed class flametailIgnoreBlockPower : ModPowerTemplate
     public override PowerStackType StackType => PowerStackType.Counter;
     protected override bool IsVisibleInternal => false;
 
-    public override PowerAssetProfile AssetProfile => new(
+    private static readonly PowerAssetProfile _assetProfile = new(
         IconPath: $"{Entry.ResPath}/images/powers/flametailIgnoreBlockPower.png",
         BigIconPath: $"{Entry.ResPath}/images/powers/flametailIgnoreBlockPower.png");
+    public override PowerAssetProfile AssetProfile => _assetProfile;
 
     public override async Task BeforeAttack(AttackCommand command)
     {

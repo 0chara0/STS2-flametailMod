@@ -24,9 +24,10 @@ public sealed class flametailFluidMotionPower : ModPowerTemplate
     public override PowerStackType StackType => PowerStackType.Single;
     protected override bool IsVisibleInternal => false;
 
-    public override PowerAssetProfile AssetProfile => new(
+    private static readonly PowerAssetProfile _assetProfile = new(
         IconPath: $"{Entry.ResPath}/images/powers/flametailFluidMotionPower.png",
         BigIconPath: $"{Entry.ResPath}/images/powers/flametailFluidMotionPower.png");
+    public override PowerAssetProfile AssetProfile => _assetProfile;
 
     public override async Task AfterPowerAmountChanged(
         PlayerChoiceContext choiceContext,
@@ -46,14 +47,28 @@ public sealed class flametailFluidMotionPower : ModPowerTemplate
             return;
         }
 
-        List<CardModel> toReturn = new();
-        toReturn.AddRange(state.DrawPile.Cards.Where(c => c is flametailFluidMotion));
-        toReturn.AddRange(state.DiscardPile.Cards.Where(c => c is flametailFluidMotion));
-        toReturn.AddRange(state.ExhaustPile.Cards.Where(c => c is flametailFluidMotion));
-
-        foreach (CardModel card in toReturn)
+        foreach (CardModel card in state.DrawPile.Cards)
         {
-            await CardPileCmd.Add(card, PileType.Hand, CardPilePosition.Top);
+            if (card is flametailFluidMotion)
+            {
+                await CardPileCmd.Add(card, PileType.Hand, CardPilePosition.Top);
+            }
+        }
+
+        foreach (CardModel card in state.DiscardPile.Cards)
+        {
+            if (card is flametailFluidMotion)
+            {
+                await CardPileCmd.Add(card, PileType.Hand, CardPilePosition.Top);
+            }
+        }
+
+        foreach (CardModel card in state.ExhaustPile.Cards)
+        {
+            if (card is flametailFluidMotion)
+            {
+                await CardPileCmd.Add(card, PileType.Hand, CardPilePosition.Top);
+            }
         }
     }
 }

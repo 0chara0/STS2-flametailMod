@@ -24,9 +24,10 @@ public sealed class flametailRestoreStrengthPower : ModPowerTemplate
     public override PowerStackType StackType => PowerStackType.Counter;
     protected override bool IsVisibleInternal => false;
 
-    public override PowerAssetProfile AssetProfile => new(
+    private static readonly PowerAssetProfile _assetProfile = new(
         IconPath: $"{Entry.ResPath}/images/powers/flametailRestoreStrengthPower.png",
         BigIconPath: $"{Entry.ResPath}/images/powers/flametailRestoreStrengthPower.png");
+    public override PowerAssetProfile AssetProfile => _assetProfile;
 
     public override async Task AfterSideTurnEnd(
         PlayerChoiceContext choiceContext,

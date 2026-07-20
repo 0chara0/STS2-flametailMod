@@ -29,9 +29,10 @@ public sealed class flametailCounterManagerPower : ModPowerTemplate
     public override PowerStackType StackType => PowerStackType.Counter;
     protected override bool IsVisibleInternal => false;
 
-    public override PowerAssetProfile AssetProfile => new(
+    private static readonly PowerAssetProfile _assetProfile = new(
         IconPath: $"{Entry.ResPath}/images/powers/flametailCounterManagerPower.png",
         BigIconPath: $"{Entry.ResPath}/images/powers/flametailCounterManagerPower.png");
+    public override PowerAssetProfile AssetProfile => _assetProfile;
 
     /// <summary>
     /// 使用 BeforeFlushLate，让玩家在看到其他 BeforeFlush 效果后再决定保留哪张反制牌。
@@ -48,9 +49,14 @@ public sealed class flametailCounterManagerPower : ModPowerTemplate
             return;
         }
 
-        var counterCards = hand.Cards
-            .Where(c => c is ICounterCard)
-            .ToList();
+        var counterCards = new List<CardModel>(hand.Cards.Count);
+        foreach (CardModel card in hand.Cards)
+        {
+            if (card is ICounterCard)
+            {
+                counterCards.Add(card);
+            }
+        }
 
         if (counterCards.Count == 0)
         {
@@ -134,8 +140,19 @@ public sealed class flametailCounterManagerPower : ModPowerTemplate
 
         try
         {
-            CardModel? counterCard = Owner.Player?.PlayerCombatState?.Hand.Cards
-                .FirstOrDefault(c => c is ICounterCard counter && counter.CanAutoPlayAsCounter(dealer));
+            CardModel? counterCard = null;
+            var hand = Owner.Player?.PlayerCombatState?.Hand;
+            if (hand != null)
+            {
+                foreach (CardModel card in hand.Cards)
+                {
+                    if (card is ICounterCard counter && counter.CanAutoPlayAsCounter(dealer))
+                    {
+                        counterCard = card;
+                        break;
+                    }
+                }
+            }
 
             if (counterCard == null)
             {

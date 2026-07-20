@@ -93,9 +93,12 @@ public static class CounterSystem
         {
             if (combat is CombatState state)
             {
-                foreach (Creature enemy in state.Enemies.Where(e => e != null && !e.IsDead))
+                foreach (Creature enemy in state.Enemies)
                 {
-                    yield return enemy;
+                    if (enemy != null && !enemy.IsDead)
+                    {
+                        yield return enemy;
+                    }
                 }
             }
 
@@ -113,8 +116,21 @@ public static class CounterSystem
     /// </summary>
     public static CardModel? FindFirstCounterCard(Creature owner)
     {
-        return owner.Player?.PlayerCombatState?.Hand.Cards
-            .FirstOrDefault(c => c is ICounterCard);
+        var hand = owner.Player?.PlayerCombatState?.Hand;
+        if (hand == null)
+        {
+            return null;
+        }
+
+        foreach (CardModel card in hand.Cards)
+        {
+            if (card is ICounterCard)
+            {
+                return card;
+            }
+        }
+
+        return null;
     }
 
     /// <summary>
@@ -162,10 +178,23 @@ public static class CounterSystem
     /// </summary>
     public static async Task PlayNextCounterCard(PlayerChoiceContext choiceContext, CardModel currentCard, Creature? target)
     {
-        var next = currentCard.Owner.PlayerCombatState?.Hand.Cards
-            .FirstOrDefault(c => c != currentCard
-                && c is ICounterCard counter
-                && counter.CanAutoPlayAsCounter(CurrentAttacker));
+        var hand = currentCard.Owner.PlayerCombatState?.Hand;
+        if (hand == null)
+        {
+            return;
+        }
+
+        CardModel? next = null;
+        foreach (CardModel card in hand.Cards)
+        {
+            if (card != currentCard
+                && card is ICounterCard counter
+                && counter.CanAutoPlayAsCounter(CurrentAttacker))
+            {
+                next = card;
+                break;
+            }
+        }
 
         if (next != null)
         {

@@ -23,9 +23,10 @@ public sealed class flametailNoBlockPower : ModPowerTemplate
     public override PowerType Type => PowerType.Debuff;
     public override PowerStackType StackType => PowerStackType.Counter;
 
-    public override PowerAssetProfile AssetProfile => new(
+    private static readonly PowerAssetProfile _assetProfile = new(
         IconPath: $"{Entry.ResPath}/images/powers/flametailNoBlockPower.png",
         BigIconPath: $"{Entry.ResPath}/images/powers/flametailNoBlockPower.png");
+    public override PowerAssetProfile AssetProfile => _assetProfile;
 
     public override decimal ModifyBlockAdditive(
         Creature target,

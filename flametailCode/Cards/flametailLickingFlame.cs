@@ -22,8 +22,9 @@ public sealed class flametailLickingFlame : ModCardTemplate
     private const TargetType CardTarget = TargetType.AllEnemies;
     private const bool ShowInCardLibrary = true;
 
-    public override CardAssetProfile AssetProfile => new(
-        PortraitPath: $"{Entry.ResPath}/images/cards/{GetType().Name}.png");
+    private static readonly CardAssetProfile _assetProfile = new(
+        PortraitPath: $"{Entry.ResPath}/images/cards/{"flametailLickingFlame"}.png");
+    public override CardAssetProfile AssetProfile => _assetProfile;
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
@@ -36,7 +37,11 @@ public sealed class flametailLickingFlame : ModCardTemplate
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        int enemyCount = Owner.Creature.CombatState!.Enemies.Count();
+        int enemyCount = 0;
+        foreach (Creature enemy in Owner.Creature.CombatState!.Enemies)
+        {
+            enemyCount++;
+        }
         for (int i = 0; i < enemyCount; i++)
         {
             await DamageCmd.Attack(DynamicVars.Damage.BaseValue)

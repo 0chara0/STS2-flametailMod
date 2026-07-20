@@ -18,9 +18,10 @@ public sealed class flametailCanYouSeeMePower : ModPowerTemplate
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
 
-    public override PowerAssetProfile AssetProfile => new(
+    private static readonly PowerAssetProfile _assetProfile = new(
         IconPath: $"{Entry.ResPath}/images/powers/flametailCanYouSeeMePower.png",
         BigIconPath: $"{Entry.ResPath}/images/powers/flametailCanYouSeeMePower.png");
+    public override PowerAssetProfile AssetProfile => _assetProfile;
 
     public override async Task AfterPowerAmountChanged(
         PlayerChoiceContext choiceContext,

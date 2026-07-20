@@ -22,8 +22,9 @@ public sealed class flametailReplay : ModCardTemplate
     private const TargetType CardTarget = TargetType.Self;
     private const bool ShowInCardLibrary = true;
 
-    public override CardAssetProfile AssetProfile => new(
-        PortraitPath: $"{Entry.ResPath}/images/cards/{GetType().Name}.png");
+    private static readonly CardAssetProfile _assetProfile = new(
+        PortraitPath: $"{Entry.ResPath}/images/cards/{"flametailReplay"}.png");
+    public override CardAssetProfile AssetProfile => _assetProfile;
 
     public flametailReplay() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)
     {
@@ -31,9 +32,18 @@ public sealed class flametailReplay : ModCardTemplate
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        List<CardModel> candidates = Owner.PlayerCombatState?.DiscardPile.Cards
-            .Where(c => IsUpgraded || c.Type == CardType.Attack)
-            .ToList() ?? new List<CardModel>();
+        var discardPile = Owner.PlayerCombatState?.DiscardPile;
+        var candidates = new List<CardModel>(discardPile?.Cards.Count ?? 0);
+        if (discardPile != null)
+        {
+            foreach (CardModel card in discardPile.Cards)
+            {
+                if (IsUpgraded || card.Type == CardType.Attack)
+                {
+                    candidates.Add(card);
+                }
+            }
+        }
 
         if (candidates.Count == 0)
         {

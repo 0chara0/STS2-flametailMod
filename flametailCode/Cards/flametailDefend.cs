@@ -29,8 +29,9 @@ public sealed class flametailDefend : ModCardTemplate
 
     // 卡图资源。
     // 如果你按这行代码写，文件名就对应 flametail/images/cards/flametailDefend.png。
-    public override CardAssetProfile AssetProfile => new(
-        PortraitPath: $"{Entry.ResPath}/images/cards/{GetType().Name}.png");
+    private static readonly CardAssetProfile _assetProfile = new(
+        PortraitPath: $"{Entry.ResPath}/images/cards/{"flametailDefend"}.png");
+    public override CardAssetProfile AssetProfile => _assetProfile;
 
     protected override HashSet<CardTag> CanonicalTags => new() { CardTag.Defend };
 

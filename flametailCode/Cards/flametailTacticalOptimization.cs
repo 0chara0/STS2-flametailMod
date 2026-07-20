@@ -23,8 +23,9 @@ public sealed class flametailTacticalOptimization : ModCardTemplate
     private const TargetType CardTarget = TargetType.Self;
     private const bool ShowInCardLibrary = true;
 
-    public override CardAssetProfile AssetProfile => new(
-        PortraitPath: $"{Entry.ResPath}/images/cards/{GetType().Name}.png");
+    private static readonly CardAssetProfile _assetProfile = new(
+        PortraitPath: $"{Entry.ResPath}/images/cards/{"flametailTacticalOptimization"}.png");
+    public override CardAssetProfile AssetProfile => _assetProfile;
 
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
         new[] { CardKeyword.Exhaust };
@@ -40,9 +41,32 @@ public sealed class flametailTacticalOptimization : ModCardTemplate
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        List<CardModel> attacks = new();
-        attacks.AddRange(Owner.PlayerCombatState?.Hand.Cards.Where(c => c.Type == CardType.Attack) ?? Enumerable.Empty<CardModel>());
-        attacks.AddRange(Owner.PlayerCombatState?.DiscardPile.Cards.Where(c => c.Type == CardType.Attack) ?? Enumerable.Empty<CardModel>());
+        var hand = Owner.PlayerCombatState?.Hand;
+        var discard = Owner.PlayerCombatState?.DiscardPile;
+        int estimatedCount = (hand?.Cards.Count ?? 0) + (discard?.Cards.Count ?? 0);
+        List<CardModel> attacks = new(estimatedCount);
+
+        if (hand != null)
+        {
+            foreach (CardModel card in hand.Cards)
+            {
+                if (card.Type == CardType.Attack)
+                {
+                    attacks.Add(card);
+                }
+            }
+        }
+
+        if (discard != null)
+        {
+            foreach (CardModel card in discard.Cards)
+            {
+                if (card.Type == CardType.Attack)
+                {
+                    attacks.Add(card);
+                }
+            }
+        }
 
         if (attacks.Count == 0)
         {

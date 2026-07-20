@@ -21,9 +21,10 @@ public sealed class flametailFireMeteorExtraTurnPower : ModPowerTemplate
     public override PowerStackType StackType => PowerStackType.Single;
     protected override bool IsVisibleInternal => false;
 
-    public override PowerAssetProfile AssetProfile => new(
+    private static readonly PowerAssetProfile _assetProfile = new(
         IconPath: $"{Entry.ResPath}/images/powers/flametailFireMeteorExtraTurnPower.png",
         BigIconPath: $"{Entry.ResPath}/images/powers/flametailFireMeteorExtraTurnPower.png");
+    public override PowerAssetProfile AssetProfile => _assetProfile;
 
     public override bool ShouldTakeExtraTurn(Player player)
     {

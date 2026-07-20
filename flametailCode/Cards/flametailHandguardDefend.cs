@@ -25,8 +25,9 @@ public sealed class flametailHandguardDefend : ModCardTemplate
 
     public override bool GainsBlock => true;
 
-    public override CardAssetProfile AssetProfile => new(
-        PortraitPath: $"{Entry.ResPath}/images/cards/{GetType().Name}.png");
+    private static readonly CardAssetProfile _assetProfile = new(
+        PortraitPath: $"{Entry.ResPath}/images/cards/{"flametailHandguardDefend"}.png");
+    public override CardAssetProfile AssetProfile => _assetProfile;
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
@@ -41,9 +42,18 @@ public sealed class flametailHandguardDefend : ModCardTemplate
     {
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
 
-        List<CardModel> attacks = Owner.PlayerCombatState?.DrawPile.Cards
-            .Where(c => c.Type == CardType.Attack)
-            .ToList() ?? new List<CardModel>();
+        var drawPile = Owner.PlayerCombatState?.DrawPile;
+        var attacks = new List<CardModel>(drawPile?.Cards.Count ?? 0);
+        if (drawPile != null)
+        {
+            foreach (CardModel card in drawPile.Cards)
+            {
+                if (card.Type == CardType.Attack)
+                {
+                    attacks.Add(card);
+                }
+            }
+        }
 
         if (attacks.Count == 0)
         {
