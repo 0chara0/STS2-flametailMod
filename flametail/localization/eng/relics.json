@@ -1,0 +1,8 @@
+{
+  "FLAMETAIL_RELIC_PINUS_SYLVESTRIS_ORIGINS.title": "Pinus Sylvestris Origins",
+  "FLAMETAIL_RELIC_PINUS_SYLVESTRIS_ORIGINS.description": "At the start of combat, establish the Counter system. At the start of each turn, gain 1 Footwork.",
+  "FLAMETAIL_RELIC_PINUS_SYLVESTRIS_ORIGINS.flavor": "The last intact pine forest perished in a sudden catastrophe.",
+  "FLAMETAIL_RELIC_PINUS_SYLVESTRIS_FUTURE.title": "Pinus Sylvestris Future",
+  "FLAMETAIL_RELIC_PINUS_SYLVESTRIS_FUTURE.description": "Replaces Pinus Sylvestris Origins. At the start of each turn, gain {Footwork} Footwork.",
+  "FLAMETAIL_RELIC_PINUS_SYLVESTRIS_FUTURE.flavor": "She had only just realized that she should have burned like fire."
+}

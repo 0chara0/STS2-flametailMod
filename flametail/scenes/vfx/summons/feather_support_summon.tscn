@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://b3odm1qw7jmtq"]
+
+[ext_resource type="Script" uid="uid://dlts3hkn72t4g" path="res://flametailCode/Nodes/Vfx/SummonedAllyVfx.cs" id="1_vfx"]
+[ext_resource type="SpineSkeletonDataResource" path="res://flametail/animations/vfx/summons/feather_support/feather_support_skel_data.tres" id="2_skel"]
+
+[node name="FeatherSupportSummon" type="Node2D"]
+script = ExtResource("1_vfx")
+EnterAnimationName = "Skill3_Begin"
+AttackAnimationName = "Skill3_Loop"
+LeaveAnimationName = "Skill3_End"
+ImpactRatio = 1.0
+FadeIn = true
+CutAttackOnImpact = false
+AttackDurationOverride = 0.64
+
+[node name="SpineSprite" type="SpineSprite" parent="."]
+skeleton_data_res = ExtResource("2_skel")
+preview_skin = "Default"
+preview_animation = "Skill3_Loop"
+preview_frame = false
+preview_time = 0.0
+self_modulate = Color(0.7, 0.85, 1, 1)
+scale = Vector2(0.35, 0.35)

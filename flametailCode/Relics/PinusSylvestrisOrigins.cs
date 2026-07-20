@@ -1,0 +1,54 @@
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Players;
+using MegaCrit.Sts2.Core.Entities.Relics;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using flametail.Characters;
+using flametail.Powers;
+using STS2RitsuLib.Interop.AutoRegistration;
+using STS2RitsuLib.Scaffolding.Content;
+
+namespace flametail.Relics;
+
+/// <summary>
+/// 红松的起点：每回合开始时获得 1 层步法；战斗开始时建立反制系统。
+/// </summary>
+[RegisterRelic(typeof(flametailRelicPool))]
+[RegisterCharacterStarterRelic(typeof(flametailCharacter))]
+public sealed class PinusSylvestrisOrigins : ModRelicTemplate
+{
+    public override RelicRarity Rarity => RelicRarity.Starter;
+
+    protected override IEnumerable<DynamicVar> CanonicalVars =>
+    [
+        new IntVar("Footwork", 1)
+    ];
+
+    public override RelicAssetProfile AssetProfile => new(
+        IconPath: $"{Entry.ResPath}/images/relics/flametailRelic.png",
+        IconOutlinePath: $"{Entry.ResPath}/images/relics/flametailRelic.png",
+        BigIconPath: $"{Entry.ResPath}/images/relics/flametailRelic.png");
+
+    public override async Task BeforeCombatStart()
+    {
+        // 战斗开始时给角色挂上反制管理器
+        await PowerCmd.Apply<flametailCounterManagerPower>(
+            new ThrowingPlayerChoiceContext(),
+            Owner.Creature,
+            1,
+            Owner.Creature,
+            null);
+    }
+
+    public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
+    {
+        await PowerCmd.Apply<flametailFootworkPower>(
+            choiceContext,
+            player.Creature,
+            DynamicVars["Footwork"].IntValue,
+            player.Creature,
+            null);
+    }
+}

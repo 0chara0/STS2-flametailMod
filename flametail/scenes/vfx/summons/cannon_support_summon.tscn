@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://duqlkcqi8a8l2"]
+
+[ext_resource type="Script" uid="uid://dlts3hkn72t4g" path="res://flametailCode/Nodes/Vfx/SummonedAllyVfx.cs" id="1_vfx"]
+[ext_resource type="SpineSkeletonDataResource" path="res://flametail/animations/vfx/summons/cannon_support/cannon_support_skel_data.tres" id="2_skel"]
+
+[node name="CannonSupportSummon" type="Node2D"]
+script = ExtResource("1_vfx")
+EnterAnimationName = "Start"
+AttackAnimationName = "Attack01"
+LeaveAnimationName = "Idle"
+LeaveLoop = true
+ImpactRatio = 0.4
+
+[node name="SpineSprite" type="SpineSprite" parent="."]
+skeleton_data_res = ExtResource("2_skel")
+preview_skin = "Default"
+preview_animation = "Attack01"
+preview_frame = false
+preview_time = 0.0
+self_modulate = Color(0.85, 0.85, 0.75, 1)
+scale = Vector2(0.35, 0.35)

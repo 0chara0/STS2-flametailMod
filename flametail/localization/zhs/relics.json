@@ -1,0 +1,8 @@
+{
+  "FLAMETAIL_RELIC_PINUS_SYLVESTRIS_ORIGINS.title": "红松的起点",
+  "FLAMETAIL_RELIC_PINUS_SYLVESTRIS_ORIGINS.description": "战斗开始时，建立反制系统。每回合开始时，获得 1 层步法。",
+  "FLAMETAIL_RELIC_PINUS_SYLVESTRIS_ORIGINS.flavor": "那最后一片保存完好的红松林，毁于一场突如其来的天灾。",
+  "FLAMETAIL_RELIC_PINUS_SYLVESTRIS_FUTURE.title": "红松的未来",
+  "FLAMETAIL_RELIC_PINUS_SYLVESTRIS_FUTURE.description": "替换红松证章。每回合开始时，获得 {Footwork} 层步法。",
+  "FLAMETAIL_RELIC_PINUS_SYLVESTRIS_FUTURE.flavor": "她刚刚才意识到，她本应像火一样燃烧着。"
+}

@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://bvbx7f18gstnu"]
+
+[ext_resource type="Script" uid="uid://dlts3hkn72t4g" path="res://flametailCode/Nodes/Vfx/SummonedAllyVfx.cs" id="1_vfx"]
+[ext_resource type="SpineSkeletonDataResource" path="res://flametail/animations/vfx/summons/candle_flash/candle_flash_skel_data.tres" id="2_skel"]
+
+[node name="CandleFlashSummon" type="Node2D"]
+script = ExtResource("1_vfx")
+EnterAnimationName = "Start"
+AttackAnimationName = "Skill_3_Attack_B"
+LeaveAnimationName = "Skill_3_End_B"
+
+[node name="SpineSprite" type="SpineSprite" parent="."]
+skeleton_data_res = ExtResource("2_skel")
+preview_skin = "Default"
+preview_animation = "Skill_3_End_B"
+preview_frame = false
+preview_time = 0.0
+self_modulate = Color(1, 0.75, 0.45, 1)
+scale = Vector2(0.35, 0.35)

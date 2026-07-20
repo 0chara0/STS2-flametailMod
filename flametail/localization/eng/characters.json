@@ -1,0 +1,21 @@
+{
+  "FLAMETAIL_CHARACTER_FLAMETAIL_CHARACTER.aromaPrinciple": "[sine][blue]A clean template is ready for a new run.[/blue][/sine]",
+  "FLAMETAIL_CHARACTER_FLAMETAIL_CHARACTER.banter.alive.endTurnPing": "Turn complete.",
+  "FLAMETAIL_CHARACTER_FLAMETAIL_CHARACTER.banter.dead.endTurnPing": "I am out for now.",
+  "FLAMETAIL_CHARACTER_FLAMETAIL_CHARACTER.cardsModifierDescription": "Template Character cards can now appear in rewards and shops.",
+  "FLAMETAIL_CHARACTER_FLAMETAIL_CHARACTER.cardsModifierTitle": "Template Cards",
+  "FLAMETAIL_CHARACTER_FLAMETAIL_CHARACTER.defeatMessage": "The template still needs a little tuning.",
+  "FLAMETAIL_CHARACTER_FLAMETAIL_CHARACTER.description": "A sample character used to verify the RitsuLib template project.\nReplace this text with your own character concept after copying the template.",
+  "FLAMETAIL_CHARACTER_FLAMETAIL_CHARACTER.eventDeathPrevention": "Template Character keeps going.",
+  "FLAMETAIL_CHARACTER_FLAMETAIL_CHARACTER.flavor": "A clean template waiting to become a new adventure.",
+  "FLAMETAIL_CHARACTER_FLAMETAIL_CHARACTER.goldMonologue": "This gold is enough to start testing.",
+  "FLAMETAIL_CHARACTER_FLAMETAIL_CHARACTER.possessiveAdjective": "their",
+  "FLAMETAIL_CHARACTER_FLAMETAIL_CHARACTER.pronounObject": "them",
+  "FLAMETAIL_CHARACTER_FLAMETAIL_CHARACTER.pronounPossessive": "theirs",
+  "FLAMETAIL_CHARACTER_FLAMETAIL_CHARACTER.pronounSubject": "they",
+  "FLAMETAIL_CHARACTER_FLAMETAIL_CHARACTER.selectMessage": "Template Character is ready.",
+  "FLAMETAIL_CHARACTER_FLAMETAIL_CHARACTER.title": "Template Character",
+  "FLAMETAIL_CHARACTER_FLAMETAIL_CHARACTER.titleObject": "Template Character",
+  "FLAMETAIL_CHARACTER_FLAMETAIL_CHARACTER.unlockText": "Complete a run as [pink]{Prerequisite}[/pink] to unlock this character.",
+  "FLAMETAIL_CHARACTER_FLAMETAIL_CHARACTER.victoryMessage": "Template verification complete."
+}

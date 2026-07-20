@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=3 uid="uid://7qcy0sqgf8e0"]
+
+[ext_resource type="VideoStream" uid="uid://dnbei3aov3kug" path="res://flametail/videos/character_select/flametail_select_bg.ogv" id="1_ogv"]
+
+[node name="flametailCharacterSelectBg" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.901
+anchor_bottom = 0.901
+offset_left = 58.0
+offset_top = 69.0
+offset_right = 58.27014
+offset_bottom = 69.15198
+grow_horizontal = 2
+grow_vertical = 2
+stream = ExtResource("1_ogv")
+autoplay = true
+expand = true
+loop = true
