@@ -1,13 +1,12 @@
 using System.Linq;
-using System.Reflection;
 using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands.Builders;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.Models;
+using STS2RitsuLib.Combat.CardTargeting;
 using STS2RitsuLib.Interop.AutoRegistration;
-
 using STS2RitsuLib.Scaffolding.Content;
 
 namespace flametail.Powers;
@@ -18,14 +17,6 @@ namespace flametail.Powers;
 [RegisterPower]
 public sealed class flametailFireDancingSwordPower : ModPowerTemplate
 {
-    private static readonly FieldInfo? SingleTargetField = typeof(AttackCommand).GetField(
-        "_singleTarget",
-        BindingFlags.NonPublic | BindingFlags.Instance);
-
-    private static readonly FieldInfo? CombatStateField = typeof(AttackCommand).GetField(
-        "_combatState",
-        BindingFlags.NonPublic | BindingFlags.Instance);
-
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Single;
 
@@ -40,7 +31,7 @@ public sealed class flametailFireDancingSwordPower : ModPowerTemplate
             return;
         }
 
-        if (cmd.Attacker != Owner)
+        if (cmd.Attacker is not { } attacker || attacker != Owner)
         {
             return;
         }
@@ -61,25 +52,14 @@ public sealed class flametailFireDancingSwordPower : ModPowerTemplate
             return;
         }
 
-        RetargetToAllOpponents(cmd, combat);
+        RetargetToAllOpponents(cmd, combat, attacker);
         await Task.CompletedTask;
     }
 
-    private static void RetargetToAllOpponents(AttackCommand cmd, ICombatState combat)
+    private static void RetargetToAllOpponents(AttackCommand cmd, ICombatState combat, Creature attacker)
     {
-        // AttackCommand 只允许在目标未设置时切换为 AOE。这里通过反射清空已设置的单目标，
-        // 使其能够安全地切换到对所有敌人，从而保留卡牌的其它效果逻辑。
-        // 这是当前公开 API 下实现该效果的最小侵入方式；STS2 内部字段变化时需要重新验证。
-        if (SingleTargetField == null || CombatStateField == null)
-        {
-            Godot.GD.PushWarning(
-                "flametailFireDancingSwordPower: required AttackCommand fields are missing; retargeting disabled.");
-            return;
-        }
-
-        SingleTargetField.SetValue(cmd, null);
-        CombatStateField.SetValue(cmd, null);
-
-        cmd.TargetingAllOpponents(combat);
+        // 使用 RitsuLib 的公开扩展，把单目标攻击重定向为所有敌人。
+        var allEnemies = combat.GetOpponentsOf(attacker);
+        cmd.TargetingFiltered(allEnemies);
     }
 }
