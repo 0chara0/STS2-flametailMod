@@ -99,7 +99,7 @@ public static class CounterSystem
             yield break;
         }
 
-        if (attacker != null)
+        if (attacker is { IsDead: false })
         {
             yield return attacker;
         }

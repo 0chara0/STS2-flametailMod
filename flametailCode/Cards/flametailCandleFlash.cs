@@ -205,6 +205,11 @@ public sealed class flametailCandleFlash : ModCardTemplate, ICounterCard
             return;
         }
 
+        if (target.IsDead)
+        {
+            return;
+        }
+
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .FromCard(this, cardPlay)
             .Targeting(target)
