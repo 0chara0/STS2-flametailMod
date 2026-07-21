@@ -6,7 +6,6 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using flametail.Characters;
 using flametail.Powers;
-using flametail.Keywords;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
 
@@ -26,7 +25,7 @@ public sealed class flametailPreFightWarmup : ModCardTemplate, IGainFootworkCard
     public override CardAssetProfile AssetProfile => _assetProfile;
 
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
-        new[] { CardKeyword.Innate, CardKeyword.Exhaust, FlametailKeywords.Footwork };
+        new[] { CardKeyword.Innate, CardKeyword.Exhaust };
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [

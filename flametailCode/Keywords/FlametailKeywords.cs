@@ -20,10 +20,6 @@ namespace flametail.Keywords;
     CardDescriptionPlacement = ModKeywordCardDescriptionPlacement.BeforeCardDescription,
     IncludeInCardHoverTip = true)]
 [RegisterOwnedCardKeyword(
-    "Footwork",
-    CardDescriptionPlacement = ModKeywordCardDescriptionPlacement.BeforeCardDescription,
-    IncludeInCardHoverTip = true)]
-[RegisterOwnedCardKeyword(
     "Support",
     CardDescriptionPlacement = ModKeywordCardDescriptionPlacement.BeforeCardDescription,
     IncludeInCardHoverTip = true)]
@@ -46,13 +42,6 @@ public static class FlametailKeywords
     /// </summary>
     public static readonly CardKeyword Pain =
         ModKeywordRegistry.GetCardKeyword("FLAMETAIL_KEYWORD_PAIN");
-
-    /// <summary>
-    /// 步法词条的 CardKeyword 值，用于卡牌的 CanonicalKeywords。
-    /// 该 ID 由 RegisterOwnedCardKeyword("Footwork") 自动生成。
-    /// </summary>
-    public static readonly CardKeyword Footwork =
-        ModKeywordRegistry.GetCardKeyword("FLAMETAIL_KEYWORD_FOOTWORK");
 
     /// <summary>
     /// 支援词条的 CardKeyword 值，用于卡牌的 CanonicalKeywords。
