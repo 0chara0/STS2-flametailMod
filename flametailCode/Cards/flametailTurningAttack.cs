@@ -55,7 +55,8 @@ public sealed class flametailTurningAttack : ModCardTemplate, ICounterCard
         }
 
         CardModel clumsy = Owner.Creature.CombatState!.CreateCard<Clumsy>(Owner);
-        await CardPileCmd.AddGeneratedCardToCombat(clumsy, PileType.Draw, Owner, CardPilePosition.Bottom);
+        CardPileAddResult clumsyResult = await CardPileCmd.AddGeneratedCardToCombat(clumsy, PileType.Draw, Owner, CardPilePosition.Bottom);
+        CardCmd.PreviewCardPileAdd(clumsyResult);
 
         if (CounterSystem.IsCounterPlay)
         {

@@ -57,7 +57,8 @@ public sealed class flametailDroneBackup : ModCardTemplate
             this);
 
         CardModel decay = Owner.Creature.CombatState!.CreateCard<Decay>(Owner);
-        await CardPileCmd.Add(decay, PileType.Discard, CardPilePosition.Top);
+        CardPileAddResult decayResult = await CardPileCmd.AddGeneratedCardToCombat(decay, PileType.Discard, Owner, CardPilePosition.Top);
+        CardCmd.PreviewCardPileAdd(decayResult);
     }
 
     protected override void OnUpgrade()

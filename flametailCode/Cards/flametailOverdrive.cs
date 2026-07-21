@@ -46,7 +46,8 @@ public sealed class flametailOverdrive : ModCardTemplate
             this);
 
         CardModel pain = Owner.Creature.CombatState!.CreateCard<flametailPain>(Owner);
-        await CardPileCmd.AddGeneratedCardToCombat(pain, PileType.Discard, Owner);
+        CardPileAddResult painResult = await CardPileCmd.AddGeneratedCardToCombat(pain, PileType.Discard, Owner);
+        CardCmd.PreviewCardPileAdd(painResult);
     }
 
     protected override void OnUpgrade()

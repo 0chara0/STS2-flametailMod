@@ -56,7 +56,8 @@ public sealed class flametailKnightsJoust : ModCardTemplate, ICounterCard
         if (CounterSystem.IsCounterPlay && !CounterSystem.LastAttackMitigated)
         {
             CardModel injury = Owner.Creature.CombatState!.CreateCard<Injury>(Owner);
-            await CardPileCmd.AddGeneratedCardToCombat(injury, PileType.Draw, Owner, CardPilePosition.Bottom);
+            CardPileAddResult injuryResult = await CardPileCmd.AddGeneratedCardToCombat(injury, PileType.Draw, Owner, CardPilePosition.Bottom);
+            CardCmd.PreviewCardPileAdd(injuryResult);
         }
     }
 

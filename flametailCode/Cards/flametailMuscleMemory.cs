@@ -42,7 +42,8 @@ public sealed class flametailMuscleMemory : ModCardTemplate
             Owner);
 
         CardModel doubt = Owner.Creature.CombatState!.CreateCard<Doubt>(Owner);
-        await CardPileCmd.AddGeneratedCardToCombat(doubt, PileType.Discard, Owner);
+        CardPileAddResult doubtResult = await CardPileCmd.AddGeneratedCardToCombat(doubt, PileType.Discard, Owner);
+        CardCmd.PreviewCardPileAdd(doubtResult);
     }
 
     protected override void OnUpgrade()

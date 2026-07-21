@@ -63,7 +63,8 @@ public sealed class flametailHiddenWeapon : ModCardTemplate
             this);
 
         CardModel shame = Owner.Creature.CombatState!.CreateCard<Shame>(Owner);
-        await CardPileCmd.AddGeneratedCardToCombat(shame, PileType.Discard, Owner);
+        CardPileAddResult shameResult = await CardPileCmd.AddGeneratedCardToCombat(shame, PileType.Discard, Owner);
+        CardCmd.PreviewCardPileAdd(shameResult);
     }
 
     protected override void OnUpgrade()
