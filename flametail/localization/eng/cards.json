@@ -69,8 +69,8 @@
   "FLAMETAIL_CARD_FLAMETAIL_FEINT.description": "Gain {Footwork:diff()} Footwork. Your next Attack this turn ignores Block.",
   "FLAMETAIL_CARD_FLAMETAIL_FEINT.smartDescription": "Gain {Footwork:diff()} Footwork. Your next Attack this turn ignores Block.",
   "FLAMETAIL_CARD_FLAMETAIL_OVERDRIVE.title": "Overdrive",
-  "FLAMETAIL_CARD_FLAMETAIL_OVERDRIVE.description": "Gain {Dodge} Dodge. Add a Wound to your discard pile.",
-  "FLAMETAIL_CARD_FLAMETAIL_OVERDRIVE.smartDescription": "Gain {Dodge} Dodge. Add a Wound to your discard pile.",
+  "FLAMETAIL_CARD_FLAMETAIL_OVERDRIVE.description": "Gain {Dodge} Dodge. Add a Pain to your discard pile.",
+  "FLAMETAIL_CARD_FLAMETAIL_OVERDRIVE.smartDescription": "Gain {Dodge} Dodge. Add a Pain to your discard pile.",
   "FLAMETAIL_CARD_FLAMETAIL_REGULATED_BREATH.title": "Regulated Breath",
   "FLAMETAIL_CARD_FLAMETAIL_REGULATED_BREATH.description": "If you have Dodge, remove {DodgeRemoved} Dodge and gain {Energy:diff()} [E].",
   "FLAMETAIL_CARD_FLAMETAIL_REGULATED_BREATH.smartDescription": "If you have Dodge, remove {DodgeRemoved} Dodge and gain {Energy:diff()} [E].",
@@ -268,5 +268,8 @@
   "FLAMETAIL_CARD_FLAMETAIL_LOFTY_PRINCIPLE.smartDescription": "Innate. The first {Amount:diff()} times you draw a Curse, discard it and draw 1 card.",
   "FLAMETAIL_CARD_FLAMETAIL_PAST_IS_PAST.title": "Past is Past",
   "FLAMETAIL_CARD_FLAMETAIL_PAST_IS_PAST.description": "When a Curse card enters your discard pile, Exhaust it instead.",
-  "FLAMETAIL_CARD_FLAMETAIL_PAST_IS_PAST.smartDescription": "When a Curse card enters your discard pile, Exhaust it instead."
+  "FLAMETAIL_CARD_FLAMETAIL_PAST_IS_PAST.smartDescription": "When a Curse card enters your discard pile, Exhaust it instead.",
+  "FLAMETAIL_CARD_FLAMETAIL_PAIN.title": "Pain",
+  "FLAMETAIL_CARD_FLAMETAIL_PAIN.description": "Whenever you play a card, lose 1 HP.",
+  "FLAMETAIL_CARD_FLAMETAIL_PAIN.smartDescription": "Whenever you play a card, lose 1 HP."
 }
