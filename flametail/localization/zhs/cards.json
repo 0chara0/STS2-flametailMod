@@ -268,5 +268,8 @@
   "FLAMETAIL_CARD_FLAMETAIL_LOFTY_PRINCIPLE.smartDescription": "固有。在你前 {Amount:diff()} 次抽到诅咒牌时，将其丢弃并抽 1 张牌。",
   "FLAMETAIL_CARD_FLAMETAIL_PAST_IS_PAST.title": "已往不谏",
   "FLAMETAIL_CARD_FLAMETAIL_PAST_IS_PAST.description": "当一张诅咒牌进入弃牌堆时，改为将其消耗。",
-  "FLAMETAIL_CARD_FLAMETAIL_PAST_IS_PAST.smartDescription": "当一张诅咒牌进入弃牌堆时，改为将其消耗。"
+  "FLAMETAIL_CARD_FLAMETAIL_PAST_IS_PAST.smartDescription": "当一张诅咒牌进入弃牌堆时，改为将其消耗。",
+  "FLAMETAIL_CARD_FLAMETAIL_PAIN.title": "疼痛",
+  "FLAMETAIL_CARD_FLAMETAIL_PAIN.description": "每当你打出一张牌，失去1点生命。",
+  "FLAMETAIL_CARD_FLAMETAIL_PAIN.smartDescription": "每当你打出一张牌，失去1点生命。"
 }

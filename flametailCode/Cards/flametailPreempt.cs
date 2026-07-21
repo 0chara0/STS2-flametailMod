@@ -45,10 +45,13 @@ public sealed class flametailPreempt : ModCardTemplate, ICounterCard
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target);
 
-        await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-            .FromCard(this, cardPlay)
-            .Targeting(cardPlay.Target)
-            .Execute(choiceContext);
+        if (!cardPlay.Target.IsDead)
+        {
+            await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
+                .FromCard(this, cardPlay)
+                .Targeting(cardPlay.Target)
+                .Execute(choiceContext);
+        }
 
         var drawPile = Owner.PlayerCombatState?.DrawPile;
         var counters = new List<CardModel>(drawPile?.Cards.Count ?? 0);

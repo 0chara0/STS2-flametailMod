@@ -39,7 +39,7 @@ public sealed class flametailHittingStride : ModCardTemplate
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target);
 
-        int count = CounterSystem.CountersTriggeredThisCombat;
+        int count = CounterSystem.GetCountersTriggeredThisCombat(Owner.Creature);
         for (int i = 0; i < count; i++)
         {
             await DamageCmd.Attack(DynamicVars.Damage.BaseValue)

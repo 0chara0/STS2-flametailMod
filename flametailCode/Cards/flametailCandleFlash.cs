@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Saves.Runs;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
 using flametail.Characters;
@@ -27,6 +28,28 @@ public sealed class flametailCandleFlash : ModCardTemplate, ICounterCard
 
     private Creature? _pendingAttacker;
     private bool _healedByCounter;
+
+    [SavedProperty]
+    public Creature? PendingAttacker
+    {
+        get => _pendingAttacker;
+        set
+        {
+            AssertMutable();
+            _pendingAttacker = value;
+        }
+    }
+
+    [SavedProperty]
+    public bool HealedByCounter
+    {
+        get => _healedByCounter;
+        set
+        {
+            AssertMutable();
+            _healedByCounter = value;
+        }
+    }
 
     private static readonly CardAssetProfile _assetProfile = new(
         PortraitPath: $"{Entry.ResPath}/images/cards/{"flametailCandleFlash"}.png");
@@ -85,7 +108,7 @@ public sealed class flametailCandleFlash : ModCardTemplate, ICounterCard
             return;
         }
 
-        _pendingAttacker = dealer;
+        PendingAttacker = dealer;
         await Task.CompletedTask;
     }
 
@@ -99,7 +122,7 @@ public sealed class flametailCandleFlash : ModCardTemplate, ICounterCard
             return true;
         }
 
-        if (_pendingAttacker == null)
+        if (PendingAttacker == null)
         {
             return true;
         }
@@ -123,8 +146,8 @@ public sealed class flametailCandleFlash : ModCardTemplate, ICounterCard
             return;
         }
 
-        Creature? attacker = _pendingAttacker;
-        _pendingAttacker = null;
+        Creature? attacker = PendingAttacker;
+        PendingAttacker = null;
 
         if (attacker == null)
         {
@@ -135,7 +158,7 @@ public sealed class flametailCandleFlash : ModCardTemplate, ICounterCard
         // 这样血条会先清空，随后回复 20% 最大生命，最后才播放出牌动画并反击。
         decimal healAmount = (decimal)Owner.Creature.MaxHp * DynamicVars["HealPercent"].IntValue / 100m;
         await CreatureCmd.Heal(Owner.Creature, healAmount);
-        _healedByCounter = true;
+        HealedByCounter = true;
 
         bool oldIsCounterPlay = CounterSystem.IsCounterPlay;
         Creature? oldAttacker = CounterSystem.CurrentAttacker;
@@ -145,7 +168,11 @@ public sealed class flametailCandleFlash : ModCardTemplate, ICounterCard
         CounterSystem.CurrentAttacker = attacker;
         CounterSystem.ShouldRetargetCounterToAllEnemies =
             Owner.Creature.HasPower<flametailFireDancingSwordPower>();
-        CounterSystem.CountersTriggeredThisCombat++;
+        var manager = Owner.Creature.GetPower<flametailCounterManagerPower>();
+        if (manager != null)
+        {
+            manager.CountersTriggeredThisCombat++;
+        }
 
         try
         {
@@ -178,21 +205,22 @@ public sealed class flametailCandleFlash : ModCardTemplate, ICounterCard
             return;
         }
 
-        var impactTcs = new TaskCompletionSource();
+        if (target.IsDead)
+        {
+            return;
+        }
 
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .FromCard(this, cardPlay)
             .Targeting(target)
             .Unpowered()
-            .WithAttackerFx(() => SummonedAllyVfx.Create(
+            .WithAttackerFx(() => SummonedAllyVfx.Play(
                 Owner.Creature,
                 target,
-                $"{Entry.ResPath}/scenes/vfx/summons/candle_flash_summon.tscn",
-                impactTcs))
-            .BeforeDamage(() => impactTcs.Task)
+                $"{Entry.ResPath}/scenes/vfx/summons/candle_flash_summon.tscn"))
             .Execute(choiceContext);
 
-        if (!_healedByCounter)
+        if (!HealedByCounter)
         {
             decimal healAmount = (decimal)Owner.Creature.MaxHp * DynamicVars["HealPercent"].IntValue / 100m;
             await CreatureCmd.Heal(Owner.Creature, healAmount);

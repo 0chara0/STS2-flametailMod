@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using HarmonyLib;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 
 namespace flametail.Patches;
@@ -12,9 +14,35 @@ namespace flametail.Patches;
 /// </summary>
 public static class DodgeBlockPatch
 {
-    // 记录哪些生物在当前这次受击已经被闪避抵消。
-    //  combat 是单线程异步流程，普通 HashSet 足够。
-    private static readonly HashSet<Creature> _dodgedTargets = [];
+    // 按战斗隔离闪避标记，避免跨战斗泄漏或在联机/存档读档时错位。
+    private static readonly ConditionalWeakTable<ICombatState, HashSet<Creature>> _dodgedTargetsByCombat = new();
+
+    static DodgeBlockPatch()
+    {
+        CombatManager.Instance.CombatEnded += room =>
+        {
+            if (room?.CombatState != null)
+            {
+                _dodgedTargetsByCombat.Remove(room.CombatState);
+            }
+        };
+    }
+
+    private static HashSet<Creature> GetSetForCombat(ICombatState? combat)
+    {
+        if (combat == null)
+        {
+            return new HashSet<Creature>();
+        }
+
+        if (!_dodgedTargetsByCombat.TryGetValue(combat, out var set))
+        {
+            set = new HashSet<Creature>();
+            _dodgedTargetsByCombat.Add(combat, set);
+        }
+
+        return set;
+    }
 
     /// <summary>
     /// 标记目标在本段伤害中应被闪避抵消。
@@ -22,9 +50,10 @@ public static class DodgeBlockPatch
     /// </summary>
     public static void RegisterDodge(Creature target)
     {
+        var set = GetSetForCombat(target.CombatState);
         // 先清除可能残留的标记，避免目标转移等边界情况导致下一次受击被错误闪避。
-        _dodgedTargets.Remove(target);
-        _dodgedTargets.Add(target);
+        set.Remove(target);
+        set.Add(target);
     }
 
     [HarmonyPatch(typeof(Creature), nameof(Creature.DamageBlockInternal))]
@@ -32,7 +61,8 @@ public static class DodgeBlockPatch
     {
         private static bool Prefix(Creature __instance, decimal amount, ref decimal __result)
         {
-            if (!_dodgedTargets.Remove(__instance))
+            var set = GetSetForCombat(__instance.CombatState);
+            if (!set.Remove(__instance))
             {
                 return true;
             }

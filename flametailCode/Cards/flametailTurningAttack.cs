@@ -46,10 +46,13 @@ public sealed class flametailTurningAttack : ModCardTemplate, ICounterCard
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target);
 
-        await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-            .FromCard(this, cardPlay)
-            .Targeting(cardPlay.Target)
-            .Execute(choiceContext);
+        if (!cardPlay.Target.IsDead)
+        {
+            await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
+                .FromCard(this, cardPlay)
+                .Targeting(cardPlay.Target)
+                .Execute(choiceContext);
+        }
 
         CardModel clumsy = Owner.Creature.CombatState!.CreateCard<Clumsy>(Owner);
         await CardPileCmd.AddGeneratedCardToCombat(clumsy, PileType.Draw, Owner, CardPilePosition.Bottom);
