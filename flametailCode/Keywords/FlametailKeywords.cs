@@ -15,6 +15,10 @@ namespace flametail.Keywords;
     "Counter",
     CardDescriptionPlacement = ModKeywordCardDescriptionPlacement.BeforeCardDescription,
     IncludeInCardHoverTip = true)]
+[RegisterOwnedCardKeyword(
+    "Pain",
+    CardDescriptionPlacement = ModKeywordCardDescriptionPlacement.BeforeCardDescription,
+    IncludeInCardHoverTip = true)]
 public static class FlametailKeywords
 {
     /// <summary>
@@ -23,4 +27,11 @@ public static class FlametailKeywords
     /// </summary>
     public static readonly CardKeyword Counter =
         ModKeywordRegistry.GetCardKeyword("FLAMETAIL_KEYWORD_COUNTER");
+
+    /// <summary>
+    /// 疼痛词条的 CardKeyword 值，用于卡牌的 CanonicalKeywords。
+    /// 该 ID 由 RegisterOwnedCardKeyword("Pain") 自动生成。
+    /// </summary>
+    public static readonly CardKeyword Pain =
+        ModKeywordRegistry.GetCardKeyword("FLAMETAIL_KEYWORD_PAIN");
 }

@@ -1,4 +1,6 @@
 {
   "FLAMETAIL_KEYWORD_COUNTER.title": "Counter",
-  "FLAMETAIL_KEYWORD_COUNTER.description": "When you are attacked, this card may be played automatically as a counter-attack."
+  "FLAMETAIL_KEYWORD_COUNTER.description": "When you are attacked, this card may be played automatically as a counter-attack.",
+  "FLAMETAIL_KEYWORD_PAIN.title": "Pain",
+  "FLAMETAIL_KEYWORD_PAIN.description": "Whenever you play a card while this is in your hand, lose 1 HP."
 }

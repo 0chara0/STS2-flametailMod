@@ -36,10 +36,16 @@ public partial class Entry
         ModTypeDiscoveryHub.RegisterModAssembly(ModId, assembly);
 
         // [RegisterOwnedCardKeyword] 不会被 ModTypeDiscoveryHub 自动处理，
-        // 因此必须手动注册“反制”词条，这样卡牌 CanonicalKeywords 里的 CardKeyword 值才能被识别。
+        // 因此必须手动注册“反制”和“疼痛”词条，这样卡牌 CanonicalKeywords 里的 CardKeyword 值才能被识别。
         ModKeywordRegistry.For(ModId)
             .RegisterCardKeywordOwnedByLocNamespace(
                 "Counter",
+                iconPath: null,
+                ModKeywordCardDescriptionPlacement.BeforeCardDescription,
+                includeInCardHoverTip: true);
+        ModKeywordRegistry.For(ModId)
+            .RegisterCardKeywordOwnedByLocNamespace(
+                "Pain",
                 iconPath: null,
                 ModKeywordCardDescriptionPlacement.BeforeCardDescription,
                 includeInCardHoverTip: true);
