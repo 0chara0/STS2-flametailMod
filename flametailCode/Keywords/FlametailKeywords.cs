@@ -27,6 +27,10 @@ namespace flametail.Keywords;
     "Ephemeral",
     CardDescriptionPlacement = ModKeywordCardDescriptionPlacement.BeforeCardDescription,
     IncludeInCardHoverTip = true)]
+[RegisterOwnedCardKeyword(
+    "Footwork",
+    CardDescriptionPlacement = ModKeywordCardDescriptionPlacement.None,
+    IncludeInCardHoverTip = true)]
 public static class FlametailKeywords
 {
     /// <summary>
@@ -56,4 +60,13 @@ public static class FlametailKeywords
     /// </summary>
     public static readonly CardKeyword Ephemeral =
         ModKeywordRegistry.GetCardKeyword("FLAMETAIL_KEYWORD_EPHEMERAL");
+
+    /// <summary>
+    /// 步法词条的 CardKeyword 值。
+    /// 该 ID 由 RegisterOwnedCardKeyword("Footwork") 自动生成。
+    /// 使用 <see cref="ModKeywordCardDescriptionPlacement.None"/> 使其不会作为顶部/底部独立金句插入描述，
+    /// 但 <see cref="IncludeInCardHoverTip"/> 仍会把它加入卡牌悬停提示。
+    /// </summary>
+    public static readonly CardKeyword Footwork =
+        ModKeywordRegistry.GetCardKeyword("FLAMETAIL_KEYWORD_FOOTWORK");
 }

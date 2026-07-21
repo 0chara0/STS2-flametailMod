@@ -29,7 +29,7 @@ public sealed class flametailBackstep : ModCardTemplate, ICounterCard, IGainFoot
     public override CardAssetProfile AssetProfile => _assetProfile;
 
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
-        new[] { FlametailKeywords.Counter };
+        new[] { FlametailKeywords.Counter, FlametailKeywords.Footwork };
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [

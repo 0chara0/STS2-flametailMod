@@ -6,5 +6,7 @@
   "FLAMETAIL_KEYWORD_SUPPORT.title": "支援",
   "FLAMETAIL_KEYWORD_SUPPORT.description": "这张牌会召唤一名盟友来执行效果。支援牌由特定效果生成，不属于你的初始牌组。",
   "FLAMETAIL_KEYWORD_EPHEMERAL.title": "即逝",
-  "FLAMETAIL_KEYWORD_EPHEMERAL.description": "打出后，这张牌会在本局游戏中从你的牌组中移除。"
+  "FLAMETAIL_KEYWORD_EPHEMERAL.description": "打出后，这张牌会在本局游戏中从你的牌组中移除。",
+  "FLAMETAIL_KEYWORD_FOOTWORK.title": "步法",
+  "FLAMETAIL_KEYWORD_FOOTWORK.description": "每拥有5层步法会立刻转化为1层闪避。回合开始时步法-1。"
 }
