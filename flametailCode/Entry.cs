@@ -49,6 +49,24 @@ public partial class Entry
                 iconPath: null,
                 ModKeywordCardDescriptionPlacement.BeforeCardDescription,
                 includeInCardHoverTip: true);
+        ModKeywordRegistry.For(ModId)
+            .RegisterCardKeywordOwnedByLocNamespace(
+                "Footwork",
+                iconPath: null,
+                ModKeywordCardDescriptionPlacement.BeforeCardDescription,
+                includeInCardHoverTip: true);
+        ModKeywordRegistry.For(ModId)
+            .RegisterCardKeywordOwnedByLocNamespace(
+                "Support",
+                iconPath: null,
+                ModKeywordCardDescriptionPlacement.BeforeCardDescription,
+                includeInCardHoverTip: true);
+        ModKeywordRegistry.For(ModId)
+            .RegisterCardKeywordOwnedByLocNamespace(
+                "Ephemeral",
+                iconPath: null,
+                ModKeywordCardDescriptionPlacement.BeforeCardDescription,
+                includeInCardHoverTip: true);
 
         // 应用 Harmony 补丁（闪避的格挡前缓冲逻辑）。
         new Harmony(ModId).PatchAll(assembly);

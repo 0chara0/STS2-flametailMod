@@ -8,6 +8,7 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Rooms;
 using MegaCrit.Sts2.Core.ValueProps;
 using flametail.Characters;
+using flametail.Keywords;
 using flametail.Nodes.Vfx;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
@@ -26,6 +27,9 @@ public sealed class flametailLanceSupport : ModCardTemplate
     private static readonly CardAssetProfile _assetProfile = new(
         PortraitPath: $"{Entry.ResPath}/images/cards/{"flametailLanceSupport"}.png");
     public override CardAssetProfile AssetProfile => _assetProfile;
+
+    public override IEnumerable<CardKeyword> CanonicalKeywords =>
+        new[] { FlametailKeywords.Support };
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [

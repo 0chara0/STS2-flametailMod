@@ -29,7 +29,7 @@ public sealed class flametailFeatherSupport : ModCardTemplate, ICounterCard
     public override CardAssetProfile AssetProfile => _assetProfile;
 
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
-        new[] { CardKeyword.Retain, FlametailKeywords.Counter };
+        new[] { CardKeyword.Retain, FlametailKeywords.Counter, FlametailKeywords.Support };
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [

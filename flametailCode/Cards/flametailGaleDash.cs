@@ -6,6 +6,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using flametail.Characters;
 using flametail.Powers;
+using flametail.Keywords;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
 
@@ -25,7 +26,7 @@ public sealed class flametailGaleDash : ModCardTemplate, IGainFootworkCard
     public override CardAssetProfile AssetProfile => _assetProfile;
 
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
-        new[] { CardKeyword.Exhaust };
+        new[] { CardKeyword.Exhaust, FlametailKeywords.Footwork };
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [

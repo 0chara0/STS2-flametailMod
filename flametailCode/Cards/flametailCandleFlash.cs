@@ -56,7 +56,7 @@ public sealed class flametailCandleFlash : ModCardTemplate, ICounterCard
     public override CardAssetProfile AssetProfile => _assetProfile;
 
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
-        new[] { CardKeyword.Innate, CardKeyword.Exhaust, FlametailKeywords.Counter };
+        new[] { CardKeyword.Innate, CardKeyword.Exhaust, FlametailKeywords.Counter, FlametailKeywords.Ephemeral };
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
