@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Combat;
@@ -11,6 +10,7 @@ using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Saves.Runs;
 using MegaCrit.Sts2.Core.ValueProps;
 using STS2RitsuLib.Interop.AutoRegistration;
 
@@ -33,6 +33,9 @@ public sealed class flametailCounterManagerPower : ModPowerTemplate
         IconPath: $"{Entry.ResPath}/images/powers/flametailCounterManagerPower.png",
         BigIconPath: $"{Entry.ResPath}/images/powers/flametailCounterManagerPower.png");
     public override PowerAssetProfile AssetProfile => _assetProfile;
+
+    [SavedProperty]
+    public int CountersTriggeredThisCombat { get; set; }
 
     /// <summary>
     /// 使用 BeforeFlushLate，让玩家在看到其他 BeforeFlush 效果后再决定保留哪张反制牌。
@@ -97,7 +100,7 @@ public sealed class flametailCounterManagerPower : ModPowerTemplate
 
     public override async Task AfterApplied(Creature? owner, CardModel? source)
     {
-        CounterSystem.CountersTriggeredThisCombat = 0;
+        CountersTriggeredThisCombat = 0;
         await Task.CompletedTask;
     }
 

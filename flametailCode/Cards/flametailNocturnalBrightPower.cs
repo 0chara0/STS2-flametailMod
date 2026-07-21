@@ -43,18 +43,14 @@ public sealed class flametailNocturnalBrightPower : ModCardTemplate
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target);
 
-        var impactTcs = new TaskCompletionSource();
-
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .FromCard(this, cardPlay)
             .Targeting(cardPlay.Target)
             .Unpowered()
-            .WithAttackerFx(() => SummonedAllyVfx.Create(
+            .WithAttackerFx(() => SummonedAllyVfx.Play(
                 Owner.Creature,
                 cardPlay.Target,
-                $"{Entry.ResPath}/scenes/vfx/summons/nocturnal_bright_summon.tscn",
-                impactTcs))
-            .BeforeDamage(() => impactTcs.Task)
+                $"{Entry.ResPath}/scenes/vfx/summons/nocturnal_bright_summon.tscn"))
             .Execute(choiceContext);
 
         await PowerCmd.Apply<BufferPower>(

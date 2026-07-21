@@ -169,6 +169,24 @@ public partial class SummonedAllyVfx : Node2D
         return vfx;
     }
 
+    /// <summary>
+    /// 非阻塞地创建并返回一个召唤特效节点，不等待命中信号。
+    /// 用于让 DamageCmd 在 VFX 实例化失败时仍能继续造成伤害。
+    /// </summary>
+    /// <param name="source">召唤者（通常是玩家）</param>
+    /// <param name="target">攻击目标；AOE 时可传 null</param>
+    /// <param name="scenePath">召唤物场景路径</param>
+    /// <param name="aoe">是否为 AOE</param>
+    /// <returns>特效节点；测试模式或无法创建时返回 null</returns>
+    public static SummonedAllyVfx? Play(
+        Creature source,
+        Creature? target,
+        string scenePath,
+        bool aoe = false)
+    {
+        return Create(source, target, scenePath, impactSignal: null, aoe: aoe);
+    }
+
     public override void _Ready()
     {
         base._Ready();

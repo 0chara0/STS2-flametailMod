@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Combat;
@@ -62,11 +61,6 @@ public static class CounterSystem
     }
 
     /// <summary>
-    /// 本战斗已触发的反制次数（用于渐入佳境）。
-    /// </summary>
-    public static int CountersTriggeredThisCombat { get; set; }
-
-    /// <summary>
     /// 是否正在执行百战先锋的第二次反制复制，避免无限循环与重复计数。
     /// </summary>
     public static bool IsHardenedVanguardReplication
@@ -109,6 +103,19 @@ public static class CounterSystem
         {
             yield return attacker;
         }
+    }
+
+    private static flametailCounterManagerPower? GetManager(Creature owner)
+    {
+        return owner.GetPower<flametailCounterManagerPower>();
+    }
+
+    /// <summary>
+    /// 获取当前战斗中已触发的反制次数（用于渐入佳境）。
+    /// </summary>
+    public static int GetCountersTriggeredThisCombat(Creature owner)
+    {
+        return GetManager(owner)?.CountersTriggeredThisCombat ?? 0;
     }
 
     /// <summary>
@@ -161,7 +168,11 @@ public static class CounterSystem
         {
             if (!IsHardenedVanguardReplication)
             {
-                CountersTriggeredThisCombat++;
+                var manager = GetManager(card.Owner.Creature);
+                if (manager != null)
+                {
+                    manager.CountersTriggeredThisCombat++;
+                }
             }
 
             IsCounterPlay = oldIsCounterPlay;
