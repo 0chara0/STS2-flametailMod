@@ -69,17 +69,13 @@ public sealed class flametailHighVelocityImpactPower : ModPowerTemplate
             return;
         }
 
-        int gained = (int)amount;
-        if (gained <= 0)
-        {
-            return;
-        }
-
-        await PowerCmd.Apply<StrengthPower>(choiceContext, Owner, gained, Owner, null);
+        // 每次“获得步法”这一事件触发时，只获得 1 点临时力量，
+        // 而不是按本次获得的步法层数计算。
+        await PowerCmd.Apply<StrengthPower>(choiceContext, Owner, 1, Owner, null);
         await PowerCmd.Apply<flametailHighVelocityImpactTempStrengthPower>(
             choiceContext,
             Owner,
-            gained,
+            1,
             Owner,
             null);
     }
