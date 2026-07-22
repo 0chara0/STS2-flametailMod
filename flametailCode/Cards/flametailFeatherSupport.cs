@@ -49,14 +49,18 @@ public sealed class flametailFeatherSupport : ModCardTemplate, ICounterCard
             return;
         }
 
+        var impactTcs = new TaskCompletionSource();
+
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .FromCard(this, cardPlay)
             .Targeting(cardPlay.Target)
             .Unpowered()
-            .WithAttackerFx(() => SummonedAllyVfx.Play(
+            .WithAttackerFx(() => SummonedAllyVfx.Create(
                 Owner.Creature,
                 cardPlay.Target,
-                $"{Entry.ResPath}/scenes/vfx/summons/feather_support_summon.tscn"))
+                $"{Entry.ResPath}/scenes/vfx/summons/feather_support_summon.tscn",
+                impactTcs))
+            .BeforeDamage(() => impactTcs.Task)
             .Execute(choiceContext);
 
         if (CounterSystem.IsCounterPlay)

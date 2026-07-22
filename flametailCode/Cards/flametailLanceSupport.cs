@@ -44,14 +44,18 @@ public sealed class flametailLanceSupport : ModCardTemplate
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target);
 
+        var impactTcs = new TaskCompletionSource();
+
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .FromCard(this, cardPlay)
             .Targeting(cardPlay.Target)
             .Unpowered()
-            .WithAttackerFx(() => SummonedAllyVfx.Play(
+            .WithAttackerFx(() => SummonedAllyVfx.Create(
                 Owner.Creature,
                 cardPlay.Target,
-                $"{Entry.ResPath}/scenes/vfx/summons/lance_support_summon.tscn"))
+                $"{Entry.ResPath}/scenes/vfx/summons/lance_support_summon.tscn",
+                impactTcs))
+            .BeforeDamage(() => impactTcs.Task)
             .Execute(choiceContext);
 
         if (Owner.RunState?.CurrentRoom is CombatRoom room)
