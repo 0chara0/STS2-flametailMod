@@ -210,14 +210,18 @@ public sealed class flametailCandleFlash : ModCardTemplate, ICounterCard
             return;
         }
 
+        var impactTcs = new TaskCompletionSource();
+
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .FromCard(this, cardPlay)
             .Targeting(target)
             .Unpowered()
-            .WithAttackerFx(() => SummonedAllyVfx.Play(
+            .WithAttackerFx(() => SummonedAllyVfx.Create(
                 Owner.Creature,
                 target,
-                $"{Entry.ResPath}/scenes/vfx/summons/candle_flash_summon.tscn"))
+                $"{Entry.ResPath}/scenes/vfx/summons/candle_flash_summon.tscn",
+                impactTcs))
+            .BeforeDamage(() => impactTcs.Task)
             .Execute(choiceContext);
 
         if (!HealedByCounter)

@@ -46,15 +46,19 @@ public sealed class flametailCannonSupport : ModCardTemplate
     {
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
 
+        var impactTcs = new TaskCompletionSource();
+
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .FromCard(this, cardPlay)
             .TargetingAllOpponents(Owner.Creature.CombatState!)
             .Unpowered()
-            .WithAttackerFx(() => SummonedAllyVfx.Play(
+            .WithAttackerFx(() => SummonedAllyVfx.Create(
                 Owner.Creature,
                 null,
                 $"{Entry.ResPath}/scenes/vfx/summons/cannon_support_summon.tscn",
+                impactTcs,
                 aoe: true))
+            .BeforeDamage(() => impactTcs.Task)
             .Execute(choiceContext);
     }
 
