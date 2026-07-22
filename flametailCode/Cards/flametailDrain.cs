@@ -66,6 +66,7 @@ public sealed class flametailDrain : ModCardTemplate
             1)
         {
             Cancelable = true,
+            PretendCardsCanBePlayed = true,
         };
 
         IEnumerable<CardModel> selected = await CardSelectCmd.FromSimpleGrid(
@@ -80,13 +81,6 @@ public sealed class flametailDrain : ModCardTemplate
             return;
         }
 
-        if (targetCard.Pile?.Type != PileType.Hand)
-        {
-            await CardPileCmd.Add(targetCard, PileType.Hand, CardPilePosition.Top, this);
-        }
-
-        targetCard.SetToFreeThisTurn();
-
         int playCount = 2;
         var dodgePower = Owner.Creature.GetPower<flametailDodgePower>();
         if (dodgePower != null && dodgePower.Amount > 0)
@@ -95,15 +89,14 @@ public sealed class flametailDrain : ModCardTemplate
             await PowerCmd.ModifyAmount(choiceContext, dodgePower, -dodgePower.Amount, Owner.Creature, this);
         }
 
-        for (int i = 0; i < playCount; i++)
-        {
-            if (targetCard.Pile?.Type != PileType.Hand)
-            {
-                await CardPileCmd.Add(targetCard, PileType.Hand, CardPilePosition.Top, this);
-            }
+        await PowerCmd.Apply<flametailDrainEchoPower>(
+            choiceContext,
+            Owner.Creature,
+            playCount - 1,
+            Owner.Creature,
+            this);
 
-            await CardCmd.AutoPlay(choiceContext, targetCard, null, AutoPlayType.Default);
-        }
+        await CardCmd.AutoPlay(choiceContext, targetCard, null);
 
         await CardCmd.Exhaust(choiceContext, targetCard);
     }
