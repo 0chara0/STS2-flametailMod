@@ -1,6 +1,8 @@
 # 焰尾 Mod（flametailMod）
 
-https://www.bilibili.com/opus/1223036506427359252![Happy](README.assets/Happy-1784807443553.gif)
+https://www.bilibili.com/opus/1223036506427359252
+
+![Happy](README.assets/Happy-1784807443553.gif)
 
 ## 项目结构
 
