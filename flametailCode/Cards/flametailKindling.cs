@@ -4,6 +4,7 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Saves.Runs;
 using MegaCrit.Sts2.Core.ValueProps;
 using flametail.Characters;
 using STS2RitsuLib.Interop.AutoRegistration;
@@ -20,6 +21,20 @@ public sealed class flametailKindling : ModCardTemplate
     private const TargetType CardTarget = TargetType.AllEnemies;
     private const bool ShowInCardLibrary = true;
 
+    private int _extraDamage;
+
+    [SavedProperty]
+    public int ExtraDamage
+    {
+        get => _extraDamage;
+        set
+        {
+            AssertMutable();
+            _extraDamage = value;
+            DynamicVars.Damage.BaseValue = 1 + _extraDamage;
+        }
+    }
+
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
         new[] { CardKeyword.Exhaust };
 
@@ -29,7 +44,7 @@ public sealed class flametailKindling : ModCardTemplate
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(1, ValueProp.Move),
+        new DamageVar(1 + ExtraDamage, ValueProp.Move),
         new IntVar("HitCount", 2)
     ];
 
@@ -45,7 +60,13 @@ public sealed class flametailKindling : ModCardTemplate
             .WithHitCount(DynamicVars["HitCount"].IntValue)
             .Execute(choiceContext);
 
-        DynamicVars.Damage.BaseValue += 1;
+        AddDamage(1);
+        (DeckVersion as flametailKindling)?.AddDamage(1);
+    }
+
+    public void AddDamage(int amount)
+    {
+        ExtraDamage += amount;
     }
 
     protected override void OnUpgrade()

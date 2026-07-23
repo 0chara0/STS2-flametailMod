@@ -17,7 +17,7 @@ using MegaCrit.Sts2.Core.Models;
 namespace flametail.Cards;
 
 [RegisterCard(typeof(flametailCardPool))]
-public sealed class flametailPreempt : ModCardTemplate, ICounterCard
+public sealed class flametailPreempt : ModCardTemplate
 {
     private const int BaseEnergyCost = 0;
     private const CardType CardKind = CardType.Attack;
@@ -30,7 +30,7 @@ public sealed class flametailPreempt : ModCardTemplate, ICounterCard
     public override CardAssetProfile AssetProfile => _assetProfile;
 
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
-        new[] { CardKeyword.Innate, CardKeyword.Exhaust, FlametailKeywords.Counter };
+        new[] { CardKeyword.Innate, CardKeyword.Exhaust };
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [

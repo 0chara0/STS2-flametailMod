@@ -27,7 +27,7 @@ public sealed class flametailRegulatedBreath : ModCardTemplate
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new IntVar("Energy", 2),
+        new EnergyVar(2),
         new IntVar("DodgeRemoved", 1)
     ];
 

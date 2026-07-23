@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.Models.Powers;
+using MegaCrit.Sts2.Core.HoverTips;
 using flametail.Characters;
 using flametail.Powers;
 using STS2RitsuLib.Interop.AutoRegistration;
@@ -17,6 +18,9 @@ namespace flametail.Cards;
 [RegisterCard(typeof(flametailCardPool))]
 public sealed class flametailDroneBackup : ModCardTemplate
 {
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips => new[] {
+        HoverTipFactory.FromCard<Decay>()
+    };
     private const int BaseEnergyCost = 0;
     private const CardType CardKind = CardType.Skill;
     private const CardRarity CardRarityValue = CardRarity.Rare;
@@ -33,7 +37,7 @@ public sealed class flametailDroneBackup : ModCardTemplate
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new IntVar("DrawAmount", 3),
-        new IntVar("Energy", 2)
+        new EnergyVar(2)
     ];
 
     public flametailDroneBackup() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)

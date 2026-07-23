@@ -30,7 +30,8 @@ public sealed class flametailPhysicalAllocation : ModCardTemplate
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new IntVar("FootworkPerEnergy", 2)
+        new IntVar("FootworkPerEnergy", 2),
+        new EnergyVar(1)
     ];
 
     public flametailPhysicalAllocation() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)

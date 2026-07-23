@@ -27,7 +27,7 @@ public sealed class flametailRelentless : ModCardTemplate
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new IntVar("Energy", 3)
+        new EnergyVar(3)
     ];
 
     public flametailRelentless() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)
