@@ -33,6 +33,11 @@ public sealed class PinusSylvestrisFuture : ModRelicTemplate
 
     public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
     {
+        if (player != Owner)
+        {
+            return;
+        }
+
         await PowerCmd.Apply<flametailFootworkPower>(
             choiceContext,
             player.Creature,

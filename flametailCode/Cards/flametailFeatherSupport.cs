@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
 using flametail.Characters;
+using flametail.Helpers;
 using flametail.Keywords;
 using flametail.Nodes.Vfx;
 using flametail.Powers;
@@ -33,7 +34,7 @@ public sealed class flametailFeatherSupport : ModCardTemplate, ICounterCard
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(25, ValueProp.Move | ValueProp.Unpowered)
+        new DamageVar(25, ValueProp.Move | FlametailValueProps.IgnoreAttackerDamageModifiers)
     ];
 
     public flametailFeatherSupport() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)
@@ -54,7 +55,7 @@ public sealed class flametailFeatherSupport : ModCardTemplate, ICounterCard
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .FromCard(this, cardPlay)
             .Targeting(cardPlay.Target)
-            .Unpowered()
+            .IgnoreAttackerModifiers()
             .WithAttackerFx(() => SummonedAllyVfx.Create(
                 Owner.Creature,
                 cardPlay.Target,
@@ -62,11 +63,30 @@ public sealed class flametailFeatherSupport : ModCardTemplate, ICounterCard
                 impactTcs))
             .BeforeDamage(() => impactTcs.Task)
             .Execute(choiceContext);
+    }
 
-        if (CounterSystem.IsCounterPlay)
+    /// <summary>
+    /// 把“反制时打出下一张反制牌”放在 <see cref="AfterCardPlayed"/> 中，
+    /// 而不是 <see cref="OnPlay"/> 内。
+    ///
+    /// 若在内层 OnPlay 中直接连锁，当前这张牌的 AfterCardPlayed 钩子（如
+    /// <see cref="flametailParryingDaggerPower"/>）会等到整条连锁结束后才结算，
+    /// 导致伤害/格挡被一次性延后触发。移到 AfterCardPlayed 后，当前牌的所有
+    /// 出牌后能力先正常结算，再开始下一张反制牌。
+    /// </summary>
+    public override async Task AfterCardPlayed(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    {
+        if (!CounterSystem.IsCounterPlay)
         {
-            await CounterSystem.PlayNextCounterCard(choiceContext, this, cardPlay.Target);
+            return;
         }
+
+        if (cardPlay.Card != this)
+        {
+            return;
+        }
+
+        await CounterSystem.PlayNextCounterCard(choiceContext, this, cardPlay.Target);
     }
 
     protected override void OnUpgrade()

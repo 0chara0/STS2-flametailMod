@@ -20,7 +20,7 @@ public sealed class flametailFlourish : ModCardTemplate, ICounterCard
     private const int BaseEnergyCost = 1;
     private const CardType CardKind = CardType.Attack;
     private const CardRarity CardRarityValue = CardRarity.Uncommon;
-    private const TargetType CardTarget = TargetType.AnyEnemy;
+    private const TargetType CardTarget = TargetType.RandomEnemy;
     private const bool ShowInCardLibrary = true;
 
     private static readonly CardAssetProfile _assetProfile = new(
@@ -43,8 +43,6 @@ public sealed class flametailFlourish : ModCardTemplate, ICounterCard
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        ArgumentNullException.ThrowIfNull(cardPlay.Target);
-
         int footwork = Owner.Creature.GetPower<flametailFootworkPower>()?.Amount ?? 0;
         decimal hitDamage = DynamicVars.Damage.BaseValue + footwork;
 

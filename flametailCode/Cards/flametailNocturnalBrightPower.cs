@@ -7,8 +7,8 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.ValueProps;
-using flametail.Keywords;
 using flametail.Characters;
+using flametail.Helpers;
 using flametail.Nodes.Vfx;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
@@ -29,11 +29,11 @@ public sealed class flametailNocturnalBrightPower : ModCardTemplate
     public override CardAssetProfile AssetProfile => _assetProfile;
 
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
-        new[] { CardKeyword.Exhaust , FlametailKeywords.Support };
+        new[] { CardKeyword.Exhaust };
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(16, ValueProp.Move | ValueProp.Unpowered)
+        new DamageVar(16, ValueProp.Move | FlametailValueProps.IgnoreAttackerDamageModifiers)
     ];
 
     public flametailNocturnalBrightPower() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)
@@ -49,7 +49,7 @@ public sealed class flametailNocturnalBrightPower : ModCardTemplate
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .FromCard(this, cardPlay)
             .Targeting(cardPlay.Target)
-            .Unpowered()
+            .IgnoreAttackerModifiers()
             .WithAttackerFx(() => SummonedAllyVfx.Create(
                 Owner.Creature,
                 cardPlay.Target,

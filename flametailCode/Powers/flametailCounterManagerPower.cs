@@ -66,6 +66,20 @@ public sealed class flametailCounterManagerPower : ModPowerTemplate
             return;
         }
 
+        // 如果本回合有“保留所有反制牌”效果，直接跳过选择阶段并保留全部。
+        if (Owner.GetPower<flametailRetainAllCountersPower>() is not null)
+        {
+            foreach (CardModel card in counterCards)
+            {
+                card.GiveSingleTurnRetain();
+                // 把保留的反制牌移到手牌序列最后，让 UI 顺序与后端顺序一致，
+                // 这样它不会插队到其他反制牌前面。
+                hand.MoveToBottomInternal(card);
+            }
+
+            return;
+        }
+
         int extraRetain = (Owner.GetPower<flametailExtraCounterRetainPower>()?.Amount ?? 0)
                         + (Owner.GetPower<flametailForesightPower>()?.Amount ?? 0);
         int retainLimit = Amount + extraRetain;

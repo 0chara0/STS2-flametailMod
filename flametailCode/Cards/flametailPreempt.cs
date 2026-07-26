@@ -1,10 +1,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
 using flametail.Characters;
@@ -17,7 +19,7 @@ using MegaCrit.Sts2.Core.Models;
 namespace flametail.Cards;
 
 [RegisterCard(typeof(flametailCardPool))]
-public sealed class flametailPreempt : ModCardTemplate
+public sealed class flametailPreempt : ModCardTemplate, ICounterCard
 {
     private const int BaseEnergyCost = 0;
     private const CardType CardKind = CardType.Attack;
@@ -30,7 +32,7 @@ public sealed class flametailPreempt : ModCardTemplate
     public override CardAssetProfile AssetProfile => _assetProfile;
 
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
-        new[] { CardKeyword.Innate, CardKeyword.Exhaust };
+        new[] { CardKeyword.Innate, CardKeyword.Exhaust, FlametailKeywords.Counter };
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
@@ -54,24 +56,40 @@ public sealed class flametailPreempt : ModCardTemplate
         }
 
         var drawPile = Owner.PlayerCombatState?.DrawPile;
-        var counters = new List<CardModel>(drawPile?.Cards.Count ?? 0);
-        if (drawPile != null)
-        {
-            foreach (CardModel card in drawPile.Cards)
-            {
-                if (card is ICounterCard)
-                {
-                    counters.Add(card);
-                }
-            }
-        }
-
-        if (counters.Count == 0)
+        if (drawPile == null)
         {
             return;
         }
 
-        CardModel chosen = Owner.RunState!.Rng.CombatCardSelection.NextItem(counters)!;
+        CardModel? chosen;
+        if (IsUpgraded)
+        {
+            var prefs = new CardSelectorPrefs(
+                new LocString("cards", "FLAMETAIL_PREEMPT_PROMPT"),
+                1);
+            chosen = (await CardSelectCmd.FromCombatPile(
+                choiceContext,
+                drawPile,
+                Owner,
+                prefs,
+                card => card is ICounterCard)).FirstOrDefault();
+        }
+        else
+        {
+            var counters = drawPile.Cards.Where(card => card is ICounterCard).ToList();
+            if (counters.Count == 0)
+            {
+                return;
+            }
+
+            chosen = Owner.RunState!.Rng.CombatCardSelection.NextItem(counters)!;
+        }
+
+        if (chosen == null)
+        {
+            return;
+        }
+
         await CardPileCmd.Add(chosen, PileType.Hand, CardPilePosition.Top);
     }
 

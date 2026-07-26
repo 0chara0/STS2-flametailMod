@@ -49,10 +49,10 @@ public sealed class flametailFlameheart : ModCardTemplate
             Owner.Creature,
             this);
 
-        await PowerCmd.Apply<flametailExtraCounterRetainPower>(
+        await PowerCmd.Apply<flametailRetainAllCountersPower>(
             choiceContext,
             Owner.Creature,
-            100,
+            1,
             Owner.Creature,
             this);
     }

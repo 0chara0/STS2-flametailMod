@@ -25,9 +25,11 @@ public sealed class flametailRefocus : ModCardTemplate
         PortraitPath: $"{Entry.ResPath}/images/cards/{"flametailRefocus"}.png");
     public override CardAssetProfile AssetProfile => _assetProfile;
 
+    public override IEnumerable<CardKeyword> CanonicalKeywords =>
+        new[] { CardKeyword.Innate };
+
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new PowerVar<flametailRefocusPower>(1m),
         new IntVar("StrengthAmount", 1)
     ];
 
@@ -40,13 +42,13 @@ public sealed class flametailRefocus : ModCardTemplate
         await PowerCmd.Apply<flametailRefocusPower>(
             choiceContext,
             Owner.Creature,
-            DynamicVars["flametailRefocusPower"].BaseValue,
+            DynamicVars["StrengthAmount"].IntValue,
             Owner.Creature,
             this);
     }
 
     protected override void OnUpgrade()
     {
-        AddKeyword(CardKeyword.Innate);
+        DynamicVars["StrengthAmount"].UpgradeValueBy(1);
     }
 }

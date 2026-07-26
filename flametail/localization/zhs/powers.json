@@ -6,6 +6,8 @@
   "FLAMETAIL_POWER_FLAMETAIL_COUNTER_MANAGER_POWER.title": "反制",
   "FLAMETAIL_POWER_FLAMETAIL_COUNTER_MANAGER_POWER.description": "回合结束可以保留至多 {Amount} 张反制牌；每次受到攻击时自动打出手牌中的第一张反制牌。",
   "FLAMETAIL_COUNTER_RETAIN_PROMPT": "选择要保留的反制牌。",
+  "FLAMETAIL_POWER_FLAMETAIL_DASH_WEAVE_DODGE_POWER.title": "闪！转！腾！挪！",
+  "FLAMETAIL_POWER_FLAMETAIL_DASH_WEAVE_DODGE_POWER.description": "你每打出一张牌，获得 {Amount} 层[gold]步法[/gold]。",
   "FLAMETAIL_POWER_FLAMETAIL_STEP_GAMBIT_POWER.title": "步里藏招",
   "FLAMETAIL_POWER_FLAMETAIL_STEP_GAMBIT_POWER.description": "每当你获得步法时，抽 1 张牌。",
   "FLAMETAIL_POWER_FLAMETAIL_GAINED_DODGE_THIS_TURN_POWER.title": "本回合获得闪避",

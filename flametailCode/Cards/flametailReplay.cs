@@ -32,39 +32,19 @@ public sealed class flametailReplay : ModCardTemplate
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        var discardPile = Owner.PlayerCombatState?.DiscardPile;
-        var candidates = new List<CardModel>(discardPile?.Cards.Count ?? 0);
-        if (discardPile != null)
-        {
-            foreach (CardModel card in discardPile.Cards)
-            {
-                if (IsUpgraded || card.Type == CardType.Attack)
-                {
-                    candidates.Add(card);
-                }
-            }
-        }
-
-        if (candidates.Count == 0)
-        {
-            return;
-        }
+        CardPile discardPile = PileType.Discard.GetPile(Owner);
 
         var prefs = new CardSelectorPrefs(
             new LocString("cards", "FLAMETAIL_REPLAY_PROMPT"),
-            0,
-            1)
-        {
-            Cancelable = true,
-        };
+            1);
 
-        IEnumerable<CardModel> selected = await CardSelectCmd.FromSimpleGrid(
+        CardModel? chosen = (await CardSelectCmd.FromCombatPile(
             choiceContext,
-            candidates,
+            discardPile,
             Owner,
-            prefs);
+            prefs,
+            card => IsUpgraded || card.Type == CardType.Attack)).FirstOrDefault();
 
-        CardModel? chosen = selected.FirstOrDefault();
         if (chosen == null)
         {
             return;

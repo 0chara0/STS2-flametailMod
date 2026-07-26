@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
 using flametail.Characters;
+using flametail.Helpers;
 using flametail.Keywords;
 using flametail.Nodes.Vfx;
 using STS2RitsuLib.Interop.AutoRegistration;
@@ -35,7 +36,7 @@ public sealed class flametailCannonSupport : ModCardTemplate
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new BlockVar(10, ValueProp.Move),
-        new DamageVar(10, ValueProp.Move | ValueProp.Unpowered)
+        new DamageVar(10, ValueProp.Move | FlametailValueProps.IgnoreAttackerDamageModifiers)
     ];
 
     public flametailCannonSupport() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)
@@ -51,7 +52,7 @@ public sealed class flametailCannonSupport : ModCardTemplate
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .FromCard(this, cardPlay)
             .TargetingAllOpponents(Owner.Creature.CombatState!)
-            .Unpowered()
+            .IgnoreAttackerModifiers()
             .WithAttackerFx(() => SummonedAllyVfx.Create(
                 Owner.Creature,
                 null,

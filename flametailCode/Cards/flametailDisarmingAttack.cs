@@ -46,6 +46,30 @@ public sealed class flametailDisarmingAttack : ModCardTemplate, ICounterCard
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target);
 
+        if (CounterSystem.IsCounterPlay)
+        {
+            if (Owner.Creature.CombatState is { } combat)
+            {
+                foreach (Creature target in CounterSystem.GetCounterTargets(CounterSystem.CurrentAttacker, combat))
+                {
+                    if (target.IsDead)
+                    {
+                        continue;
+                    }
+
+                    await PowerCmd.Apply<StrengthPower>(
+                        choiceContext,
+                        target,
+                        -DynamicVars["WeakAmount"].IntValue,
+                        Owner.Creature,
+                        this);
+                }
+            }
+
+            await CardCmd.Exhaust(choiceContext, this);
+            return;
+        }
+
         if (!cardPlay.Target.IsDead)
         {
             await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
@@ -59,24 +83,6 @@ public sealed class flametailDisarmingAttack : ModCardTemplate, ICounterCard
                 DynamicVars["WeakAmount"].IntValue,
                 Owner.Creature,
                 this);
-        }
-
-        if (CounterSystem.IsCounterPlay)
-        {
-            await CardCmd.Exhaust(choiceContext, this);
-
-            if (Owner.Creature.CombatState is { } combat)
-            {
-                foreach (Creature target in CounterSystem.GetCounterTargets(CounterSystem.CurrentAttacker, combat))
-                {
-                    await PowerCmd.Apply<StrengthPower>(
-                        choiceContext,
-                        target,
-                        -DynamicVars["WeakAmount"].IntValue,
-                        Owner.Creature,
-                        this);
-                }
-            }
         }
     }
 

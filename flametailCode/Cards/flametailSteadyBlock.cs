@@ -29,7 +29,7 @@ public sealed class flametailSteadyBlock : ModCardTemplate
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new IntVar("BlockPerFootwork", 6),
+        new IntVar("BlockPerFootwork", 4),
         new IntVar("MaxFootwork", 5)
     ];
 
@@ -50,6 +50,6 @@ public sealed class flametailSteadyBlock : ModCardTemplate
 
     protected override void OnUpgrade()
     {
-        DynamicVars["BlockPerFootwork"].UpgradeValueBy(2);
+        DynamicVars["BlockPerFootwork"].UpgradeValueBy(1);
     }
 }

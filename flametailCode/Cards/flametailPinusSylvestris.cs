@@ -28,10 +28,13 @@ public sealed class flametailPinusSylvestris : ModCardTemplate
         PortraitPath: $"{Entry.ResPath}/images/cards/{"flametailPinusSylvestris"}.png");
     public override CardAssetProfile AssetProfile => _assetProfile;
 
+    public override IEnumerable<CardKeyword> CanonicalKeywords =>
+        new[] { CardKeyword.Exhaust };
+
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new DamageVar(3, ValueProp.Move),
-        new IntVar("Footwork", 4),
+        new IntVar("Dodge", 1),
         new IntVar("HitCount", 4)
     ];
 
@@ -49,10 +52,10 @@ public sealed class flametailPinusSylvestris : ModCardTemplate
 
         foreach (Player player in Owner.Creature.CombatState!.Players)
         {
-            await PowerCmd.Apply<flametailFootworkPower>(
+            await PowerCmd.Apply<flametailDodgePower>(
                 choiceContext,
                 player.Creature,
-                DynamicVars["Footwork"].IntValue,
+                DynamicVars["Dodge"].IntValue,
                 Owner.Creature,
                 this);
         }

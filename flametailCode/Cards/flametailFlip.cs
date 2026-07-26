@@ -31,7 +31,7 @@ public sealed class flametailFlip : ModCardTemplate, IGainFootworkCard
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new IntVar("Footwork", 3),
+        new IntVar("Footwork", 2),
         new IntVar("DrawAmount", 1)
     ];
 

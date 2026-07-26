@@ -37,7 +37,7 @@ public sealed class flametailNoBlockPower : ModPowerTemplate
     {
         if (target != Owner)
         {
-            return block;
+            return 0;
         }
 
         return -block;

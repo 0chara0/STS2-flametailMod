@@ -3,6 +3,7 @@ using System.Runtime.CompilerServices;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Creatures;
+using flametail.Powers;
 
 namespace flametail.Patches;
 
@@ -61,10 +62,24 @@ public static class DodgeBlockPatch
     {
         private static bool Prefix(Creature __instance, decimal amount, ref decimal __result)
         {
+            // 只在玩家受到伤害时维护闪避标记，避免反制牌攻击敌人时把标记清掉。
+            if (__instance.IsPlayer)
+            {
+                // 每次进入格挡消耗阶段都重置闪避标记；
+                // 若本次伤害被注册为闪避，则在同步上下文中设为 true，
+                // 这样 AfterDamageReceived / 反制牌读取时不会因为 AsyncLocal 跨 async 边界而丢失。
+                CounterSystem.WasAttackDodged = false;
+            }
+
             var set = GetSetForCombat(__instance.CombatState);
             if (!set.Remove(__instance))
             {
                 return true;
+            }
+
+            if (__instance.IsPlayer)
+            {
+                CounterSystem.WasAttackDodged = true;
             }
 
             // 跳过原始格挡消耗逻辑，把 amount 全部视为已被“缓冲”抵消，

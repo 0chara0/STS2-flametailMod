@@ -6,6 +6,8 @@
   "FLAMETAIL_POWER_FLAMETAIL_COUNTER_MANAGER_POWER.title": "Counter",
   "FLAMETAIL_POWER_FLAMETAIL_COUNTER_MANAGER_POWER.description": "You may retain up to {Amount} Counter card(s) at the end of your turn. Whenever you are attacked, play the first Counter card in your hand.",
   "FLAMETAIL_COUNTER_RETAIN_PROMPT": "Choose a Counter card to retain.",
+  "FLAMETAIL_POWER_FLAMETAIL_DASH_WEAVE_DODGE_POWER.title": "Dash! Weave! Dodge!",
+  "FLAMETAIL_POWER_FLAMETAIL_DASH_WEAVE_DODGE_POWER.description": "Whenever you play a card, gain {Amount} [gold]Footwork[/gold].",
   "FLAMETAIL_POWER_FLAMETAIL_STEP_GAMBIT_POWER.title": "Step Gambit",
   "FLAMETAIL_POWER_FLAMETAIL_STEP_GAMBIT_POWER.description": "Whenever you gain Footwork, draw 1 card.",
   "FLAMETAIL_POWER_FLAMETAIL_GAINED_DODGE_THIS_TURN_POWER.title": "Gained Dodge",

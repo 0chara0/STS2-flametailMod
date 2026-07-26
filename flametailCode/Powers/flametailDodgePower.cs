@@ -55,10 +55,9 @@ public sealed class flametailDodgePower : ModPowerTemplate
             return Task.CompletedTask;
         }
 
-        // 每次受攻击时先重置闪避标记，若本次消耗了闪避再设为 true。
-        CounterSystem.WasAttackDodged = false;
-
-        if (Amount <= 0 || amount <= 0)
+        // 每次受攻击时先由 DodgeBlockPatch 在同步前缀中重置闪避标记，
+        // 若本次消耗了闪避再由 DodgeBlockPatch.DamageBlockInternal 前缀设为 true。
+        if (Amount <= 0 || (int)amount <= 0)
         {
             return Task.CompletedTask;
         }
@@ -70,7 +69,6 @@ public sealed class flametailDodgePower : ModPowerTemplate
     {
         // 消耗 1 层闪避，并通知补丁跳过本次格挡消耗。
         await PowerCmd.ModifyAmount(choiceContext, this, -1, Owner, null);
-        CounterSystem.WasAttackDodged = true;
         DodgeBlockPatch.RegisterDodge(Owner);
     }
 

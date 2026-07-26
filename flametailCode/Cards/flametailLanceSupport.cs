@@ -8,6 +8,7 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Rooms;
 using MegaCrit.Sts2.Core.ValueProps;
 using flametail.Characters;
+using flametail.Helpers;
 using flametail.Keywords;
 using flametail.Nodes.Vfx;
 using STS2RitsuLib.Interop.AutoRegistration;
@@ -29,11 +30,11 @@ public sealed class flametailLanceSupport : ModCardTemplate
     public override CardAssetProfile AssetProfile => _assetProfile;
 
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
-        new[] { FlametailKeywords.Support };
+        new[] { CardKeyword.Exhaust, FlametailKeywords.Support };
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(14, ValueProp.Move | ValueProp.Unpowered)
+        new DamageVar(14, ValueProp.Move | FlametailValueProps.IgnoreAttackerDamageModifiers)
     ];
 
     public flametailLanceSupport() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)
@@ -49,7 +50,7 @@ public sealed class flametailLanceSupport : ModCardTemplate
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .FromCard(this, cardPlay)
             .Targeting(cardPlay.Target)
-            .Unpowered()
+            .IgnoreAttackerModifiers()
             .WithAttackerFx(() => SummonedAllyVfx.Create(
                 Owner.Creature,
                 cardPlay.Target,

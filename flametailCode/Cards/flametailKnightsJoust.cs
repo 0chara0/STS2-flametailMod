@@ -23,6 +23,7 @@ public sealed class flametailKnightsJoust : ModCardTemplate, ICounterCard
     protected override IEnumerable<IHoverTip> AdditionalHoverTips => new[] {
         HoverTipFactory.FromCard<Injury>()
     };
+
     private const int BaseEnergyCost = 3;
     private const CardType CardKind = CardType.Attack;
     private const CardRarity CardRarityValue = CardRarity.Uncommon;
@@ -47,6 +48,14 @@ public sealed class flametailKnightsJoust : ModCardTemplate, ICounterCard
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
+        // 作为反制牌被打出来时，如果本次攻击没有被完全抵消（没有完美格挡或闪避），
+        // 则直接丢弃此牌，不执行任何效果。
+        if (CounterSystem.IsCounterPlay && !CounterSystem.LastAttackMitigated)
+        {
+            await CardCmd.Discard(choiceContext, this);
+            return;
+        }
+
         ArgumentNullException.ThrowIfNull(cardPlay.Target);
 
         if (!cardPlay.Target.IsDead)
@@ -57,12 +66,10 @@ public sealed class flametailKnightsJoust : ModCardTemplate, ICounterCard
                 .Execute(choiceContext);
         }
 
-        if (CounterSystem.IsCounterPlay && !CounterSystem.LastAttackMitigated)
-        {
-            CardModel injury = Owner.Creature.CombatState!.CreateCard<Injury>(Owner);
-            CardPileAddResult injuryResult = await CardPileCmd.AddGeneratedCardToCombat(injury, PileType.Draw, Owner, CardPilePosition.Bottom);
-            CardCmd.PreviewCardPileAdd(injuryResult);
-        }
+        // 只要正常打出（包括成功反制），就往抽牌堆添加一张受伤。
+        CardModel injury = Owner.Creature.CombatState!.CreateCard<Injury>(Owner);
+        CardPileAddResult injuryResult = await CardPileCmd.AddGeneratedCardToCombat(injury, PileType.Draw, Owner, CardPilePosition.Bottom);
+        CardCmd.PreviewCardPileAdd(injuryResult);
     }
 
     protected override void OnUpgrade()

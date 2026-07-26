@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
@@ -36,6 +37,12 @@ public sealed class flametailRideTheMomentum : ModCardTemplate, ICounterCard
     ];
 
     protected override bool IsPlayable => CounterSystem.IsCounterPlay;
+
+    /// <summary>
+    /// 只在本次敌方强化攻击被闪避时才会作为反制牌自动打出；
+    /// 未闪避时不打出，也不会出现“打出但无效果”的情况。
+    /// </summary>
+    public bool CanAutoPlayAsCounter(Creature? attacker) => CounterSystem.WasAttackDodged;
 
     public flametailRideTheMomentum() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)
     {

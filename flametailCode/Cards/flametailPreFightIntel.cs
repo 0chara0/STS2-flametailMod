@@ -14,7 +14,7 @@ namespace flametail.Cards;
 [RegisterCard(typeof(flametailCardPool))]
 public sealed class flametailPreFightIntel : ModCardTemplate
 {
-    private const int BaseEnergyCost = 0;
+    private const int BaseEnergyCost = 2;
     private const CardType CardKind = CardType.Skill;
     private const CardRarity CardRarityValue = CardRarity.Uncommon;
     private const TargetType CardTarget = TargetType.AllEnemies;
@@ -26,8 +26,8 @@ public sealed class flametailPreFightIntel : ModCardTemplate
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new IntVar("WeakAmount", 1),
-        new IntVar("VulnerableAmount", 1)
+        new IntVar("WeakAmount", 3),
+        new IntVar("VulnerableAmount", 3)
     ];
 
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
@@ -62,7 +62,6 @@ public sealed class flametailPreFightIntel : ModCardTemplate
 
     protected override void OnUpgrade()
     {
-        DynamicVars["WeakAmount"].UpgradeValueBy(1);
-        DynamicVars["VulnerableAmount"].UpgradeValueBy(1);
+        EnergyCost.UpgradeBy(-1);
     }
 }

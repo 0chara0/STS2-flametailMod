@@ -20,7 +20,7 @@ public sealed class flametailDeftAssault : ModCardTemplate, ICounterCard
     private const int BaseEnergyCost = 1;
     private const CardType CardKind = CardType.Attack;
     private const CardRarity CardRarityValue = CardRarity.Uncommon;
-    private const TargetType CardTarget = TargetType.AnyEnemy;
+    private const TargetType CardTarget = TargetType.RandomEnemy;
     private const bool ShowInCardLibrary = true;
 
     private static readonly CardAssetProfile _assetProfile = new(
@@ -42,8 +42,6 @@ public sealed class flametailDeftAssault : ModCardTemplate, ICounterCard
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        ArgumentNullException.ThrowIfNull(cardPlay.Target);
-
         if (CounterSystem.IsCounterPlay)
         {
             await DamageCmd.Attack(DynamicVars.Damage.BaseValue)

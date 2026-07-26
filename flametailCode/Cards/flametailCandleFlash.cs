@@ -9,6 +9,7 @@ using MegaCrit.Sts2.Core.Saves.Runs;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
 using flametail.Characters;
+using flametail.Helpers;
 using flametail.Keywords;
 using flametail.Nodes.Vfx;
 using flametail.Powers;
@@ -60,7 +61,7 @@ public sealed class flametailCandleFlash : ModCardTemplate, ICounterCard
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(60, ValueProp.Move | ValueProp.Unpowered),
+        new DamageVar(60, ValueProp.Move | FlametailValueProps.IgnoreAttackerDamageModifiers),
         new IntVar("HealPercent", 20)
     ];
 
@@ -215,7 +216,7 @@ public sealed class flametailCandleFlash : ModCardTemplate, ICounterCard
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .FromCard(this, cardPlay)
             .Targeting(target)
-            .Unpowered()
+            .IgnoreAttackerModifiers()
             .WithAttackerFx(() => SummonedAllyVfx.Create(
                 Owner.Creature,
                 target,
