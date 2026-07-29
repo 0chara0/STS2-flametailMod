@@ -30,8 +30,8 @@ public sealed class flametailPhysicalAllocation : ModCardTemplate
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new IntVar("FootworkPerEnergy", 2),
-        new EnergyVar(1)
+        new EnergyVar(1),
+        new IntVar("FootworkPerEnergy", 2)
     ];
 
     public flametailPhysicalAllocation() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)
@@ -46,13 +46,17 @@ public sealed class flametailPhysicalAllocation : ModCardTemplate
             return;
         }
 
-        int energyGain = footwork.Amount / DynamicVars["FootworkPerEnergy"].IntValue;
+        decimal usableFootwork = footwork.UsableAmount;
+        int energyGain = (int)(usableFootwork / DynamicVars["FootworkPerEnergy"].IntValue);
         if (energyGain > 0)
         {
             await PlayerCmd.GainEnergy(energyGain, Owner);
         }
 
-        await PowerCmd.Remove(footwork);
+        if (usableFootwork > 0)
+        {
+            await PowerCmd.ModifyAmount(choiceContext, footwork, -usableFootwork, Owner.Creature, this);
+        }
     }
 
     protected override void OnUpgrade()

@@ -29,7 +29,7 @@ public sealed class flametailSkillOverStrength : ModCardTemplate
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new IntVar("Multiplier", 3)
+        new IntVar("Multiplier", 2)
     ];
 
     public flametailSkillOverStrength() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)

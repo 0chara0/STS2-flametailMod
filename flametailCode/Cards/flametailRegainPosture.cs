@@ -40,8 +40,9 @@ public sealed class flametailRegainPosture : ModCardTemplate, IGainFootworkCard
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        int currentFootwork = Owner.Creature.GetPower<flametailFootworkPower>()?.Amount ?? 0;
-        if (currentFootwork != 0)
+        var footwork = Owner.Creature.GetPower<flametailFootworkPower>();
+        decimal minimum = footwork?.MinimumAmount ?? 0m;
+        if ((footwork?.Amount ?? 0m) > minimum)
         {
             return;
         }

@@ -30,7 +30,7 @@ public sealed class flametailJab : ModCardTemplate, ICounterCard
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(6, ValueProp.Move)
+        new DamageVar(8, ValueProp.Move)
     ];
 
     public flametailJab() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)
@@ -54,6 +54,6 @@ public sealed class flametailJab : ModCardTemplate, ICounterCard
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(3);
+        DynamicVars.Damage.UpgradeValueBy(4);
     }
 }

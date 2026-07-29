@@ -27,7 +27,7 @@ public sealed class flametailTwoHandedStyle : ModCardTemplate
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new IntVar("BlockPerFootwork", 3)
+        new IntVar("BlockPerFootwork", 4)
     ];
 
     public flametailTwoHandedStyle() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)

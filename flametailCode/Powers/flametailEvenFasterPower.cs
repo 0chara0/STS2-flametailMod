@@ -12,6 +12,8 @@ namespace flametail.Powers;
 [RegisterPower]
 public sealed class flametailEvenFasterPower : ModPowerTemplate
 {
+    public const int MinimumFootwork = 2;
+
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Single;
 

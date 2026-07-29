@@ -12,4 +12,10 @@ public interface ICounterCard
     /// 返回 false 则跳过该牌（例如仅在本次攻击被闪避/完全格挡时才触发的牌）。
     /// </summary>
     bool CanAutoPlayAsCounter(Creature? attacker) => true;
+
+    /// <summary>
+    /// 是否可以被“支援/先发制人”等额外反制触发效果打出。
+    /// 返回 false 时这些效果不会选择该牌，但仍会被正常的受击反制流程打出。
+    /// </summary>
+    bool CanBePlayedBySupportEffects => true;
 }

@@ -14,7 +14,7 @@ namespace flametail.Cards;
 [RegisterCard(typeof(flametailCardPool))]
 public sealed class flametailLuckyBreak : ModCardTemplate
 {
-    private const int BaseEnergyCost = 0;
+    private const int BaseEnergyCost = 1;
     private const CardType CardKind = CardType.Skill;
     private const CardRarity CardRarityValue = CardRarity.Rare;
     private const TargetType CardTarget = TargetType.Self;
@@ -46,6 +46,6 @@ public sealed class flametailLuckyBreak : ModCardTemplate
 
     protected override void OnUpgrade()
     {
-        RemoveKeyword(CardKeyword.Exhaust);
+        EnergyCost.UpgradeBy(-1);
     }
 }

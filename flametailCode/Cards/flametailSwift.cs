@@ -2,6 +2,7 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.ValueProps;
 using flametail.Characters;
 using flametail.Keywords;
 using flametail.Powers;
@@ -24,12 +25,15 @@ public sealed class flametailSwift : ModCardTemplate, IGainFootworkCard
         PortraitPath: $"{Entry.ResPath}/images/cards/{"flametailSwift"}.png");
     public override CardAssetProfile AssetProfile => _assetProfile;
 
+    public override bool GainsBlock => true;
+
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
         new[] { FlametailKeywords.Footwork };
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new IntVar("Footwork", 2)
+        new IntVar("Footwork", 2),
+        new BlockVar(4, ValueProp.Move)
     ];
 
     public flametailSwift() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)
@@ -44,6 +48,8 @@ public sealed class flametailSwift : ModCardTemplate, IGainFootworkCard
             DynamicVars["Footwork"].IntValue,
             Owner.Creature,
             this);
+
+        await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
     }
 
     protected override void OnUpgrade()

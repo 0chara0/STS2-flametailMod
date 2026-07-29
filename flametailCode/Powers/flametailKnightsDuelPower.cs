@@ -1,10 +1,8 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
+using System.Linq;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
-using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
@@ -12,27 +10,17 @@ using STS2RitsuLib.Scaffolding.Content;
 namespace flametail.Powers;
 
 /// <summary>
-/// 本能移动：每回合你打出的前 X 张能获得步法的牌耗能变为 0（X 为能力层数）。
+/// 骑士对决：当场上只有 1 名存活的敌人时，你的反制牌可以免费打出。
 /// </summary>
 [RegisterPower]
-public sealed class flametailReflexMovePower : ModPowerTemplate
+public sealed class flametailKnightsDuelPower : ModPowerTemplate
 {
     public override PowerType Type => PowerType.Buff;
-    public override PowerStackType StackType => PowerStackType.Counter;
-
-    private class Data
-    {
-        public int CardsPlayedThisTurn;
-    }
-
-    protected override object InitInternalData()
-    {
-        return new Data();
-    }
+    public override PowerStackType StackType => PowerStackType.Single;
 
     private static readonly PowerAssetProfile _assetProfile = new(
-        IconPath: $"{Entry.ResPath}/images/powers/flametailReflexMovePower.png",
-        BigIconPath: $"{Entry.ResPath}/images/powers/flametailReflexMovePower.png");
+        IconPath: $"{Entry.ResPath}/images/powers/flametailCounterManagerPower.png",
+        BigIconPath: $"{Entry.ResPath}/images/powers/flametailCounterManagerPower.png");
     public override PowerAssetProfile AssetProfile => _assetProfile;
 
     public override bool TryModifyEnergyCostInCombatLate(CardModel card, decimal originalCost, out decimal modifiedCost)
@@ -57,26 +45,6 @@ public sealed class flametailReflexMovePower : ModPowerTemplate
         return true;
     }
 
-    public override Task AfterCardPlayed(PlayerChoiceContext choiceContext, CardPlay cardPlay)
-    {
-        if (cardPlay.Card.Owner.Creature == Owner
-            && cardPlay.Card is IGainFootworkCard
-            && cardPlay.IsLastInSeries)
-        {
-            GetInternalData<Data>().CardsPlayedThisTurn++;
-        }
-        return Task.CompletedTask;
-    }
-
-    public override Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
-    {
-        if (participants.Contains(Owner))
-        {
-            GetInternalData<Data>().CardsPlayedThisTurn = 0;
-        }
-        return Task.CompletedTask;
-    }
-
     private bool ShouldMakeFree(CardModel card)
     {
         if (card.Owner.Creature != Owner)
@@ -93,11 +61,17 @@ public sealed class flametailReflexMovePower : ModPowerTemplate
                 return false;
         }
 
-        if (card is not IGainFootworkCard)
+        if (card is not ICounterCard)
         {
             return false;
         }
 
-        return GetInternalData<Data>().CardsPlayedThisTurn < Amount;
+        ICombatState? combatState = Owner.CombatState;
+        if (combatState == null)
+        {
+            return false;
+        }
+
+        return combatState.Enemies.Count((Creature e) => e.IsAlive) == 1;
     }
 }

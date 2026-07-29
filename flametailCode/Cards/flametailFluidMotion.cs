@@ -4,6 +4,7 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
 using flametail.Characters;
@@ -43,6 +44,36 @@ public sealed class flametailFluidMotion : ModCardTemplate
             .FromCard(this, cardPlay)
             .Targeting(cardPlay.Target)
             .Execute(choiceContext);
+
+        await EnsureFluidMotionPowerActive(choiceContext);
+    }
+
+    public override async Task BeforeCombatStart()
+    {
+        await EnsureFluidMotionPowerActive(new ThrowingPlayerChoiceContext());
+    }
+
+    public override async Task AfterCardEnteredCombat(CardModel card)
+    {
+        if (card != this)
+        {
+            return;
+        }
+
+        await EnsureFluidMotionPowerActive(new ThrowingPlayerChoiceContext());
+    }
+
+    private async Task EnsureFluidMotionPowerActive(PlayerChoiceContext choiceContext)
+    {
+        if (Owner?.Creature == null)
+        {
+            return;
+        }
+
+        if (Owner.Creature.HasPower<flametailFluidMotionPower>())
+        {
+            return;
+        }
 
         await PowerCmd.Apply<flametailFluidMotionPower>(
             choiceContext,

@@ -37,12 +37,12 @@ public sealed class flametailEvenFaster : ModCardTemplate
             this);
 
         int currentFootwork = (int)(Owner.Creature.GetPower<flametailFootworkPower>()?.Amount ?? 0m);
-        if (currentFootwork < 2)
+        if (currentFootwork < flametailEvenFasterPower.MinimumFootwork)
         {
             await PowerCmd.Apply<flametailFootworkPower>(
                 choiceContext,
                 Owner.Creature,
-                2 - currentFootwork,
+                flametailEvenFasterPower.MinimumFootwork - currentFootwork,
                 Owner.Creature,
                 this);
         }

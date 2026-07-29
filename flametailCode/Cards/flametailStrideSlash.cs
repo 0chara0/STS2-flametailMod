@@ -34,7 +34,8 @@ public sealed class flametailStrideSlash : ModCardTemplate
     ];
 
     protected override bool IsPlayable => base.IsPlayable
-        && Owner.Creature.GetPowerAmount<flametailFootworkPower>() > 0;
+        && Owner.Creature.GetPower<flametailFootworkPower>() is { } footwork
+        && footwork.HasUsableFootwork;
 
     public flametailStrideSlash() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)
     {

@@ -3,7 +3,6 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
-using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using STS2RitsuLib.Interop.AutoRegistration;
@@ -13,7 +12,7 @@ using STS2RitsuLib.Scaffolding.Content;
 namespace flametail.Powers;
 
 /// <summary>
-/// 步法：拥有 5 层时立即转化为 1 层闪避；回合开始前减少 1 层。
+/// 步法：拥有 5 层时立即转化为 1 层闪避。
 /// </summary>
 [RegisterPower]
 public sealed class flametailFootworkPower : ModPowerTemplate
@@ -26,25 +25,23 @@ public sealed class flametailFootworkPower : ModPowerTemplate
         BigIconPath: $"{Entry.ResPath}/images/powers/flametailFootworkPower.png");
     public override PowerAssetProfile AssetProfile => _assetProfile;
 
+    /// <summary>
+    /// 当前步法层数的最低值。若拥有“再快一点”，则最低值为 2；否则为 0。
+    /// </summary>
+    public decimal MinimumAmount => Owner?.HasPower<flametailEvenFasterPower>() == true ? flametailEvenFasterPower.MinimumFootwork : 0m;
+
+    /// <summary>
+    /// 超出最低值、可供卡牌效果使用的步法层数。
+    /// </summary>
+    public decimal UsableAmount => Math.Max(Amount - MinimumAmount, 0m);
+
+    /// <summary>
+    /// 是否拥有超出最低值的可用步法。
+    /// </summary>
+    public bool HasUsableFootwork => UsableAmount > 0m;
+
     // 防止在 AfterPowerAmountChanged 中修改步法时触发无限递归。
     private bool _isConverting;
-
-    public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
-    {
-        // 只对自己生效
-        if (player.Creature != Owner)
-        {
-            return;
-        }
-
-        // 回合开始时 -1；转化的逻辑在 AfterPowerAmountChanged 中随时处理
-        if (Owner.HasPower<flametailSteadyStepPower>())
-        {
-            return;
-        }
-
-        await PowerCmd.ModifyAmount(choiceContext, this, -1, Owner, null);
-    }
 
     public override async Task AfterPowerAmountChanged(PlayerChoiceContext choiceContext, PowerModel power, decimal amount, Creature? applier, CardModel? cardSource)
     {
@@ -68,7 +65,7 @@ public sealed class flametailFootworkPower : ModPowerTemplate
             return;
         }
 
-        int dodgeGain = Amount / 5;
+        int dodgeGain = (int)(Amount / 5m);
         if (dodgeGain <= 0)
         {
             return;
@@ -76,14 +73,16 @@ public sealed class flametailFootworkPower : ModPowerTemplate
 
         _isConverting = true;
 
-        int remainingFootwork = Amount - dodgeGain * 5;
-        if (remainingFootwork <= 0)
+        decimal minimum = MinimumAmount;
+        decimal remainingFootwork = Amount - dodgeGain * 5m;
+        decimal finalFootwork = Math.Max(remainingFootwork, minimum);
+        if (finalFootwork <= 0)
         {
             await PowerCmd.Remove(this);
         }
         else
         {
-            await PowerCmd.ModifyAmount(choiceContext, this, remainingFootwork - Amount, Owner, null);
+            await PowerCmd.ModifyAmount(choiceContext, this, finalFootwork - Amount, Owner, null);
         }
 
         await PowerCmd.Apply<flametailDodgePower>(choiceContext, Owner, dodgeGain, Owner, null);
@@ -100,22 +99,29 @@ public sealed class flametailFootworkPower : ModPowerTemplate
     {
         if (canonicalPower is not flametailFootworkPower
             || target != Owner
-            || amount >= 0
-            || !Owner.HasPower<flametailEvenFasterPower>())
+            || Owner == null
+            || amount >= 0)
         {
             modifiedAmount = amount;
             return false;
         }
 
-        // 再快一点：步法不能低于 2。
+        decimal minimum = MinimumAmount;
+        if (minimum <= 0m)
+        {
+            modifiedAmount = amount;
+            return false;
+        }
+
+        // 再快一点：步法不能低于最低值。
         decimal newAmount = Amount + amount;
-        if (newAmount >= 2m)
+        if (newAmount >= minimum)
         {
             modifiedAmount = amount;
             return false;
         }
 
-        modifiedAmount = Math.Max(amount, 2m - Amount);
+        modifiedAmount = Math.Max(amount, minimum - Amount);
         return modifiedAmount != amount;
     }
 }

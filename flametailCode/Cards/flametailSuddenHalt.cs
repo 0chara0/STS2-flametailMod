@@ -29,7 +29,7 @@ public sealed class flametailSuddenHalt : ModCardTemplate
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new IntVar("BlockPerFootwork", 6)
+        new IntVar("BlockPerFootwork", 5)
     ];
 
     public flametailSuddenHalt() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)
@@ -39,15 +39,15 @@ public sealed class flametailSuddenHalt : ModCardTemplate
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         var footwork = Owner.Creature.GetPower<flametailFootworkPower>();
-        if (footwork == null || footwork.Amount <= 0)
+        if (footwork == null || !footwork.HasUsableFootwork)
         {
             return;
         }
 
-        int footworkAmount = footwork.Amount;
-        await PowerCmd.ModifyAmount(choiceContext, footwork, -footworkAmount, Owner.Creature, this);
+        decimal usableFootwork = footwork.UsableAmount;
+        await PowerCmd.ModifyAmount(choiceContext, footwork, -usableFootwork, Owner.Creature, this);
 
-        decimal block = footworkAmount * DynamicVars["BlockPerFootwork"].IntValue;
+        decimal block = usableFootwork * DynamicVars["BlockPerFootwork"].IntValue;
         await CreatureCmd.GainBlock(Owner.Creature, block, ValueProp.Move, cardPlay);
     }
 

@@ -13,7 +13,7 @@ using STS2RitsuLib.Scaffolding.Content;
 namespace flametail.Relics;
 
 /// <summary>
-/// 红松的起点：每回合开始时获得 1 层步法；战斗开始时建立反制系统。
+/// 红松的起点：每回合开始时获得 1 层步法。
 /// </summary>
 [RegisterRelic(typeof(flametailRelicPool))]
 [RegisterCharacterStarterRelic(typeof(flametailCharacter))]
@@ -31,17 +31,6 @@ public sealed class PinusSylvestrisOrigins : ModRelicTemplate
         IconOutlinePath: $"{Entry.ResPath}/images/relics/flametailRelic.png",
         BigIconPath: $"{Entry.ResPath}/images/relics/flametailRelic.png");
     public override RelicAssetProfile AssetProfile => _assetProfile;
-
-    public override async Task BeforeCombatStart()
-    {
-        // 战斗开始时给角色挂上反制管理器
-        await PowerCmd.Apply<flametailCounterManagerPower>(
-            new ThrowingPlayerChoiceContext(),
-            Owner.Creature,
-            1,
-            Owner.Creature,
-            null);
-    }
 
     public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
     {

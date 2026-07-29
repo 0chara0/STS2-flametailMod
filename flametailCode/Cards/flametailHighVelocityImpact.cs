@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using flametail.Characters;
 using flametail.Powers;
 using STS2RitsuLib.Interop.AutoRegistration;
@@ -13,7 +14,7 @@ namespace flametail.Cards;
 [RegisterCard(typeof(flametailCardPool))]
 public sealed class flametailHighVelocityImpact : ModCardTemplate
 {
-    private const int BaseEnergyCost = 2;
+    private const int BaseEnergyCost = 1;
     private const CardType CardKind = CardType.Power;
     private const CardRarity CardRarityValue = CardRarity.Rare;
     private const TargetType CardTarget = TargetType.Self;
@@ -27,18 +28,23 @@ public sealed class flametailHighVelocityImpact : ModCardTemplate
     {
     }
 
+    protected override IEnumerable<DynamicVar> CanonicalVars =>
+    [
+        new IntVar("StrengthGain", 1)
+    ];
+
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await PowerCmd.Apply<flametailHighVelocityImpactPower>(
             choiceContext,
             Owner.Creature,
-            1,
+            DynamicVars["StrengthGain"].IntValue,
             Owner.Creature,
             this);
     }
 
     protected override void OnUpgrade()
     {
-        EnergyCost.UpgradeBy(-1);
+        DynamicVars["StrengthGain"].UpgradeValueBy(1);
     }
 }

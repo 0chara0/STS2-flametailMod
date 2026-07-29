@@ -29,7 +29,7 @@ public sealed class flametailBlisteringCounter : ModCardTemplate, ICounterCard
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(6, ValueProp.Move),
+        new DamageVar(8, ValueProp.Move),
         new IntVar("HitCount", 2)
     ];
 
@@ -60,7 +60,6 @@ public sealed class flametailBlisteringCounter : ModCardTemplate, ICounterCard
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(1);
         DynamicVars["HitCount"].UpgradeValueBy(1);
     }
 }

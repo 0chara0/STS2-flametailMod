@@ -4,7 +4,6 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.Models.Powers;
 using flametail.Characters;
 using flametail.Powers;
 using STS2RitsuLib.Interop.AutoRegistration;
@@ -27,8 +26,7 @@ public sealed class flametailReflexMove : ModCardTemplate
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new PowerVar<flametailReflexMovePower>(1m),
-        new IntVar("PlayAmount", 1)
+        new IntVar("Amount", 1)
     ];
 
     public flametailReflexMove() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)
@@ -40,7 +38,7 @@ public sealed class flametailReflexMove : ModCardTemplate
         await PowerCmd.Apply<flametailReflexMovePower>(
             choiceContext,
             Owner.Creature,
-            DynamicVars["flametailReflexMovePower"].BaseValue,
+            DynamicVars["Amount"].IntValue,
             Owner.Creature,
             this);
     }

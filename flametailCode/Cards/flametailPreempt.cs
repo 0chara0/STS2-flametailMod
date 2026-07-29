@@ -1,43 +1,27 @@
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Localization;
-using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.ValueProps;
 using flametail.Characters;
-using flametail.Keywords;
 using flametail.Powers;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
-using MegaCrit.Sts2.Core.Models;
 
 namespace flametail.Cards;
 
 [RegisterCard(typeof(flametailCardPool))]
-public sealed class flametailPreempt : ModCardTemplate, ICounterCard
+public sealed class flametailPreempt : ModCardTemplate
 {
-    private const int BaseEnergyCost = 0;
-    private const CardType CardKind = CardType.Attack;
-    private const CardRarity CardRarityValue = CardRarity.Uncommon;
-    private const TargetType CardTarget = TargetType.AnyEnemy;
+    private const int BaseEnergyCost = 1;
+    private const CardType CardKind = CardType.Power;
+    private const CardRarity CardRarityValue = CardRarity.Rare;
+    private const TargetType CardTarget = TargetType.Self;
     private const bool ShowInCardLibrary = true;
 
     private static readonly CardAssetProfile _assetProfile = new(
         PortraitPath: $"{Entry.ResPath}/images/cards/{"flametailPreempt"}.png");
     public override CardAssetProfile AssetProfile => _assetProfile;
-
-    public override IEnumerable<CardKeyword> CanonicalKeywords =>
-        new[] { CardKeyword.Innate, CardKeyword.Exhaust, FlametailKeywords.Counter };
-
-    protected override IEnumerable<DynamicVar> CanonicalVars =>
-    [
-        new DamageVar(4, ValueProp.Move)
-    ];
 
     public flametailPreempt() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)
     {
@@ -45,56 +29,16 @@ public sealed class flametailPreempt : ModCardTemplate, ICounterCard
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        ArgumentNullException.ThrowIfNull(cardPlay.Target);
-
-        if (!cardPlay.Target.IsDead)
-        {
-            await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-                .FromCard(this, cardPlay)
-                .Targeting(cardPlay.Target)
-                .Execute(choiceContext);
-        }
-
-        var drawPile = Owner.PlayerCombatState?.DrawPile;
-        if (drawPile == null)
-        {
-            return;
-        }
-
-        CardModel? chosen;
-        if (IsUpgraded)
-        {
-            var prefs = new CardSelectorPrefs(
-                new LocString("cards", "FLAMETAIL_PREEMPT_PROMPT"),
-                1);
-            chosen = (await CardSelectCmd.FromCombatPile(
-                choiceContext,
-                drawPile,
-                Owner,
-                prefs,
-                card => card is ICounterCard)).FirstOrDefault();
-        }
-        else
-        {
-            var counters = drawPile.Cards.Where(card => card is ICounterCard).ToList();
-            if (counters.Count == 0)
-            {
-                return;
-            }
-
-            chosen = Owner.RunState!.Rng.CombatCardSelection.NextItem(counters)!;
-        }
-
-        if (chosen == null)
-        {
-            return;
-        }
-
-        await CardPileCmd.Add(chosen, PileType.Hand, CardPilePosition.Top);
+        await PowerCmd.Apply<flametailPreemptPower>(
+            choiceContext,
+            Owner.Creature,
+            1,
+            Owner.Creature,
+            this);
     }
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(2);
+        CardCmd.ApplyKeyword(this, CardKeyword.Innate);
     }
 }

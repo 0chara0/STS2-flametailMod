@@ -47,28 +47,17 @@ public sealed class flametailFluidMotionPower : ModPowerTemplate
             return;
         }
 
-        foreach (CardModel card in state.DrawPile.Cards)
-        {
-            if (card is flametailFluidMotion)
-            {
-                await CardPileCmd.Add(card, PileType.Hand, CardPilePosition.Top);
-            }
-        }
+        // 先把匹配的牌快照出来，再逐个移回手牌。
+        // 直接在 foreach 里调用 CardPileCmd.Add 会修改牌堆，导致枚举器失效并抛出异常，
+        // 这会中断后续命令链，使触发步法的源牌无法进入弃牌堆，同时只有第一张牌成功移动。
+        List<CardModel> fluidMotionCards = new List<CardModel>();
+        fluidMotionCards.AddRange(state.DrawPile.Cards.Where(c => c is flametailFluidMotion));
+        fluidMotionCards.AddRange(state.DiscardPile.Cards.Where(c => c is flametailFluidMotion));
+        fluidMotionCards.AddRange(state.ExhaustPile.Cards.Where(c => c is flametailFluidMotion));
 
-        foreach (CardModel card in state.DiscardPile.Cards)
+        foreach (CardModel card in fluidMotionCards)
         {
-            if (card is flametailFluidMotion)
-            {
-                await CardPileCmd.Add(card, PileType.Hand, CardPilePosition.Top);
-            }
-        }
-
-        foreach (CardModel card in state.ExhaustPile.Cards)
-        {
-            if (card is flametailFluidMotion)
-            {
-                await CardPileCmd.Add(card, PileType.Hand, CardPilePosition.Top);
-            }
+            await CardPileCmd.Add(card, PileType.Hand, CardPilePosition.Top);
         }
     }
 }

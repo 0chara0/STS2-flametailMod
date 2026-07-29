@@ -200,7 +200,8 @@ public static class CounterSystem
         {
             if (card != currentCard
                 && card is ICounterCard counter
-                && counter.CanAutoPlayAsCounter(CurrentAttacker))
+                && counter.CanAutoPlayAsCounter(CurrentAttacker)
+                && counter.CanBePlayedBySupportEffects)
             {
                 next = card;
                 break;

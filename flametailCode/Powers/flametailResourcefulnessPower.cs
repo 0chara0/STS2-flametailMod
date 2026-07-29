@@ -1,5 +1,5 @@
+using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
@@ -9,6 +9,7 @@ using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
+using flametail.Cards;
 using STS2RitsuLib.Interop.AutoRegistration;
 
 using STS2RitsuLib.Scaffolding.Content;
@@ -16,7 +17,7 @@ using STS2RitsuLib.Scaffolding.Content;
 namespace flametail.Powers;
 
 /// <summary>
-/// 八面玲珑：回合开始时，优先从抽牌堆，否则从弃牌堆，将一张随机反制牌放入手牌。
+/// 八面玲珑：在你的回合开始时，从固定反制牌池随机生成一张反制牌加入手牌。
 /// </summary>
 [RegisterPower]
 public sealed class flametailResourcefulnessPower : ModPowerTemplate
@@ -29,46 +30,20 @@ public sealed class flametailResourcefulnessPower : ModPowerTemplate
         BigIconPath: $"{Entry.ResPath}/images/powers/flametailResourcefulnessPower.png");
     public override PowerAssetProfile AssetProfile => _assetProfile;
 
-    public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, ICombatState combatState)
+    public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
     {
         if (player.Creature != Owner)
         {
             return;
         }
 
-        var state = player.PlayerCombatState;
-        if (state == null)
+        if (flametailCounterCardRegistry.Creators.Count == 0)
         {
             return;
         }
 
-        List<CardModel> counters = new(state.DrawPile.Cards.Count);
-        foreach (CardModel card in state.DrawPile.Cards)
-        {
-            if (card is ICounterCard)
-            {
-                counters.Add(card);
-            }
-        }
-
-        if (counters.Count == 0)
-        {
-            counters = new List<CardModel>(state.DiscardPile.Cards.Count);
-            foreach (CardModel card in state.DiscardPile.Cards)
-            {
-                if (card is ICounterCard)
-                {
-                    counters.Add(card);
-                }
-            }
-        }
-
-        if (counters.Count == 0)
-        {
-            return;
-        }
-
-        CardModel chosen = player.RunState!.Rng.CombatCardSelection.NextItem(counters)!;
-        await CardPileCmd.Add(chosen, PileType.Hand, CardPilePosition.Top, this);
+        Func<CardModel> creator = player.RunState!.Rng.CombatCardSelection.NextItem(flametailCounterCardRegistry.Creators)!;
+        CardModel card = player.Creature.CombatState!.CreateCard(creator(), player);
+        await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, player, CardPilePosition.Top);
     }
 }
