@@ -57,7 +57,8 @@ public sealed class flametailHardenedVanguardPower : ModPowerTemplate
 
     public override async Task AfterCardPlayedLate(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        if (!CounterSystem.IsCounterPlay)
+        var counterContext = this.GetCounterContext();
+        if (!counterContext.IsCounterPlay)
         {
             return;
         }
@@ -67,7 +68,7 @@ public sealed class flametailHardenedVanguardPower : ModPowerTemplate
             return;
         }
 
-        if (CounterSystem.IsHardenedVanguardReplication)
+        if (counterContext.IsHardenedVanguardReplication)
         {
             return;
         }
@@ -83,7 +84,7 @@ public sealed class flametailHardenedVanguardPower : ModPowerTemplate
         }
 
         _remainingThisTurn--;
-        CounterSystem.IsHardenedVanguardReplication = true;
+        counterContext.IsHardenedVanguardReplication = true;
         try
         {
             // 把反制牌移回手牌再自动打出一次。
@@ -92,11 +93,17 @@ public sealed class flametailHardenedVanguardPower : ModPowerTemplate
                 await CardPileCmd.Add(cardPlay.Card, PileType.Hand, CardPilePosition.Top, this);
             }
 
-            await CardCmd.AutoPlay(choiceContext, cardPlay.Card, CounterSystem.CurrentAttacker, AutoPlayType.Default);
+            await CardCmd.AutoPlay(choiceContext, cardPlay.Card, counterContext.CurrentAttacker, AutoPlayType.Default);
+
+            // 百战先锋的复制也算一次新的反制发动（渐入佳境等会据此累计本场战斗反制次数）。
+            if (Owner?.GetPower<flametailCounterManagerPower>() is { } manager)
+            {
+                manager.CountersTriggeredThisCombat++;
+            }
         }
         finally
         {
-            CounterSystem.IsHardenedVanguardReplication = false;
+            counterContext.IsHardenedVanguardReplication = false;
         }
     }
 }

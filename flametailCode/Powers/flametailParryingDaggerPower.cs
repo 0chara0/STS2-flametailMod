@@ -26,7 +26,8 @@ public sealed class flametailParryingDaggerPower : ModPowerTemplate
 
     public override async Task AfterCardPlayed(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        if (!CounterSystem.IsCounterPlay)
+        var counterContext = this.GetCounterContext();
+        if (!counterContext.IsCounterPlay)
         {
             return;
         }
@@ -38,7 +39,7 @@ public sealed class flametailParryingDaggerPower : ModPowerTemplate
 
         if (Owner.CombatState is { } combat)
         {
-            foreach (Creature target in CounterSystem.GetCounterTargets(CounterSystem.CurrentAttacker, combat))
+            foreach (Creature target in CounterSystem.GetCounterTargets(counterContext.CurrentAttacker, combat))
             {
                 if (target.IsDead)
                 {

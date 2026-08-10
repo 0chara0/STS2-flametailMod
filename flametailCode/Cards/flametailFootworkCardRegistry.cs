@@ -9,9 +9,9 @@ namespace flametail.Cards;
 /// </summary>
 public static class flametailFootworkCardRegistry
 {
-    public static readonly List<Func<CardModel>> Creators = new()
+    private static readonly IReadOnlyList<Func<CardModel>> _creators = new List<Func<CardModel>>
     {
-        () => ModelDb.Card<flametailSwift>(),
+        // 注意：初始卡（如 迅敏）不应出现在随机生成池中。
         () => ModelDb.Card<flametailSideStep>(),
         () => ModelDb.Card<flametailBackstep>(),
         () => ModelDb.Card<flametailFlip>(),
@@ -19,5 +19,11 @@ public static class flametailFootworkCardRegistry
         () => ModelDb.Card<flametailPreFightWarmup>(),
         () => ModelDb.Card<flametailGaleDash>(),
         () => ModelDb.Card<flametailRegainPosture>(),
+        () => ModelDb.Card<flametailDashWeaveDodge>(),
     };
+
+    /// <summary>
+    /// 步法卡生成器集合。只读，避免外部意外修改。
+    /// </summary>
+    public static IReadOnlyList<Func<CardModel>> Creators => _creators;
 }

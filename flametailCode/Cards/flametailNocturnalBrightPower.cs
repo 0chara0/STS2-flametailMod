@@ -8,6 +8,7 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.ValueProps;
 using flametail.Characters;
+using flametail.Keywords;
 using flametail.Helpers;
 using flametail.Nodes.Vfx;
 using STS2RitsuLib.Interop.AutoRegistration;
@@ -29,11 +30,11 @@ public sealed class flametailNocturnalBrightPower : ModCardTemplate
     public override CardAssetProfile AssetProfile => _assetProfile;
 
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
-        new[] { CardKeyword.Exhaust };
+        new[] { CardKeyword.Exhaust , FlametailKeywords.Ephemeral};
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(16, ValueProp.Move | FlametailValueProps.IgnoreAttackerDamageModifiers)
+        new DamageVar(16, ValueProp.Move | FlametailValueProps.GetIgnoreAttackerDamageModifiers())
     ];
 
     public flametailNocturnalBrightPower() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)

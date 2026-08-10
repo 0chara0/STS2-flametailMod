@@ -26,7 +26,7 @@ public sealed class flametailValorPower : ModPowerTemplate
 
     public override async Task AfterCardPlayed(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        if (!CounterSystem.IsCounterPlay)
+        if (!this.GetCounterContext().IsCounterPlay)
         {
             return;
         }

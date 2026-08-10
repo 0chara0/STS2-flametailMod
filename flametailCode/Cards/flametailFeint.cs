@@ -31,7 +31,8 @@ public sealed class flametailFeint : ModCardTemplate, IGainFootworkCard
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new IntVar("Footwork", 1)
+        new IntVar("Footwork", 1),
+        new IntVar("IgnoreBlockAmount", 1)
     ];
 
     public flametailFeint() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)
@@ -50,13 +51,13 @@ public sealed class flametailFeint : ModCardTemplate, IGainFootworkCard
         await PowerCmd.Apply<flametailIgnoreBlockPower>(
             choiceContext,
             Owner.Creature,
-            1,
+            DynamicVars["IgnoreBlockAmount"].IntValue,
             Owner.Creature,
             this);
     }
 
     protected override void OnUpgrade()
     {
-        DynamicVars["Footwork"].UpgradeValueBy(1);
+        DynamicVars["IgnoreBlockAmount"].UpgradeValueBy(1);
     }
 }

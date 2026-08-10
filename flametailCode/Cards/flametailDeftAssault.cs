@@ -33,7 +33,7 @@ public sealed class flametailDeftAssault : ModCardTemplate, ICounterCard
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new DamageVar(8, ValueProp.Move),
-        new IntVar("CounterHitCount", 3)
+        new IntVar("CounterHitCount", 2)
     ];
 
     public flametailDeftAssault() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)
@@ -42,7 +42,7 @@ public sealed class flametailDeftAssault : ModCardTemplate, ICounterCard
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        if (CounterSystem.IsCounterPlay)
+        if (this.GetCounterContext().IsCounterPlay)
         {
             await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
                 .FromCard(this, cardPlay)

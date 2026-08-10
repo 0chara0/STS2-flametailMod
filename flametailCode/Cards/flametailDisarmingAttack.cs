@@ -46,11 +46,12 @@ public sealed class flametailDisarmingAttack : ModCardTemplate, ICounterCard
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target);
 
-        if (CounterSystem.IsCounterPlay)
+        var counterContext = this.GetCounterContext();
+        if (counterContext.IsCounterPlay)
         {
             if (Owner.Creature.CombatState is { } combat)
             {
-                foreach (Creature target in CounterSystem.GetCounterTargets(CounterSystem.CurrentAttacker, combat))
+                foreach (Creature target in CounterSystem.GetCounterTargets(counterContext.CurrentAttacker, combat))
                 {
                     if (target.IsDead)
                     {

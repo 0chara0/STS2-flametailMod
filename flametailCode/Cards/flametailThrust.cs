@@ -54,7 +54,7 @@ public sealed class flametailThrust : ModCardTemplate, ICounterCard
             .Targeting(cardPlay.Target)
             .Execute(choiceContext);
 
-        if (CounterSystem.IsCounterPlay)
+        if (this.GetCounterContext().IsCounterPlay)
         {
             await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
                 .FromCard(this, cardPlay)

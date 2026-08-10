@@ -42,6 +42,21 @@ public sealed class flametailPSLeader : ModCardTemplate
             Owner.Creature.CombatState!.CreateCard<flametailFeatherSupport>(Owner),
         };
 
+        // 升级后，三张候选牌先升级，选牌界面直接展示升级后的牌，玩家看到的就是最终获得的形态。
+        if (IsUpgraded)
+        {
+            foreach (CardModel choice in choices)
+            {
+                CardCmd.Upgrade(choice);
+            }
+        }
+
+        // 三选一获取的牌都添加消耗词条（炮击/骑枪支援本身已带消耗，仅补齐光箭支援）。
+        foreach (CardModel choice in choices.Where(c => !c.Keywords.Contains(CardKeyword.Exhaust)))
+        {
+            choice.AddKeyword(CardKeyword.Exhaust);
+        }
+
         CardModel? chosen = await CardSelectCmd.FromChooseACardScreen(
             choiceContext,
             choices,
@@ -58,6 +73,6 @@ public sealed class flametailPSLeader : ModCardTemplate
 
     protected override void OnUpgrade()
     {
-        EnergyCost.UpgradeBy(-1);
+        // 升级效果由 OnPlay 实现：本卡升级后，三选一获取的牌也会升级。
     }
 }

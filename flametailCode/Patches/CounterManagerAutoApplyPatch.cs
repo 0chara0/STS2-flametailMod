@@ -12,8 +12,15 @@ using flametail.Powers;
 namespace flametail.Patches;
 
 /// <summary>
-/// 战斗开始时无条件为所有玩家施加一层 <see cref="flametailCounterManagerPower"/>。
-/// 这样反制系统不再依赖初始遗物，其他角色获得反制牌后也能正常保留与自动打出。
+/// 战斗开始时为所有玩家施加一层 <see cref="flametailCounterManagerPower"/>。
+///
+/// 无条件施加是刻意的：该能力是隐藏且惰性的——<see cref="flametailCounterManagerPower.BeforeFlushLate"/>
+/// 在手牌没有反制牌时直接返回，<see cref="flametailCounterManagerPower.AfterDamageReceived"/> 在手牌
+/// 找不到反制牌时也直接返回。因此对没有反制牌的玩家它只是空转的隐藏 Buff。
+///
+/// 曾尝试按“牌组含反制牌”等条件施加，但这会导致**非焰尾角色中途获得反制牌**（如事件/遗物
+/// 中途生成进手牌、或反制牌只存在于手牌而不在牌组）时管理器缺失、保留/自动打出失效。
+/// 恢复到无条件施加以覆盖所有路径。
 ///
 /// 实现方式：用 Harmony 的“跳过原方法并返回替换 Task”模式（<see cref="__result"/>），
 /// 先施加反制管理器，再调用原 <see cref="Hook.BeforeCombatStart"/> 逻辑。

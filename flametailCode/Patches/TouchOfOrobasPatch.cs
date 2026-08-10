@@ -45,4 +45,21 @@ public static class TouchOfOrobasPatch
         __result = true;
         return false;
     }
+
+    /// <summary>
+    /// 兜底：其它地方直接调用 <see cref="TouchOfOrobas.GetUpgradedStarterRelic"/> 时，
+    /// 把焰尾的初始遗物同样升级为红松的未来。
+    /// </summary>
+    [HarmonyPatch(typeof(TouchOfOrobas), nameof(TouchOfOrobas.GetUpgradedStarterRelic))]
+    private static class GetUpgradedStarterRelicPatch
+    {
+        [HarmonyPostfix]
+        private static void Postfix(RelicModel starterRelic, ref RelicModel __result)
+        {
+            if (starterRelic is PinusSylvestrisOrigins)
+            {
+                __result = ModelDb.Relic<PinusSylvestrisFuture>().ToMutable();
+            }
+        }
+    }
 }

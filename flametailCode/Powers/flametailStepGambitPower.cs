@@ -37,6 +37,12 @@ public sealed class flametailStepGambitPower : ModPowerTemplate
             return;
         }
 
+        // 多人模式下，只有「自己」获得步法时才触发抽牌。
+        if (power.Owner != Owner)
+        {
+            return;
+        }
+
         if (Owner.Player == null)
         {
             return;

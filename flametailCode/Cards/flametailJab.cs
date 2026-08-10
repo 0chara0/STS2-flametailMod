@@ -1,7 +1,9 @@
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.ValueProps;
 using flametail.Characters;
 using flametail.Keywords;
@@ -30,7 +32,8 @@ public sealed class flametailJab : ModCardTemplate, ICounterCard
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(8, ValueProp.Move)
+        new DamageVar(8, ValueProp.Move),
+        new IntVar("VulnerableAmount", 1)
     ];
 
     public flametailJab() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)
@@ -50,6 +53,13 @@ public sealed class flametailJab : ModCardTemplate, ICounterCard
             .FromCard(this, cardPlay)
             .Targeting(cardPlay.Target)
             .Execute(choiceContext);
+
+        await PowerCmd.Apply<VulnerablePower>(
+            choiceContext,
+            cardPlay.Target,
+            DynamicVars["VulnerableAmount"].IntValue,
+            Owner.Creature,
+            this);
     }
 
     protected override void OnUpgrade()

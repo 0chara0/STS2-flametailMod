@@ -26,6 +26,19 @@ public sealed class flametailTwoHandedStylePower : ModPowerTemplate
     private decimal _pendingBlock;
 
     /// <summary>
+    /// 增伤叠加层数：每次打出双手剑法 +1，每层攻击伤害 +25%。
+    /// </summary>
+    public int DamageStacks { get; private set; }
+
+    /// <summary>
+    /// 由双手剑法卡牌打出时调用，记录一次增伤叠加。
+    /// </summary>
+    public void AddDamageStack()
+    {
+        DamageStacks++;
+    }
+
+    /// <summary>
     /// 将本应获得的 Footwork 拦截为待定 Block。
     /// 注意：此实现依赖 <see cref="TryModifyPowerAmountReceived"/> 与
     /// <see cref="AfterModifyingPowerAmountReceived"/> 在同一次 power 修改中成对调用。
@@ -80,6 +93,7 @@ public sealed class flametailTwoHandedStylePower : ModPowerTemplate
             return 1m;
         }
 
-        return 1.5m;
+        // 每层叠加 +25%：打出 1 次 → 1.25 倍，2 次 → 1.5 倍，依此类推。
+        return 1m + 0.25m * DamageStacks;
     }
 }

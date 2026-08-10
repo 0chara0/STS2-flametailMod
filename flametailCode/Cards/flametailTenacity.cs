@@ -27,7 +27,7 @@ public sealed class flametailTenacity : ModCardTemplate
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new IntVar("Amount", 4)
+        new IntVar("Amount", 2)
     ];
 
     public flametailTenacity() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)
@@ -46,6 +46,6 @@ public sealed class flametailTenacity : ModCardTemplate
 
     protected override void OnUpgrade()
     {
-        DynamicVars["Amount"].UpgradeValueBy(2);
+        DynamicVars["Amount"].UpgradeValueBy(1);
     }
 }

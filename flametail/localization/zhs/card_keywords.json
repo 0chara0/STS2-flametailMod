@@ -4,9 +4,9 @@
   "FLAMETAIL_KEYWORD_PAIN.title": "疼痛",
   "FLAMETAIL_KEYWORD_PAIN.description": "当这张牌在手牌中时，你每打出一张牌失去 1 点生命。",
   "FLAMETAIL_KEYWORD_SUPPORT.title": "支援",
-  "FLAMETAIL_KEYWORD_SUPPORT.description": "这张牌会召唤一名盟友来执行效果。支援牌不由你造成的伤害不受你的能力影响，也不会使你受到荆棘和人工蜂巢的影响。",
+  "FLAMETAIL_KEYWORD_SUPPORT.description": "支援牌将召唤一名盟友执行其效果。这使得支援牌的效果（如伤害）不受你的能力影响，你也不会因支援牌的伤害而受荆棘和人工蜂巢的影响。",
   "FLAMETAIL_KEYWORD_EPHEMERAL.title": "即逝",
   "FLAMETAIL_KEYWORD_EPHEMERAL.description": "打出后，这张牌会在本局游戏中从你的牌组中移除。",
   "FLAMETAIL_KEYWORD_FOOTWORK.title": "步法",
-  "FLAMETAIL_KEYWORD_FOOTWORK.description": "每拥有5层步法会立刻转化为1层闪避。回合开始时步法-1。"
+  "FLAMETAIL_KEYWORD_FOOTWORK.description": "每拥有5层步法会立刻转化为1层闪避。"
 }

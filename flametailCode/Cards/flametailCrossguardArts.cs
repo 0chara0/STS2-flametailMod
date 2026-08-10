@@ -47,9 +47,10 @@ public sealed class flametailCrossguardArts : ModCardTemplate, ICounterCard
     {
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
 
-        if (CounterSystem.IsCounterPlay && Owner.Creature.CombatState is { } combat)
+        var counterContext = this.GetCounterContext();
+        if (counterContext.IsCounterPlay && Owner.Creature.CombatState is { } combat)
         {
-            foreach (Creature target in CounterSystem.GetCounterTargets(CounterSystem.CurrentAttacker, combat))
+            foreach (Creature target in CounterSystem.GetCounterTargets(counterContext.CurrentAttacker, combat))
             {
                 await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
                     .FromCard(this, cardPlay)

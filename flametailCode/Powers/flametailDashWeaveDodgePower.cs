@@ -28,18 +28,43 @@ public sealed class flametailDashWeaveDodgePower : ModPowerTemplate
         BigIconPath: $"{Entry.ResPath}/images/powers/flametailFootworkPower.png");
     public override PowerAssetProfile AssetProfile => _assetProfile;
 
-    private class Data
+    /// <summary>
+    /// 施加本能力的来源牌。打出这张牌本身不会触发步法增益。
+    /// 在 <see cref="AfterApplied"/> 和 <see cref="AfterPowerAmountChanged"/> 中维护，
+    /// 以覆盖“首次施加只触发 AfterApplied”和“后续叠加只触发 AfterPowerAmountChanged”
+    /// 两种框架行为，不依赖一次性内部标志。
+    /// </summary>
+    private CardModel? _sourceCard;
+
+    public override Task AfterApplied(Creature? owner, CardModel? source)
     {
-        /// <summary>
-        /// 用于跳过打出这张牌本身触发的第一次 AfterCardPlayed，
-        /// 避免打出闪！转！腾！挪！时立即获得步法。
-        /// </summary>
-        public bool AlreadyApplied;
+        if (source != null)
+        {
+            _sourceCard = source;
+        }
+
+        return Task.CompletedTask;
     }
 
-    protected override object InitInternalData()
+    public override Task AfterPowerAmountChanged(
+        PlayerChoiceContext choiceContext,
+        PowerModel power,
+        decimal amount,
+        Creature? applier,
+        CardModel? cardSource)
     {
-        return new Data();
+        if (power != this)
+        {
+            return Task.CompletedTask;
+        }
+
+        // 只要是从卡牌来源获得/叠加了本能力，就更新来源牌。
+        if (amount > 0 && cardSource != null)
+        {
+            _sourceCard = cardSource;
+        }
+
+        return Task.CompletedTask;
     }
 
     public override async Task AfterCardPlayed(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -49,10 +74,9 @@ public sealed class flametailDashWeaveDodgePower : ModPowerTemplate
             return;
         }
 
-        Data data = GetInternalData<Data>();
-        if (!data.AlreadyApplied)
+        // 打出施加本能力的牌本身不获得步法。
+        if (cardPlay.Card == _sourceCard)
         {
-            data.AlreadyApplied = true;
             return;
         }
 

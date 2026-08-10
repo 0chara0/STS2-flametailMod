@@ -13,6 +13,7 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Saves.Runs;
 using MegaCrit.Sts2.Core.ValueProps;
 using STS2RitsuLib.Interop.AutoRegistration;
+using flametail.Patches;
 
 using STS2RitsuLib.Scaffolding.Content;
 
@@ -119,7 +120,7 @@ public sealed class flametailCounterManagerPower : ModPowerTemplate
     }
 
     /// <summary>
-    /// 在受到伤害后触发反制。此时闪避已经被消耗，可以正确读取 WasAttackDodged。
+    /// 在受到伤害后触发反制。此时闪避已经被消耗，可以正确读取 DodgeBlockPatch.WasAttackDodged。
     /// </summary>
     public override async Task AfterDamageReceived(
         PlayerChoiceContext choiceContext,
@@ -144,16 +145,21 @@ public sealed class flametailCounterManagerPower : ModPowerTemplate
             return;
         }
 
-        if (CounterSystem.IsCounterPlay)
+        var context = this.GetCounterContext();
+        if (context.IsCounterPlay)
         {
             return;
         }
 
-        bool oldMitigated = CounterSystem.LastAttackMitigated;
-        bool oldDodged = CounterSystem.WasAttackDodged;
-        Creature? oldAttacker = CounterSystem.CurrentAttacker;
-        CounterSystem.LastAttackMitigated = CounterSystem.WasAttackDodged || result.WasFullyBlocked;
-        CounterSystem.CurrentAttacker = dealer;
+        bool oldMitigated = context.LastAttackMitigated;
+        Creature? oldAttacker = context.CurrentAttacker;
+        bool oldTookDamage = context.TookDamage;
+        bool dodged = DodgeBlockPatch.WasAttackDodged(target);
+        bool fullyBlocked = result.WasFullyBlocked;
+        context.LastAttackMitigated = dodged || fullyBlocked;
+        // 只有实际受到伤害（伤害 > 0）才为 true；闪避、完全格挡、或攻击伤害为 0 都视为未受伤。
+        context.TookDamage = !dodged && !fullyBlocked && result.TotalDamage > 0;
+        context.CurrentAttacker = dealer;
 
         try
         {
@@ -180,9 +186,9 @@ public sealed class flametailCounterManagerPower : ModPowerTemplate
         }
         finally
         {
-            CounterSystem.LastAttackMitigated = oldMitigated;
-            CounterSystem.WasAttackDodged = oldDodged;
-            CounterSystem.CurrentAttacker = oldAttacker;
+            context.LastAttackMitigated = oldMitigated;
+            context.CurrentAttacker = oldAttacker;
+            context.TookDamage = oldTookDamage;
         }
     }
 }

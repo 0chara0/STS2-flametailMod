@@ -27,11 +27,11 @@ public sealed class flametailFlip : ModCardTemplate, IGainFootworkCard
     public override CardAssetProfile AssetProfile => _assetProfile;
 
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
-        new[] { FlametailKeywords.Footwork };
+        new[] { FlametailKeywords.Footwork, CardKeyword.Exhaust };
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new IntVar("Footwork", 2),
+        new IntVar("Footwork", 3),
         new IntVar("DrawAmount", 1)
     ];
 
@@ -56,6 +56,6 @@ public sealed class flametailFlip : ModCardTemplate, IGainFootworkCard
 
     protected override void OnUpgrade()
     {
-        DynamicVars["DrawAmount"].UpgradeValueBy(1);
+        EnergyCost.UpgradeBy(-1);
     }
 }

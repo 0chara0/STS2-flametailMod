@@ -13,7 +13,7 @@
   "FLAMETAIL_POWER_FLAMETAIL_GAINED_DODGE_THIS_TURN_POWER.title": "本回合获得闪避",
   "FLAMETAIL_POWER_FLAMETAIL_GAINED_DODGE_THIS_TURN_POWER.description": "你本回合获得过闪避。",
   "FLAMETAIL_POWER_FLAMETAIL_IGNORE_BLOCK_POWER.title": "虚晃",
-  "FLAMETAIL_POWER_FLAMETAIL_IGNORE_BLOCK_POWER.description": "下一张攻击牌无视格挡。",
+  "FLAMETAIL_POWER_FLAMETAIL_IGNORE_BLOCK_POWER.description": "本回合打出的前几张攻击牌无视格挡。",
   "FLAMETAIL_POWER_FLAMETAIL_NO_BLOCK_POWER.title": "摔绊",
   "FLAMETAIL_POWER_FLAMETAIL_NO_BLOCK_POWER.description": "本回合无法获得格挡。",
   "FLAMETAIL_POWER_FLAMETAIL_CAN_YOU_SEE_ME_POWER.title": "看得清吗",
@@ -21,7 +21,7 @@
   "FLAMETAIL_POWER_FLAMETAIL_REFLEX_MOVE_POWER.title": "本能移动",
   "FLAMETAIL_POWER_FLAMETAIL_REFLEX_MOVE_POWER.description": "每回合你打出的前[blue]{Amount}[/blue]张能获得步法的牌耗能变为0。",
   "FLAMETAIL_POWER_FLAMETAIL_TWO_HANDED_STYLE_POWER.title": "双手剑法",
-  "FLAMETAIL_POWER_FLAMETAIL_TWO_HANDED_STYLE_POWER.description": "你获得的每层步法改为获得[blue]{Amount}[/blue]点格挡。你所有的攻击伤害 +50%。",
+  "FLAMETAIL_POWER_FLAMETAIL_TWO_HANDED_STYLE_POWER.description": "你获得的每层步法改为获得[blue]{Amount}[/blue]点格挡。你所有的攻击伤害 +25%。",
   "FLAMETAIL_POWER_FLAMETAIL_PREEMPT_POWER.title": "先发制人",
   "FLAMETAIL_POWER_FLAMETAIL_PREEMPT_POWER.description": "在每个敌人行动之前，从你的手牌中自动打出一张满足条件的反制牌。有限制条件的反制牌会被跳过。",
   "FLAMETAIL_POWER_FLAMETAIL_PROFICIENCY_POWER.title": "熟稔",
@@ -33,7 +33,7 @@
   "FLAMETAIL_POWER_FLAMETAIL_PARRYING_DAGGER_POWER.title": "招架匕首",
   "FLAMETAIL_POWER_FLAMETAIL_PARRYING_DAGGER_POWER.description": "每当你反制时，额外造成一次[blue]{Amount}[/blue]点伤害并获得[blue]{Amount}[/blue]点格挡。",
   "FLAMETAIL_POWER_FLAMETAIL_TENACITY_POWER.title": "坚韧不拔",
-  "FLAMETAIL_POWER_FLAMETAIL_TENACITY_POWER.description": "每当你抽到一张[red]诅咒[/red]或状态牌时，获得[blue]{Amount}[/blue]点格挡。",
+  "FLAMETAIL_POWER_FLAMETAIL_TENACITY_POWER.description": "每当你抽到一张[red]诅咒[/red]或状态牌时，获得[blue]{Amount}[/blue]点格挡。[red]诅咒[/red]和状态牌对你造成的伤害与失去生命效果减半（不叠加）。",
   "FLAMETAIL_POWER_FLAMETAIL_REFOCUS_POWER.title": "回神",
   "FLAMETAIL_POWER_FLAMETAIL_REFOCUS_POWER.description": "当一张[red]诅咒[/red]牌进入消耗牌堆或弃牌堆时，你获得1点力量。",
   "FLAMETAIL_POWER_FLAMETAIL_STEADY_STEP_POWER.title": "稳健步法",
@@ -61,5 +61,7 @@
   "FLAMETAIL_POWER_FLAMETAIL_HARDENED_VANGUARD_POWER.title": "百战先锋",
   "FLAMETAIL_POWER_FLAMETAIL_HARDENED_VANGUARD_POWER.description": "每回合你前[blue]{Amount}[/blue]次反制时，额外执行一次该反制效果。",
   "FLAMETAIL_POWER_FLAMETAIL_KNIGHTS_DUEL_POWER.title": "骑士对决",
-  "FLAMETAIL_POWER_FLAMETAIL_KNIGHTS_DUEL_POWER.description": "如果场上只有一名敌人，所有反制牌耗能变为0。"
+  "FLAMETAIL_POWER_FLAMETAIL_KNIGHTS_DUEL_POWER.description": "如果场上只有一名敌人，所有反制牌耗能变为0。",
+  "FLAMETAIL_POWER_FLAMETAIL_CORNERED_RECALL_POWER.title": "困兽之斗",
+  "FLAMETAIL_POWER_FLAMETAIL_CORNERED_RECALL_POWER.description": "[blue]{Amount}[/blue]回合后，将你消耗牌堆中的[red]诅咒[/red]或状态牌返回弃牌堆。"
 }

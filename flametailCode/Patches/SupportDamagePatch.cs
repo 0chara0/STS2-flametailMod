@@ -12,7 +12,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace flametail.Patches;
 
 /// <summary>
-/// Harmony 补丁：让带有 <see cref="FlametailValueProps.IgnoreAttackerDamageModifiers"/> 的伤害
+/// Harmony 补丁：让带有 <see cref="FlametailValueProps.GetIgnoreAttackerDamageModifiers"/> 的伤害
 /// 1) 在伤害修正阶段跳过攻击方（dealer）拥有的力量/遗物加成，但仍受目标方（target）的易伤/虚弱等影响；
 /// 2) 跳过目标方的受击反应类效果，例如荆棘（Thorns）、人工蜂巢（Personal Hive）、反射（Reflect）。
 /// </summary>
@@ -27,6 +27,16 @@ public static class SupportDamagePatch
             var skipMethod = AccessTools.Method(
                 typeof(Helpers.FlametailValueProps),
                 nameof(Helpers.FlametailValueProps.ShouldSkipAttackerModifier));
+
+            if (skipMethod == null)
+            {
+                throw new InvalidOperationException(
+                    "SupportDamagePatch: could not resolve FlametailValueProps.ShouldSkipAttackerModifier.");
+            }
+
+            // 记录是否实际插入了守卫。如果游戏更新后 IL 结构变化导致模式匹配失败，
+            // 宁可大声报错，也不能静默失效（否则支援伤害会在无人察觉时恢复受攻击方加成）。
+            bool matched = false;
 
             for (int i = 0; i < codes.Count - 2; i++)
             {
@@ -81,8 +91,17 @@ public static class SupportDamagePatch
 
                 codes.InsertRange(i + 2, guard);
 
+                matched = true;
+
                 // 跳过本循环已处理区域：2 条原指令 + 6 条插入指令 + 原 ldloc
                 i += 7;
+            }
+
+            if (!matched)
+            {
+                throw new InvalidOperationException(
+                    "SupportDamagePatch: no matching foreach pattern found in Hook.ModifyDamageInternal. "
+                    + "The game IL structure has likely changed; update this transpiler.");
             }
 
             return codes;
@@ -117,7 +136,7 @@ public static class SupportDamagePatch
     }
 
     /// <summary>
-    /// 当伤害带有 <see cref="FlametailValueProps.IgnoreAttackerDamageModifiers"/> 时，
+    /// 当伤害带有 <see cref="FlametailValueProps.GetIgnoreAttackerDamageModifiers"/> 时，
     /// 跳过荆棘（Thorns）的反击伤害。
     /// 使用 Prefix + ref Task __result 跳过异步原方法，避免状态机挂起。
     /// </summary>
@@ -126,7 +145,7 @@ public static class SupportDamagePatch
     {
         private static bool Prefix(Creature target, ValueProp props, PowerModel __instance, ref Task __result)
         {
-            if (!props.HasFlag(Helpers.FlametailValueProps.IgnoreAttackerDamageModifiers))
+            if (!props.HasFlag(Helpers.FlametailValueProps.GetIgnoreAttackerDamageModifiers()))
             {
                 return true;
             }
@@ -142,7 +161,7 @@ public static class SupportDamagePatch
     }
 
     /// <summary>
-    /// 当伤害带有 <see cref="FlametailValueProps.IgnoreAttackerDamageModifiers"/> 时，
+    /// 当伤害带有 <see cref="FlametailValueProps.GetIgnoreAttackerDamageModifiers"/> 时，
     /// 跳过人工蜂巢（Personal Hive）向抽牌堆添加眩晕牌的效果。
     /// </summary>
     [HarmonyPatch(typeof(MegaCrit.Sts2.Core.Models.Powers.PersonalHivePower), nameof(MegaCrit.Sts2.Core.Models.Powers.PersonalHivePower.AfterDamageReceived))]
@@ -150,7 +169,7 @@ public static class SupportDamagePatch
     {
         private static bool Prefix(Creature target, ValueProp props, PowerModel __instance, ref Task __result)
         {
-            if (!props.HasFlag(Helpers.FlametailValueProps.IgnoreAttackerDamageModifiers))
+            if (!props.HasFlag(Helpers.FlametailValueProps.GetIgnoreAttackerDamageModifiers()))
             {
                 return true;
             }
@@ -166,7 +185,7 @@ public static class SupportDamagePatch
     }
 
     /// <summary>
-    /// 当伤害带有 <see cref="FlametailValueProps.IgnoreAttackerDamageModifiers"/> 时，
+    /// 当伤害带有 <see cref="FlametailValueProps.GetIgnoreAttackerDamageModifiers"/> 时，
     /// 跳过反射（Reflect）将格挡伤害返还给攻击者的效果。
     /// </summary>
     [HarmonyPatch(typeof(MegaCrit.Sts2.Core.Models.Powers.ReflectPower), nameof(MegaCrit.Sts2.Core.Models.Powers.ReflectPower.AfterDamageReceived))]
@@ -174,7 +193,7 @@ public static class SupportDamagePatch
     {
         private static bool Prefix(Creature target, ValueProp props, PowerModel __instance, ref Task __result)
         {
-            if (!props.HasFlag(Helpers.FlametailValueProps.IgnoreAttackerDamageModifiers))
+            if (!props.HasFlag(Helpers.FlametailValueProps.GetIgnoreAttackerDamageModifiers()))
             {
                 return true;
             }

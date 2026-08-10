@@ -34,7 +34,7 @@ public sealed class flametailFeatherSupport : ModCardTemplate, ICounterCard
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(25, ValueProp.Move | FlametailValueProps.IgnoreAttackerDamageModifiers)
+        new DamageVar(25, ValueProp.Move | FlametailValueProps.GetIgnoreAttackerDamageModifiers())
     ];
 
     public flametailFeatherSupport() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)
@@ -76,7 +76,7 @@ public sealed class flametailFeatherSupport : ModCardTemplate, ICounterCard
     /// </summary>
     public override async Task AfterCardPlayed(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        if (!CounterSystem.IsCounterPlay)
+        if (!this.GetCounterContext().IsCounterPlay)
         {
             return;
         }

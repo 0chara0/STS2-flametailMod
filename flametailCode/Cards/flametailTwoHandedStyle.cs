@@ -27,7 +27,7 @@ public sealed class flametailTwoHandedStyle : ModCardTemplate
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new IntVar("BlockPerFootwork", 4)
+        new IntVar("BlockPerFootwork", 2)
     ];
 
     public flametailTwoHandedStyle() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)
@@ -36,12 +36,18 @@ public sealed class flametailTwoHandedStyle : ModCardTemplate
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await PowerCmd.Apply<flametailTwoHandedStylePower>(
+        var applied = await PowerCmd.Apply<flametailTwoHandedStylePower>(
             choiceContext,
             Owner.Creature,
             DynamicVars["BlockPerFootwork"].IntValue,
             Owner.Creature,
             this);
+
+        // 每次打出 +25% 攻击伤害（可叠加），记录在 Power 内部。
+        if (applied is flametailTwoHandedStylePower twoHandedStyle)
+        {
+            twoHandedStyle.AddDamageStack();
+        }
     }
 
     protected override void OnUpgrade()

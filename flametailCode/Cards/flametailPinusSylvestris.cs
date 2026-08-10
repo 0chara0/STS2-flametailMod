@@ -31,6 +31,11 @@ public sealed class flametailPinusSylvestris : ModCardTemplate
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
         new[] { CardKeyword.Exhaust };
 
+    // 仅多人模式可用的卡：单人 run 中不会从卡池/奖励中出现。
+    // 红松林给所有玩家加闪避，在多人合作中才有完整价值，因此限制为多人专属。
+    public override CardMultiplayerConstraint MultiplayerConstraint =>
+        CardMultiplayerConstraint.MultiplayerOnly;
+
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new DamageVar(3, ValueProp.Move),

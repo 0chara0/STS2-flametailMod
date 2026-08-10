@@ -9,10 +9,9 @@ namespace flametail.Cards;
 /// </summary>
 public static class flametailCounterCardRegistry
 {
-    public static readonly List<Func<CardModel>> Creators = new()
+    private static readonly IReadOnlyList<Func<CardModel>> _creators = new List<Func<CardModel>>
     {
         () => ModelDb.Card<flametailBackstep>(),
-        () => ModelDb.Card<flametailBlisteringCounter>(),
         () => ModelDb.Card<flametailCandleFlash>(),
         () => ModelDb.Card<flametailCrossguardArts>(),
         () => ModelDb.Card<flametailDeftAssault>(),
@@ -20,11 +19,15 @@ public static class flametailCounterCardRegistry
         () => ModelDb.Card<flametailExploitOpening>(),
         () => ModelDb.Card<flametailFeatherSupport>(),
         () => ModelDb.Card<flametailFlourish>(),
-        () => ModelDb.Card<flametailJab>(),
         () => ModelDb.Card<flametailKnightsJoust>(),
         () => ModelDb.Card<flametailMeteorTail>(),
         () => ModelDb.Card<flametailRideTheMomentum>(),
         () => ModelDb.Card<flametailThrust>(),
         () => ModelDb.Card<flametailTurningAttack>(),
     };
+
+    /// <summary>
+    /// 反制牌生成器集合。只读，避免外部意外修改。
+    /// </summary>
+    public static IReadOnlyList<Func<CardModel>> Creators => _creators;
 }

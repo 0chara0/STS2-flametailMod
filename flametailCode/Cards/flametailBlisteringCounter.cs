@@ -52,7 +52,7 @@ public sealed class flametailBlisteringCounter : ModCardTemplate, ICounterCard
             .WithHitCount(DynamicVars["HitCount"].IntValue)
             .Execute(choiceContext);
 
-        if (CounterSystem.IsCounterPlay)
+        if (this.GetCounterContext().IsCounterPlay)
         {
             await CounterSystem.PlayNextCounterCard(choiceContext, this, cardPlay.Target);
         }

@@ -48,6 +48,8 @@ public sealed class flametailPreemptPower : ModPowerTemplate
             return;
         }
 
+        var context = this.GetCounterContext();
+
         for (int i = 0; i < Amount; i++)
         {
             if (enemy.IsDead)
@@ -72,15 +74,16 @@ public sealed class flametailPreemptPower : ModPowerTemplate
                 return;
             }
 
-            bool oldIsCounterPlay = CounterSystem.IsCounterPlay;
-            Creature? oldAttacker = CounterSystem.CurrentAttacker;
-            bool oldDodged = CounterSystem.WasAttackDodged;
-            bool oldMitigated = CounterSystem.LastAttackMitigated;
+            bool oldIsCounterPlay = context.IsCounterPlay;
+            Creature? oldAttacker = context.CurrentAttacker;
+            bool oldMitigated = context.LastAttackMitigated;
+            bool oldTookDamage = context.TookDamage;
 
-            CounterSystem.IsCounterPlay = true;
-            CounterSystem.CurrentAttacker = enemy;
-            CounterSystem.WasAttackDodged = false;
-            CounterSystem.LastAttackMitigated = false;
+            context.IsCounterPlay = true;
+            context.CurrentAttacker = enemy;
+            context.LastAttackMitigated = false;
+            // 先发制人不是真实的攻击，不构成“受到伤害”。
+            context.TookDamage = false;
 
             try
             {
@@ -88,10 +91,10 @@ public sealed class flametailPreemptPower : ModPowerTemplate
             }
             finally
             {
-                CounterSystem.IsCounterPlay = oldIsCounterPlay;
-                CounterSystem.CurrentAttacker = oldAttacker;
-                CounterSystem.WasAttackDodged = oldDodged;
-                CounterSystem.LastAttackMitigated = oldMitigated;
+                context.IsCounterPlay = oldIsCounterPlay;
+                context.CurrentAttacker = oldAttacker;
+                context.LastAttackMitigated = oldMitigated;
+                context.TookDamage = oldTookDamage;
             }
         }
     }

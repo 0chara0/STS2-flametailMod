@@ -41,6 +41,13 @@ public sealed class flametailFluidMotionPower : ModPowerTemplate
             return;
         }
 
+        // 多人模式下，只有「自己」获得步法时才把进退自如移回手牌；
+        // 其他玩家获得步法触发的事件也会回调到这里，需按能力所有者过滤。
+        if (power.Owner != Owner)
+        {
+            return;
+        }
+
         var state = Owner.Player?.PlayerCombatState;
         if (state == null)
         {

@@ -31,12 +31,12 @@ public sealed class flametailCannonSupport : ModCardTemplate
     public override CardAssetProfile AssetProfile => _assetProfile;
 
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
-        new[] { CardKeyword.Exhaust, FlametailKeywords.Support };
+        new[] { CardKeyword.Innate, FlametailKeywords.Support };
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new BlockVar(10, ValueProp.Move),
-        new DamageVar(10, ValueProp.Move | FlametailValueProps.IgnoreAttackerDamageModifiers)
+        new BlockVar(13, ValueProp.Move | ValueProp.Unpowered),
+        new DamageVar(13, ValueProp.Move | FlametailValueProps.GetIgnoreAttackerDamageModifiers())
     ];
 
     public flametailCannonSupport() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)

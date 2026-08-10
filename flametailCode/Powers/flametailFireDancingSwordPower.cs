@@ -27,7 +27,8 @@ public sealed class flametailFireDancingSwordPower : ModPowerTemplate
 
     public override async Task BeforeAttack(AttackCommand cmd)
     {
-        if (!CounterSystem.IsCounterPlay)
+        var counterContext = this.GetCounterContext();
+        if (!counterContext.IsCounterPlay)
         {
             return;
         }
@@ -43,7 +44,7 @@ public sealed class flametailFireDancingSwordPower : ModPowerTemplate
         }
 
         var targets = cmd.GetPossibleTargets();
-        if (targets.Count != 1 || targets[0] != CounterSystem.CurrentAttacker)
+        if (targets.Count != 1 || targets[0] != counterContext.CurrentAttacker)
         {
             return;
         }

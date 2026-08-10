@@ -8,6 +8,7 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
 using flametail.Characters;
 using flametail.Keywords;
+using flametail.Patches;
 using flametail.Powers;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
@@ -36,13 +37,13 @@ public sealed class flametailRideTheMomentum : ModCardTemplate, ICounterCard
         new IntVar("DrawAmount", 2)
     ];
 
-    protected override bool IsPlayable => CounterSystem.IsCounterPlay;
+    protected override bool IsPlayable => this.GetCounterContext().IsCounterPlay;
 
     /// <summary>
     /// 只在本次敌方强化攻击被闪避时才会作为反制牌自动打出；
     /// 未闪避时不打出，也不会出现“打出但无效果”的情况。
     /// </summary>
-    public bool CanAutoPlayAsCounter(Creature? attacker) => CounterSystem.WasAttackDodged;
+    public bool CanAutoPlayAsCounter(Creature? attacker) => Owner.Creature != null && DodgeBlockPatch.WasAttackDodged(Owner.Creature);
 
     public flametailRideTheMomentum() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)
     {
@@ -50,7 +51,7 @@ public sealed class flametailRideTheMomentum : ModCardTemplate, ICounterCard
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        if (!CounterSystem.IsCounterPlay || !CounterSystem.WasAttackDodged)
+        if (!this.GetCounterContext().IsCounterPlay || Owner.Creature == null || !DodgeBlockPatch.WasAttackDodged(Owner.Creature))
         {
             return;
         }

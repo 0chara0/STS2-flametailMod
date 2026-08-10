@@ -44,7 +44,7 @@ public sealed class flametailKindling : ModCardTemplate
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(1 + ExtraDamage, ValueProp.Move),
+        new DamageVar(3 + ExtraDamage, ValueProp.Move),
         new IntVar("HitCount", 2)
     ];
 

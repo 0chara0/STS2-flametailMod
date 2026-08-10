@@ -69,6 +69,12 @@ public sealed class flametailHighVelocityImpactPower : ModPowerTemplate
             return;
         }
 
+        // 多人模式下，只有「自己」获得步法时才获得临时力量。
+        if (power.Owner != Owner)
+        {
+            return;
+        }
+
         // 每次“获得步法”这一事件触发时，获得等同于本能力层数的力量，
         // 并在下回合开始时移除等量的临时力量。
         await PowerCmd.Apply<StrengthPower>(choiceContext, Owner, Amount, Owner, null);

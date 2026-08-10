@@ -40,7 +40,7 @@ public static class AttackCommandExtensions
 
         _damagePropsSetter(
             command,
-            command.DamageProps | FlametailValueProps.IgnoreAttackerDamageModifiers);
+            command.DamageProps | FlametailValueProps.GetIgnoreAttackerDamageModifiers());
 
         return command;
     }

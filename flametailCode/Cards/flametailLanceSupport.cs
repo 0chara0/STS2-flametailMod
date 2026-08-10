@@ -34,7 +34,7 @@ public sealed class flametailLanceSupport : ModCardTemplate
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(14, ValueProp.Move | FlametailValueProps.IgnoreAttackerDamageModifiers)
+        new DamageVar(14, ValueProp.Move | FlametailValueProps.GetIgnoreAttackerDamageModifiers())
     ];
 
     public flametailLanceSupport() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)

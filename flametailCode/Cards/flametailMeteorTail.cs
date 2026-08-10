@@ -56,7 +56,12 @@ public sealed class flametailMeteorTail : ModCardTemplate, ICounterCard
             Owner.Creature,
             this);
 
-        PlayerCmd.EndTurn(Owner, false, null);
+        // 反制阶段自动打出时不结束回合：结束回合是玩家手动打出此牌的代价，
+        // 而反制是受到攻击时的被动反应，不应额外消耗玩家回合。
+        if (!this.GetCounterContext().IsCounterPlay)
+        {
+            PlayerCmd.EndTurn(Owner, false, null);
+        }
     }
 
     protected override void OnUpgrade()
