@@ -31,7 +31,7 @@ public sealed class flametailKindling : ModCardTemplate
         {
             AssertMutable();
             _extraDamage = value;
-            DynamicVars.Damage.BaseValue = 1 + _extraDamage;
+            DynamicVars.Damage.BaseValue = 3 + _extraDamage;
         }
     }
 

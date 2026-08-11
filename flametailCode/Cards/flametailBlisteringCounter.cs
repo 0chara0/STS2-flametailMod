@@ -2,6 +2,7 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.ValueProps;
 using flametail.Characters;
 using flametail.Keywords;
@@ -30,7 +31,8 @@ public sealed class flametailBlisteringCounter : ModCardTemplate, ICounterCard
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new DamageVar(8, ValueProp.Move),
-        new IntVar("HitCount", 2)
+        new IntVar("HitCount", 2),
+        new IntVar("VulnerableAmount", 2)
     ];
 
     public flametailBlisteringCounter() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)
@@ -51,6 +53,17 @@ public sealed class flametailBlisteringCounter : ModCardTemplate, ICounterCard
             .Targeting(cardPlay.Target)
             .WithHitCount(DynamicVars["HitCount"].IntValue)
             .Execute(choiceContext);
+
+        // 基础效果：给予敌人 2 层易伤（目标被本次伤害击杀则跳过）。
+        if (!cardPlay.Target.IsDead)
+        {
+            await PowerCmd.Apply<VulnerablePower>(
+                choiceContext,
+                cardPlay.Target,
+                DynamicVars["VulnerableAmount"].IntValue,
+                Owner.Creature,
+                this);
+        }
 
         if (this.GetCounterContext().IsCounterPlay)
         {
