@@ -15,7 +15,7 @@ using STS2RitsuLib.Scaffolding.Content;
 namespace flametail.Cards;
 
 [RegisterCard(typeof(flametailCardPool))]
-public sealed class flametailMeteorTail : ModCardTemplate, ICounterCard
+public sealed class flametailMeteorTail : ModCardTemplate, ICounterCard, IGainFootworkCard
 {
     private const int BaseEnergyCost = 2;
     private const CardType CardKind = CardType.Attack;

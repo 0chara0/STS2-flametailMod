@@ -16,7 +16,7 @@ using STS2RitsuLib.Scaffolding.Content;
 namespace flametail.Cards;
 
 [RegisterCard(typeof(flametailCardPool))]
-public sealed class flametailRideTheMomentum : ModCardTemplate, ICounterCard
+public sealed class flametailRideTheMomentum : ModCardTemplate, ICounterCard, IGainFootworkCard
 {
     private const int BaseEnergyCost = -1;
     private const CardType CardKind = CardType.Skill;

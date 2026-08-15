@@ -54,9 +54,12 @@ public sealed class flametailFlourish : ModCardTemplate, ICounterCard
     /// </summary>
     private static decimal ResolveHitDamage(CardModel? card, bool isUpgradePreview)
     {
+        // 卡牌图书馆等非战斗场景渲染的是规范模型：无 CombatState、无步法；
+        // 但升级预览仍须体现基础伤害 +1。
         if (card?.CombatState == null)
         {
-            return BaseHitDamage;
+            bool upgraded = card?.IsUpgraded == true || isUpgradePreview;
+            return upgraded ? BaseHitDamage + 1m : BaseHitDamage;
         }
 
         decimal baseHit = (card.IsUpgraded || isUpgradePreview) ? BaseHitDamage + 1m : BaseHitDamage;
@@ -82,6 +85,10 @@ public sealed class flametailFlourish : ModCardTemplate, ICounterCard
 
     protected override void OnUpgrade()
     {
-        // 基础伤害升级由 ResolveHitDamage 依据 card.IsUpgraded 处理。
+        // 基础伤害升级：升级伤害变量(标记 WasJustUpgraded 并抬升 BaseValue)。
+        // 卡牌图书馆等非战斗场景不跑预览工厂，靠 ClearPreview→diff() 用 BaseValue
+        // 显示升级后的数值(绿色高亮)；战斗中实伤仍由 ResolveHitDamage 依据
+        // card.IsUpgraded 计算，BaseValue 仅用于显示，不会重复叠加。
+        DynamicVars["Damage"].UpgradeValueBy(1m);
     }
 }

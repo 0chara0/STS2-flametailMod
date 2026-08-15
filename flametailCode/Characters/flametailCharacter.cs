@@ -1,9 +1,12 @@
 using Godot;
+using MegaCrit.Sts2.Core.Animation;
+using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 using MegaCrit.Sts2.Core.Entities.Characters;
 using MegaCrit.Sts2.Core.Nodes.Combat;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Characters;
 using STS2RitsuLib.Scaffolding.Godot;
+using STS2RitsuLib.Scaffolding.Visuals.StateMachine;
 
 namespace flametail.Characters;
 
@@ -75,6 +78,23 @@ public sealed class flametailCharacter : ModCharacterTemplate<flametailCardPool,
 	// 攻击和施法动画延迟，以对齐动画。静态占位资源不需要延迟。
 	public override float AttackAnimDelay => 0f;
 	public override float CastAnimDelay => 0f;
+
+	// 骨架只有 idle_loop / attack / cast / die / relaxed_loop，没有 hurt。
+	// 基类 GenerateAnimator 会无条件注册 hurt 状态：角色受击触发 Hit 时
+	// CreatureAnimator 会切到骨架里不存在的 hurt 动画，打警告后把状态机停在
+	// 无动画状态，待机动画不再恢复。这里用 RitsuLib 的标准状态图工厂，
+	// hit 传 null 让其回退到 idle（受击时继续播放待机）。
+	protected override CreatureAnimator? SetupCustomCreatureAnimator(MegaSprite controller)
+	{
+		return ModAnimStateMachines.Standard(
+			controller,
+			"idle_loop",
+			"die", false,
+			null, false,
+			"attack", false,
+			"cast", false,
+			"relaxed_loop", true);
+	}
 
 	// 让 RitsuLib 把普通 Godot 场景转换成游戏需要的 NCreatureVisuals。
 	// 自动转换人物场景，让你不需要手动挂脚本。复制即可。

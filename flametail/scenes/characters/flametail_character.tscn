@@ -12,29 +12,30 @@ preview_animation = "idle_loop"
 preview_frame = true
 unique_name_in_owner = true
 position = Vector2(0, -19)
-scale = Vector2(0.45, 0.45)
+scale = Vector2(0.63, 0.63)
 
 [node name="Bounds" type="Control" parent="."]
 unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 0
-offset_left = -121.0
-offset_top = -278.0
-offset_right = 121.0
+offset_left = -169.4
+offset_top = -381.6
+offset_right = 169.4
+offset_bottom = 7.6
 mouse_filter = 2
 
 [node name="CenterPos" type="Marker2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(0, -168)
+position = Vector2(0, -227.6)
 
 [node name="IntentPos" type="Marker2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(30, -310)
+position = Vector2(42, -426.4)
 
 [node name="TalkPos" type="Marker2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(0, -184)
+position = Vector2(0, -250)
 
 [node name="OrbPos" type="Marker2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(0, -168)
+position = Vector2(0, -227.6)

@@ -73,31 +73,6 @@ public sealed class flametailDodgePower : ModPowerTemplate
         }
     }
 
-    public override async Task AfterPowerAmountChanged(
-        PlayerChoiceContext choiceContext,
-        PowerModel power,
-        decimal amount,
-        Creature? applier,
-        CardModel? cardSource)
-    {
-        if (power != this)
-        {
-            return;
-        }
-
-        if (Owner == null || amount <= 0)
-        {
-            return;
-        }
-
-        await PowerCmd.Apply<flametailGainedDodgeThisTurnPower>(
-            choiceContext,
-            Owner,
-            1,
-            Owner,
-            null);
-    }
-
     public override async Task AfterPlayerTurnStartEarly(PlayerChoiceContext choiceContext, Player player)
     {
         if (player.Creature != Owner)

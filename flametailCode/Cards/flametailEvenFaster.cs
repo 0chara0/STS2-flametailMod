@@ -11,7 +11,7 @@ using STS2RitsuLib.Scaffolding.Content;
 namespace flametail.Cards;
 
 [RegisterCard(typeof(flametailCardPool))]
-public sealed class flametailEvenFaster : ModCardTemplate
+public sealed class flametailEvenFaster : ModCardTemplate, IGainFootworkCard
 {
     private const int BaseEnergyCost = 3;
     private const CardType CardKind = CardType.Power;
