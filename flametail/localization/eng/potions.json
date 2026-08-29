@@ -1,0 +1,8 @@
+{
+  "FLAMETAIL_POTION_FLAMETAIL_COUNTER_POTION.title": "Counter Potion",
+  "FLAMETAIL_POTION_FLAMETAIL_COUNTER_POTION.description": "Choose 1 of 3 random [gold]Counter[/gold] cards to add to your hand. It is Retained this turn and costs 0 this turn.",
+  "FLAMETAIL_POTION_FLAMETAIL_KNIGHTS_BREW.title": "Knight's Brew",
+  "FLAMETAIL_POTION_FLAMETAIL_KNIGHTS_BREW.description": "All of your cards gain [gold]Counter[/gold] for this combat.",
+  "FLAMETAIL_POTION_FLAMETAIL_SWIFT_ELIXIR.title": "Swift Elixir",
+  "FLAMETAIL_POTION_FLAMETAIL_SWIFT_ELIXIR.description": "Gain 1 [gold]Dexterity[/gold] and 2 [gold]Dodge[/gold]."
+}

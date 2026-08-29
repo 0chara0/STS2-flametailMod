@@ -34,8 +34,10 @@ public sealed class flametailRideTheMomentum : ModCardTemplate, ICounterCard, IG
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new IntVar("FootworkAmount", 2),
-        new IntVar("DrawAmount", 2)
+        new IntVar("DrawAmount", 3)
     ];
+
+    public bool HasCounterEffect => true;
 
     protected override bool IsPlayable => this.GetCounterContext().IsCounterPlay;
 
@@ -51,7 +53,18 @@ public sealed class flametailRideTheMomentum : ModCardTemplate, ICounterCard, IG
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        if (!this.GetCounterContext().IsCounterPlay || Owner.Creature == null || !DodgeBlockPatch.WasAttackDodged(Owner.Creature))
+        if (!this.GetCounterContext().IsCounterPlay)
+        {
+            return;
+        }
+
+        await TriggerCounterEffect(choiceContext, cardPlay, cardPlay.Target);
+    }
+
+    /// <summary>反制时：如果闪避了此次攻击，获得步法并抽牌。</summary>
+    public async Task TriggerCounterEffect(PlayerChoiceContext choiceContext, CardPlay cardPlay, Creature? attacker)
+    {
+        if (Owner.Creature == null || !DodgeBlockPatch.WasAttackDodged(Owner.Creature))
         {
             return;
         }

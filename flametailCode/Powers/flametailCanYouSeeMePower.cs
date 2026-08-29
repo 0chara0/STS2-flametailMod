@@ -30,7 +30,7 @@ public sealed class flametailCanYouSeeMePower : ModPowerTemplate
         Creature? applier,
         CardModel? cardSource)
     {
-        if (power is not flametailDodgePower)
+        if (power is not flametailFootworkPower)
         {
             return;
         }
@@ -50,6 +50,7 @@ public sealed class flametailCanYouSeeMePower : ModPowerTemplate
             return;
         }
 
-        await CardPileCmd.Draw(choiceContext, Amount, player);
+        // 抽牌量固定为 1。
+        await CardPileCmd.Draw(choiceContext, 1, player);
     }
 }

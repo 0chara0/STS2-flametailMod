@@ -44,6 +44,8 @@ public sealed class flametailKnightsJoust : ModCardTemplate, ICounterCard
 
     public bool CanAutoPlayAsCounter(Creature? attacker) => true;
 
+    public bool HasCounterEffect => true;
+
     // 允许被先发制人、羽翼支援、凌厉反击等“额外反制触发效果”选中并打出。
     public bool CanBePlayedBySupportEffects => true;
 
@@ -58,9 +60,7 @@ public sealed class flametailKnightsJoust : ModCardTemplate, ICounterCard
         // 作为反制牌被打出来时，无论本次攻击是否被完全抵消，都会往抽牌堆添加一张受伤。
         if (counterContext.IsCounterPlay)
         {
-            CardModel injury = Owner.Creature.CombatState!.CreateCard<Injury>(Owner);
-            CardPileAddResult injuryResult = await CardPileCmd.AddGeneratedCardToCombat(injury, PileType.Draw, Owner, CardPilePosition.Bottom);
-            CardCmd.PreviewCardPileAdd(injuryResult);
+            await TriggerCounterEffect(choiceContext, cardPlay, cardPlay.Target);
 
             // 简化规则：只有实际受到伤害（伤害 > 0）时才丢弃此牌，否则正常反制。
             // 闪避、完全格挡、或攻击伤害本身为 0 时都没有受到伤害，正常执行反制。
@@ -80,6 +80,14 @@ public sealed class flametailKnightsJoust : ModCardTemplate, ICounterCard
                 .Targeting(cardPlay.Target)
                 .Execute(choiceContext);
         }
+    }
+
+    /// <summary>反制时：将一张受伤加入你的抽牌堆。</summary>
+    public async Task TriggerCounterEffect(PlayerChoiceContext choiceContext, CardPlay cardPlay, Creature? attacker)
+    {
+        CardModel injury = Owner.Creature.CombatState!.CreateCard<Injury>(Owner);
+        CardPileAddResult injuryResult = await CardPileCmd.AddGeneratedCardToCombat(injury, PileType.Draw, Owner, CardPilePosition.Bottom);
+        CardCmd.PreviewCardPileAdd(injuryResult);
     }
 
     protected override void OnUpgrade()

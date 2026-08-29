@@ -56,7 +56,8 @@ public sealed class flametailCounterManagerPower : ModPowerTemplate
         var counterCards = new List<CardModel>(hand.Cards.Count);
         foreach (CardModel card in hand.Cards)
         {
-            if (card is ICounterCard)
+            // 特酿期间任意手牌都可作反制牌保留。
+            if (card is ICounterCard || Owner.HasPower<flametailKnightsBrewPower>())
             {
                 counterCards.Add(card);
             }
@@ -101,7 +102,7 @@ public sealed class flametailCounterManagerPower : ModPowerTemplate
             choiceContext,
             player,
             prefs,
-            c => c is ICounterCard,
+            c => c is ICounterCard || Owner.HasPower<flametailKnightsBrewPower>(),
             this);
 
         foreach (CardModel card in selected)
@@ -169,7 +170,10 @@ public sealed class flametailCounterManagerPower : ModPowerTemplate
             {
                 foreach (CardModel card in hand.Cards)
                 {
-                    if (card is ICounterCard counter && counter.CanAutoPlayAsCounter(dealer))
+                    // 特酿期间任意手牌都可作为首张反制牌自动打出；反制牌仍走各自的 CanAutoPlayAsCounter 判定。
+                    ICounterCard? counter = card as ICounterCard;
+                    if ((counter != null || Owner.HasPower<flametailKnightsBrewPower>())
+                        && (counter?.CanAutoPlayAsCounter(dealer) ?? true))
                     {
                         counterCard = card;
                         break;

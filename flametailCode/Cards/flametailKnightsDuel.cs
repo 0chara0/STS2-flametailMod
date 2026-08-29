@@ -25,7 +25,10 @@ public sealed class flametailKnightsDuel : ModCardTemplate
         PortraitPath: $"{Entry.ResPath}/images/cards/flametailKnightsDuel.png");
     public override CardAssetProfile AssetProfile => _assetProfile;
 
-    protected override IEnumerable<DynamicVar> CanonicalVars => [];
+    protected override IEnumerable<DynamicVar> CanonicalVars =>
+    [
+        new IntVar("Amount", 1)
+    ];
 
     public flametailKnightsDuel()
         : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)

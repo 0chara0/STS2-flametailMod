@@ -30,7 +30,9 @@ public sealed class flametailFeatherSupport : ModCardTemplate, ICounterCard
     public override CardAssetProfile AssetProfile => _assetProfile;
 
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
-        new[] { CardKeyword.Retain, FlametailKeywords.Counter, FlametailKeywords.Support };
+        new[] { CardKeyword.Retain, FlametailKeywords.Support, FlametailKeywords.Counter };
+
+    public bool HasCounterEffect => true;
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
@@ -86,6 +88,12 @@ public sealed class flametailFeatherSupport : ModCardTemplate, ICounterCard
             return;
         }
 
+        await TriggerCounterEffect(choiceContext, cardPlay, cardPlay.Target);
+    }
+
+    /// <summary>反制时：额外打出手牌中的下一张反制牌。</summary>
+    public async Task TriggerCounterEffect(PlayerChoiceContext choiceContext, CardPlay cardPlay, Creature? attacker)
+    {
         await CounterSystem.PlayNextCounterCard(choiceContext, this, cardPlay.Target);
     }
 

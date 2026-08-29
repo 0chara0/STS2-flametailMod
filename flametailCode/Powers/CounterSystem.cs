@@ -46,9 +46,22 @@ public sealed class CounterContext
     public bool IsHardenedVanguardReplication { get; set; }
 
     /// <summary>
+    /// 是否正在执行骑士对决对主动打出反制牌的复制，避免与百战先锋等互相递归。
+    /// </summary>
+    public bool IsKnightsDuelReplication { get; set; }
+
+    /// <summary>
     /// 当前反制是否应重定向到所有敌人（剑如火舞）。
     /// </summary>
     public bool ShouldRetargetCounterToAllEnemies { get; set; }
+
+    /// <summary>
+    /// 当前即将被打出的“改为”类反制牌，其基础效果应被替换（不执行）。
+    /// 由骑士对决在 <c>BeforeCardPlayed</c> 时根据本张牌的触发条件设置，
+    /// “改为”类反制牌的 <c>OnPlay</c> 读取后跳过基础效果；
+    /// 反制效果本身仍由骑士对决在 <c>AfterCardPlayedLate</c> 触发。
+    /// </summary>
+    public bool SuppressBaseEffect { get; set; }
 }
 
 /// <summary>

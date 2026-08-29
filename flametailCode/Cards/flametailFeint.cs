@@ -31,8 +31,7 @@ public sealed class flametailFeint : ModCardTemplate, IGainFootworkCard
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new IntVar("Footwork", 1),
-        new IntVar("IgnoreBlockAmount", 1)
+        new IntVar("Footwork", 1)
     ];
 
     public flametailFeint() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)
@@ -48,16 +47,23 @@ public sealed class flametailFeint : ModCardTemplate, IGainFootworkCard
             Owner.Creature,
             this);
 
-        await PowerCmd.Apply<flametailIgnoreBlockPower>(
+        await CardPileCmd.Draw(choiceContext, 1, Owner);
+
+        // 未升级：下 1 张攻击牌无视格挡；升级后：本回合所有攻击牌无视格挡。
+        var ignoreBlock = await PowerCmd.Apply<flametailIgnoreBlockPower>(
             choiceContext,
             Owner.Creature,
-            DynamicVars["IgnoreBlockAmount"].IntValue,
+            1,
             Owner.Creature,
             this);
+        if (ignoreBlock != null)
+        {
+            ignoreBlock.IgnoreAllAttacks = IsUpgraded;
+        }
     }
 
     protected override void OnUpgrade()
     {
-        DynamicVars["IgnoreBlockAmount"].UpgradeValueBy(1);
+        // 升级不再增加层数，而是由 OnPlay 在施加能力时切换到「本回合全部」模式。
     }
 }

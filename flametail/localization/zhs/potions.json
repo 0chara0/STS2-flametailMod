@@ -1,0 +1,8 @@
+{
+  "FLAMETAIL_POTION_FLAMETAIL_COUNTER_POTION.title": "反制药水",
+  "FLAMETAIL_POTION_FLAMETAIL_COUNTER_POTION.description": "从3张随机的[gold]反制[/gold]牌中选择一张加入你的手牌，这张牌在本回合保留且耗能变为0。",
+  "FLAMETAIL_POTION_FLAMETAIL_KNIGHTS_BREW.title": "骑士特酿",
+  "FLAMETAIL_POTION_FLAMETAIL_KNIGHTS_BREW.description": "本场战斗中，你的所有牌获得[gold]反制[/gold]。",
+  "FLAMETAIL_POTION_FLAMETAIL_SWIFT_ELIXIR.title": "加速灵药",
+  "FLAMETAIL_POTION_FLAMETAIL_SWIFT_ELIXIR.description": "获得1点[gold]敏捷[/gold]和2层[gold]闪避[/gold]。"
+}

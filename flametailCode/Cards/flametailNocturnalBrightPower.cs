@@ -10,6 +10,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 using flametail.Characters;
 using flametail.Helpers;
 using flametail.Nodes.Vfx;
+using flametail.Keywords;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
 
@@ -29,7 +30,7 @@ public sealed class flametailNocturnalBrightPower : ModCardTemplate
     public override CardAssetProfile AssetProfile => _assetProfile;
 
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
-        new[] { CardKeyword.Exhaust };
+        new[] { CardKeyword.Exhaust, FlametailKeywords.Support };
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [

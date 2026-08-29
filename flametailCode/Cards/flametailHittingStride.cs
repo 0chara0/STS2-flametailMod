@@ -43,7 +43,7 @@ public sealed class flametailHittingStride : ModCardTemplate
 
     /// <summary>
     /// 实时计算本场战斗已触发的反制次数，即本牌当前会攻击的次数。
-    /// 卡牌图书馆等非战斗场景渲染的是规范模型，访问 Owner 会抛异常，按 0 显示。
+    /// 卡牌图书馆等非战斗场景渲染的是规范模型，访问 Owner 会抛异常，按 0 显示（配合描述条件在图书馆隐藏该行）。
     /// </summary>
     private static decimal ResolveHitCount(CardModel? card)
     {

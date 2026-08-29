@@ -13,8 +13,11 @@ namespace flametail.Patches;
 
 /// <summary>
 /// Harmony 补丁：让带有 <see cref="FlametailValueProps.GetIgnoreAttackerDamageModifiers"/> 的伤害
-/// 1) 在伤害修正阶段跳过攻击方（dealer）拥有的力量/遗物加成，但仍受目标方（target）的易伤/虚弱等影响；
+/// 1) 在伤害修正阶段跳过攻击方（dealer）拥有的力量/虚弱等加成（加法循环 + 乘法循环均覆盖），
+///    但仍受目标方（target）的易伤等目标方伤害修正影响；
 /// 2) 跳过目标方的受击反应类效果，例如荆棘（Thorns）、人工蜂巢（Personal Hive）、反射（Reflect）。
+/// 另为 <see cref="FlametailValueProps.GetIgnoreDefenderDamageModifiers"/> 补丁易伤（Vulnerable），
+/// 使“固定伤害”可同时不受力量与易伤影响。
 /// </summary>
 public static class SupportDamagePatch
 {
@@ -204,6 +207,52 @@ public static class SupportDamagePatch
             }
 
             __result = Task.CompletedTask;
+            return false;
+        }
+    }
+
+    /// <summary>
+    /// 当伤害带有 <see cref="FlametailValueProps.GetIgnoreAttackerDamageModifiers"/> 时，
+    /// 跳过攻击方（dealer）的虚弱（Weak）乘法减伤，使支援/固定伤害不受自己能力影响
+    /// （与“支援”词条“不受你的能力影响”的描述一致）。
+    /// 虚弱乘法是 <see cref="MegaCrit.Sts2.Core.Models.Powers.WeakPower.ModifyDamageMultiplicative"/>，
+    /// 位于乘法循环中，因此需要独立于此处的加法循环补丁单独处理。
+    /// </summary>
+    [HarmonyPatch(
+        typeof(MegaCrit.Sts2.Core.Models.Powers.WeakPower),
+        nameof(MegaCrit.Sts2.Core.Models.Powers.WeakPower.ModifyDamageMultiplicative))]
+    private static class WeakPowerPatch
+    {
+        private static bool Prefix(ValueProp props, ref decimal __result)
+        {
+            if (!props.HasFlag(Helpers.FlametailValueProps.GetIgnoreAttackerDamageModifiers()))
+            {
+                return true;
+            }
+
+            __result = 1m;
+            return false;
+        }
+    }
+
+    /// <summary>
+    /// 当伤害带有 <see cref="FlametailValueProps.GetIgnoreDefenderDamageModifiers"/> 时，
+    /// 跳过目标方的易伤（Vulnerable）乘法加成，使伤害固定不受易伤影响。
+    /// 目标方的易伤乘法是 <see cref="MegaCrit.Sts2.Core.Models.Powers.VulnerablePower.ModifyDamageMultiplicative"/>。
+    /// </summary>
+    [HarmonyPatch(
+        typeof(MegaCrit.Sts2.Core.Models.Powers.VulnerablePower),
+        nameof(MegaCrit.Sts2.Core.Models.Powers.VulnerablePower.ModifyDamageMultiplicative))]
+    private static class VulnerablePowerPatch
+    {
+        private static bool Prefix(ValueProp props, ref decimal __result)
+        {
+            if (!props.HasFlag(Helpers.FlametailValueProps.GetIgnoreDefenderDamageModifiers()))
+            {
+                return true;
+            }
+
+            __result = 1m;
             return false;
         }
     }

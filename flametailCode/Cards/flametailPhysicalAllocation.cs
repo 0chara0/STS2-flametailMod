@@ -3,15 +3,17 @@ using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.ValueProps;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using flametail.Characters;
 using flametail.Powers;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
-using MegaCrit.Sts2.Core.Localization.DynamicVars;
 
 namespace flametail.Cards;
 
+/// <summary>
+/// 体力分配：获得 3(4) 点能量，每有 2 层步法减少 1 点获得的能量（最少 0）。消耗。
+/// </summary>
 [RegisterCard(typeof(flametailCardPool))]
 public sealed class flametailPhysicalAllocation : ModCardTemplate
 {
@@ -30,7 +32,7 @@ public sealed class flametailPhysicalAllocation : ModCardTemplate
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new EnergyVar(1),
+        new EnergyVar(3),
         new IntVar("FootworkPerEnergy", 2)
     ];
 
@@ -40,27 +42,19 @@ public sealed class flametailPhysicalAllocation : ModCardTemplate
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        var footwork = Owner.Creature.GetPower<flametailFootworkPower>();
-        if (footwork == null)
-        {
-            return;
-        }
+        decimal footwork = Owner.Creature.GetPower<flametailFootworkPower>()?.Amount ?? 0m;
+        int reduction = (int)(footwork / DynamicVars["FootworkPerEnergy"].IntValue);
 
-        decimal usableFootwork = footwork.UsableAmount;
-        int energyGain = (int)(usableFootwork / DynamicVars["FootworkPerEnergy"].IntValue);
+        int energyGain = Math.Max(0, DynamicVars["Energy"].IntValue - reduction);
         if (energyGain > 0)
         {
             await PlayerCmd.GainEnergy(energyGain, Owner);
-        }
-
-        if (usableFootwork > 0)
-        {
-            await PowerCmd.ModifyAmount(choiceContext, footwork, -usableFootwork, Owner.Creature, this);
         }
     }
 
     protected override void OnUpgrade()
     {
-        RemoveKeyword(CardKeyword.Exhaust);
+        // 升级：能量 3→4。
+        DynamicVars["Energy"].UpgradeValueBy(1);
     }
 }

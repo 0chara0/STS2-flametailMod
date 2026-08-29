@@ -22,7 +22,7 @@ public sealed class flametailOverdrive : ModCardTemplate
         HoverTipFactory.FromCard<flametailPain>()
     };
 
-    private const int BaseEnergyCost = 3;
+    private const int BaseEnergyCost = 2;
     private const CardType CardKind = CardType.Skill;
     private const CardRarity CardRarityValue = CardRarity.Common;
     private const TargetType CardTarget = TargetType.Self;

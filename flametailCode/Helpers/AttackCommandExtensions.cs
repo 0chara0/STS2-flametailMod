@@ -44,4 +44,22 @@ public static class AttackCommandExtensions
 
         return command;
     }
+
+    /// <summary>
+    /// 标记本次攻击应忽略目标方（target）的伤害修正效果（例如易伤 Vulnerable 的乘法加成）。
+    /// 与 <see cref="IgnoreAttackerModifiers"/> 组合可得到完全不受力量/易伤影响的“固定伤害”。
+    /// </summary>
+    public static AttackCommand IgnoreDefenderModifiers(this AttackCommand command)
+    {
+        if (_damagePropsSetter == null)
+        {
+            return command;
+        }
+
+        _damagePropsSetter(
+            command,
+            command.DamageProps | FlametailValueProps.GetIgnoreDefenderDamageModifiers());
+
+        return command;
+    }
 }

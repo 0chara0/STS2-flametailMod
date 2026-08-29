@@ -85,7 +85,8 @@ public sealed class flametailDrain : ModCardTemplate
         var dodgePower = Owner.Creature.GetPower<flametailDodgePower>();
         if (dodgePower != null && dodgePower.Amount > 0)
         {
-            playCount = 3;
+            // 每有 1 层闪避额外打出 1 次，随后扣光闪避。
+            playCount = 2 + (int)dodgePower.Amount;
             await PowerCmd.ModifyAmount(choiceContext, dodgePower, -dodgePower.Amount, Owner.Creature, this);
         }
 
@@ -96,9 +97,9 @@ public sealed class flametailDrain : ModCardTemplate
             Owner.Creature,
             this);
 
+        // 与「破灭」对齐：设置一次性 ExhaustOnNextPlay 标志，打出后直接进消耗堆，无需二次 Exhaust。
+        targetCard.ExhaustOnNextPlay = true;
         await CardCmd.AutoPlay(choiceContext, targetCard, null);
-
-        await CardCmd.Exhaust(choiceContext, targetCard);
     }
 
     protected override void OnUpgrade()

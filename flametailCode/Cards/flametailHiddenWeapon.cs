@@ -38,7 +38,7 @@ public sealed class flametailHiddenWeapon : ModCardTemplate
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(8, ValueProp.Move),
+        new DamageVar(12, ValueProp.Move),
         new IntVar("WeakAmount", 1),
         new IntVar("VulnerableAmount", 1)
     ];
@@ -77,6 +77,8 @@ public sealed class flametailHiddenWeapon : ModCardTemplate
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(4);
+        // 升级不改伤害（固定 12），改为虚弱、易伤各 +1。
+        DynamicVars["WeakAmount"].UpgradeValueBy(1);
+        DynamicVars["VulnerableAmount"].UpgradeValueBy(1);
     }
 }

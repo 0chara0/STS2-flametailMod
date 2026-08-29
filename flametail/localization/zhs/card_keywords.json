@@ -1,6 +1,6 @@
 {
   "FLAMETAIL_KEYWORD_COUNTER.title": "反制",
-  "FLAMETAIL_KEYWORD_COUNTER.description": "当你受到攻击时，这张牌会自动作为反制打出。",
+  "FLAMETAIL_KEYWORD_COUNTER.description": "回合结束时，你可以选择保留一张反制牌。\n当你受到攻击时，自动打出手牌中的第一张反制牌。",
   "FLAMETAIL_KEYWORD_PAIN.title": "疼痛",
   "FLAMETAIL_KEYWORD_PAIN.description": "当这张牌在手牌中时，你每打出一张牌失去 1 点生命。",
   "FLAMETAIL_KEYWORD_SUPPORT.title": "支援",

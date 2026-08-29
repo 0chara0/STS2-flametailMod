@@ -51,7 +51,9 @@ public sealed class flametailReplay : ModCardTemplate
         }
 
         await CardPileCmd.Add(chosen, PileType.Hand, CardPilePosition.Top);
+
+        // 与「破灭」对齐：设置一次性 ExhaustOnNextPlay 标志，打出后直接进消耗堆，避免诅咒牌二次触发回神。
+        chosen.ExhaustOnNextPlay = true;
         await CardCmd.AutoPlay(choiceContext, chosen, null, AutoPlayType.Default);
-        await CardCmd.Exhaust(choiceContext, chosen);
     }
 }

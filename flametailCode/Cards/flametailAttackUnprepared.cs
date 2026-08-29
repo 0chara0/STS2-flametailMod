@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.ValueProps;
 using flametail.Characters;
 using STS2RitsuLib.Interop.AutoRegistration;
@@ -27,7 +28,7 @@ public sealed class flametailAttackUnprepared : ModCardTemplate
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(7, ValueProp.Move)
+        new DamageVar(9, ValueProp.Move)
     ];
 
     public flametailAttackUnprepared() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)
@@ -43,12 +44,24 @@ public sealed class flametailAttackUnprepared : ModCardTemplate
             .Targeting(cardPlay.Target)
             .Execute(choiceContext);
 
-        if (cardPlay.Target.Monster?.IntendsToAttack == false)
+        // 意图是攻击 → 虚弱；否则 → 易伤。
+        if (cardPlay.Target.Monster?.IntendsToAttack == true)
         {
-            await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-                .FromCard(this, cardPlay)
-                .Targeting(cardPlay.Target)
-                .Execute(choiceContext);
+            await PowerCmd.Apply<WeakPower>(
+                choiceContext,
+                cardPlay.Target,
+                1,
+                Owner.Creature,
+                this);
+        }
+        else
+        {
+            await PowerCmd.Apply<VulnerablePower>(
+                choiceContext,
+                cardPlay.Target,
+                1,
+                Owner.Creature,
+                this);
         }
     }
 

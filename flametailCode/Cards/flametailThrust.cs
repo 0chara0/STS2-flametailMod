@@ -36,6 +36,8 @@ public sealed class flametailThrust : ModCardTemplate, ICounterCard
         new DamageVar(7, ValueProp.Move)
     ];
 
+    public bool HasCounterEffect => true;
+
     public flametailThrust() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)
     {
     }
@@ -56,11 +58,22 @@ public sealed class flametailThrust : ModCardTemplate, ICounterCard
 
         if (this.GetCounterContext().IsCounterPlay)
         {
-            await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-                .FromCard(this, cardPlay)
-                .Targeting(cardPlay.Target)
-                .Execute(choiceContext);
+            await TriggerCounterEffect(choiceContext, cardPlay, this.GetCounterContext().CurrentAttacker);
         }
+    }
+
+    /// <summary>反制时：额外打出此牌1次（即再次造成本牌伤害）。</summary>
+    public async Task TriggerCounterEffect(PlayerChoiceContext choiceContext, CardPlay cardPlay, Creature? attacker)
+    {
+        if (cardPlay.Target.IsDead)
+        {
+            return;
+        }
+
+        await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
+            .FromCard(this, cardPlay)
+            .Targeting(cardPlay.Target)
+            .Execute(choiceContext);
     }
 
     protected override void OnUpgrade()

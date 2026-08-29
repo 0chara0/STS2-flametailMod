@@ -1,6 +1,6 @@
 {
   "FLAMETAIL_KEYWORD_COUNTER.title": "Counter",
-  "FLAMETAIL_KEYWORD_COUNTER.description": "When you are attacked, this card may be played automatically as a counter-attack.",
+  "FLAMETAIL_KEYWORD_COUNTER.description": "At the end of your turn, you may choose to retain 1 Counter card.\nWhen you are attacked, automatically play the first Counter card in your hand.",
   "FLAMETAIL_KEYWORD_PAIN.title": "Pain",
   "FLAMETAIL_KEYWORD_PAIN.description": "Whenever you play a card while this is in your hand, lose 1 HP.",
   "FLAMETAIL_KEYWORD_SUPPORT.title": "Support",

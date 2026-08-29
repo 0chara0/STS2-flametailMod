@@ -37,11 +37,14 @@ public partial class Entry
 
         // [RegisterOwnedCardKeyword] 不会被 ModTypeDiscoveryHub 自动处理，
         // 因此必须手动注册“反制”“疼痛”“支援”“即逝”“步法”词条，这样卡牌 CanonicalKeywords 里的 CardKeyword 值才能被识别。
+        // 注意：这里才是真正生效的注册（attribute 上的 CardDescriptionPlacement 不生效）。
+        // “反制”/“步法”用 None：不向卡牌描述注入金句（描述里已由各卡以 [gold] 手动呈现“反制/反制时：”），
+        // 仅保留 IncludeInCardHoverTip=true 的悬停说明。
         ModKeywordRegistry.For(ModId)
             .RegisterCardKeywordOwnedByLocNamespace(
                 "Counter",
                 iconPath: null,
-                ModKeywordCardDescriptionPlacement.BeforeCardDescription,
+                ModKeywordCardDescriptionPlacement.None,
                 includeInCardHoverTip: true);
         ModKeywordRegistry.For(ModId)
             .RegisterCardKeywordOwnedByLocNamespace(

@@ -30,7 +30,7 @@ public sealed class flametailHighVelocityImpact : ModCardTemplate
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new IntVar("StrengthGain", 1)
+        new IntVar("StrengthGain", 2)
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

@@ -13,11 +13,20 @@ namespace flametail.Helpers;
 /// </summary>
 public static class FlametailValueProps
 {
+    // 注意：_allocatedBits 必须声明在调用它的字段之前。
+    // C# 静态字段按声明顺序初始化，若把它放在 IgnoreAttackerDamageModifiers 之后，
+    // 第一个 AllocateUnusedValuePropBit() 执行时 _allocatedBits 仍为 null，
+    // UnionWith 会抛 ArgumentNullException，导致整个类型初始化失败，
+    // 图书馆渲染引用本类的攻击卡（支援伤害）时全部抛 TypeInitializationException。
+    /// <summary>记录已分配的自定义位，保证多次调用 AllocateUnusedValuePropBit 返回互不相同的位。</summary>
+    private static readonly HashSet<ulong> _allocatedBits = new();
+
     private static readonly ValueProp IgnoreAttackerDamageModifiers = AllocateUnusedValuePropBit();
+    private static readonly ValueProp IgnoreDefenderDamageModifiers = AllocateUnusedValuePropBit();
 
     static FlametailValueProps()
     {
-        Entry.Logger.Info($"FlametailValueProps: allocated IgnoreAttackerDamageModifiers = 0x{(ulong)IgnoreAttackerDamageModifiers:X}.");
+        Entry.Logger.Info($"FlametailValueProps: allocated IgnoreAttackerDamageModifiers = 0x{(ulong)IgnoreAttackerDamageModifiers:X}, IgnoreDefenderDamageModifiers = 0x{(ulong)IgnoreDefenderDamageModifiers:X}.");
     }
 
     /// <summary>
@@ -31,6 +40,12 @@ public static class FlametailValueProps
     /// </summary>
     public static ValueProp GetIgnoreAttackerDamageModifiers() => IgnoreAttackerDamageModifiers;
 
+    /// <summary>
+    /// 当此标志存在时，伤害结算会忽略目标方（target）的伤害修正效果（例如易伤 Vulnerable 的乘法加成）。
+    /// 与 <see cref="GetIgnoreAttackerDamageModifiers"/> 组合可得到完全不受力量/易伤影响的“固定伤害”。
+    /// </summary>
+    public static ValueProp GetIgnoreDefenderDamageModifiers() => IgnoreDefenderDamageModifiers;
+
     private static ValueProp AllocateUnusedValuePropBit()
     {
         var defined = new HashSet<ulong>();
@@ -38,6 +53,8 @@ public static class FlametailValueProps
         {
             defined.Add((ulong)value);
         }
+
+        defined.UnionWith(_allocatedBits);
 
         for (int bit = 0; bit < 64; bit++)
         {
@@ -54,6 +71,7 @@ public static class FlametailValueProps
 
             if (!used)
             {
+                _allocatedBits.Add(candidate);
                 return (ValueProp)candidate;
             }
         }

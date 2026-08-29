@@ -25,11 +25,6 @@ public sealed class flametailCanYouSeeMe : ModCardTemplate
         PortraitPath: $"{Entry.ResPath}/images/cards/{"flametailCanYouSeeMe"}.png");
     public override CardAssetProfile AssetProfile => _assetProfile;
 
-    protected override IEnumerable<DynamicVar> CanonicalVars =>
-    [
-        new IntVar("Amount", 1)
-    ];
-
     public flametailCanYouSeeMe() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)
     {
     }
@@ -39,13 +34,14 @@ public sealed class flametailCanYouSeeMe : ModCardTemplate
         await PowerCmd.Apply<flametailCanYouSeeMePower>(
             choiceContext,
             Owner.Creature,
-            DynamicVars["Amount"].IntValue,
+            1,
             Owner.Creature,
             this);
     }
 
     protected override void OnUpgrade()
     {
-        DynamicVars["Amount"].UpgradeValueBy(1);
+        // 升级：耗能 1→0。
+        EnergyCost.UpgradeBy(-1);
     }
 }

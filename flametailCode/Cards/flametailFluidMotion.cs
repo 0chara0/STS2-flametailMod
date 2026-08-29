@@ -29,7 +29,7 @@ public sealed class flametailFluidMotion : ModCardTemplate
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(4, ValueProp.Move)
+        new DamageVar(6, ValueProp.Move)
     ];
 
     public flametailFluidMotion() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)
@@ -85,6 +85,6 @@ public sealed class flametailFluidMotion : ModCardTemplate
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(2);
+        DynamicVars.Damage.UpgradeValueBy(3);
     }
 }

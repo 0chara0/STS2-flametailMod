@@ -15,7 +15,7 @@ namespace flametail.Cards;
 [RegisterCard(typeof(flametailCardPool))]
 public sealed class flametailRegainPosture : ModCardTemplate, IGainFootworkCard
 {
-    private const int BaseEnergyCost = 0;
+    private const int BaseEnergyCost = 1;
     private const CardType CardKind = CardType.Skill;
     private const CardRarity CardRarityValue = CardRarity.Common;
     private const TargetType CardTarget = TargetType.Self;
@@ -30,7 +30,7 @@ public sealed class flametailRegainPosture : ModCardTemplate, IGainFootworkCard
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new IntVar("Footwork", 1),
+        new IntVar("Footwork", 2),
         new IntVar("DrawAmount", 2)
     ];
 
@@ -38,11 +38,17 @@ public sealed class flametailRegainPosture : ModCardTemplate, IGainFootworkCard
     {
     }
 
+    // 升级后获得保留。
+    protected override void OnUpgrade()
+    {
+        AddKeyword(CardKeyword.Retain);
+    }
+
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
+        // 纯「无步法」判断：没有步法时才生效（配合再快一点重做后不再有步法下限）。
         var footwork = Owner.Creature.GetPower<flametailFootworkPower>();
-        decimal minimum = footwork?.MinimumAmount ?? 0m;
-        if ((footwork?.Amount ?? 0m) > minimum)
+        if ((footwork?.Amount ?? 0m) > 0m)
         {
             return;
         }
@@ -55,10 +61,5 @@ public sealed class flametailRegainPosture : ModCardTemplate, IGainFootworkCard
             this);
 
         await CardPileCmd.Draw(choiceContext, DynamicVars["DrawAmount"].IntValue, Owner);
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars["Footwork"].UpgradeValueBy(1);
     }
 }

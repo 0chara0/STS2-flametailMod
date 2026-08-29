@@ -45,7 +45,7 @@ public sealed class flametailSteadyBlock : ModCardTemplate
 
     /// <summary>
     /// 实时计算格挡值：(最大步法 − 当前步法) × 每点步法格挡。
-    /// 卡牌图书馆等非战斗场景渲染的是规范模型，访问 Owner 会抛异常，按无步法计算即满额格挡。
+    /// 卡牌图书馆等非战斗场景渲染的是规范模型，访问 Owner 会抛异常，按 0 显示（配合描述条件在图书馆隐藏该行）。
     /// </summary>
     private static decimal ResolveBlock(CardModel? card)
     {
@@ -59,7 +59,7 @@ public sealed class flametailSteadyBlock : ModCardTemplate
 
         if (card.CombatState == null)
         {
-            return maxFootwork * rate;
+            return 0m;
         }
 
         decimal footwork = card.Owner?.Creature?.GetPower<flametailFootworkPower>()?.Amount ?? 0m;
@@ -70,7 +70,7 @@ public sealed class flametailSteadyBlock : ModCardTemplate
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         int footwork = Owner.Creature.GetPower<flametailFootworkPower>()?.Amount ?? 0;
-        int missing = int.Max(0, DynamicVars["MaxFootwork"].IntValue - footwork);
+        int missing = Math.Max(0, DynamicVars["MaxFootwork"].IntValue - footwork);
         if (missing > 0)
         {
             decimal block = DynamicVars.ComputeDynamicValue("Block", 0m, null);

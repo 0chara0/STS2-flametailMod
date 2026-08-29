@@ -1,0 +1,10 @@
+[gd_resource type="SpineSkeletonDataResource" load_steps=3 format=3]
+
+[ext_resource type="SpineAtlasResource" uid="uid://dlgsv3id53jto" path="res://flametail/animations/vfx/summons/armor_upgrade/char_423_blemsh.atlas" id="1_atlas"]
+[ext_resource type="SpineSkeletonFileResource" uid="uid://c88eelf6alc74" path="res://flametail/animations/vfx/summons/armor_upgrade/char_423_blemsh.skel" id="2_skel"]
+
+[resource]
+atlas_res = ExtResource("1_atlas")
+skeleton_file_res = ExtResource("2_skel")
+default_mix = 0.05
+animation_mixes = []

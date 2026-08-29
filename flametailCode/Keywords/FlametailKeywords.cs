@@ -6,14 +6,15 @@ namespace flametail.Keywords;
 
 /// <summary>
 /// 注册 flametail 的自定义卡牌词条。
-/// “反制”在战斗中会在卡牌描述前显示为金色标签，并提供悬停说明。
+/// “反制”词条本身不注入描述文本（由各卡牌描述以 [gold] 手动呈现“反制/反制时：”），
+/// 仅提供卡牌悬停说明（IncludeInCardHoverTip）。
 ///
 /// 注意：[RegisterOwnedCardKeyword] 目前不会被 ModTypeDiscoveryHub 自动处理，
 /// 因此 Entry.Initialize 中还需要调用 ModKeywordRegistry.For(...).RegisterCardKeywordOwnedByLocNamespace(...)。
 /// </summary>
 [RegisterOwnedCardKeyword(
     "Counter",
-    CardDescriptionPlacement = ModKeywordCardDescriptionPlacement.BeforeCardDescription,
+    CardDescriptionPlacement = ModKeywordCardDescriptionPlacement.None,
     IncludeInCardHoverTip = true)]
 [RegisterOwnedCardKeyword(
     "Pain",

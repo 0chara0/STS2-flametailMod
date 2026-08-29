@@ -39,6 +39,8 @@ public sealed class flametailCrossguardArts : ModCardTemplate, ICounterCard
         new DamageVar(7, ValueProp.Move)
     ];
 
+    public bool HasCounterEffect => true;
+
     public flametailCrossguardArts() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)
     {
     }
@@ -48,15 +50,34 @@ public sealed class flametailCrossguardArts : ModCardTemplate, ICounterCard
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
 
         var counterContext = this.GetCounterContext();
-        if (counterContext.IsCounterPlay && Owner.Creature.CombatState is { } combat)
+        if (counterContext.IsCounterPlay)
         {
-            foreach (Creature target in CounterSystem.GetCounterTargets(counterContext.CurrentAttacker, combat))
-            {
-                await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-                    .FromCard(this, cardPlay)
-                    .Targeting(target)
-                    .Execute(choiceContext);
-            }
+            await TriggerCounterEffect(choiceContext, cardPlay, counterContext.CurrentAttacker);
+        }
+    }
+
+    /// <summary>反制时：额外对当前攻击者造成 {Damage} 点伤害。</summary>
+    public async Task TriggerCounterEffect(PlayerChoiceContext choiceContext, CardPlay cardPlay, Creature? attacker)
+    {
+        if (Owner.Creature.CombatState is not { } combat)
+        {
+            return;
+        }
+
+        // 主动打出触发（骑士对决）时没有真实攻击者，attacker 会指向自身；此时不造成伤害，避免误伤自己。
+        // 除非剑如火舞将反制重定向到所有敌人（此时 GetCounterTargets 会返回所有敌人）。
+        if ((attacker == null || attacker == Owner.Creature)
+            && !this.GetCounterContext().ShouldRetargetCounterToAllEnemies)
+        {
+            return;
+        }
+
+        foreach (Creature target in CounterSystem.GetCounterTargets(attacker, combat))
+        {
+            await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
+                .FromCard(this, cardPlay)
+                .Targeting(target)
+                .Execute(choiceContext);
         }
     }
 

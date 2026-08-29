@@ -1,5 +1,6 @@
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Powers;
@@ -35,6 +36,8 @@ public sealed class flametailBlisteringCounter : ModCardTemplate, ICounterCard
         new IntVar("VulnerableAmount", 2)
     ];
 
+    public bool HasCounterEffect => true;
+
     public flametailBlisteringCounter() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)
     {
     }
@@ -67,8 +70,14 @@ public sealed class flametailBlisteringCounter : ModCardTemplate, ICounterCard
 
         if (this.GetCounterContext().IsCounterPlay)
         {
-            await CounterSystem.PlayNextCounterCard(choiceContext, this, cardPlay.Target);
+            await TriggerCounterEffect(choiceContext, cardPlay, cardPlay.Target);
         }
+    }
+
+    /// <summary>反制时：额外打出手牌中的下一张反制牌。</summary>
+    public async Task TriggerCounterEffect(PlayerChoiceContext choiceContext, CardPlay cardPlay, Creature? attacker)
+    {
+        await CounterSystem.PlayNextCounterCard(choiceContext, this, cardPlay.Target);
     }
 
     protected override void OnUpgrade()

@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Saves.Runs;
 using MegaCrit.Sts2.Core.ValueProps;
 using STS2RitsuLib.Interop.AutoRegistration;
 
@@ -15,8 +16,10 @@ using STS2RitsuLib.Scaffolding.Content;
 namespace flametail.Powers;
 
 /// <summary>
-/// 隐藏 Buff：本回合打出的前 N 张攻击牌无视格挡。由「虚晃」施加。
-/// 每打出一张攻击牌消耗 1 层；在玩家回合开始时清除剩余层数。
+/// 隐藏 Buff：使攻击牌无视格挡。由「虚晃」施加。
+/// 未升级时为「下 1 张攻击牌」模式：每打出一张攻击牌消耗 1 层；
+/// 升级后切换为「本回合全部攻击牌」模式（<see cref="IgnoreAllAttacks"/>），不再按张消耗。
+/// 两种模式都在玩家回合开始时清除。
 /// </summary>
 [RegisterPower]
 public sealed class flametailIgnoreBlockPower : ModPowerTemplate
@@ -30,6 +33,12 @@ public sealed class flametailIgnoreBlockPower : ModPowerTemplate
         BigIconPath: $"{Entry.ResPath}/images/powers/flametailIgnoreBlockPower.png");
     public override PowerAssetProfile AssetProfile => _assetProfile;
 
+    /// <summary>
+    /// 升级后的「本回合全部」模式：本回合所有攻击牌无视格挡，不按张消耗层数。
+    /// </summary>
+    [SavedProperty]
+    public bool IgnoreAllAttacks { get; set; }
+
     public override Task BeforeAttack(AttackCommand command)
     {
         if (command.Attacker != Owner)
@@ -38,7 +47,7 @@ public sealed class flametailIgnoreBlockPower : ModPowerTemplate
         }
 
         // 剩余层数 > 0 时让本次攻击无视格挡。
-        // 层数按“张”消耗，见 AfterCardPlayed。
+        // 未升级模式按“张”消耗，见 AfterCardPlayed；升级模式不消耗。
         if (Amount > 0)
         {
             command.DamageProps |= ValueProp.Unblockable;
@@ -64,6 +73,12 @@ public sealed class flametailIgnoreBlockPower : ModPowerTemplate
             return;
         }
 
+        // 「本回合全部」模式不按张消耗层数，仅保留到回合开始统一清除。
+        if (IgnoreAllAttacks)
+        {
+            return;
+        }
+
         await PowerCmd.ModifyAmount(choiceContext, this, -1, Owner, null);
         if (Amount <= 0)
         {
@@ -82,5 +97,7 @@ public sealed class flametailIgnoreBlockPower : ModPowerTemplate
         {
             await PowerCmd.ModifyAmount(choiceContext, this, -Amount, Owner, null);
         }
+
+        IgnoreAllAttacks = false;
     }
 }

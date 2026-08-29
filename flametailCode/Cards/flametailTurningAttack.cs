@@ -42,6 +42,8 @@ public sealed class flametailTurningAttack : ModCardTemplate, ICounterCard
         new IntVar("DrawAmount", 3)
     ];
 
+    public bool HasCounterEffect => true;
+
     public flametailTurningAttack() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)
     {
     }
@@ -64,8 +66,14 @@ public sealed class flametailTurningAttack : ModCardTemplate, ICounterCard
 
         if (this.GetCounterContext().IsCounterPlay)
         {
-            await CardPileCmd.Draw(choiceContext, DynamicVars["DrawAmount"].IntValue, Owner);
+            await TriggerCounterEffect(choiceContext, cardPlay, cardPlay.Target);
         }
+    }
+
+    /// <summary>反制时：额外抽 {DrawAmount} 张牌。</summary>
+    public async Task TriggerCounterEffect(PlayerChoiceContext choiceContext, CardPlay cardPlay, Creature? attacker)
+    {
+        await CardPileCmd.Draw(choiceContext, DynamicVars["DrawAmount"].IntValue, Owner);
     }
 
     protected override void OnUpgrade()

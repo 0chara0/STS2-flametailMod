@@ -26,17 +26,12 @@ public sealed class flametailFootworkPower : ModPowerTemplate
     public override PowerAssetProfile AssetProfile => _assetProfile;
 
     /// <summary>
-    /// 当前步法层数的最低值。若拥有“再快一点”，则最低值为 2；否则为 0。
+    /// 可供卡牌效果使用的步法层数。旧「再快一点」的步法下限已移除，故等于当前层数。
     /// </summary>
-    public decimal MinimumAmount => Owner?.HasPower<flametailEvenFasterPower>() == true ? flametailEvenFasterPower.MinimumFootwork : 0m;
+    public decimal UsableAmount => Amount;
 
     /// <summary>
-    /// 超出最低值、可供卡牌效果使用的步法层数。
-    /// </summary>
-    public decimal UsableAmount => Math.Max(Amount - MinimumAmount, 0m);
-
-    /// <summary>
-    /// 是否拥有超出最低值的可用步法。
+    /// 是否拥有可用步法。
     /// </summary>
     public bool HasUsableFootwork => UsableAmount > 0m;
 
@@ -73,55 +68,13 @@ public sealed class flametailFootworkPower : ModPowerTemplate
 
         _isConverting = true;
 
-        decimal minimum = MinimumAmount;
         decimal remainingFootwork = Amount - dodgeGain * 5m;
-        decimal finalFootwork = Math.Max(remainingFootwork, minimum);
-        if (finalFootwork <= 0)
-        {
-            await PowerCmd.Remove(this);
-        }
-        else
-        {
-            await PowerCmd.ModifyAmount(choiceContext, this, finalFootwork - Amount, Owner, null);
-        }
+        // 统一用 ModifyAmount（触发 AfterPowerAmountChanged 让「看得清吗」等响应失去步法），
+        // 归零时由 ShouldRemoveDueToAmount 自动移除本能力。
+        await PowerCmd.ModifyAmount(choiceContext, this, remainingFootwork - Amount, Owner, null);
 
         await PowerCmd.Apply<flametailDodgePower>(choiceContext, Owner, dodgeGain, Owner, null);
 
         _isConverting = false;
-    }
-
-    public override bool TryModifyPowerAmountReceived(
-        PowerModel canonicalPower,
-        Creature target,
-        decimal amount,
-        Creature? applier,
-        out decimal modifiedAmount)
-    {
-        if (canonicalPower is not flametailFootworkPower
-            || target != Owner
-            || Owner == null
-            || amount >= 0)
-        {
-            modifiedAmount = amount;
-            return false;
-        }
-
-        decimal minimum = MinimumAmount;
-        if (minimum <= 0m)
-        {
-            modifiedAmount = amount;
-            return false;
-        }
-
-        // 再快一点：步法不能低于最低值。
-        decimal newAmount = Amount + amount;
-        if (newAmount >= minimum)
-        {
-            modifiedAmount = amount;
-            return false;
-        }
-
-        modifiedAmount = Math.Max(amount, minimum - Amount);
-        return modifiedAmount != amount;
     }
 }

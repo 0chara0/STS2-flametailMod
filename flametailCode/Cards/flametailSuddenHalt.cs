@@ -31,10 +31,6 @@ public sealed class flametailSuddenHalt : ModCardTemplate
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        ModCardVars.ComputedBlock(
-            "Block", 0m,
-            (card, target) => ResolveBlock(card),
-            ValueProp.Move),
         new IntVar("BlockPerFootwork", 5)
     ];
 
@@ -42,41 +38,24 @@ public sealed class flametailSuddenHalt : ModCardTemplate
     {
     }
 
-    /// <summary>
-    /// 实时计算格挡值：可用步法 × 每点步法格挡。
-    /// 卡牌图书馆等非战斗场景渲染的是规范模型，访问 Owner 会抛异常，按无步法显示 0。
-    /// </summary>
-    private static decimal ResolveBlock(CardModel? card)
-    {
-        if (card?.CombatState == null)
-        {
-            return 0m;
-        }
-
-        var footwork = card.Owner?.Creature?.GetPower<flametailFootworkPower>();
-        if (footwork == null || !footwork.HasUsableFootwork)
-        {
-            return 0m;
-        }
-
-        decimal rate = card.DynamicVars?.GetValueOrDefault("BlockPerFootwork", 5m) ?? 5m;
-        return footwork.UsableAmount * rate;
-    }
-
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         var footwork = Owner.Creature.GetPower<flametailFootworkPower>();
-        if (footwork == null || !footwork.HasUsableFootwork)
+        if (footwork == null || footwork.Amount <= 0)
         {
             return;
         }
 
-        decimal usableFootwork = footwork.UsableAmount;
+        decimal amount = footwork.Amount;
+        int blockPerFootwork = DynamicVars["BlockPerFootwork"].IntValue;
 
-        // 格挡基于扣减前的可用步法计算，必须先于 ModifyAmount 求值。
-        decimal block = DynamicVars.ComputeDynamicValue("Block", 0m, null);
-        await PowerCmd.ModifyAmount(choiceContext, footwork, -usableFootwork, Owner.Creature, this);
-        await CreatureCmd.GainBlock(Owner.Creature, block, ValueProp.Move, cardPlay);
+        await PowerCmd.ModifyAmount(choiceContext, footwork, -amount, Owner.Creature, this);
+
+        // 逐层获得格挡：每失去 1 层步法独立获得一次格挡（可多次触发势不可当等）。
+        for (int i = 0; i < (int)amount; i++)
+        {
+            await CreatureCmd.GainBlock(Owner.Creature, blockPerFootwork, ValueProp.Move, cardPlay);
+        }
     }
 
     protected override void OnUpgrade()

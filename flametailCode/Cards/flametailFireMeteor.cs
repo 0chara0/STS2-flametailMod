@@ -13,7 +13,7 @@ namespace flametail.Cards;
 [RegisterCard(typeof(flametailCardPool))]
 public sealed class flametailFireMeteor : ModCardTemplate
 {
-    private const int BaseEnergyCost = 2;
+    private const int BaseEnergyCost = 3;
     private const CardType CardKind = CardType.Skill;
     private const CardRarity CardRarityValue = CardRarity.Rare;
     private const TargetType CardTarget = TargetType.Self;
@@ -30,7 +30,7 @@ public sealed class flametailFireMeteor : ModCardTemplate
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         var dodgePower = Owner.Creature.GetPower<flametailDodgePower>();
-        if (dodgePower == null || dodgePower.Amount < 2)
+        if (dodgePower == null || dodgePower.Amount < 1)
         {
             return;
         }

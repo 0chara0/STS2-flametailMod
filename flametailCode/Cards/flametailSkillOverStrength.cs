@@ -44,7 +44,7 @@ public sealed class flametailSkillOverStrength : ModCardTemplate
 
     /// <summary>
     /// 实时计算本回合目标失去的力量：当前步法 × 倍率。
-    /// 卡牌图书馆等非战斗场景渲染的是规范模型，访问 Owner 会抛异常，按无步法显示 0。
+    /// 卡牌图书馆等非战斗场景渲染的是规范模型，访问 Owner 会抛异常，按 0 显示（配合描述条件在图书馆隐藏该行）。
     /// </summary>
     private static decimal ResolveLoss(CardModel? card)
     {
