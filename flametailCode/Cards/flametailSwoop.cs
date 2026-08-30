@@ -42,8 +42,8 @@ public sealed class flametailSwoop : ModCardTemplate
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        // 自己受到 6 点不可格挡、不受力量影响的伤害（参考游戏内放血/自伤类牌的写法）。
-        await CreatureCmd.Damage(choiceContext, Owner.Creature, 6, ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move, this, cardPlay);
+        // 自己受到 6 点可被格挡抵挡、不受力量影响的伤害（去掉 Unblockable，让格挡能挡掉这 6 点）。
+        await CreatureCmd.Damage(choiceContext, Owner.Creature, 6, ValueProp.Unpowered | ValueProp.Move, this, cardPlay);
 
         await PowerCmd.Apply<flametailDodgePower>(
             choiceContext,

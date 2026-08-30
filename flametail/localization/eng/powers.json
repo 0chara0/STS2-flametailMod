@@ -65,5 +65,15 @@
   "FLAMETAIL_POWER_FLAMETAIL_KNIGHTS_DUEL_POWER.title": "Knight's Duel",
   "FLAMETAIL_POWER_FLAMETAIL_KNIGHTS_DUEL_POWER.description": "The first {Amount} time(s) you actively play a Counter card each turn, trigger its Counter effect.",
   "FLAMETAIL_POWER_FLAMETAIL_PREEMPT_POWER.title": "Preempt",
-  "FLAMETAIL_POWER_FLAMETAIL_PREEMPT_POWER.description": "Before each enemy acts, automatically play a Counter card from your hand that meets its conditions. Restricted Counter cards are skipped."
+  "FLAMETAIL_POWER_FLAMETAIL_PREEMPT_POWER.description": "Before each enemy acts, automatically play a Counter card from your hand that meets its conditions. Restricted Counter cards are skipped.",
+  "FLAMETAIL_POWER_FLAMETAIL_LEADER_POWER.title": "Leader",
+  "FLAMETAIL_POWER_FLAMETAIL_LEADER_POWER.description": "While you are alive, players above half HP gain {Amount} [gold]Strength[/gold], and players at or below half HP gain {Amount} [gold]Dexterity[/gold].",
+  "FLAMETAIL_POWER_FLAMETAIL_WINDBRINGER_POWER.title": "Windbringer",
+  "FLAMETAIL_POWER_FLAMETAIL_WINDBRINGER_POWER.description": "Whenever you gain [gold]Footwork[/gold], each ally you are linked to gains [gold]Footwork[/gold] (the amount shown on their 'Windbringer - Ally' marker).",
+  "FLAMETAIL_POWER_FLAMETAIL_LEADER_AURA_POWER.title": "Leader - Ally",
+  "FLAMETAIL_POWER_FLAMETAIL_LEADER_AURA_POWER.description": "Leader effect: gain {Amount} [gold]Strength[/gold] while above half HP, or {Amount} [gold]Dexterity[/gold] at or below half HP. Removed if the caster dies.",
+  "FLAMETAIL_POWER_FLAMETAIL_LEADER_AURA_POWER.smartDescription": "From [gold]{Applier.StringValue}[/gold]'s Leader effect: gain {Amount} [gold]Strength[/gold] while above half HP, or {Amount} [gold]Dexterity[/gold] at or below half HP. Removed if the caster dies.",
+  "FLAMETAIL_POWER_FLAMETAIL_WINDBRINGER_LINK_POWER.title": "Windbringer - Ally",
+  "FLAMETAIL_POWER_FLAMETAIL_WINDBRINGER_LINK_POWER.description": "Windbringer effect: whenever the caster gains [gold]Footwork[/gold], you gain {Amount} [gold]Footwork[/gold]. Removed if the caster dies.",
+  "FLAMETAIL_POWER_FLAMETAIL_WINDBRINGER_LINK_POWER.smartDescription": "From [gold]{Applier.StringValue}[/gold]'s Windbringer effect: whenever the caster gains [gold]Footwork[/gold], you gain {Amount} [gold]Footwork[/gold]. Removed if the caster dies."
 }

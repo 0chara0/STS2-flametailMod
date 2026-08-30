@@ -12,7 +12,7 @@ namespace flametail.Cards;
 
 /// <summary>
 /// 领导者：你存活时，生命值高于一半的玩家获得 2（3）点力量，生命值不高于一半的玩家获得 2（3）点敏捷。
-/// 光环效果由 flametailLeaderPower 在每个玩家回合开始时重新评估。多人限定。
+/// 光环由 flametailLeaderPower 打出时建立连接，玩家生命值跨过半血线（或死亡）时由各自身上的 flametailLeaderAuraPower 实时切换力量/敏捷，无需等待回合开始。多人限定。
 /// </summary>
 [RegisterCard(typeof(flametailCardPool))]
 public sealed class flametailLeader : ModCardTemplate
@@ -53,8 +53,8 @@ public sealed class flametailLeader : ModCardTemplate
 
         if (power != null)
         {
-            power.GrantAmount = amount;
             // 立刻按当前血量评估一次，不用等下一个回合开始。
+            // 可叠加：Amount 随每次打出累加，Evaluate 按 Amount 授予力量/敏捷。
             await power.Evaluate(choiceContext);
         }
     }
