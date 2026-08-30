@@ -30,7 +30,8 @@ public sealed class flametailTheLastKnight : ModRelicTemplate
 
     private static readonly RelicAssetProfile _assetProfile = new(
         IconPath: $"{Entry.ResPath}/images/relics/{nameof(flametailTheLastKnight)}.png",
-        IconOutlinePath: $"{Entry.ResPath}/images/relics/{nameof(flametailTheLastKnight)}.png",
+        // 描边图：遗物图鉴按所属角色池染主题色，需用独立轮廓剪影图（_r4 为选定的描边版本）。
+        IconOutlinePath: $"{Entry.ResPath}/images/relics/{nameof(flametailTheLastKnight)}_r4.png",
         BigIconPath: $"{Entry.ResPath}/images/relics/{nameof(flametailTheLastKnight)}.png");
     public override RelicAssetProfile AssetProfile => _assetProfile;
 

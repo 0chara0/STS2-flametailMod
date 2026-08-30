@@ -13,7 +13,7 @@ namespace flametail.Characters;
 [RegisterCharacter]
 public sealed class flametailCharacter : ModCharacterTemplate<flametailCardPool, flametailRelicPool, flametailPotionPool>
 {
-	public static readonly Color ThemeColor = new(0.42f, 0.65f, 0.72f);
+	public static readonly Color ThemeColor = new(0.85f, 0.35f, 0.24f);
 
 	private const string SceneRoot = $"{Entry.ResPath}/scenes/characters";
 	private const string ImageRoot = $"{Entry.ResPath}/images/characters";

@@ -22,7 +22,8 @@ public sealed class flametailTheReturn : ModRelicTemplate
 
     private static readonly RelicAssetProfile _assetProfile = new(
         IconPath: $"{Entry.ResPath}/images/relics/{nameof(flametailTheReturn)}.png",
-        IconOutlinePath: $"{Entry.ResPath}/images/relics/{nameof(flametailTheReturn)}.png",
+        // 描边图：遗物图鉴按所属角色池染主题色，需用独立轮廓剪影图（_r4 为选定的描边版本，r3/r5 备选）。
+        IconOutlinePath: $"{Entry.ResPath}/images/relics/{nameof(flametailTheReturn)}_r4.png",
         BigIconPath: $"{Entry.ResPath}/images/relics/{nameof(flametailTheReturn)}.png");
     public override RelicAssetProfile AssetProfile => _assetProfile;
 
