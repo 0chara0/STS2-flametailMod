@@ -4,6 +4,7 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Models.Powers;
 using flametail.Characters;
 using flametail.Keywords;
 using flametail.Powers;
@@ -30,7 +31,8 @@ public sealed class flametailPreFightWarmup : ModCardTemplate, IGainFootworkCard
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new IntVar("Footwork", 1)
+        new IntVar("Footwork", 1),
+        new IntVar("Vigor", 4)
     ];
 
     public flametailPreFightWarmup() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)
@@ -45,10 +47,18 @@ public sealed class flametailPreFightWarmup : ModCardTemplate, IGainFootworkCard
             DynamicVars["Footwork"].IntValue,
             Owner.Creature,
             this);
+
+        await PowerCmd.Apply<VigorPower>(
+            choiceContext,
+            Owner.Creature,
+            DynamicVars["Vigor"].IntValue,
+            Owner.Creature,
+            this);
     }
 
     protected override void OnUpgrade()
     {
         DynamicVars["Footwork"].UpgradeValueBy(1);
+        DynamicVars["Vigor"].UpgradeValueBy(2);
     }
 }

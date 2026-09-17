@@ -38,6 +38,8 @@ public sealed class flametailRelentless : ModCardTemplate
     {
         await PlayerCmd.GainEnergy(DynamicVars["Energy"].IntValue, Owner);
 
+        await CardPileCmd.Draw(choiceContext, 2, Owner);
+
         foreach (CardModel card in Owner.PlayerCombatState?.Hand.Cards ?? Array.Empty<CardModel>())
         {
             if (!card.Keywords.Contains(CardKeyword.Ethereal))
@@ -46,7 +48,7 @@ public sealed class flametailRelentless : ModCardTemplate
             }
         }
 
-        EnergyCost.AddThisCombat(2, false);
+        EnergyCost.AddThisCombat(1, false);
     }
 
     protected override void OnUpgrade()

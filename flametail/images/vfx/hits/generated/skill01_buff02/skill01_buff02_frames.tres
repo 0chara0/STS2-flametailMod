@@ -1,0 +1,643 @@
+[gd_resource type="SpriteFrames" load_steps=92 format=3]
+
+[ext_resource type="Texture2D" path="res://flametail/images/vfx/hits/generated/skill01_buff02/atlas.png" id="1_atlas"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skill01_buff02_0"]
+atlas = ExtResource("1_atlas")
+region = Rect2(0, 0, 335, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skill01_buff02_1"]
+atlas = ExtResource("1_atlas")
+region = Rect2(335, 0, 335, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skill01_buff02_2"]
+atlas = ExtResource("1_atlas")
+region = Rect2(670, 0, 335, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skill01_buff02_3"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1005, 0, 335, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skill01_buff02_4"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1340, 0, 335, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skill01_buff02_5"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1675, 0, 335, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skill01_buff02_6"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2010, 0, 335, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skill01_buff02_7"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2345, 0, 335, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skill01_buff02_8"]
+atlas = ExtResource("1_atlas")
+region = Rect2(0, 324, 335, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skill01_buff02_9"]
+atlas = ExtResource("1_atlas")
+region = Rect2(335, 324, 335, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skill01_buff02_10"]
+atlas = ExtResource("1_atlas")
+region = Rect2(670, 324, 335, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skill01_buff02_11"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1005, 324, 335, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skill01_buff02_12"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1340, 324, 335, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skill01_buff02_13"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1675, 324, 335, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skill01_buff02_14"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2010, 324, 335, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skill01_buff02_15"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2345, 324, 335, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skill01_buff02_16"]
+atlas = ExtResource("1_atlas")
+region = Rect2(0, 648, 335, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skill01_buff02_17"]
+atlas = ExtResource("1_atlas")
+region = Rect2(335, 648, 335, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skill01_buff02_18"]
+atlas = ExtResource("1_atlas")
+region = Rect2(670, 648, 335, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skill01_buff02_19"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1005, 648, 335, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skill01_buff02_20"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1340, 648, 335, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skill01_buff02_21"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1675, 648, 335, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skill01_buff02_22"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2010, 648, 335, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skill01_buff02_23"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2345, 648, 335, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skill01_buff02_24"]
+atlas = ExtResource("1_atlas")
+region = Rect2(0, 972, 335, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skill01_buff02_25"]
+atlas = ExtResource("1_atlas")
+region = Rect2(335, 972, 335, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skill01_buff02_26"]
+atlas = ExtResource("1_atlas")
+region = Rect2(670, 972, 335, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skill01_buff02_27"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1005, 972, 335, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skill01_buff02_28"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1340, 972, 335, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skill01_buff02_29"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1675, 972, 335, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skill01_buff02_30"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2010, 972, 335, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skill01_buff02_31"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2345, 972, 335, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skill01_buff02_32"]
+atlas = ExtResource("1_atlas")
+region = Rect2(0, 1296, 335, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skill01_buff02_33"]
+atlas = ExtResource("1_atlas")
+region = Rect2(335, 1296, 335, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skill01_buff02_34"]
+atlas = ExtResource("1_atlas")
+region = Rect2(670, 1296, 335, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skill01_buff02_35"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1005, 1296, 335, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skill01_buff02_36"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1340, 1296, 335, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skill01_buff02_37"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1675, 1296, 335, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skill01_buff02_38"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2010, 1296, 335, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skill01_buff02_39"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2345, 1296, 335, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skill01_buff02_40"]
+atlas = ExtResource("1_atlas")
+region = Rect2(0, 1620, 335, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skill01_buff02_41"]
+atlas = ExtResource("1_atlas")
+region = Rect2(335, 1620, 335, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skill01_buff02_42"]
+atlas = ExtResource("1_atlas")
+region = Rect2(670, 1620, 335, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skill01_buff02_43"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1005, 1620, 335, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skill01_buff02_44"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1340, 1620, 335, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skill01_buff02_45"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1675, 1620, 335, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skill01_buff02_46"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2010, 1620, 335, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skill01_buff02_47"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2345, 1620, 335, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skill01_buff02_48"]
+atlas = ExtResource("1_atlas")
+region = Rect2(0, 1944, 335, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skill01_buff02_49"]
+atlas = ExtResource("1_atlas")
+region = Rect2(335, 1944, 335, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skill01_buff02_50"]
+atlas = ExtResource("1_atlas")
+region = Rect2(670, 1944, 335, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skill01_buff02_51"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1005, 1944, 335, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skill01_buff02_52"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1340, 1944, 335, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skill01_buff02_53"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1675, 1944, 335, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skill01_buff02_54"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2010, 1944, 335, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skill01_buff02_55"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2345, 1944, 335, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skill01_buff02_56"]
+atlas = ExtResource("1_atlas")
+region = Rect2(0, 2268, 335, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skill01_buff02_57"]
+atlas = ExtResource("1_atlas")
+region = Rect2(335, 2268, 335, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skill01_buff02_58"]
+atlas = ExtResource("1_atlas")
+region = Rect2(670, 2268, 335, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skill01_buff02_59"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1005, 2268, 335, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skill01_buff02_60"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1340, 2268, 335, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skill01_buff02_61"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1675, 2268, 335, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skill01_buff02_62"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2010, 2268, 335, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skill01_buff02_63"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2345, 2268, 335, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skill01_buff02_64"]
+atlas = ExtResource("1_atlas")
+region = Rect2(0, 2592, 335, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skill01_buff02_65"]
+atlas = ExtResource("1_atlas")
+region = Rect2(335, 2592, 335, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skill01_buff02_66"]
+atlas = ExtResource("1_atlas")
+region = Rect2(670, 2592, 335, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skill01_buff02_67"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1005, 2592, 335, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skill01_buff02_68"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1340, 2592, 335, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skill01_buff02_69"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1675, 2592, 335, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skill01_buff02_70"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2010, 2592, 335, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skill01_buff02_71"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2345, 2592, 335, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skill01_buff02_72"]
+atlas = ExtResource("1_atlas")
+region = Rect2(0, 2916, 335, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skill01_buff02_73"]
+atlas = ExtResource("1_atlas")
+region = Rect2(335, 2916, 335, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skill01_buff02_74"]
+atlas = ExtResource("1_atlas")
+region = Rect2(670, 2916, 335, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skill01_buff02_75"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1005, 2916, 335, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skill01_buff02_76"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1340, 2916, 335, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skill01_buff02_77"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1675, 2916, 335, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skill01_buff02_78"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2010, 2916, 335, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skill01_buff02_79"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2345, 2916, 335, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skill01_buff02_80"]
+atlas = ExtResource("1_atlas")
+region = Rect2(0, 3240, 335, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skill01_buff02_81"]
+atlas = ExtResource("1_atlas")
+region = Rect2(335, 3240, 335, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skill01_buff02_82"]
+atlas = ExtResource("1_atlas")
+region = Rect2(670, 3240, 335, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skill01_buff02_83"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1005, 3240, 335, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skill01_buff02_84"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1340, 3240, 335, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skill01_buff02_85"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1675, 3240, 335, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skill01_buff02_86"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2010, 3240, 335, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skill01_buff02_87"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2345, 3240, 335, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skill01_buff02_88"]
+atlas = ExtResource("1_atlas")
+region = Rect2(0, 3564, 335, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skill01_buff02_89"]
+atlas = ExtResource("1_atlas")
+region = Rect2(335, 3564, 335, 324)
+
+[resource]
+animations = [
+{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skill01_buff02_0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skill01_buff02_1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skill01_buff02_2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skill01_buff02_3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skill01_buff02_4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skill01_buff02_5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skill01_buff02_6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skill01_buff02_7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skill01_buff02_8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skill01_buff02_9")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skill01_buff02_10")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skill01_buff02_11")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skill01_buff02_12")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skill01_buff02_13")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skill01_buff02_14")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skill01_buff02_15")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skill01_buff02_16")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skill01_buff02_17")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skill01_buff02_18")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skill01_buff02_19")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skill01_buff02_20")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skill01_buff02_21")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skill01_buff02_22")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skill01_buff02_23")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skill01_buff02_24")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skill01_buff02_25")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skill01_buff02_26")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skill01_buff02_27")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skill01_buff02_28")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skill01_buff02_29")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skill01_buff02_30")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skill01_buff02_31")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skill01_buff02_32")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skill01_buff02_33")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skill01_buff02_34")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skill01_buff02_35")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skill01_buff02_36")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skill01_buff02_37")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skill01_buff02_38")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skill01_buff02_39")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skill01_buff02_40")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skill01_buff02_41")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skill01_buff02_42")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skill01_buff02_43")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skill01_buff02_44")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skill01_buff02_45")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skill01_buff02_46")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skill01_buff02_47")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skill01_buff02_48")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skill01_buff02_49")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skill01_buff02_50")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skill01_buff02_51")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skill01_buff02_52")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skill01_buff02_53")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skill01_buff02_54")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skill01_buff02_55")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skill01_buff02_56")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skill01_buff02_57")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skill01_buff02_58")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skill01_buff02_59")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skill01_buff02_60")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skill01_buff02_61")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skill01_buff02_62")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skill01_buff02_63")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skill01_buff02_64")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skill01_buff02_65")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skill01_buff02_66")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skill01_buff02_67")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skill01_buff02_68")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skill01_buff02_69")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skill01_buff02_70")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skill01_buff02_71")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skill01_buff02_72")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skill01_buff02_73")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skill01_buff02_74")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skill01_buff02_75")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skill01_buff02_76")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skill01_buff02_77")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skill01_buff02_78")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skill01_buff02_79")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skill01_buff02_80")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skill01_buff02_81")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skill01_buff02_82")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skill01_buff02_83")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skill01_buff02_84")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skill01_buff02_85")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skill01_buff02_86")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skill01_buff02_87")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skill01_buff02_88")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skill01_buff02_89")
+}],
+"loop": false,
+"name": &"default",
+"speed": 45.0
+}
+]

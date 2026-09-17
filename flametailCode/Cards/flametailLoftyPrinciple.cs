@@ -17,7 +17,7 @@ public sealed class flametailLoftyPrinciple : ModCardTemplate
 {
     private const int BaseEnergyCost = 1;
     private const CardType CardKind = CardType.Power;
-    private const CardRarity CardRarityValue = CardRarity.Rare;
+    private const CardRarity CardRarityValue = CardRarity.Uncommon;
     private const TargetType CardTarget = TargetType.Self;
     private const bool ShowInCardLibrary = true;
 
@@ -30,7 +30,7 @@ public sealed class flametailLoftyPrinciple : ModCardTemplate
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new PowerVar<flametailLoftyPrinciplePower>("Amount", 3m)
+        new PowerVar<flametailLoftyPrinciplePower>("Amount", 2m)
     ];
 
     public flametailLoftyPrinciple() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)
@@ -49,6 +49,6 @@ public sealed class flametailLoftyPrinciple : ModCardTemplate
 
     protected override void OnUpgrade()
     {
-        DynamicVars["Amount"].UpgradeValueBy(2m);
+        DynamicVars["Amount"].UpgradeValueBy(1m);
     }
 }

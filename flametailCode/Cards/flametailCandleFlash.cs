@@ -34,7 +34,13 @@ public sealed class flametailCandleFlash : ModCardTemplate, ICounterCard
     // 哨兵值 -1 表示“本段伤害未武装”。仅在 BeforeDamageReceived → AfterDamageReceived 之间有效，无需持久化。
     private decimal _hpBeforeDamage;
 
-    [SavedProperty]
+    /// <summary>
+    /// 受击时临时记录的攻击者（瞬态）。
+    /// 注意：不能加 [SavedProperty]——Creature 类型不可序列化，加上会在存档序列化时抛出
+    /// “Property PendingAttacker on CARD... is not a valid type for [SavedProperty] (type Creature)”的
+    /// JsonException 导致多人卡死。生命窗口（BeforeDamageReceived → AfterPreventingDeath）发生在
+    /// 同一次伤害结算序列内，瞬态字段足够；读档恢复后该字段为 null 只会失去一次反制机会，可接受。
+    /// </summary>
     public Creature? PendingAttacker
     {
         get => _pendingAttacker;
@@ -60,13 +66,15 @@ public sealed class flametailCandleFlash : ModCardTemplate, ICounterCard
         PortraitPath: $"{Entry.ResPath}/images/cards/{"flametailCandleFlash"}.png");
     public override CardAssetProfile AssetProfile => _assetProfile;
 
+    // 消耗不再作为词条显示（即逝已包含移除语义），由 OnPlay 中手动消耗兜底。
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
-        new[] { CardKeyword.Innate, CardKeyword.Exhaust, FlametailKeywords.Ephemeral, FlametailKeywords.Counter };
+        new[] { CardKeyword.Innate, FlametailKeywords.Ephemeral, FlametailKeywords.Counter };
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new DamageVar(60, ValueProp.Move | FlametailValueProps.GetIgnoreAttackerDamageModifiers()),
-        new IntVar("HealPercent", 20)
+        // HealVar：让回复数值按治疗（绿色）样式渲染，标记为治疗牌。
+        new HealVar("HealPercent", 30m)
     ];
 
     protected override bool IsPlayable => this.GetCounterContext().IsCounterPlay;
@@ -215,8 +223,8 @@ public sealed class flametailCandleFlash : ModCardTemplate, ICounterCard
         }
 
         // 先完整复活并结算治疗，再打出卡牌造成伤害。
-        // 这样血条会先清空，随后回复到最大生命的 20%，最后才播放出牌动画并反击。
-        await HealToPercentOfMax();
+        // 这样血条会先清空，随后直接回复最大生命值的 30%，最后才播放出牌动画并反击。
+        await HealByPercentOfMax();
         HealedByCounter = true;
 
         // 统一走反制系统：设置 IsCounterPlay / CurrentAttacker / 重定向、
@@ -240,13 +248,12 @@ public sealed class flametailCandleFlash : ModCardTemplate, ICounterCard
     }
 
     /// <summary>
-    /// 将生命值补齐到最大生命值的 HealPercent%（仅在当前生命低于该阈值时生效）。
-    /// 例：最大生命 100、当前 8、HealPercent 20 → 回复 12，落到 20；当前 50 → 不回复。
+    /// 直接回复最大生命值的 HealPercent%（不再“回复到”该阈值）。
+    /// 例：最大生命 100、HealPercent 30 → 回复 30 点。
     /// </summary>
-    private async Task HealToPercentOfMax()
+    private async Task HealByPercentOfMax()
     {
-        decimal threshold = (decimal)Owner.Creature.MaxHp * DynamicVars["HealPercent"].IntValue / 100m;
-        decimal healAmount = Math.Max(threshold - Owner.Creature.CurrentHp, 0m);
+        decimal healAmount = (decimal)Owner.Creature.MaxHp * DynamicVars["HealPercent"].IntValue / 100m;
         await CreatureCmd.Heal(Owner.Creature, healAmount);
     }
 
@@ -279,10 +286,13 @@ public sealed class flametailCandleFlash : ModCardTemplate, ICounterCard
 
         if (!HealedByCounter)
         {
-            await HealToPercentOfMax();
+            await HealByPercentOfMax();
         }
 
-        // 即逝：打出后从卡组中移除。
+        // 消耗词条已从 CanonicalKeywords 移除（即逝已包含移除语义），这里手动消耗本次打出的实例，
+        // 再从卡组中永久移除（即逝）。
+        await CardCmd.Exhaust(choiceContext, this);
+
         if (DeckVersion?.Pile?.Type == PileType.Deck)
         {
             await CardPileCmd.RemoveFromDeck(DeckVersion, showPreview: false);
@@ -292,6 +302,6 @@ public sealed class flametailCandleFlash : ModCardTemplate, ICounterCard
     protected override void OnUpgrade()
     {
         DynamicVars.Damage.UpgradeValueBy(15);
-        DynamicVars["HealPercent"].UpgradeValueBy(5);
+        DynamicVars["HealPercent"].UpgradeValueBy(10);
     }
 }

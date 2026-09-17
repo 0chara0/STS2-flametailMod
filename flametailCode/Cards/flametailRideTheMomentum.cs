@@ -84,6 +84,7 @@ public sealed class flametailRideTheMomentum : ModCardTemplate, ICounterCard, IG
 
     protected override void OnUpgrade()
     {
-        DynamicVars["DrawAmount"].UpgradeValueBy(1);
+        // 升级后添加“保留”词条（抽牌数固定为 3，不再随升级增长）。
+        AddKeyword(CardKeyword.Retain);
     }
 }

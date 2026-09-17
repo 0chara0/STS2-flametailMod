@@ -12,7 +12,7 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 namespace flametail.Cards;
 
 [RegisterCard(typeof(flametailCardPool))]
-public sealed class flametailQuickIntuition : ModCardTemplate
+public sealed class flametailQuickIntuition : ModCardTemplate, IGainDodgeCard
 {
     private const int BaseEnergyCost = 1;
     private const CardType CardKind = CardType.Skill;

@@ -53,6 +53,9 @@ public sealed class flametailPreFightRally : ModCardTemplate
                 continue;
             }
 
+            // 所有玩家先抽 1 张牌，再获得活力。
+            await CardPileCmd.Draw(choiceContext, 1, player);
+
             await PowerCmd.Apply<VigorPower>(
                 choiceContext,
                 player.Creature,

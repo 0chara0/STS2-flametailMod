@@ -12,7 +12,7 @@
   "FLAMETAIL_RELIC_FLAMETAIL_GLORIOUS_KAZIMIERZ.description": "Whenever you play a [gold]Counter[/gold] card, deal {Damage} damage to a random enemy.",
   "FLAMETAIL_RELIC_FLAMETAIL_GLORIOUS_KAZIMIERZ.flavor": "The heroine of the knight's tale never loses—the author writes her ending for her.",
   "FLAMETAIL_RELIC_FLAMETAIL_BLUNT_CLAWS_TRAINING.title": "Blunt Claws Training",
-  "FLAMETAIL_RELIC_FLAMETAIL_BLUNT_CLAWS_TRAINING.description": "Upon pickup, choose a card in your deck to upgrade and enchant with sown.",
+  "FLAMETAIL_RELIC_FLAMETAIL_BLUNT_CLAWS_TRAINING.description": "Upon pickup, choose a card in your deck to upgrade and enchant with [blue]Sown[/blue].",
   "FLAMETAIL_RELIC_FLAMETAIL_BLUNT_CLAWS_TRAINING.flavor": "Every seed you plant will, in time, grow into a hand that grips a sword.",
   "FLAMETAIL_RELIC_BLUNT_CLAWS_TRAINING_PICK_PROMPT": "Choose a card to upgrade and enchant.",
   "FLAMETAIL_RELIC_FLAMETAIL_THE_RETURN.title": "The Return",

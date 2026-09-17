@@ -25,8 +25,8 @@ public sealed class flametailRefocus : ModCardTemplate
         PortraitPath: $"{Entry.ResPath}/images/cards/{"flametailRefocus"}.png");
     public override CardAssetProfile AssetProfile => _assetProfile;
 
-    public override IEnumerable<CardKeyword> CanonicalKeywords =>
-        new[] { CardKeyword.Innate };
+    // 固有为升级后添加的词条（OnUpgrade 中 AddKeyword），基础版不带。
+    public override IEnumerable<CardKeyword> CanonicalKeywords => System.Array.Empty<CardKeyword>();
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
@@ -49,6 +49,7 @@ public sealed class flametailRefocus : ModCardTemplate
 
     protected override void OnUpgrade()
     {
-        DynamicVars["StrengthAmount"].UpgradeValueBy(1);
+        // 削弱后升级不再提升力量（固定 1 点），改为添加“固有”词条。
+        AddKeyword(CardKeyword.Innate);
     }
 }

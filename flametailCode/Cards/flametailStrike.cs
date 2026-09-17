@@ -10,9 +10,8 @@ using STS2RitsuLib.Scaffolding.Content;
 namespace flametail.Cards;
 
 // RegisterCard 会把这张牌交给 RitsuLib 自动注册。
-// RegisterCharacterStarterCard 会把它追加进 flametailCharacter 的初始卡组。
+// 初始卡组在 Entry.Initialize 中显式注册（带 order，控制牌序）。
 [RegisterCard(typeof(flametailCardPool))]
-[RegisterCharacterStarterCard(typeof(flametailCharacter), 4)]
 public sealed class flametailStrike : ModCardTemplate
 {
     // 基础耗能。

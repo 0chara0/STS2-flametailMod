@@ -17,8 +17,11 @@ using STS2RitsuLib.Scaffolding.Content;
 namespace flametail.Cards;
 
 /// <summary>
-/// 回击：无法主动打出。反制时，触发抽牌堆或弃牌堆中随机（升级前）/ 你选择（升级后）
-/// 的一张反制牌的反制效果，并将其消耗。排除自身与其它回击，避免自我递归。
+/// 回击：无法主动点击打出，由反制流程或釜底抽薪/重演等自动打出效果打出。
+/// 打出时选择抽牌堆中的一张牌并打出；若打出的是反制牌，则按反制打出并触发其
+/// 反制效果（打出的牌不消耗）。反制流程外打出时没有攻击者语义。
+/// 回击本体打出时在手牌/弃牌堆被选中时可能包含自身以外的任何牌，无需额外排除。
+/// 升级后添加“保留”词条（基础版在手牌中回合结束会被弃置，升级版可跨回合保留）。
 /// </summary>
 [RegisterCard(typeof(flametailCardPool))]
 public sealed class flametailRiposte : ModCardTemplate, ICounterCard
@@ -33,12 +36,17 @@ public sealed class flametailRiposte : ModCardTemplate, ICounterCard
         PortraitPath: $"{Entry.ResPath}/images/cards/{"flametailRiposte"}.png");
     public override CardAssetProfile AssetProfile => _assetProfile;
 
+    // 保留由升级通过 AddKeyword 添加，基础版不带。
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
-        new[] { CardKeyword.Retain, FlametailKeywords.Counter };
+        new[] { FlametailKeywords.Counter };
 
     public bool HasCounterEffect => true;
 
-    // 无法主动打出，只能作为反制牌被自动打出。
+    // 任何方式打出（受击反制、百战先锋重放、釜底抽薪/重演等）都会执行反制效果，
+    // 百战先锋据此把反制阶段外的回击打出也计入重放队列。
+    public bool CounterEffectTriggersOnAnyPlay => true;
+
+    // 无法主动点击打出，只能被自动打出（反制流程，或釜底抽薪/重演等自动打出效果）。
     protected override bool IsPlayable => false;
 
     public flametailRiposte() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)
@@ -47,89 +55,81 @@ public sealed class flametailRiposte : ModCardTemplate, ICounterCard
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        // 只有作为反制自动打出时才执行效果。
+        // 任何方式打出（受击反制、百战先锋重放、釜底抽薪/重演等）都执行效果。
+        // 反制流程外没有攻击者，随机取一个可攻击敌人作为攻击者（与引擎 AutoPlay
+        // 在 target=null 时的随机目标规则一致），保证打出的牌及其反制效果都有目标。
         var counterContext = this.GetCounterContext();
-        if (!counterContext.IsCounterPlay)
+        Creature? attacker = counterContext.IsCounterPlay
+            ? counterContext.CurrentAttacker
+            : cardPlay.Target;
+
+        if (attacker == null && Owner.Creature.CombatState is { } combatState)
         {
-            return;
+            attacker = Owner.RunState.Rng.CombatTargets.NextItem(combatState.HittableEnemies);
         }
 
-        await TriggerCounterEffect(choiceContext, cardPlay, counterContext.CurrentAttacker);
+        await TriggerCounterEffect(choiceContext, cardPlay, attacker);
     }
 
     /// <summary>
-    /// 反制时：触发抽牌堆或弃牌堆中随机（升级前）/ 你选择（升级后）的一张反制牌的反制效果，并将其消耗。
-    /// 排除自身与其它回击，避免自我递归。
+    /// 反制时：打出抽牌堆中你选择的一张牌（不消耗）。
+    /// 选中的是反制牌时，以反制上下文打出（触发其反制效果）；否则按普通自动打出结算。
+    /// 回击本体打出时在手牌中，抽牌堆里不会包含自身，无需排除。
     /// </summary>
     public async Task TriggerCounterEffect(PlayerChoiceContext choiceContext, CardPlay cardPlay, Creature? attacker)
     {
-        // 收集抽牌堆 + 弃牌堆中的反制牌（排除自身与其它回击，避免自我递归）。
+        // 收集抽牌堆中的所有牌。
         List<CardModel> candidates = new();
-        CollectCounterCards(Owner.PlayerCombatState?.DrawPile, candidates);
-        CollectCounterCards(Owner.PlayerCombatState?.DiscardPile, candidates);
+        var drawPile = Owner.PlayerCombatState?.DrawPile;
+        if (drawPile != null)
+        {
+            candidates.AddRange(drawPile.Cards);
+        }
 
         if (candidates.Count == 0)
         {
             return;
         }
 
-        CardModel? chosen;
-        if (IsUpgraded)
+        var prefs = new CardSelectorPrefs(
+            new LocString("cards", "FLAMETAIL_RIPOSTE_PROMPT"),
+            1,
+            1)
         {
-            var prefs = new CardSelectorPrefs(
-                new LocString("cards", "FLAMETAIL_RIPOSTE_PROMPT"),
-                1,
-                1)
-            {
-                Cancelable = true,
-            };
+            Cancelable = true,
+        };
 
-            chosen = (await CardSelectCmd.FromSimpleGrid(
-                choiceContext,
-                candidates,
-                Owner,
-                prefs)).FirstOrDefault();
-        }
-        else
-        {
-            var rng = Owner.RunState?.Rng.CombatCardSelection;
-            if (rng == null)
-            {
-                return;
-            }
-
-            chosen = rng.NextItem(candidates);
-        }
+        CardModel? chosen = (await CardSelectCmd.FromSimpleGrid(
+            choiceContext,
+            candidates,
+            Owner,
+            prefs)).FirstOrDefault();
 
         if (chosen == null)
         {
             return;
         }
 
-        // 以反制上下文触发目标牌的反制效果（与 CounterSystem.PlayCounterCard 一致），随后将其消耗。
-        await CounterSystem.PlayCounterCard(choiceContext, chosen, attacker);
-        await CardCmd.Exhaust(choiceContext, chosen);
+        // 与百战先锋一致：先移回手牌顶部再自动打出，保证 AutoPlay 正常工作。
+        if (chosen.Pile?.Type != PileType.Hand)
+        {
+            await CardPileCmd.Add(chosen, PileType.Hand, CardPilePosition.Top, this);
+        }
+
+        if (chosen is ICounterCard)
+        {
+            // 以反制上下文打出（与 CounterSystem.PlayCounterCard 一致），触发其反制效果。
+            await CounterSystem.PlayCounterCard(choiceContext, chosen, attacker);
+        }
+        else
+        {
+            await CardCmd.AutoPlay(choiceContext, chosen, attacker, AutoPlayType.Default);
+        }
     }
 
-    private void CollectCounterCards(CardPile? pile, List<CardModel> into)
+    protected override void OnUpgrade()
     {
-        if (pile == null)
-        {
-            return;
-        }
-
-        foreach (CardModel card in pile.Cards)
-        {
-            // 排除自身与其它回击实例，避免自我递归。
-            if (card == this || card is flametailRiposte)
-            {
-                continue;
-            }
-
-            if (card is ICounterCard)
-            {
-                into.Add(card);
-            }
-        }
+        // 升级后添加“保留”词条。
+        AddKeyword(CardKeyword.Retain);
     }
 }

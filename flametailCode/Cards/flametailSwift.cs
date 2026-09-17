@@ -12,7 +12,6 @@ using STS2RitsuLib.Scaffolding.Content;
 namespace flametail.Cards;
 
 [RegisterCard(typeof(flametailCardPool))]
-[RegisterCharacterStarterCard(typeof(flametailCharacter), 1)]
 public sealed class flametailSwift : ModCardTemplate, IGainFootworkCard
 {
     private const int BaseEnergyCost = 1;
@@ -42,14 +41,15 @@ public sealed class flametailSwift : ModCardTemplate, IGainFootworkCard
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
+        // 结算顺序与描述一致：先获得格挡，再获得步法。
+        await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
+
         await PowerCmd.Apply<flametailFootworkPower>(
             choiceContext,
             Owner.Creature,
             DynamicVars["Footwork"].IntValue,
             Owner.Creature,
             this);
-
-        await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
     }
 
     protected override void OnUpgrade()

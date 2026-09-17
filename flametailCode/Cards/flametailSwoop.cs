@@ -17,7 +17,7 @@ namespace flametail.Cards;
 /// 多人限定；另一名玩家通过 TargetType.AnyAlly 的“选择其他玩家”界面确定（排除自己）。
 /// </summary>
 [RegisterCard(typeof(flametailCardPool))]
-public sealed class flametailSwoop : ModCardTemplate
+public sealed class flametailSwoop : ModCardTemplate, IGainDodgeCard
 {
     private const int BaseEnergyCost = 3;
     private const CardType CardKind = CardType.Skill;

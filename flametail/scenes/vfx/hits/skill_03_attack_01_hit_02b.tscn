@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://flametailCode/Nodes/Vfx/FlipbookHitVfx.cs" id="1_script"]
+[ext_resource type="SpriteFrames" path="res://flametail/images/vfx/hits/generated/skill_03_attack_01_hit_02b/skill_03_attack_01_hit_02b_frames.tres" id="2_frames"]
+[ext_resource type="ShaderMaterial" path="res://flametail/scenes/vfx/hits/hit_vfx_add.tres" id="3_mat"]
+
+[node name="Skill03Attack01Hit02b" type="Node2D"]
+script = ExtResource("1_script")
+PositionOffset = Vector2(0, -30)
+ScaleMultiplier = 1.8
+ScaleJitter = 0.1
+FlipChance = 0.5
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+material = ExtResource("3_mat")
+sprite_frames = ExtResource("2_frames")
+animation = &"default"

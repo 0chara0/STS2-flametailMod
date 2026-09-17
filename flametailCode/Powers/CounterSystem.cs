@@ -41,8 +41,9 @@ public sealed class CounterContext
     public bool TookDamage { get; set; }
 
     /// <summary>
-    /// 是否正在执行百战先锋的第二次反制复制，避免无限循环与重复计数。
+    /// （已废弃）百战先锋的连续重放由剩余层数天然限定，不再需要排除旗标。
     /// </summary>
+    [System.Obsolete("百战先锋改为按剩余层数限定连续重放，此标志不再使用")]
     public bool IsHardenedVanguardReplication { get; set; }
 
     /// <summary>
@@ -193,7 +194,6 @@ public static class CounterSystem
         bool oldMitigated = context.LastAttackMitigated;
         bool oldTookDamage = context.TookDamage;
         bool oldRetarget = context.ShouldRetargetCounterToAllEnemies;
-        bool oldReplication = context.IsHardenedVanguardReplication;
 
         context.IsCounterPlay = true;
         context.CurrentAttacker = target;
@@ -218,7 +218,6 @@ public static class CounterSystem
             context.LastAttackMitigated = oldMitigated;
             context.TookDamage = oldTookDamage;
             context.ShouldRetargetCounterToAllEnemies = oldRetarget;
-            context.IsHardenedVanguardReplication = oldReplication;
         }
     }
 

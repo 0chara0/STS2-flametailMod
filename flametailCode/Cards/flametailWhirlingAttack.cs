@@ -28,7 +28,7 @@ public sealed class flametailWhirlingAttack : ModCardTemplate, IGainFootworkCard
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(4, ValueProp.Move),
+        new DamageVar(3, ValueProp.Move),
         new IntVar("Footwork", 1),
         new IntVar("HitCount", 2)
     ];

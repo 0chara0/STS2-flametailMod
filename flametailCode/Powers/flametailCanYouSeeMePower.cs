@@ -50,7 +50,7 @@ public sealed class flametailCanYouSeeMePower : ModPowerTemplate
             return;
         }
 
-        // 抽牌量固定为 1。
-        await CardPileCmd.Draw(choiceContext, 1, player);
+        // 每次失去步法时抽 Amount 张（多张/多层能力按各自层数结算）。
+        await CardPileCmd.Draw(choiceContext, (int)Amount, player);
     }
 }

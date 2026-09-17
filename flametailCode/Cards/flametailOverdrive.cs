@@ -16,7 +16,7 @@ using STS2RitsuLib.Scaffolding.Content;
 namespace flametail.Cards;
 
 [RegisterCard(typeof(flametailCardPool))]
-public sealed class flametailOverdrive : ModCardTemplate
+public sealed class flametailOverdrive : ModCardTemplate, IGainDodgeCard
 {
     protected override IEnumerable<IHoverTip> AdditionalHoverTips => new[] {
         HoverTipFactory.FromCard<flametailPain>()

@@ -110,6 +110,13 @@ public sealed class flametailKnightsDuelPower : ModPowerTemplate
     }
 
     /// <summary>
+    /// 供百战先锋在 <c>BeforeCardPlayed</c> 时预测本次出牌是否会在结算后由骑士对决
+    /// 触发“反制时：”效果（与 <see cref="IsKnightsDuelTrigger"/> 同一判定），
+    /// 以便把这张牌计入重放队列。
+    /// </summary>
+    public bool WouldTriggerCounterEffect(CardPlay cardPlay) => IsKnightsDuelTrigger(cardPlay);
+
+    /// <summary>
     /// 判定骑士对决是否会在当前出牌后触发该牌的反制效果。
     /// <see cref="BeforeCardPlayed"/>（设置基础效果抑制标志）与 <see cref="AfterCardPlayedLate"/>
     /// （触发反制效果）共用同一判定，保证“抑制基础效果”与“触发反制效果”总是成对发生。

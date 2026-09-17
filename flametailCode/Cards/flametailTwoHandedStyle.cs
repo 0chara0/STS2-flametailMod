@@ -15,9 +15,9 @@ namespace flametail.Cards;
 [RegisterCard(typeof(flametailCardPool))]
 public sealed class flametailTwoHandedStyle : ModCardTemplate
 {
-    private const int BaseEnergyCost = 1;
+    private const int BaseEnergyCost = 2;
     private const CardType CardKind = CardType.Power;
-    private const CardRarity CardRarityValue = CardRarity.Uncommon;
+    private const CardRarity CardRarityValue = CardRarity.Ancient;
     private const TargetType CardTarget = TargetType.Self;
     private const bool ShowInCardLibrary = true;
 
@@ -25,9 +25,13 @@ public sealed class flametailTwoHandedStyle : ModCardTemplate
         PortraitPath: $"{Entry.ResPath}/images/cards/{"flametailTwoHandedStyle"}.png");
     public override CardAssetProfile AssetProfile => _assetProfile;
 
+    // 先古稀有度 + 先天（战斗开始时在手牌中）。
+    public override IEnumerable<CardKeyword> CanonicalKeywords =>
+        new[] { CardKeyword.Innate };
+
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new IntVar("BlockPerFootwork", 2)
+        new IntVar("BlockPerFootwork", 5)
     ];
 
     public flametailTwoHandedStyle() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)
@@ -36,22 +40,16 @@ public sealed class flametailTwoHandedStyle : ModCardTemplate
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        var applied = await PowerCmd.Apply<flametailTwoHandedStylePower>(
+        await PowerCmd.Apply<flametailTwoHandedStylePower>(
             choiceContext,
             Owner.Creature,
             DynamicVars["BlockPerFootwork"].IntValue,
             Owner.Creature,
             this);
-
-        // 每次打出 +25% 攻击伤害（可叠加），记录在 Power 内部。
-        if (applied is flametailTwoHandedStylePower twoHandedStyle)
-        {
-            twoHandedStyle.AddDamageStack();
-        }
     }
 
     protected override void OnUpgrade()
     {
-        DynamicVars["BlockPerFootwork"].UpgradeValueBy(1);
+        EnergyCost.UpgradeBy(-1);
     }
 }

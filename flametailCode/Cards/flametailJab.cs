@@ -14,7 +14,6 @@ using STS2RitsuLib.Scaffolding.Content;
 namespace flametail.Cards;
 
 [RegisterCard(typeof(flametailCardPool))]
-[RegisterCharacterStarterCard(typeof(flametailCharacter), 1)]
 public sealed class flametailJab : ModCardTemplate, ICounterCard
 {
     private const int BaseEnergyCost = 1;

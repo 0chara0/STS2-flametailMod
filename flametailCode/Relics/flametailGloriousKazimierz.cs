@@ -25,7 +25,7 @@ public sealed class flametailGloriousKazimierz : ModRelicTemplate
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new IntVar("Damage", 8)
+        new IntVar("Damage", 6)
     ];
 
     private static readonly RelicAssetProfile _assetProfile = new(

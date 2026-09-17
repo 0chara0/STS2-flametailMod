@@ -29,7 +29,7 @@ public sealed class flametailStrideSlash : ModCardTemplate
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(4, ValueProp.Move),
+        new DamageVar(5, ValueProp.Move),
         new IntVar("FootworkRemoved", 1)
     ];
 
@@ -57,13 +57,33 @@ public sealed class flametailStrideSlash : ModCardTemplate
             .Execute(choiceContext);
     }
 
+    /// <summary>
+    /// 打出后返回手牌顶部的语义修正：
+    /// a) 玩家正常主动打出 → 返回手牌顶部；
+    /// b) 被故技重施/釜底抽薪打出（打出前设置了 ExhaustOnNextPlay）→ 也返回手牌顶部，
+    ///    且不进消耗堆——出牌管线会先在 GetResultLocationForCardPlay 里把 ExhaustOnNextPlay
+    ///    消费成 Exhaust 结果位置，因此“入参位置为 Exhaust”即可可靠识别这种重放，
+    ///    改写为手牌后天然不会被消耗（标志已被管线清除）；
+    /// c) 其它自动打出（原版遗物历史课 HISTORY_COURSE 打出的“复制品”是新建实例，
+    ///    card != this，走上面的分支）→ 保持默认结果位置。
+    /// </summary>
     public override CardLocation ModifyCardPlayResultLocation(
         CardModel card,
         bool isAutoPlay,
         ResourceInfo resources,
         CardLocation cardLocation)
     {
-        if (card == this)
+        if (card != this)
+        {
+            return base.ModifyCardPlayResultLocation(card, isAutoPlay, resources, cardLocation);
+        }
+
+        if (!isAutoPlay)
+        {
+            return new CardLocation(card.Owner, PileType.Hand, CardPilePosition.Top);
+        }
+
+        if (cardLocation.pileType == PileType.Exhaust)
         {
             return new CardLocation(card.Owner, PileType.Hand, CardPilePosition.Top);
         }
@@ -73,6 +93,6 @@ public sealed class flametailStrideSlash : ModCardTemplate
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(2);
+        DynamicVars.Damage.UpgradeValueBy(3);
     }
 }

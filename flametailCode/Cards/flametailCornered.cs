@@ -15,7 +15,7 @@ namespace flametail.Cards;
 
 /// <summary>
 /// 困兽之斗：消耗你所有诅咒和状态牌，3 回合后把消耗牌堆中的诅咒/状态牌返回弃牌堆。
-/// 多次打出会在各自的对应回合分别触发。升级后移除本牌的消耗词条。
+/// 多次打出会在各自的对应回合分别触发。升级后耗能降低 1（2→1），仍保留消耗词条。
 /// </summary>
 [RegisterCard(typeof(flametailCardPool))]
 public sealed class flametailCornered : ModCardTemplate
@@ -91,6 +91,7 @@ public sealed class flametailCornered : ModCardTemplate
 
     protected override void OnUpgrade()
     {
-        RemoveKeyword(CardKeyword.Exhaust);
+        // 升级保留消耗词条，改为降低耗能（2→1）。
+        EnergyCost.UpgradeBy(-1);
     }
 }

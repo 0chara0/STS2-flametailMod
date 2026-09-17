@@ -34,7 +34,7 @@ public sealed class flametailNocturnalBrightPower : ModCardTemplate
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(16, ValueProp.Move | FlametailValueProps.GetIgnoreAttackerDamageModifiers())
+        new DamageVar(24, ValueProp.Move | FlametailValueProps.GetIgnoreAttackerDamageModifiers())
     ];
 
     public flametailNocturnalBrightPower() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)
@@ -69,6 +69,6 @@ public sealed class flametailNocturnalBrightPower : ModCardTemplate
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(4);
+        DynamicVars.Damage.UpgradeValueBy(6);
     }
 }

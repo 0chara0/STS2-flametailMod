@@ -31,7 +31,7 @@ public sealed class flametailFlip : ModCardTemplate, IGainFootworkCard
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new IntVar("Footwork", 3),
+        new IntVar("Footwork", 2),
         new IntVar("DrawAmount", 1)
     ];
 
@@ -56,6 +56,7 @@ public sealed class flametailFlip : ModCardTemplate, IGainFootworkCard
 
     protected override void OnUpgrade()
     {
-        EnergyCost.UpgradeBy(-1);
+        // 升级提升步法数值（2→3），耗能保持 1。
+        DynamicVars["Footwork"].UpgradeValueBy(1);
     }
 }

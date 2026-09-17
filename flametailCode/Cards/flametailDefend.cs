@@ -9,9 +9,8 @@ using STS2RitsuLib.Scaffolding.Content;
 
 namespace flametail.Cards;
 
-// 防御牌和打击一样注册到角色卡池，并作为 4 张初始卡加入角色卡组。
+// 防御牌注册到角色卡池；初始卡组在 Entry.Initialize 中显式注册（带 order，控制牌序）。
 [RegisterCard(typeof(flametailCardPool))]
-[RegisterCharacterStarterCard(typeof(flametailCharacter), 4)]
 public sealed class flametailDefend : ModCardTemplate
 {
     // 基础耗能。

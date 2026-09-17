@@ -30,6 +30,13 @@ public interface ICounterCard
     bool HasCounterEffect => false;
 
     /// <summary>
+    /// 是否任何方式打出该牌都会触发反制效果（不依赖反制上下文或骑士对决）。
+    /// 例如回击：无法主动打出，只能由反制流程或釜底抽薪/重演等自动打出效果打出，
+    /// 打出即执行反制效果。百战先锋据此把反制阶段外的这类打出也计入重放队列。
+    /// </summary>
+    bool CounterEffectTriggersOnAnyPlay => false;
+
+    /// <summary>
     /// 反制效果是否为“改为”（替换基础效果）而非“额外”（附加在基础效果之上）。
     /// 为 true 时，骑士对决在主动打出触发该牌反制效果的同时会抑制基础效果（“改为”语义）；
     /// 为 false 时基础效果照常执行，反制效果作为额外效果附加。

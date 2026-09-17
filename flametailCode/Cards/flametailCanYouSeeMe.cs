@@ -25,6 +25,12 @@ public sealed class flametailCanYouSeeMe : ModCardTemplate
         PortraitPath: $"{Entry.ResPath}/images/cards/{"flametailCanYouSeeMe"}.png");
     public override CardAssetProfile AssetProfile => _assetProfile;
 
+    // 让描述文本能显示 {Amount}（每次失去步法时抽几张）。
+    protected override IEnumerable<DynamicVar> CanonicalVars =>
+    [
+        new PowerVar<flametailCanYouSeeMePower>("Amount", 1m)
+    ];
+
     public flametailCanYouSeeMe() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)
     {
     }
@@ -34,7 +40,7 @@ public sealed class flametailCanYouSeeMe : ModCardTemplate
         await PowerCmd.Apply<flametailCanYouSeeMePower>(
             choiceContext,
             Owner.Creature,
-            1,
+            DynamicVars["Amount"].BaseValue,
             Owner.Creature,
             this);
     }

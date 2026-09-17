@@ -26,7 +26,7 @@ namespace flametail.Keywords;
     IncludeInCardHoverTip = true)]
 [RegisterOwnedCardKeyword(
     "Ephemeral",
-    CardDescriptionPlacement = ModKeywordCardDescriptionPlacement.BeforeCardDescription,
+    CardDescriptionPlacement = ModKeywordCardDescriptionPlacement.None,
     IncludeInCardHoverTip = true)]
 [RegisterOwnedCardKeyword(
     "Footwork",

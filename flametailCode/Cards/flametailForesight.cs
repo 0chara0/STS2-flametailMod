@@ -46,6 +46,7 @@ public sealed class flametailForesight : ModCardTemplate
 
     protected override void OnUpgrade()
     {
-        DynamicVars["Amount"].UpgradeValueBy(1m);
+        // 升级降低耗能（1→0），反制牌数量保持 1。
+        EnergyCost.UpgradeBy(-1);
     }
 }

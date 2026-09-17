@@ -38,6 +38,12 @@ public sealed class flametailRegainPosture : ModCardTemplate, IGainFootworkCard
     {
     }
 
+    // 生效条件（步法 ≤ 1）满足时，手牌中显示金色发光边框（参考原版 Evil Eye 的 ShouldGlowGoldInternal 用法）。
+    protected override bool ShouldGlowGoldInternal =>
+        CombatState != null
+        && Owner.Creature is { } creature
+        && (creature.GetPower<flametailFootworkPower>()?.Amount ?? 0m) <= 1m;
+
     // 升级后获得保留。
     protected override void OnUpgrade()
     {
@@ -46,9 +52,9 @@ public sealed class flametailRegainPosture : ModCardTemplate, IGainFootworkCard
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        // 纯「无步法」判断：没有步法时才生效（配合再快一点重做后不再有步法下限）。
+        // 「步法 ≤ 1」判断：步法为 0 或 1 时才生效（配合再快一点重做后不再有步法下限）。
         var footwork = Owner.Creature.GetPower<flametailFootworkPower>();
-        if ((footwork?.Amount ?? 0m) > 0m)
+        if ((footwork?.Amount ?? 0m) > 1m)
         {
             return;
         }

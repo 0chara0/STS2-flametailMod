@@ -12,7 +12,7 @@ using STS2RitsuLib.Scaffolding.Content;
 namespace flametail.Powers;
 
 /// <summary>
-/// 本能移动：每回合你打出的前 X 张能获得步法的牌耗能变为 0（X 为能力层数）。
+/// 本能移动：每回合你打出的前 X 张能获得步法或闪避的牌耗能变为 0（X 为能力层数）。
 /// </summary>
 [RegisterPower]
 public sealed class flametailReflexMovePower : ModPowerTemplate
@@ -60,7 +60,7 @@ public sealed class flametailReflexMovePower : ModPowerTemplate
     public override Task AfterCardPlayed(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         if (cardPlay.Card.Owner.Creature == Owner
-            && cardPlay.Card is IGainFootworkCard
+            && cardPlay.Card is IGainFootworkCard or IGainDodgeCard
             && cardPlay.IsLastInSeries)
         {
             GetInternalData<Data>().CardsPlayedThisTurn++;
@@ -93,7 +93,8 @@ public sealed class flametailReflexMovePower : ModPowerTemplate
                 return false;
         }
 
-        if (card is not IGainFootworkCard)
+        // 同时接受“能获得步法”与“能获得闪避”的牌。
+        if (card is not (IGainFootworkCard or IGainDodgeCard))
         {
             return false;
         }

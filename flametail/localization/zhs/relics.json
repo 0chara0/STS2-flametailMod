@@ -12,7 +12,7 @@
   "FLAMETAIL_RELIC_FLAMETAIL_GLORIOUS_KAZIMIERZ.description": "每当你打出一张[gold]反制[/gold]牌时，对随机敌人造成{Damage}点伤害。",
   "FLAMETAIL_RELIC_FLAMETAIL_GLORIOUS_KAZIMIERZ.flavor": "卡西米尔畅销书，以小说笔调讲述了自有骑士竞技以来那些闪耀竞技场的骑士事迹。惨遭放逐但重夺桂冠的临光占据了相当大的篇幅。",
   "FLAMETAIL_RELIC_FLAMETAIL_BLUNT_CLAWS_TRAINING.title": "钝爪-典训",
-  "FLAMETAIL_RELIC_FLAMETAIL_BLUNT_CLAWS_TRAINING.description": "获得时，选择升级你卡组中的一张牌，并为其附魔：sown。",
+  "FLAMETAIL_RELIC_FLAMETAIL_BLUNT_CLAWS_TRAINING.description": "获得时，选择升级你卡组中的一张牌，并为其附魔：[purple]播种[/purple]。",
   "FLAMETAIL_RELIC_FLAMETAIL_BLUNT_CLAWS_TRAINING.flavor": "一套强有力的装备，一颗勇往直前的心。",
   "FLAMETAIL_RELIC_BLUNT_CLAWS_TRAINING_PICK_PROMPT": "选择一张卡牌以升级并附魔。",
   "FLAMETAIL_RELIC_FLAMETAIL_THE_RETURN.title": "《归来》",

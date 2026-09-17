@@ -1,9 +1,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Random;
@@ -60,7 +62,35 @@ public sealed class flametailHandguardDefend : ModCardTemplate
             return;
         }
 
-        CardModel chosen = Owner.RunState!.Rng.CombatCardSelection.NextItem(attacks)!;
+        CardModel? chosen;
+        if (IsUpgraded)
+        {
+            // 升级后由玩家从抽牌堆的攻击牌中选择一张加入手牌顶部（不可取消）。
+            var prefs = new CardSelectorPrefs(
+                new LocString("cards", "FLAMETAIL_HANDGUARD_DEFEND_PROMPT"),
+                1,
+                1)
+            {
+                Cancelable = false,
+            };
+
+            chosen = (await CardSelectCmd.FromSimpleGrid(
+                choiceContext,
+                attacks,
+                Owner,
+                prefs)).FirstOrDefault();
+        }
+        else
+        {
+            // 未升级保持随机选择。
+            chosen = Owner.RunState!.Rng.CombatCardSelection.NextItem(attacks)!;
+        }
+
+        if (chosen == null)
+        {
+            return;
+        }
+
         await CardPileCmd.Add(chosen, PileType.Hand, CardPilePosition.Top);
     }
 

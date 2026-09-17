@@ -38,8 +38,8 @@ public sealed class flametailTurningAttack : ModCardTemplate, ICounterCard
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(9, ValueProp.Move),
-        new IntVar("DrawAmount", 3)
+        new DamageVar(10, ValueProp.Move),
+        new IntVar("DrawAmount", 2)
     ];
 
     public bool HasCounterEffect => true;
@@ -78,6 +78,7 @@ public sealed class flametailTurningAttack : ModCardTemplate, ICounterCard
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(3);
+        DynamicVars.Damage.UpgradeValueBy(2);
+        DynamicVars["DrawAmount"].UpgradeValueBy(1);
     }
 }

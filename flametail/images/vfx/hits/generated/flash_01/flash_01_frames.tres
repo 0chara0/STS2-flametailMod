@@ -1,0 +1,55 @@
+[gd_resource type="SpriteFrames" load_steps=8 format=3]
+
+[ext_resource type="Texture2D" path="res://flametail/images/vfx/hits/generated/flash_01/atlas.png" id="1_atlas"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_flash_01_0"]
+atlas = ExtResource("1_atlas")
+region = Rect2(0, 0, 428, 340)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_flash_01_1"]
+atlas = ExtResource("1_atlas")
+region = Rect2(428, 0, 428, 340)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_flash_01_2"]
+atlas = ExtResource("1_atlas")
+region = Rect2(856, 0, 428, 340)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_flash_01_3"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1284, 0, 428, 340)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_flash_01_4"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1712, 0, 428, 340)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_flash_01_5"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2140, 0, 428, 340)
+
+[resource]
+animations = [
+{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_flash_01_0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_flash_01_1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_flash_01_2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_flash_01_3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_flash_01_4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_flash_01_5")
+}],
+"loop": false,
+"name": &"default",
+"speed": 30.0
+}
+]
