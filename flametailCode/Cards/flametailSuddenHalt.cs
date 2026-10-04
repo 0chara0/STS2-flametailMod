@@ -31,7 +31,7 @@ public sealed class flametailSuddenHalt : ModCardTemplate
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new IntVar("BlockPerFootwork", 5)
+        new IntVar("BlockPerFootwork", 4)
     ];
 
     public flametailSuddenHalt() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)
