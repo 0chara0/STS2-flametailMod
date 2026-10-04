@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Commands;
@@ -33,7 +34,8 @@ public sealed class flametailThrust : ModCardTemplate, ICounterCard
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(7, ValueProp.Move)
+        new DamageVar(7, ValueProp.Move),
+        new IntVar("DrawAmount", 1)
     ];
 
     public bool HasCounterEffect => true;
@@ -46,17 +48,24 @@ public sealed class flametailThrust : ModCardTemplate, ICounterCard
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target);
 
-        if (cardPlay.Target.IsDead)
+        bool isCounter = this.GetCounterContext().IsCounterPlay;
+        // 反制时少抽 1 张牌（max(0, DrawAmount-1)：基础 0、升级 1），且额外造成一次伤害。
+        int draw = Math.Max(0, DynamicVars["DrawAmount"].IntValue - (isCounter ? 1 : 0));
+
+        if (!cardPlay.Target.IsDead)
         {
-            return;
+            await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
+                .FromCard(this, cardPlay)
+                .Targeting(cardPlay.Target)
+                .Execute(choiceContext);
         }
 
-        await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-            .FromCard(this, cardPlay)
-            .Targeting(cardPlay.Target)
-            .Execute(choiceContext);
+        if (draw > 0)
+        {
+            await CardPileCmd.Draw(choiceContext, draw, Owner);
+        }
 
-        if (this.GetCounterContext().IsCounterPlay)
+        if (isCounter)
         {
             await TriggerCounterEffect(choiceContext, cardPlay, this.GetCounterContext().CurrentAttacker);
         }
@@ -78,6 +87,8 @@ public sealed class flametailThrust : ModCardTemplate, ICounterCard
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(3);
+        // 伤害升级 7→9（修改文档 [5]“升级后伤害减少1”：旧升级值 10 → 新 9）；抽牌 +1（1→2）。
+        DynamicVars.Damage.UpgradeValueBy(2);
+        DynamicVars["DrawAmount"].UpgradeValueBy(1);
     }
 }
