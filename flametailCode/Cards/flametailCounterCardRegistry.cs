@@ -12,7 +12,7 @@ public static class flametailCounterCardRegistry
     private static readonly IReadOnlyList<Func<CardModel>> _creators = new List<Func<CardModel>>
     {
         () => ModelDb.Card<flametailBackstep>(),
-        () => ModelDb.Card<flametailCandleFlash>(),
+        // 烛火一闪不进随机反制生成池：它是即逝+濒死反制机制，被随机到手牌只会立即消失（修改文档 [31][32][33]）。
         () => ModelDb.Card<flametailCrossguardArts>(),
         () => ModelDb.Card<flametailDisarmingAttack>(),
         () => ModelDb.Card<flametailExploitOpening>(),
