@@ -77,5 +77,5 @@
   "FLAMETAIL_POWER_FLAMETAIL_INSIGHT_UPGRADED_POWER.title": "Insight",
   "FLAMETAIL_POWER_FLAMETAIL_INSIGHT_UPGRADED_POWER.description": "Whenever you generate a card, {Amount} random card(s) with an energy cost in your hand cost 0 for the rest of combat.",
   "FLAMETAIL_POWER_FLAMETAIL_NIGHT_MUST_END_POWER.title": "Night Must End",
-  "FLAMETAIL_POWER_FLAMETAIL_NIGHT_MUST_END_POWER.description": "At the start of your turn, add a [red]Poor Sleep[/red] to your hand, draw {Amount} card(s), [gold]Exhaust[/gold] a card, and gain 1 energy."
+  "FLAMETAIL_POWER_FLAMETAIL_NIGHT_MUST_END_POWER.description": "At the start of your turn, add {Amount} [red]Poor Sleep[/red] to your hand, draw {Amount} card(s), [gold]Exhaust[/gold] {Amount} card(s), and gain {Amount} energy."
 }

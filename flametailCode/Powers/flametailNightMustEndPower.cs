@@ -15,14 +15,13 @@ using STS2RitsuLib.Scaffolding.Content;
 namespace flametail.Powers;
 
 /// <summary>
-/// 长夜需尽：每回合开始时，向你手牌添加一张[睡眠不佳]（原版状态牌 <see cref="PoorSleep"/>），
-/// 抽 <see cref="Amount"/>（层数）张牌，然后由你选择消耗一张手牌（选牌页面与原版
-/// 暴政 TyrannyPower 一致：<c>CardSelectCmd.FromHand</c> + <c>ExhaustSelectionPrompt</c>），
-/// 获得 1 点能量。消耗经 <c>CardCmd.Exhaust</c> 正常走消耗流程（触发“消耗时”钩子）。
+/// 长夜需尽：每回合开始时，向你手牌添加 [Amount]（层数）张[睡眠不佳]（原版状态牌 <see cref="PoorSleep"/>），
+/// 抽 [Amount] 张牌，然后由你选择消耗 [Amount] 张手牌，获得 [Amount] 点能量。
+/// 所有数值均随层数叠加（修改文档 [42]）。
+/// 消耗选择与原版暴政 TyrannyPower 一致：<c>CardSelectCmd.FromHand</c> + <c>ExhaustSelectionPrompt</c>，
+/// 经 <c>CardCmd.Exhaust</c> 正常走消耗流程（触发“消耗时”钩子）。
 /// <para>
-/// 回合开始 hook 使用 <see cref="AbstractModel.AfterPlayerTurnStartEarly"/>：它在起手抽牌之后、
-/// 其它回合开始效果之前触发（CombatManager.SetupPlayerTurn 末尾经 Hook.AfterPlayerTurnStart 调用），
-/// 且是官方文档建议的“需要在回合开始做玩家选择（如选牌）时”使用的 hook。
+/// 回合开始 hook 使用 <see cref="AbstractModel.AfterPlayerTurnStartEarly"/>。
 /// </para>
 /// </summary>
 [RegisterPower]
@@ -43,30 +42,33 @@ public sealed class flametailNightMustEndPower : ModPowerTemplate
             return;
         }
 
-        // 1) 向手牌添加一张[睡眠不佳]。
-        CardModel poorSleep = Owner.CombatState!.CreateCard<PoorSleep>(player);
-        await CardPileCmd.AddGeneratedCardToCombat(poorSleep, PileType.Hand, player);
+        int n = (int)Amount;   // 层数：抽牌/能量/消耗/生成的睡眠不佳全部随层数叠加。
 
-        // 2) 抽牌。
-        int drawAmount = (int)Amount;
-        if (drawAmount > 0)
+        // 1) 向手牌添加 n 张[睡眠不佳]。
+        for (int i = 0; i < n; i++)
         {
-            await CardPileCmd.Draw(choiceContext, drawAmount, player);
+            CardModel poorSleep = Owner.CombatState!.CreateCard<PoorSleep>(player);
+            await CardPileCmd.AddGeneratedCardToCombat(poorSleep, PileType.Hand, player);
         }
 
-        // 3) 由你选择消耗一张手牌（与原版暴政 TyrannyPower 同一套 FromHand 选择页面；
-        //    经 CardCmd.Exhaust 正常走消耗流程，触发“消耗时”钩子。手牌为空则无牌可选）。
+        // 2) 抽 n 张牌。
+        if (n > 0)
+        {
+            await CardPileCmd.Draw(choiceContext, n, player);
+        }
+
+        // 3) 由你选择消耗 n 张手牌（一次选择流程；手牌为空/不足时 FromHand 自然返回可行结果）。
         foreach (CardModel card in await CardSelectCmd.FromHand(
             choiceContext,
             player,
-            new CardSelectorPrefs(CardSelectorPrefs.ExhaustSelectionPrompt, 1),
+            new CardSelectorPrefs(CardSelectorPrefs.ExhaustSelectionPrompt, n, n),
             null,
             this))
         {
             await CardCmd.Exhaust(choiceContext, card);
         }
 
-        // 4) 获得 1 点能量。
-        await PlayerCmd.GainEnergy(1, player);
+        // 4) 获得 n 点能量。
+        await PlayerCmd.GainEnergy(n, player);
     }
 }

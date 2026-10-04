@@ -77,5 +77,5 @@
   "FLAMETAIL_POWER_FLAMETAIL_INSIGHT_UPGRADED_POWER.title": "领悟",
   "FLAMETAIL_POWER_FLAMETAIL_INSIGHT_UPGRADED_POWER.description": "你每生成一张牌，随机将手牌中[blue]{Amount}[/blue]张有费用的牌的耗能变为0，持续到本场战斗结束。",
   "FLAMETAIL_POWER_FLAMETAIL_NIGHT_MUST_END_POWER.title": "长夜需尽",
-  "FLAMETAIL_POWER_FLAMETAIL_NIGHT_MUST_END_POWER.description": "在你的回合开始时，向手牌添加一张[red]睡眠不佳[/red]，抽[blue]{Amount}[/blue]张牌，消耗一张手牌，获得1点能量。"
+  "FLAMETAIL_POWER_FLAMETAIL_NIGHT_MUST_END_POWER.description": "在你的回合开始时，向手牌添加[blue]{Amount}[/blue]张[red]睡眠不佳[/red]，抽[blue]{Amount}[/blue]张牌，[gold]消耗[/gold][blue]{Amount}[/blue]张手牌，获得[blue]{Amount}[/blue]点能量。"
 }

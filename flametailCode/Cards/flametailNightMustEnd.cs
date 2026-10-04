@@ -18,7 +18,7 @@ namespace flametail.Cards;
 [RegisterCard(typeof(flametailCardPool))]
 public sealed class flametailNightMustEnd : ModCardTemplate
 {
-    private const int BaseEnergyCost = 2;
+    private const int BaseEnergyCost = 3;
     private const CardType CardKind = CardType.Power;
     private const CardRarity CardRarityValue = CardRarity.Rare;
     private const TargetType CardTarget = TargetType.Self;
@@ -52,7 +52,8 @@ public sealed class flametailNightMustEnd : ModCardTemplate
 
     protected override void OnUpgrade()
     {
-        // 升级：每回合开始时抽 1 → 2 张。
+        // 升级：耗能 3→2，且层数 1→2（所有数值随层数叠加：抽/耗/得/睡眠不佳都翻倍）。
+        EnergyCost.UpgradeBy(-1);
         DynamicVars["Amount"].UpgradeValueBy(1);
     }
 }
