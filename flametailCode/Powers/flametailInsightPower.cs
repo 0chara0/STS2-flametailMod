@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
@@ -15,8 +16,7 @@ using STS2RitsuLib.Scaffolding.Content;
 namespace flametail.Powers;
 
 /// <summary>
-/// 领悟共通逻辑（抽象基类，不注册）：
-/// 你每生成一张牌，手牌中随机 <see cref="Amount"/>（层数）张"有费用"的牌的耗能变为 0。
+/// 领悟：你每生成一张牌，手牌中随机 {Amount}（层数）张"有费用"的牌的耗能变为 0（仅本回合）。
 /// <para>
 /// 生成事件使用原版能力 hook <see cref="AbstractModel.AfterCardGeneratedForCombat"/>
 /// （CardPileCmd.AddGeneratedCardToCombat 底层触发，与原版 Arsenal“每生成一张牌获得 1 力量”同源）。
@@ -24,19 +24,20 @@ namespace flametail.Powers;
 /// 对被标记卡牌返回 0 实现（参考 flametailReflexMovePower）。
 /// </para>
 /// <para>
-/// 未升级（<see cref="flametailInsightPower"/>）与升级后（<see cref="flametailInsightUpgradedPower"/>）
-/// 是两个独立注册的能力，同类之间正常叠加（层数 = 每次生成事件标记的牌数），不同类互不混合：
-/// 未升级实例仅本回合有效（回合开始清空标记），升级后实例持续到本场战斗结束。
-/// 同一实例在同一次生成事件中不会重复选中同一张牌。
+/// 未升级与升级后施加的是同一个能力（升级只减少卡牌费用）。同类之间正常叠加
+/// （层数 = 每次生成事件标记的牌数）。同一实例在同一次生成事件中不会重复选中同一张牌。
 /// </para>
 /// </summary>
-public abstract class flametailInsightPowerBase : ModPowerTemplate
+[RegisterPower]
+public sealed class flametailInsightPower : ModPowerTemplate
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
 
-    /// <summary>免费效果是否只持续到本回合结束（未升级实例 true，升级后实例 false）。</summary>
-    protected abstract bool OnlyLastsThisTurn { get; }
+    private static readonly PowerAssetProfile _assetProfile = new(
+        IconPath: $"{Entry.ResPath}/images/powers/flametailInsightPower.png",
+        BigIconPath: $"{Entry.ResPath}/images/powers/flametailInsightPower.png");
+    public override PowerAssetProfile AssetProfile => _assetProfile;
 
     /// <summary>被本实例标记为 0 费的卡牌集合（瞬态，实例私有）。</summary>
     private readonly HashSet<CardModel> _freeCards = new();
@@ -128,26 +129,12 @@ public abstract class flametailInsightPowerBase : ModPowerTemplate
         IReadOnlyList<Creature> participants,
         ICombatState combatState)
     {
-        if (OnlyLastsThisTurn && participants.Contains(Owner))
+        // 免费效果仅本回合有效：回合开始时清空上一回合的标记。
+        if (participants.Contains(Owner))
         {
-            // 仅本回合有效的实例：回合开始时清空上一回合的标记。
             _freeCards.Clear();
         }
 
         return Task.CompletedTask;
     }
-}
-
-/// <summary>
-/// 领悟（未升级）：免费效果仅本回合有效，回合开始清空标记。
-/// </summary>
-[RegisterPower]
-public sealed class flametailInsightPower : flametailInsightPowerBase
-{
-    private static readonly PowerAssetProfile _assetProfile = new(
-        IconPath: $"{Entry.ResPath}/images/powers/flametailInsightPower.png",
-        BigIconPath: $"{Entry.ResPath}/images/powers/flametailInsightPower.png");
-    public override PowerAssetProfile AssetProfile => _assetProfile;
-
-    protected override bool OnlyLastsThisTurn => true;
 }

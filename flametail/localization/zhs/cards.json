@@ -281,8 +281,8 @@
   "FLAMETAIL_RIPOSTE_PROMPT": "选择一张要打出的牌。",
   "FLAMETAIL_HANDGUARD_DEFEND_PROMPT": "选择一张要加入手牌的攻击牌。",
   "FLAMETAIL_CARD_FLAMETAIL_INSIGHT.title": "领悟",
-  "FLAMETAIL_CARD_FLAMETAIL_INSIGHT.description": "你每生成一张牌，随机将手牌中{Amount:diff()}张有费用的牌的耗能变为0，{IfUpgraded:show:持续到本场战斗结束|直到本回合结束}。",
-  "FLAMETAIL_CARD_FLAMETAIL_INSIGHT.smartDescription": "你每生成一张牌，随机将手牌中{Amount:diff()}张有费用的牌的耗能变为0，{IfUpgraded:show:持续到本场战斗结束|直到本回合结束}。",
+  "FLAMETAIL_CARD_FLAMETAIL_INSIGHT.description": "你每生成一张牌，手牌中随机{Amount:diff()}张有费用的牌在本回合耗能变为0。",
+  "FLAMETAIL_CARD_FLAMETAIL_INSIGHT.smartDescription": "你每生成一张牌，手牌中随机{Amount:diff()}张有费用的牌在本回合耗能变为0。",
   "FLAMETAIL_CARD_FLAMETAIL_NIGHT_MUST_END.title": "长夜需尽",
   "FLAMETAIL_CARD_FLAMETAIL_NIGHT_MUST_END.description": "在你的回合开始时，向手牌添加一张[red]睡眠不佳[/red]，抽{Amount:diff()}张牌，消耗一张手牌，获得{Energy:energyIcons()}。",
   "FLAMETAIL_CARD_FLAMETAIL_NIGHT_MUST_END.smartDescription": "在你的回合开始时，向手牌添加一张[red]睡眠不佳[/red]，抽{Amount:diff()}张牌，消耗一张手牌，获得{Energy:energyIcons()}。"
