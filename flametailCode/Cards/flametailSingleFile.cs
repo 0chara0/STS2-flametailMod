@@ -69,5 +69,9 @@ public sealed class flametailSingleFile : ModCardTemplate
     protected override void OnUpgrade()
     {
         RemoveKeyword(CardKeyword.Exhaust);
+
+        // 升级：DEBUFF 层数 2→3（修改文档 [24][25] 增强）。
+        DynamicVars["VulnerableAmount"].UpgradeValueBy(1);
+        DynamicVars["WeakAmount"].UpgradeValueBy(1);
     }
 }
