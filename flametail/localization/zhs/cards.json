@@ -285,5 +285,9 @@
   "FLAMETAIL_CARD_FLAMETAIL_INSIGHT.smartDescription": "你每生成一张牌，手牌中随机{Amount:diff()}张有费用的牌在本回合耗能变为0。",
   "FLAMETAIL_CARD_FLAMETAIL_NIGHT_MUST_END.title": "长夜需尽",
   "FLAMETAIL_CARD_FLAMETAIL_NIGHT_MUST_END.description": "在你的回合开始时，向手牌添加[red]{Amount:diff()}[/red]张[red]睡眠不佳[/red]，抽{Amount:diff()}张牌，[gold]消耗[/gold]{Amount:diff()}张手牌，获得{Amount:energyIcons()}。",
-  "FLAMETAIL_CARD_FLAMETAIL_NIGHT_MUST_END.smartDescription": "在你的回合开始时，向手牌添加[red]{Amount:diff()}[/red]张[red]睡眠不佳[/red]，抽{Amount:diff()}张牌，[gold]消耗[/gold]{Amount:diff()}张手牌，获得{Amount:energyIcons()}。"
+  "FLAMETAIL_CARD_FLAMETAIL_NIGHT_MUST_END.smartDescription": "在你的回合开始时，向手牌添加[red]{Amount:diff()}[/red]张[red]睡眠不佳[/red]，抽{Amount:diff()}张牌，[gold]消耗[/gold]{Amount:diff()}张手牌，获得{Amount:energyIcons()}。",
+  "FLAMETAIL_CARD_FLAMETAIL_PERSEVERANCE.title": "自强不息",
+  "FLAMETAIL_CARD_FLAMETAIL_PERSEVERANCE.description": "从[blue]手牌、抽牌堆、弃牌堆[/blue]中选择[gold]消耗[/gold][blue]X（升级：X+1）[/blue]张牌。\n每消耗一张[red]诅咒[/red]或状态牌，回复{HealPerCurse}点生命值。\n[gold]消耗[/gold]。",
+  "FLAMETAIL_CARD_FLAMETAIL_PERSEVERANCE.smartDescription": "从[blue]手牌、抽牌堆、弃牌堆[/blue]中选择[gold]消耗[/gold][blue]X（升级：X+1）[/blue]张牌。\n每消耗一张[red]诅咒[/red]或状态牌，回复{HealPerCurse}点生命值。\n[gold]消耗[/gold]。",
+  "FLAMETAIL_PERSEVERANCE_PROMPT": "选择要消耗的牌。"
 }

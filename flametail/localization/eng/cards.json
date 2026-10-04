@@ -285,5 +285,9 @@
   "FLAMETAIL_CARD_FLAMETAIL_INSIGHT.smartDescription": "Whenever you generate a card, {Amount:diff()} random card(s) with an energy cost in your hand cost 0 this turn.",
   "FLAMETAIL_CARD_FLAMETAIL_NIGHT_MUST_END.title": "Night Must End",
   "FLAMETAIL_CARD_FLAMETAIL_NIGHT_MUST_END.description": "At the start of your turn, add {Amount:diff()} [red]Poor Sleep[/red] to your hand, draw {Amount:diff()} card(s), [gold]Exhaust[/gold] {Amount:diff()} card(s), and gain {Amount:energyIcons()}.",
-  "FLAMETAIL_CARD_FLAMETAIL_NIGHT_MUST_END.smartDescription": "At the start of your turn, add {Amount:diff()} [red]Poor Sleep[/red] to your hand, draw {Amount:diff()} card(s), [gold]Exhaust[/gold] {Amount:diff()} card(s), and gain {Amount:energyIcons()}."
+  "FLAMETAIL_CARD_FLAMETAIL_NIGHT_MUST_END.smartDescription": "At the start of your turn, add {Amount:diff()} [red]Poor Sleep[/red] to your hand, draw {Amount:diff()} card(s), [gold]Exhaust[/gold] {Amount:diff()} card(s), and gain {Amount:energyIcons()}.",
+  "FLAMETAIL_CARD_FLAMETAIL_PERSEVERANCE.title": "Perseverance",
+  "FLAMETAIL_CARD_FLAMETAIL_PERSEVERANCE.description": "Choose [blue]X (upgrade: X+1)[/blue] cards from your hand, draw pile, and discard pile to [gold]Exhaust[/gold].\nHeal {HealPerCurse} HP for each [red]Curse[/red] or Status card Exhausted.\n[gold]Exhaust[/gold].",
+  "FLAMETAIL_CARD_FLAMETAIL_PERSEVERANCE.smartDescription": "Choose [blue]X (upgrade: X+1)[/blue] cards from your hand, draw pile, and discard pile to [gold]Exhaust[/gold].\nHeal {HealPerCurse} HP for each [red]Curse[/red] or Status card Exhausted.\n[gold]Exhaust[/gold].",
+  "FLAMETAIL_PERSEVERANCE_PROMPT": "Choose cards to exhaust."
 }
