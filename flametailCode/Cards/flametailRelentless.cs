@@ -12,10 +12,14 @@ using STS2RitsuLib.Scaffolding.Content;
 
 namespace flametail.Cards;
 
+/// <summary>
+/// 一往无前（修改文档 [37][38]）：耗能 1，获得 2 点能量，抽 2 张牌，所有手牌获得虚无，
+/// 本场战斗中此牌耗能 +2（升级 +1）。
+/// </summary>
 [RegisterCard(typeof(flametailCardPool))]
 public sealed class flametailRelentless : ModCardTemplate
 {
-    private const int BaseEnergyCost = 0;
+    private const int BaseEnergyCost = 1;
     private const CardType CardKind = CardType.Skill;
     private const CardRarity CardRarityValue = CardRarity.Rare;
     private const TargetType CardTarget = TargetType.Self;
@@ -27,7 +31,7 @@ public sealed class flametailRelentless : ModCardTemplate
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new EnergyVar(3)
+        new EnergyVar(2)
     ];
 
     public flametailRelentless() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)
@@ -48,11 +52,12 @@ public sealed class flametailRelentless : ModCardTemplate
             }
         }
 
-        EnergyCost.AddThisCombat(1, false);
+        // 本场战斗中此牌耗能增长 +2（升级 +1，升级不加能量值）。
+        EnergyCost.AddThisCombat(IsUpgraded ? 1 : 2, reduceOnly: false);
     }
 
     protected override void OnUpgrade()
     {
-        DynamicVars["Energy"].UpgradeValueBy(1);
+        // 升级：本场耗能增长 2→1（差异在 OnPlay 中按 IsUpgraded 结算）。
     }
 }
