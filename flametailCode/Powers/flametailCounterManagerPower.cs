@@ -155,11 +155,13 @@ public sealed class flametailCounterManagerPower : ModPowerTemplate
         bool oldMitigated = context.LastAttackMitigated;
         Creature? oldAttacker = context.CurrentAttacker;
         bool oldTookDamage = context.TookDamage;
+        bool oldDodged = context.WasDodged;
         bool dodged = DodgeBlockPatch.WasAttackDodged(target);
         bool fullyBlocked = result.WasFullyBlocked;
         context.LastAttackMitigated = dodged || fullyBlocked;
         // 只有实际受到伤害（伤害 > 0）才为 true；闪避、完全格挡、或攻击伤害为 0 都视为未受伤。
         context.TookDamage = !dodged && !fullyBlocked && result.TotalDamage > 0;
+        context.WasDodged = dodged;
         context.CurrentAttacker = dealer;
 
         try
@@ -193,6 +195,7 @@ public sealed class flametailCounterManagerPower : ModPowerTemplate
             context.LastAttackMitigated = oldMitigated;
             context.CurrentAttacker = oldAttacker;
             context.TookDamage = oldTookDamage;
+            context.WasDodged = oldDodged;
         }
     }
 }

@@ -41,6 +41,12 @@ public sealed class CounterContext
     public bool TookDamage { get; set; }
 
     /// <summary>
+    /// 当前正在处理的那次攻击是否被【闪避】抵消（不含"完全格挡"）。
+    /// 与 <see cref="LastAttackMitigated"/>（闪避或完全格挡）区分：借势只认闪避（修改文档 [2]）。
+    /// </summary>
+    public bool WasDodged { get; set; }
+
+    /// <summary>
     /// （已废弃）百战先锋的连续重放由剩余层数天然限定，不再需要排除旗标。
     /// </summary>
     [System.Obsolete("百战先锋改为按剩余层数限定连续重放，此标志不再使用")]
@@ -193,6 +199,7 @@ public static class CounterSystem
         Creature? oldAttacker = context.CurrentAttacker;
         bool oldMitigated = context.LastAttackMitigated;
         bool oldTookDamage = context.TookDamage;
+        bool oldDodged = context.WasDodged;
         bool oldRetarget = context.ShouldRetargetCounterToAllEnemies;
 
         context.IsCounterPlay = true;
@@ -217,6 +224,7 @@ public static class CounterSystem
             context.CurrentAttacker = oldAttacker;
             context.LastAttackMitigated = oldMitigated;
             context.TookDamage = oldTookDamage;
+            context.WasDodged = oldDodged;
             context.ShouldRetargetCounterToAllEnemies = oldRetarget;
         }
     }

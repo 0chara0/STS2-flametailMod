@@ -78,12 +78,14 @@ public sealed class flametailPreemptPower : ModPowerTemplate
             Creature? oldAttacker = context.CurrentAttacker;
             bool oldMitigated = context.LastAttackMitigated;
             bool oldTookDamage = context.TookDamage;
+            bool oldDodged = context.WasDodged;
 
             context.IsCounterPlay = true;
             context.CurrentAttacker = enemy;
             context.LastAttackMitigated = false;
             // 先发制人不是真实的攻击，不构成“受到伤害”。
             context.TookDamage = false;
+            context.WasDodged = false;
 
             try
             {
@@ -95,6 +97,7 @@ public sealed class flametailPreemptPower : ModPowerTemplate
                 context.CurrentAttacker = oldAttacker;
                 context.LastAttackMitigated = oldMitigated;
                 context.TookDamage = oldTookDamage;
+                context.WasDodged = oldDodged;
             }
         }
     }
