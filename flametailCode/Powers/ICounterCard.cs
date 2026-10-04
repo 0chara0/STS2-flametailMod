@@ -37,14 +37,6 @@ public interface ICounterCard
     bool CounterEffectTriggersOnAnyPlay => false;
 
     /// <summary>
-    /// 反制效果是否为“改为”（替换基础效果）而非“额外”（附加在基础效果之上）。
-    /// 为 true 时，骑士对决在主动打出触发该牌反制效果的同时会抑制基础效果（“改为”语义）；
-    /// 为 false 时基础效果照常执行，反制效果作为额外效果附加。
-    /// 注：作为反制自动打出（IsCounterPlay）时基础效果本就由 OnPlay 的分支跳过，无需此标志。
-    /// </summary>
-    bool CounterEffectReplacesBaseEffect => false;
-
-    /// <summary>
     /// 执行“反制时：”专属效果（不重跑基础效果）。
     /// 受击自动反制时，由 <c>OnPlay</c> 内的 <see cref="CounterContext.IsCounterPlay"/> 分支调用，
     /// <paramref name="attacker"/> 为当前攻击者；

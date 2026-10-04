@@ -61,14 +61,6 @@ public sealed class CounterContext
     /// 当前反制是否应重定向到所有敌人（剑如火舞）。
     /// </summary>
     public bool ShouldRetargetCounterToAllEnemies { get; set; }
-
-    /// <summary>
-    /// 当前即将被打出的“改为”类反制牌，其基础效果应被替换（不执行）。
-    /// 由骑士对决在 <c>BeforeCardPlayed</c> 时根据本张牌的触发条件设置，
-    /// “改为”类反制牌的 <c>OnPlay</c> 读取后跳过基础效果；
-    /// 反制效果本身仍由骑士对决在 <c>AfterCardPlayedLate</c> 触发。
-    /// </summary>
-    public bool SuppressBaseEffect { get; set; }
 }
 
 /// <summary>

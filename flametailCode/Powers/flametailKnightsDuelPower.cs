@@ -7,14 +7,14 @@ using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using STS2RitsuLib.Interop.AutoRegistration;
+
 using STS2RitsuLib.Scaffolding.Content;
 
 namespace flametail.Powers;
 
 /// <summary>
-/// 骑士对决：每回合你前 N 次主动打出反制牌时，触发其“反制时：”专属效果
-/// （不重跑基础效果；纯反制牌不受影响），并计入一次反制发动（可与渐入佳境等联动）。
-/// 不再整张重打，避免出现“两次非反制效果”。
+/// 骑士对决：每回合你前 N 次主动打出反制牌时，该牌的直接打出效果照常执行，
+/// 并额外以反制上下文把整张牌再打出一次（触发其反制效果，计入一次反制发动）。
 /// </summary>
 [RegisterPower]
 public sealed class flametailKnightsDuelPower : ModPowerTemplate
@@ -56,26 +56,6 @@ public sealed class flametailKnightsDuelPower : ModPowerTemplate
         return Task.CompletedTask;
     }
 
-    /// <summary>
-    /// 在卡牌基础效果执行前（OnPlay 之前）预先判定骑士对决是否会触发该牌的反制效果。
-    /// 若是“改为”类反制牌，则设置 <see cref="CounterContext.SuppressBaseEffect"/>，
-    /// 让该牌 OnPlay 跳过基础效果（“改为”语义：基础效果被反制效果替换）。
-    /// 先清除可能残留的旧标志，再按本张牌重新判定，避免标志泄漏到下一张牌。
-    /// </summary>
-    public override Task BeforeCardPlayed(CardPlay cardPlay)
-    {
-        var counterContext = this.GetCounterContext();
-        counterContext.SuppressBaseEffect = false;
-
-        if (cardPlay.Card is ICounterCard { CounterEffectReplacesBaseEffect: true }
-            && IsKnightsDuelTrigger(cardPlay))
-        {
-            counterContext.SuppressBaseEffect = true;
-        }
-
-        return Task.CompletedTask;
-    }
-
     public override async Task AfterCardPlayedLate(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         var counterContext = this.GetCounterContext();
@@ -87,39 +67,37 @@ public sealed class flametailKnightsDuelPower : ModPowerTemplate
 
         _remainingThisTurn--;
 
-        // 直接触发该牌的“反制时：”专属效果（不再整张重打，避免基础效果重复出现）。
-        // 剑如火舞在场时，反制效果同样重定向到所有敌人。
-        bool oldRetarget = counterContext.ShouldRetargetCounterToAllEnemies;
-        counterContext.ShouldRetargetCounterToAllEnemies = Owner.HasPower<flametailFireDancingSwordPower>();
+        // 新语义（修改文档 [40]）：主动打出反制牌 = 该牌的直接打出效果 + 额外以反制打出一次此牌。
+        // 基础效果已由打出流程正常执行；这里以反制上下文把整张牌再打一次——
+        // 经 CounterSystem.PlayCounterCard → CardCmd.AutoPlay，会走该牌 OnPlay 的反制分支并触发反制效果与反制计数。
+        // IsKnightsDuelReplication 让 IsKnightsDuelTrigger 返回 false，防止重打的打出再次触发本能力（无限递归）。
+        var card = cardPlay.Card;
+        if (card.Pile?.Type != PileType.Hand)
+        {
+            // 部分反制牌打出时会被消耗/丢弃（如卸武攻势反制自毁）：先取回手牌顶再重打。
+            await CardPileCmd.Add(card, PileType.Hand, CardPilePosition.Top, this);
+        }
+
+        bool oldReplication = counterContext.IsKnightsDuelReplication;
+        counterContext.IsKnightsDuelReplication = true;
         try
         {
-            var counterCard = (ICounterCard)cardPlay.Card;
-            await counterCard.TriggerCounterEffect(choiceContext, cardPlay, cardPlay.Target);
-
-            // 计入一次反制发动（供渐入佳境等使用）。
-            var manager = Owner.GetPower<flametailCounterManagerPower>();
-            if (manager != null)
-            {
-                manager.CountersTriggeredThisCombat++;
-            }
+            await CounterSystem.PlayCounterCard(choiceContext, card, cardPlay.Target);
         }
         finally
         {
-            counterContext.ShouldRetargetCounterToAllEnemies = oldRetarget;
+            counterContext.IsKnightsDuelReplication = oldReplication;
         }
     }
 
     /// <summary>
-    /// 供百战先锋在 <c>BeforeCardPlayed</c> 时预测本次出牌是否会在结算后由骑士对决
-    /// 触发“反制时：”效果（与 <see cref="IsKnightsDuelTrigger"/> 同一判定），
-    /// 以便把这张牌计入重放队列。
+    /// 百战先锋在 <c>BeforeCardPlayed</c> 时预测本次出牌是否会在结算后由骑士对决
+    /// 触发重打（即是否应入重放队列）。预测与 <see cref="AfterCardPlayedLate"/> 同一判定。
     /// </summary>
     public bool WouldTriggerCounterEffect(CardPlay cardPlay) => IsKnightsDuelTrigger(cardPlay);
 
     /// <summary>
-    /// 判定骑士对决是否会在当前出牌后触发该牌的反制效果。
-    /// <see cref="BeforeCardPlayed"/>（设置基础效果抑制标志）与 <see cref="AfterCardPlayedLate"/>
-    /// （触发反制效果）共用同一判定，保证“抑制基础效果”与“触发反制效果”总是成对发生。
+    /// 判定骑士对决是否会在当前出牌后触发（整张重打）。
     /// </summary>
     private bool IsKnightsDuelTrigger(CardPlay cardPlay)
     {

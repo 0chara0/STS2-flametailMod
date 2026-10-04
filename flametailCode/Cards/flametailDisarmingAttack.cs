@@ -40,9 +40,6 @@ public sealed class flametailDisarmingAttack : ModCardTemplate, ICounterCard
 
     public bool HasCounterEffect => true;
 
-    /// <summary>反制效果为“改为”（替换基础效果）：骑士对决触发时不再执行基础效果。</summary>
-    public bool CounterEffectReplacesBaseEffect => true;
-
     public flametailDisarmingAttack() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)
     {
     }
@@ -53,13 +50,6 @@ public sealed class flametailDisarmingAttack : ModCardTemplate, ICounterCard
         if (counterContext.IsCounterPlay)
         {
             await TriggerCounterEffect(choiceContext, cardPlay, counterContext.CurrentAttacker);
-            return;
-        }
-
-        // 骑士对决主动打出触发“反制时：”效果时，本牌的“改为”语义替换基础效果：
-        // 不执行造成伤害/施加虚弱，反制效果由骑士对决在 AfterCardPlayedLate 触发（消耗此牌等）。
-        if (counterContext.SuppressBaseEffect)
-        {
             return;
         }
 
