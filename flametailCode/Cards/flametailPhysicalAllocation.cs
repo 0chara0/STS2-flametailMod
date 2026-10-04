@@ -46,6 +46,13 @@ public sealed class flametailPhysicalAllocation : ModCardTemplate
         int reduction = (int)(footwork / DynamicVars["FootworkPerEnergy"].IntValue);
 
         int energyGain = Math.Max(0, DynamicVars["Energy"].IntValue - reduction);
+
+        // 每减少 1 点获得的能量，抽 1 张牌作为补偿（批复 10）。
+        if (reduction > 0)
+        {
+            await CardPileCmd.Draw(choiceContext, reduction, Owner);
+        }
+
         if (energyGain > 0)
         {
             await PlayerCmd.GainEnergy(energyGain, Owner);
