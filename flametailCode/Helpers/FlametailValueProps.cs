@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Models.Relics;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace flametail.Helpers;
@@ -82,6 +83,7 @@ public static class FlametailValueProps
     /// <summary>
     /// 判断当前 hook 监听器是否应当被跳过。
     /// 仅当伤害带有 <see cref="IgnoreAttackerDamageModifiers"/> 且监听器为攻击方（dealer）拥有时返回 true。
+    /// 钢笔尖（PenNib）豁免：支援攻击牌也应能享受它的乘算翻倍（修改文档 [1]）。
     /// </summary>
     public static bool ShouldSkipAttackerModifier(AbstractModel model, ValueProp props, Creature? dealer)
     {
@@ -100,7 +102,7 @@ public static class FlametailValueProps
         return model switch
         {
             PowerModel power => power.Owner == dealer,
-            RelicModel relic => relic.Owner == dealerPlayer,
+            RelicModel relic => relic.Owner == dealerPlayer && relic is not PenNib,
             PotionModel potion => potion.Owner == dealerPlayer,
             OrbModel orb => orb.Owner == dealerPlayer,
             CardModel card => card.Owner == dealerPlayer,
