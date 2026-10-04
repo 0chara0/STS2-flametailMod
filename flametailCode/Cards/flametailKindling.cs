@@ -36,7 +36,7 @@ public sealed class flametailKindling : ModCardTemplate
     }
 
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
-        new[] { CardKeyword.Exhaust };
+        new[] { CardKeyword.Exhaust };   // 修改文档 [18]：增加“消耗”词条
 
     private static readonly CardAssetProfile _assetProfile = new(
         PortraitPath: $"{Entry.ResPath}/images/cards/{"flametailKindling"}.png");
@@ -60,8 +60,10 @@ public sealed class flametailKindling : ModCardTemplate
             .WithHitCount(DynamicVars["HitCount"].IntValue)
             .Execute(choiceContext);
 
-        AddDamage(1);
-        (DeckVersion as flametailKindling)?.AddDamage(1);
+        // 升级后每次打出的基础伤害成长 1→2（修改文档 [17][18]）。
+        int growth = IsUpgraded ? 2 : 1;
+        AddDamage(growth);
+        (DeckVersion as flametailKindling)?.AddDamage(growth);
     }
 
     public void AddDamage(int amount)
