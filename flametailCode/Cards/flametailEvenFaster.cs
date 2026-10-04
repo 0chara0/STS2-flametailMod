@@ -16,7 +16,7 @@ namespace flametail.Cards;
 [RegisterCard(typeof(flametailCardPool))]
 public sealed class flametailEvenFaster : ModCardTemplate, IGainFootworkCard
 {
-    private const int BaseEnergyCost = 2;
+    private const int BaseEnergyCost = 3;
     private const CardType CardKind = CardType.Power;
     private const CardRarity CardRarityValue = CardRarity.Rare;
     private const TargetType CardTarget = TargetType.Self;
