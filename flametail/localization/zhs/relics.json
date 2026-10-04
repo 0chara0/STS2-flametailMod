@@ -16,7 +16,7 @@
   "FLAMETAIL_RELIC_FLAMETAIL_BLUNT_CLAWS_TRAINING.flavor": "一套强有力的装备，一颗勇往直前的心。",
   "FLAMETAIL_RELIC_BLUNT_CLAWS_TRAINING_PICK_PROMPT": "选择一张卡牌以升级并附魔。",
   "FLAMETAIL_RELIC_FLAMETAIL_THE_RETURN.title": "《归来》",
-  "FLAMETAIL_RELIC_FLAMETAIL_THE_RETURN.description": "每场战斗开始时，向你的手牌中加入一张随机的[gold]反制[/gold]牌，该牌在本场战斗中保留。",
+  "FLAMETAIL_RELIC_FLAMETAIL_THE_RETURN.description": "在你的回合开始时，向你的手牌中加入一张随机的[gold]反制[/gold]牌，该牌会被[gold]消耗[/gold]且在本回合保留。",
   "FLAMETAIL_RELIC_FLAMETAIL_THE_RETURN.flavor": "卡西米尔畅销书，据说是粉丝的集体创作，“临光”已然成为糅杂了诸多幻想的形象复合体。“放逐，并非逃避。她归来，独自抵挡时代的洪流。”",
   "FLAMETAIL_RELIC_FLAMETAIL_SNOW_DOES_GLOVE.title": "雪牝的护手",
   "FLAMETAIL_RELIC_FLAMETAIL_SNOW_DOES_GLOVE.description": "战斗开始时，每有1名敌人，你获得1点[gold]力量[/gold]和1层[gold]步法[/gold]。",

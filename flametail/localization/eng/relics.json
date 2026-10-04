@@ -16,7 +16,7 @@
   "FLAMETAIL_RELIC_FLAMETAIL_BLUNT_CLAWS_TRAINING.flavor": "Every seed you plant will, in time, grow into a hand that grips a sword.",
   "FLAMETAIL_RELIC_BLUNT_CLAWS_TRAINING_PICK_PROMPT": "Choose a card to upgrade and enchant.",
   "FLAMETAIL_RELIC_FLAMETAIL_THE_RETURN.title": "The Return",
-  "FLAMETAIL_RELIC_FLAMETAIL_THE_RETURN.description": "At the start of each combat, add a random [gold]Counter[/gold] card to your hand. It is Retained this combat.",
+  "FLAMETAIL_RELIC_FLAMETAIL_THE_RETURN.description": "At the start of your turn, add a random [gold]Counter[/gold] card to your hand. It is [gold]Exhausted[/gold] when played and Retained this turn.",
   "FLAMETAIL_RELIC_FLAMETAIL_THE_RETURN.flavor": "She always returns to where she began—but every time, stronger than before.",
   "FLAMETAIL_RELIC_FLAMETAIL_SNOW_DOES_GLOVE.title": "SnowDoe's Glove",
   "FLAMETAIL_RELIC_FLAMETAIL_SNOW_DOES_GLOVE.description": "At the start of combat, for each enemy, gain 1 [gold]Strength[/gold] and 1 [gold]Footwork[/gold].",

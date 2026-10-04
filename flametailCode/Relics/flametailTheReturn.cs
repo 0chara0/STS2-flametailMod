@@ -2,7 +2,9 @@ using System;
 using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Relics;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using flametail.Cards;
 using flametail.Characters;
@@ -12,8 +14,8 @@ using STS2RitsuLib.Scaffolding.Content;
 namespace flametail.Relics;
 
 /// <summary>
-/// 《归来》：每场战斗开始时，向你的手牌中加入一张随机的反制牌，该牌在本场战斗中保留。
-/// 给生成的牌加 Retain 关键字实现整场战斗保留；若该牌随出牌离开手牌，则不再返回，符合「保留」语义。
+/// 《归来》（修改文档 [4]）：每回合开始时，向你的手牌中加入一张随机的反制牌，
+/// 该牌会被消耗（Exhaust 关键词）且在本回合保留（GiveSingleTurnRetain，非整场 Retain）。
 /// </summary>
 [RegisterRelic(typeof(flametailRelicPool))]
 public sealed class flametailTheReturn : ModRelicTemplate
@@ -27,11 +29,27 @@ public sealed class flametailTheReturn : ModRelicTemplate
         BigIconPath: $"{Entry.ResPath}/images/relics/{nameof(flametailTheReturn)}.png");
     public override RelicAssetProfile AssetProfile => _assetProfile;
 
-    public override async Task BeforeCombatStart()
+    // 每回合开始（与八面玲珑同款 hook）而不是每场战斗开始。
+    public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
     {
+        if (player != Owner || (player.Creature?.IsDead ?? true))
+        {
+            return;
+        }
+
+        if (flametailCounterCardRegistry.Creators.Count == 0)
+        {
+            return;
+        }
+
         Func<CardModel> creator = Owner.RunState!.Rng.CombatCardSelection.NextItem(flametailCounterCardRegistry.Creators)!;
         CardModel card = Owner.Creature.CombatState!.CreateCard(creator(), Owner);
-        card.AddKeyword(CardKeyword.Retain);
+
+        // “该牌会被消耗”：加 Exhaust 关键词（打出后进消耗堆，幂等不与自带消耗的牌冲突）。
+        card.AddKeyword(CardKeyword.Exhaust);
+        // “在本回合保留”：单回合保留（打出前不会被回合结束弃置），不用整场 Retain 词条。
+        card.GiveSingleTurnRetain();
+
         await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, Owner);
     }
 }
