@@ -39,6 +39,37 @@ public sealed class flametailCounterManagerPower : ModPowerTemplate
     public int CountersTriggeredThisCombat { get; set; }
 
     /// <summary>
+    /// 本回合获得过格挡的次数（每次 GainBlock 事件 +1，不看点数）。
+    /// 供踏步斩重做版（“每获得过一次格挡伤害+3”）查询；回合开始清零（修改文档 [7][8]）。
+    /// 瞬态即可：格挡计数不需要跨读档保持精确。
+    /// </summary>
+    public int BlocksGainedThisTurn { get; set; }
+
+    public override Task AfterBlockGained(Creature creature, decimal amount, ValueProp props, CardModel? cardSource)
+    {
+        if (creature != Owner || amount <= 0)
+        {
+            return Task.CompletedTask;
+        }
+
+        // 每次获得格挡（一次事件，不论点数）计一次。
+        BlocksGainedThisTurn++;
+        return Task.CompletedTask;
+    }
+
+    public override Task AfterPlayerTurnStartEarly(PlayerChoiceContext choiceContext, Player player)
+    {
+        if (player.Creature != Owner)
+        {
+            return Task.CompletedTask;
+        }
+
+        // 本回合获得格挡次数归零（供踏步斩重做版查询）。
+        BlocksGainedThisTurn = 0;
+        return Task.CompletedTask;
+    }
+
+    /// <summary>
     /// 使用 BeforeFlushLate，让玩家在看到其他 BeforeFlush 效果后再决定保留哪张反制牌。
     /// </summary>
     public override async Task BeforeFlushLate(PlayerChoiceContext choiceContext, Player player)

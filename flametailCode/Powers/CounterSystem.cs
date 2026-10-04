@@ -154,6 +154,14 @@ public static class CounterSystem
     }
 
     /// <summary>
+    /// 获取本回合已获得格挡的次数（用于踏步斩重做版）。
+    /// </summary>
+    public static int GetBlocksGainedThisTurn(Creature owner)
+    {
+        return GetManager(owner)?.BlocksGainedThisTurn ?? 0;
+    }
+
+    /// <summary>
     /// 从手牌中找出第一张反制牌。
     /// </summary>
     public static CardModel? FindFirstCounterCard(Creature owner)

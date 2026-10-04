@@ -9,11 +9,16 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
 using flametail.Characters;
 using flametail.Powers;
+using STS2RitsuLib.Cards.DynamicVars;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
 
 namespace flametail.Cards;
 
+/// <summary>
+/// 踏步斩（重做，修改文档 [7][8]）：造成 4(5) 点伤害；
+/// 本回合你每获得过一次格挡，伤害增加 3(4) 点。
+/// </summary>
 [RegisterCard(typeof(flametailCardPool))]
 public sealed class flametailStrideSlash : ModCardTemplate
 {
@@ -23,76 +28,58 @@ public sealed class flametailStrideSlash : ModCardTemplate
     private const TargetType CardTarget = TargetType.AnyEnemy;
     private const bool ShowInCardLibrary = true;
 
+    private const decimal BaseDamage = 4m;
+
     private static readonly CardAssetProfile _assetProfile = new(
         PortraitPath: $"{Entry.ResPath}/images/cards/{"flametailStrideSlash"}.png");
     public override CardAssetProfile AssetProfile => _assetProfile;
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(5, ValueProp.Move),
-        new IntVar("FootworkRemoved", 1)
+        ModCardVars.ComputedDamage(
+            "Damage", BaseDamage,
+            (card, target) => ResolveDamage(card),
+            ValueProp.Move),
+        new IntVar("BlockGainBonus", 3)
     ];
-
-    protected override bool IsPlayable => base.IsPlayable
-        && Owner.Creature.GetPower<flametailFootworkPower>() is { } footwork
-        && footwork.HasUsableFootwork;
 
     public flametailStrideSlash() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)
     {
+    }
+
+    /// <summary>
+    /// 实时计算最终伤害：基础伤害 + 本回合获得格挡次数 × 每次加成。
+    /// 卡牌图书馆等非战斗场景渲染的是规范模型，访问 Owner 会抛异常，按基础值回退。
+    /// </summary>
+    private static decimal ResolveDamage(CardModel? card)
+    {
+        if (card?.CombatState == null)
+        {
+            return BaseDamage;
+        }
+
+        decimal bonus = card.DynamicVars?.GetValueOrDefault("BlockGainBonus", 3m) ?? 3m;
+        int blockCount = card.Owner?.Creature is { } creature
+            ? CounterSystem.GetBlocksGainedThisTurn(creature)
+            : 0;
+        return BaseDamage + bonus * blockCount;
     }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target);
 
-        var footwork = Owner.Creature.GetPower<flametailFootworkPower>();
-        if (footwork != null)
-        {
-            await PowerCmd.ModifyAmount(choiceContext, footwork, -DynamicVars["FootworkRemoved"].IntValue, Owner.Creature, this);
-        }
+        decimal totalDamage = DynamicVars.ComputeDynamicValue("Damage", BaseDamage, cardPlay.Target);
 
-        await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
+        await DamageCmd.Attack(totalDamage)
             .FromCard(this, cardPlay)
             .Targeting(cardPlay.Target)
             .Execute(choiceContext);
     }
 
-    /// <summary>
-    /// 打出后返回手牌顶部的语义修正：
-    /// a) 玩家正常主动打出 → 返回手牌顶部；
-    /// b) 被故技重施/釜底抽薪打出（打出前设置了 ExhaustOnNextPlay）→ 也返回手牌顶部，
-    ///    且不进消耗堆——出牌管线会先在 GetResultLocationForCardPlay 里把 ExhaustOnNextPlay
-    ///    消费成 Exhaust 结果位置，因此“入参位置为 Exhaust”即可可靠识别这种重放，
-    ///    改写为手牌后天然不会被消耗（标志已被管线清除）；
-    /// c) 其它自动打出（原版遗物历史课 HISTORY_COURSE 打出的“复制品”是新建实例，
-    ///    card != this，走上面的分支）→ 保持默认结果位置。
-    /// </summary>
-    public override CardLocation ModifyCardPlayResultLocation(
-        CardModel card,
-        bool isAutoPlay,
-        ResourceInfo resources,
-        CardLocation cardLocation)
-    {
-        if (card != this)
-        {
-            return base.ModifyCardPlayResultLocation(card, isAutoPlay, resources, cardLocation);
-        }
-
-        if (!isAutoPlay)
-        {
-            return new CardLocation(card.Owner, PileType.Hand, CardPilePosition.Top);
-        }
-
-        if (cardLocation.pileType == PileType.Exhaust)
-        {
-            return new CardLocation(card.Owner, PileType.Hand, CardPilePosition.Top);
-        }
-
-        return base.ModifyCardPlayResultLocation(card, isAutoPlay, resources, cardLocation);
-    }
-
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(3);
+        DynamicVars["BlockGainBonus"].UpgradeValueBy(1);   // 3→4
+        DynamicVars.Damage.UpgradeValueBy(1);              // 基础伤害 4→5
     }
 }
