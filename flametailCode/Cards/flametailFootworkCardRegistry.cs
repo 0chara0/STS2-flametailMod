@@ -23,6 +23,8 @@ public static class flametailFootworkCardRegistry
         () => ModelDb.Card<flametailWhirlingAttack>(),
         () => ModelDb.Card<flametailEvenFaster>(),
         () => ModelDb.Card<flametailDashWeaveDodge>(),
+        // 借势：重做后同样“能获得步法”（修改文档 [21]“现在包括借势”）。
+        () => ModelDb.Card<flametailRideTheMomentum>(),
     };
 
     /// <summary>
