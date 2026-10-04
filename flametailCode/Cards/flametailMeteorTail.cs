@@ -32,8 +32,8 @@ public sealed class flametailMeteorTail : ModCardTemplate, ICounterCard, IGainFo
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(5, ValueProp.Move),
-        new IntVar("HitCount", 3),
+        new DamageVar(6, ValueProp.Move),
+        new IntVar("HitCount", 2),
         new IntVar("Footwork", 2)
     ];
 
@@ -66,6 +66,7 @@ public sealed class flametailMeteorTail : ModCardTemplate, ICounterCard, IGainFo
 
     protected override void OnUpgrade()
     {
-        DynamicVars["HitCount"].UpgradeValueBy(1);
+        // 升级：伤害 6→8（修改文档 [36]：次数固定 2，不再随升级增加）。
+        DynamicVars.Damage.UpgradeValueBy(2);
     }
 }
