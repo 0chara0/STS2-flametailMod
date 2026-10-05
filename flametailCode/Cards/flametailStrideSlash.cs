@@ -36,10 +36,13 @@ public sealed class flametailStrideSlash : ModCardTemplate
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        ModCardVars.ComputedDamage(
-            "Damage", BaseDamage,
+        // 注意：不能用名为 "Damage" 的 ComputedDynamicVar——引擎 DynamicVarSet.Damage
+        // 会把该名字的变量强转为 DamageVar（卡图鉴构建升级版时抛 InvalidCastException，
+        // InitGrid 任务崩掉 → 卡牌图鉴白屏）。
+        ModCardVars.Computed(
+            "StrideDamage", BaseDamage,
             (card, target) => ResolveDamage(card),
-            ValueProp.Move),
+            null),
         new IntVar("BlockGainBonus", 3)
     ];
 
@@ -53,23 +56,26 @@ public sealed class flametailStrideSlash : ModCardTemplate
     /// </summary>
     private static decimal ResolveDamage(CardModel? card)
     {
+        // 未升级按 4 算、升级按 5 算（不能走 UpgradeValueBy：该变量是 ComputedDynamicVar，
+        // 引擎 DynamicVarSet.Damage 强转 DamageVar 会在卡图鉴崩溃）。
+        decimal baseDamage = card is { IsUpgraded: true } ? BaseDamage + 1 : BaseDamage;
         if (card?.CombatState == null)
         {
-            return BaseDamage;
+            return baseDamage;
         }
 
         decimal bonus = card.DynamicVars?.GetValueOrDefault("BlockGainBonus", 3m) ?? 3m;
         int blockCount = card.Owner?.Creature is { } creature
             ? CounterSystem.GetBlocksGainedThisTurn(creature)
             : 0;
-        return BaseDamage + bonus * blockCount;
+        return baseDamage + bonus * blockCount;
     }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target);
 
-        decimal totalDamage = DynamicVars.ComputeDynamicValue("Damage", BaseDamage, cardPlay.Target);
+        decimal totalDamage = DynamicVars.ComputeDynamicValue("StrideDamage", BaseDamage, cardPlay.Target);
 
         await DamageCmd.Attack(totalDamage)
             .FromCard(this, cardPlay)
@@ -80,6 +86,5 @@ public sealed class flametailStrideSlash : ModCardTemplate
     protected override void OnUpgrade()
     {
         DynamicVars["BlockGainBonus"].UpgradeValueBy(1);   // 3→4
-        DynamicVars.Damage.UpgradeValueBy(1);              // 基础伤害 4→5
     }
 }
