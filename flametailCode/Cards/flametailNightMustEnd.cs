@@ -52,8 +52,7 @@ public sealed class flametailNightMustEnd : ModCardTemplate
 
     protected override void OnUpgrade()
     {
-        // 升级：耗能 3→2，且层数 1→2（所有数值随层数叠加：抽/耗/得/睡眠不佳都翻倍）。
+        // 升级仅耗能 3→2（用户裁定：塞牌/抽牌/消耗数量不随升级增加，只随能力层数叠加）。
         EnergyCost.UpgradeBy(-1);
-        DynamicVars["Amount"].UpgradeValueBy(1);
     }
 }

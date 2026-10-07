@@ -44,8 +44,7 @@ public sealed class flametailKindling : ModCardTemplate
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(3 + ExtraDamage, ValueProp.Move),
-        new IntVar("HitCount", 2)
+        new DamageVar(3 + ExtraDamage, ValueProp.Move)
     ];
 
     public flametailKindling() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)
@@ -57,7 +56,7 @@ public sealed class flametailKindling : ModCardTemplate
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .FromCard(this, cardPlay)
             .TargetingAllOpponents(Owner.Creature.CombatState!)
-            .WithHitCount(DynamicVars["HitCount"].IntValue)
+            .WithHitCount(2)
             .Execute(choiceContext);
 
         // 升级后每次打出的基础伤害成长 1→2（修改文档 [17][18]）。
@@ -71,8 +70,5 @@ public sealed class flametailKindling : ModCardTemplate
         ExtraDamage += amount;
     }
 
-    protected override void OnUpgrade()
-    {
-        DynamicVars["HitCount"].UpgradeValueBy(1);
-    }
+    // 升级只提高“每次打出的伤害成长”（1→2），攻击次数固定 2 次（用户裁定：升级不应增加次数）。
 }

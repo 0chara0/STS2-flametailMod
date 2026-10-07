@@ -32,8 +32,8 @@ public sealed class flametailSingleFile : ModCardTemplate
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new IntVar("VulnerableAmount", 2),
-        new IntVar("WeakAmount", 2)
+        new IntVar("VulnerableAmount", 3),
+        new IntVar("WeakAmount", 3)
     ];
 
     public flametailSingleFile() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)
@@ -68,10 +68,7 @@ public sealed class flametailSingleFile : ModCardTemplate
 
     protected override void OnUpgrade()
     {
+        // 升级仅移除“消耗”（用户裁定：升级不再增加 debuff 层数，基础即 3 层）。
         RemoveKeyword(CardKeyword.Exhaust);
-
-        // 升级：DEBUFF 层数 2→3（修改文档 [24][25] 增强）。
-        DynamicVars["VulnerableAmount"].UpgradeValueBy(1);
-        DynamicVars["WeakAmount"].UpgradeValueBy(1);
     }
 }
