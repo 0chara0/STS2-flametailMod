@@ -13,7 +13,8 @@ namespace flametail.Relics;
 
 /// <summary>
 /// 设计师量尺：你以任何方式获得的格挡值增加 1 点。
-/// 通过 ModifyBlockAdditive 对每次格挡获得量（技能/药水/遗物等所有来源）额外 +1。
+/// 修改清单 [3] 裁定"最终加算"（乘算后加算）——由 DesignersRulerFinalAdditivePatch
+/// 在引擎乘算循环全部结束后追加，而不是坐在乘算之前的标准 ModifyBlockAdditive 槽。
 /// </summary>
 [RegisterRelic(typeof(flametailRelicPool))]
 public sealed class flametailDesignersRuler : ModRelicTemplate
@@ -32,10 +33,15 @@ public sealed class flametailDesignersRuler : ModRelicTemplate
         BigIconPath: $"{Entry.ResPath}/images/relics/{nameof(flametailDesignersRuler)}.png");
     public override RelicAssetProfile AssetProfile => _assetProfile;
 
-    public override decimal ModifyBlockAdditive(Creature target, decimal block, ValueProp props, CardModel? cardSource, CardPlay? cardPlay)
+    /// <summary>
+    /// 焰尾专属"乘算后加算"位：在 Hook.ModifyBlock 乘算循环全部结束后追加的最终加算
+    /// （由 DesignersRulerFinalAdditivePatch 调用；标准 ModifyBlockAdditive 槽在乘算之前，
+    /// 坐在那里会变成 (4+1)×0.75=3 而非要求的 4×0.75+1=4——修改清单 [3] 裁定"最终加算"）。
+    /// 只对玩家自身生效；仅当乘算后仍为正格挡时才 +1，避免影响负格挡/减格挡修正。
+    /// </summary>
+    public decimal FinalBlockAdditive(Creature target, decimal blockAfterMultiplicative)
     {
-        // 只对玩家自身生效；仅当实际获得正格挡时才 +1，避免影响负格挡/减格挡修正。
-        if (target != Owner.Creature || block <= 0m)
+        if (target != Owner.Creature || blockAfterMultiplicative <= 0m)
         {
             return 0m;
         }
