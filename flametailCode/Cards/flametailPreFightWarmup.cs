@@ -10,6 +10,7 @@ using flametail.Keywords;
 using flametail.Powers;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
+using MegaCrit.Sts2.Core.HoverTips;
 
 namespace flametail.Cards;
 
@@ -34,6 +35,10 @@ public sealed class flametailPreFightWarmup : ModCardTemplate, IGainFootworkCard
         new IntVar("Footwork", 1),
         new IntVar("Vigor", 4)
     ];
+
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips => new[] {
+        HoverTipFactory.FromPower<VigorPower>()
+    };
 
     public flametailPreFightWarmup() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)
     {

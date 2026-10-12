@@ -8,6 +8,7 @@ using flametail.Powers;
 using STS2RitsuLib.Interop.AutoRegistration;
 
 using STS2RitsuLib.Scaffolding.Content;
+using flametail.Keywords;
 
 namespace flametail.Cards;
 
@@ -23,6 +24,9 @@ public sealed class flametailResourcefulness : ModCardTemplate
     private static readonly CardAssetProfile _assetProfile = new(
         PortraitPath: $"{Entry.ResPath}/images/cards/{"flametailResourcefulness"}.png");
     public override CardAssetProfile AssetProfile => _assetProfile;
+
+    public override IEnumerable<CardKeyword> CanonicalKeywords =>
+        new[] { FlametailKeywords.Counter };
 
     public flametailResourcefulness() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)
     {

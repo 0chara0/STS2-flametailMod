@@ -10,6 +10,7 @@ using flametail.Characters;
 using flametail.Powers;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
+using flametail.Keywords;
 
 namespace flametail.Cards;
 
@@ -31,6 +32,9 @@ public sealed class flametailSweeping : ModCardTemplate
         new DamageVar(12, ValueProp.Move),
         new IntVar("FootworkRemoved", 1)
     ];
+
+    public override IEnumerable<CardKeyword> CanonicalKeywords =>
+        new[] { FlametailKeywords.Footwork };
 
     public flametailSweeping() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)
     {

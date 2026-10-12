@@ -8,6 +8,7 @@ using flametail.Powers;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using flametail.Keywords;
 
 namespace flametail.Cards;
 
@@ -30,7 +31,7 @@ public sealed class flametailQuickIntuition : ModCardTemplate, IGainDodgeCard
     ];
 
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
-        new[] { CardKeyword.Exhaust };
+        new[] { CardKeyword.Exhaust, FlametailKeywords.Dodge };
 
     public flametailQuickIntuition() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)
     {

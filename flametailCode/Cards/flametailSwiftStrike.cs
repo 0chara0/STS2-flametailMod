@@ -12,6 +12,7 @@ using flametail.Powers;
 using STS2RitsuLib.Cards.DynamicVars;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
+using flametail.Keywords;
 
 namespace flametail.Cards;
 
@@ -37,6 +38,9 @@ public sealed class flametailSwiftStrike : ModCardTemplate
             ValueProp.Move),
         new IntVar("FootworkMultiplier", 1)
     ];
+
+    public override IEnumerable<CardKeyword> CanonicalKeywords =>
+        new[] { FlametailKeywords.Footwork };
 
     public flametailSwiftStrike() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)
     {

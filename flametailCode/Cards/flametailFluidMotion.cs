@@ -11,6 +11,7 @@ using flametail.Characters;
 using flametail.Powers;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
+using flametail.Keywords;
 
 namespace flametail.Cards;
 
@@ -31,6 +32,9 @@ public sealed class flametailFluidMotion : ModCardTemplate
     [
         new DamageVar(6, ValueProp.Move)
     ];
+
+    public override IEnumerable<CardKeyword> CanonicalKeywords =>
+        new[] { FlametailKeywords.Footwork };
 
     public flametailFluidMotion() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)
     {

@@ -48,6 +48,8 @@ public sealed class flametailFeint : ModCardTemplate, IGainFootworkCard
         && Owner.PlayerCombatState is { } pcs
         && _lastDrawTurn != pcs.TurnNumber;
 
+    public override bool GainsBlock => true;
+
     public flametailFeint() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)
     {
     }

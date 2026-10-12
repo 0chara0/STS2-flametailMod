@@ -8,6 +8,21 @@ script = ExtResource("1_vfx")
 EnterAnimationName = "Start"
 AttackAnimationName = "Skill_2"
 LeaveAnimationName = "Default"
+AttackEffectDelay = 0.36
+AttackBackEffectId = "blemsh_skill_02_start_back"
+AttackBackEffectOffset = Vector2(-7.5, -347.5)
+AttackBackEffectScale = 0.6131
+AttackBackEffectOpacity = 1
+AttackFrontEffectId = "blemsh_skill_02_start_front"
+AttackFrontEffectOffset = Vector2(45, -269)
+AttackFrontEffectScale = 0.6131
+AttackFrontEffectOpacity = 1
+EnterEffectId = "blemsh_skill_02_range"
+EnterEffectOffset = Vector2(-25.5, -103)
+EnterEffectScale = 0.6131
+EnterEffectOpacity = 1
+EnterEffectZIndex = 1
+EnterEffectDelay = 0.18
 
 [node name="SpineSprite" type="SpineSprite" parent="."]
 skeleton_data_res = ExtResource("2_skel")

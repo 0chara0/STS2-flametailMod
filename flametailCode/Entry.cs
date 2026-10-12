@@ -1,4 +1,5 @@
 using System.Reflection;
+using Godot;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Modding;
@@ -84,9 +85,24 @@ public partial class Entry
                 iconPath: null,
                 ModKeywordCardDescriptionPlacement.None,
                 includeInCardHoverTip: true);
+        ModKeywordRegistry.For(ModId)
+            .RegisterCardKeywordOwnedByLocNamespace(
+                "Dodge",
+                iconPath: null,
+                // 闪避用 None：不注入独立行（描述里已由各卡以 [gold] 手动呈现），
+                // 仅保留 IncludeInCardHoverTip=true 的悬停说明。
+                ModKeywordCardDescriptionPlacement.None,
+                includeInCardHoverTip: true);
 
         // 应用 Harmony 补丁（闪避的格挡前缓冲逻辑）。
         new Harmony(ModId).PatchAll(assembly);
+
+        // 开发工具：导出原版 UI 纹理（卡框/能量图标），有输出文件时自动跳过。
+        // 延迟到渲染上下文就绪后执行，Texture2D.GetImage() 需要纹理已上传 GPU。
+        if (Engine.GetMainLoop() is SceneTree tree)
+        {
+            tree.CreateTimer(1.0).Timeout += Helpers.DumpUiTextures.Run;
+        }
 
         Logger.Info("flametail initialized.");
     }

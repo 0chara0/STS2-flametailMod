@@ -1,0 +1,223 @@
+[gd_resource type="SpriteFrames" load_steps=32 format=3]
+
+[ext_resource type="Texture2D" path="res://flametail/images/vfx/hits/generated/ashlok_skill_02_start/atlas.png" id="1_atlas"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ashlok_skill_02_start_0"]
+atlas = ExtResource("1_atlas")
+region = Rect2(0, 0, 427, 585)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ashlok_skill_02_start_1"]
+atlas = ExtResource("1_atlas")
+region = Rect2(427, 0, 427, 585)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ashlok_skill_02_start_2"]
+atlas = ExtResource("1_atlas")
+region = Rect2(854, 0, 427, 585)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ashlok_skill_02_start_3"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1281, 0, 427, 585)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ashlok_skill_02_start_4"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1708, 0, 427, 585)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ashlok_skill_02_start_5"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2135, 0, 427, 585)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ashlok_skill_02_start_6"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2562, 0, 427, 585)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ashlok_skill_02_start_7"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2989, 0, 427, 585)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ashlok_skill_02_start_8"]
+atlas = ExtResource("1_atlas")
+region = Rect2(0, 585, 427, 585)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ashlok_skill_02_start_9"]
+atlas = ExtResource("1_atlas")
+region = Rect2(427, 585, 427, 585)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ashlok_skill_02_start_10"]
+atlas = ExtResource("1_atlas")
+region = Rect2(854, 585, 427, 585)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ashlok_skill_02_start_11"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1281, 585, 427, 585)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ashlok_skill_02_start_12"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1708, 585, 427, 585)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ashlok_skill_02_start_13"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2135, 585, 427, 585)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ashlok_skill_02_start_14"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2562, 585, 427, 585)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ashlok_skill_02_start_15"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2989, 585, 427, 585)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ashlok_skill_02_start_16"]
+atlas = ExtResource("1_atlas")
+region = Rect2(0, 1170, 427, 585)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ashlok_skill_02_start_17"]
+atlas = ExtResource("1_atlas")
+region = Rect2(427, 1170, 427, 585)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ashlok_skill_02_start_18"]
+atlas = ExtResource("1_atlas")
+region = Rect2(854, 1170, 427, 585)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ashlok_skill_02_start_19"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1281, 1170, 427, 585)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ashlok_skill_02_start_20"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1708, 1170, 427, 585)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ashlok_skill_02_start_21"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2135, 1170, 427, 585)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ashlok_skill_02_start_22"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2562, 1170, 427, 585)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ashlok_skill_02_start_23"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2989, 1170, 427, 585)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ashlok_skill_02_start_24"]
+atlas = ExtResource("1_atlas")
+region = Rect2(0, 1755, 427, 585)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ashlok_skill_02_start_25"]
+atlas = ExtResource("1_atlas")
+region = Rect2(427, 1755, 427, 585)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ashlok_skill_02_start_26"]
+atlas = ExtResource("1_atlas")
+region = Rect2(854, 1755, 427, 585)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ashlok_skill_02_start_27"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1281, 1755, 427, 585)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ashlok_skill_02_start_28"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1708, 1755, 427, 585)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ashlok_skill_02_start_29"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2135, 1755, 427, 585)
+
+[resource]
+animations = [
+{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ashlok_skill_02_start_0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ashlok_skill_02_start_1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ashlok_skill_02_start_2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ashlok_skill_02_start_3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ashlok_skill_02_start_4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ashlok_skill_02_start_5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ashlok_skill_02_start_6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ashlok_skill_02_start_7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ashlok_skill_02_start_8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ashlok_skill_02_start_9")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ashlok_skill_02_start_10")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ashlok_skill_02_start_11")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ashlok_skill_02_start_12")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ashlok_skill_02_start_13")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ashlok_skill_02_start_14")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ashlok_skill_02_start_15")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ashlok_skill_02_start_16")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ashlok_skill_02_start_17")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ashlok_skill_02_start_18")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ashlok_skill_02_start_19")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ashlok_skill_02_start_20")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ashlok_skill_02_start_21")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ashlok_skill_02_start_22")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ashlok_skill_02_start_23")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ashlok_skill_02_start_24")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ashlok_skill_02_start_25")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ashlok_skill_02_start_26")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ashlok_skill_02_start_27")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ashlok_skill_02_start_28")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ashlok_skill_02_start_29")
+}],
+"loop": false,
+"name": &"default",
+"speed": 30.0
+}
+]

@@ -32,6 +32,10 @@ namespace flametail.Keywords;
     "Footwork",
     CardDescriptionPlacement = ModKeywordCardDescriptionPlacement.None,
     IncludeInCardHoverTip = true)]
+[RegisterOwnedCardKeyword(
+    "Dodge",
+    CardDescriptionPlacement = ModKeywordCardDescriptionPlacement.None,
+    IncludeInCardHoverTip = true)]
 public static class FlametailKeywords
 {
     /// <summary>
@@ -70,4 +74,12 @@ public static class FlametailKeywords
     /// </summary>
     public static readonly CardKeyword Footwork =
         ModKeywordRegistry.GetCardKeyword("FLAMETAIL_KEYWORD_FOOTWORK");
+
+    /// <summary>
+    /// 闪避词条的 CardKeyword 值。
+    /// 描述复用闪避 power 的文案（闪避优先于格挡，抵消1次攻击伤害），
+    /// 供描述里以 [gold]闪避[/gold] 呈现的卡牌加入 CanonicalKeywords 以获得侧边说明。
+    /// </summary>
+    public static readonly CardKeyword Dodge =
+        ModKeywordRegistry.GetCardKeyword("FLAMETAIL_KEYWORD_DODGE");
 }

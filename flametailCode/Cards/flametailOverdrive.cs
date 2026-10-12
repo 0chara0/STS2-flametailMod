@@ -12,6 +12,7 @@ using flametail.Characters;
 using flametail.Powers;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
+using flametail.Keywords;
 
 namespace flametail.Cards;
 
@@ -36,6 +37,9 @@ public sealed class flametailOverdrive : ModCardTemplate, IGainDodgeCard
     [
         new IntVar("Dodge", 1)
     ];
+
+    public override IEnumerable<CardKeyword> CanonicalKeywords =>
+        new[] { FlametailKeywords.Dodge };
 
     public flametailOverdrive() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)
     {

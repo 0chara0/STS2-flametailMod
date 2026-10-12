@@ -13,6 +13,7 @@ using flametail.Patches;
 using flametail.Powers;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
+using flametail.Keywords;
 
 namespace flametail.Cards;
 
@@ -39,6 +40,9 @@ public sealed class flametailFlourish : ModCardTemplate
     [
         new DamageVar(4, ValueProp.Move)
     ];
+
+    public override IEnumerable<CardKeyword> CanonicalKeywords =>
+        new[] { FlametailKeywords.Footwork };
 
     public flametailFlourish() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)
     {

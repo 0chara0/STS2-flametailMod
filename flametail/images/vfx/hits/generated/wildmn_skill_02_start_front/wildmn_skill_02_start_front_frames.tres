@@ -1,0 +1,291 @@
+[gd_resource type="SpriteFrames" load_steps=42 format=3 uid="uid://digwqcfyqt2a7"]
+
+[ext_resource type="Texture2D" uid="uid://hfyry7pbhx6m" path="res://flametail/images/vfx/hits/generated/wildmn_skill_02_start_front/atlas.png" id="1_atlas"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wildmn_skill_02_start_front_0"]
+atlas = ExtResource("1_atlas")
+region = Rect2(0, 0, 237, 905)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wildmn_skill_02_start_front_1"]
+atlas = ExtResource("1_atlas")
+region = Rect2(237, 0, 237, 905)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wildmn_skill_02_start_front_2"]
+atlas = ExtResource("1_atlas")
+region = Rect2(474, 0, 237, 905)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wildmn_skill_02_start_front_3"]
+atlas = ExtResource("1_atlas")
+region = Rect2(711, 0, 237, 905)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wildmn_skill_02_start_front_4"]
+atlas = ExtResource("1_atlas")
+region = Rect2(948, 0, 237, 905)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wildmn_skill_02_start_front_5"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1185, 0, 237, 905)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wildmn_skill_02_start_front_6"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1422, 0, 237, 905)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wildmn_skill_02_start_front_7"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1659, 0, 237, 905)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wildmn_skill_02_start_front_8"]
+atlas = ExtResource("1_atlas")
+region = Rect2(0, 905, 237, 905)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wildmn_skill_02_start_front_9"]
+atlas = ExtResource("1_atlas")
+region = Rect2(237, 905, 237, 905)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wildmn_skill_02_start_front_10"]
+atlas = ExtResource("1_atlas")
+region = Rect2(474, 905, 237, 905)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wildmn_skill_02_start_front_11"]
+atlas = ExtResource("1_atlas")
+region = Rect2(711, 905, 237, 905)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wildmn_skill_02_start_front_12"]
+atlas = ExtResource("1_atlas")
+region = Rect2(948, 905, 237, 905)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wildmn_skill_02_start_front_13"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1185, 905, 237, 905)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wildmn_skill_02_start_front_14"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1422, 905, 237, 905)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wildmn_skill_02_start_front_15"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1659, 905, 237, 905)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wildmn_skill_02_start_front_16"]
+atlas = ExtResource("1_atlas")
+region = Rect2(0, 1810, 237, 905)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wildmn_skill_02_start_front_17"]
+atlas = ExtResource("1_atlas")
+region = Rect2(237, 1810, 237, 905)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wildmn_skill_02_start_front_18"]
+atlas = ExtResource("1_atlas")
+region = Rect2(474, 1810, 237, 905)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wildmn_skill_02_start_front_19"]
+atlas = ExtResource("1_atlas")
+region = Rect2(711, 1810, 237, 905)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wildmn_skill_02_start_front_20"]
+atlas = ExtResource("1_atlas")
+region = Rect2(948, 1810, 237, 905)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wildmn_skill_02_start_front_21"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1185, 1810, 237, 905)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wildmn_skill_02_start_front_22"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1422, 1810, 237, 905)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wildmn_skill_02_start_front_23"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1659, 1810, 237, 905)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wildmn_skill_02_start_front_24"]
+atlas = ExtResource("1_atlas")
+region = Rect2(0, 2715, 237, 905)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wildmn_skill_02_start_front_25"]
+atlas = ExtResource("1_atlas")
+region = Rect2(237, 2715, 237, 905)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wildmn_skill_02_start_front_26"]
+atlas = ExtResource("1_atlas")
+region = Rect2(474, 2715, 237, 905)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wildmn_skill_02_start_front_27"]
+atlas = ExtResource("1_atlas")
+region = Rect2(711, 2715, 237, 905)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wildmn_skill_02_start_front_28"]
+atlas = ExtResource("1_atlas")
+region = Rect2(948, 2715, 237, 905)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wildmn_skill_02_start_front_29"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1185, 2715, 237, 905)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wildmn_skill_02_start_front_30"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1422, 2715, 237, 905)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wildmn_skill_02_start_front_31"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1659, 2715, 237, 905)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wildmn_skill_02_start_front_32"]
+atlas = ExtResource("1_atlas")
+region = Rect2(0, 3620, 237, 905)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wildmn_skill_02_start_front_33"]
+atlas = ExtResource("1_atlas")
+region = Rect2(237, 3620, 237, 905)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wildmn_skill_02_start_front_34"]
+atlas = ExtResource("1_atlas")
+region = Rect2(474, 3620, 237, 905)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wildmn_skill_02_start_front_35"]
+atlas = ExtResource("1_atlas")
+region = Rect2(711, 3620, 237, 905)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wildmn_skill_02_start_front_36"]
+atlas = ExtResource("1_atlas")
+region = Rect2(948, 3620, 237, 905)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wildmn_skill_02_start_front_37"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1185, 3620, 237, 905)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wildmn_skill_02_start_front_38"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1422, 3620, 237, 905)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wildmn_skill_02_start_front_39"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1659, 3620, 237, 905)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 10.89,
+"texture": SubResource("AtlasTexture_wildmn_skill_02_start_front_0")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_wildmn_skill_02_start_front_1")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_wildmn_skill_02_start_front_2")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_wildmn_skill_02_start_front_3")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_wildmn_skill_02_start_front_4")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_wildmn_skill_02_start_front_5")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_wildmn_skill_02_start_front_6")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_wildmn_skill_02_start_front_7")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_wildmn_skill_02_start_front_8")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_wildmn_skill_02_start_front_9")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_wildmn_skill_02_start_front_10")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_wildmn_skill_02_start_front_11")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_wildmn_skill_02_start_front_12")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_wildmn_skill_02_start_front_13")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_wildmn_skill_02_start_front_14")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_wildmn_skill_02_start_front_15")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_wildmn_skill_02_start_front_16")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_wildmn_skill_02_start_front_17")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_wildmn_skill_02_start_front_18")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_wildmn_skill_02_start_front_19")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_wildmn_skill_02_start_front_20")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_wildmn_skill_02_start_front_21")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_wildmn_skill_02_start_front_22")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_wildmn_skill_02_start_front_23")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_wildmn_skill_02_start_front_24")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_wildmn_skill_02_start_front_25")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_wildmn_skill_02_start_front_26")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_wildmn_skill_02_start_front_27")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_wildmn_skill_02_start_front_28")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_wildmn_skill_02_start_front_29")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_wildmn_skill_02_start_front_30")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_wildmn_skill_02_start_front_31")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_wildmn_skill_02_start_front_32")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_wildmn_skill_02_start_front_33")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_wildmn_skill_02_start_front_34")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_wildmn_skill_02_start_front_35")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_wildmn_skill_02_start_front_36")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_wildmn_skill_02_start_front_37")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_wildmn_skill_02_start_front_38")
+}, {
+"duration": 21.78,
+"texture": SubResource("AtlasTexture_wildmn_skill_02_start_front_39")
+}],
+"loop": false,
+"name": &"default",
+"speed": 30.0
+}]

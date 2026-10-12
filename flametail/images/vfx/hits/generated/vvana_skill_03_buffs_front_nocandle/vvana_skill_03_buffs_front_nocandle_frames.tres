@@ -1,0 +1,641 @@
+[gd_resource type="SpriteFrames" load_steps=92 format=3 uid="uid://sg2pgquygw5p"]
+
+[ext_resource type="Texture2D" uid="uid://cqbxwoip54e3e" path="res://flametail/images/vfx/hits/generated/vvana_skill_03_buffs_front_nocandle/atlas.png" id="1_atlas"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_buffs_front_nocandle_0"]
+atlas = ExtResource("1_atlas")
+region = Rect2(0, 0, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_buffs_front_nocandle_1"]
+atlas = ExtResource("1_atlas")
+region = Rect2(445, 0, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_buffs_front_nocandle_2"]
+atlas = ExtResource("1_atlas")
+region = Rect2(890, 0, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_buffs_front_nocandle_3"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1335, 0, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_buffs_front_nocandle_4"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1780, 0, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_buffs_front_nocandle_5"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2225, 0, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_buffs_front_nocandle_6"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2670, 0, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_buffs_front_nocandle_7"]
+atlas = ExtResource("1_atlas")
+region = Rect2(3115, 0, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_buffs_front_nocandle_8"]
+atlas = ExtResource("1_atlas")
+region = Rect2(0, 445, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_buffs_front_nocandle_9"]
+atlas = ExtResource("1_atlas")
+region = Rect2(445, 445, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_buffs_front_nocandle_10"]
+atlas = ExtResource("1_atlas")
+region = Rect2(890, 445, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_buffs_front_nocandle_11"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1335, 445, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_buffs_front_nocandle_12"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1780, 445, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_buffs_front_nocandle_13"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2225, 445, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_buffs_front_nocandle_14"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2670, 445, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_buffs_front_nocandle_15"]
+atlas = ExtResource("1_atlas")
+region = Rect2(3115, 445, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_buffs_front_nocandle_16"]
+atlas = ExtResource("1_atlas")
+region = Rect2(0, 890, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_buffs_front_nocandle_17"]
+atlas = ExtResource("1_atlas")
+region = Rect2(445, 890, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_buffs_front_nocandle_18"]
+atlas = ExtResource("1_atlas")
+region = Rect2(890, 890, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_buffs_front_nocandle_19"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1335, 890, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_buffs_front_nocandle_20"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1780, 890, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_buffs_front_nocandle_21"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2225, 890, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_buffs_front_nocandle_22"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2670, 890, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_buffs_front_nocandle_23"]
+atlas = ExtResource("1_atlas")
+region = Rect2(3115, 890, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_buffs_front_nocandle_24"]
+atlas = ExtResource("1_atlas")
+region = Rect2(0, 1335, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_buffs_front_nocandle_25"]
+atlas = ExtResource("1_atlas")
+region = Rect2(445, 1335, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_buffs_front_nocandle_26"]
+atlas = ExtResource("1_atlas")
+region = Rect2(890, 1335, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_buffs_front_nocandle_27"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1335, 1335, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_buffs_front_nocandle_28"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1780, 1335, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_buffs_front_nocandle_29"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2225, 1335, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_buffs_front_nocandle_30"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2670, 1335, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_buffs_front_nocandle_31"]
+atlas = ExtResource("1_atlas")
+region = Rect2(3115, 1335, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_buffs_front_nocandle_32"]
+atlas = ExtResource("1_atlas")
+region = Rect2(0, 1780, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_buffs_front_nocandle_33"]
+atlas = ExtResource("1_atlas")
+region = Rect2(445, 1780, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_buffs_front_nocandle_34"]
+atlas = ExtResource("1_atlas")
+region = Rect2(890, 1780, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_buffs_front_nocandle_35"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1335, 1780, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_buffs_front_nocandle_36"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1780, 1780, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_buffs_front_nocandle_37"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2225, 1780, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_buffs_front_nocandle_38"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2670, 1780, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_buffs_front_nocandle_39"]
+atlas = ExtResource("1_atlas")
+region = Rect2(3115, 1780, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_buffs_front_nocandle_40"]
+atlas = ExtResource("1_atlas")
+region = Rect2(0, 2225, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_buffs_front_nocandle_41"]
+atlas = ExtResource("1_atlas")
+region = Rect2(445, 2225, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_buffs_front_nocandle_42"]
+atlas = ExtResource("1_atlas")
+region = Rect2(890, 2225, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_buffs_front_nocandle_43"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1335, 2225, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_buffs_front_nocandle_44"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1780, 2225, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_buffs_front_nocandle_45"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2225, 2225, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_buffs_front_nocandle_46"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2670, 2225, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_buffs_front_nocandle_47"]
+atlas = ExtResource("1_atlas")
+region = Rect2(3115, 2225, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_buffs_front_nocandle_48"]
+atlas = ExtResource("1_atlas")
+region = Rect2(0, 2670, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_buffs_front_nocandle_49"]
+atlas = ExtResource("1_atlas")
+region = Rect2(445, 2670, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_buffs_front_nocandle_50"]
+atlas = ExtResource("1_atlas")
+region = Rect2(890, 2670, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_buffs_front_nocandle_51"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1335, 2670, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_buffs_front_nocandle_52"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1780, 2670, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_buffs_front_nocandle_53"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2225, 2670, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_buffs_front_nocandle_54"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2670, 2670, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_buffs_front_nocandle_55"]
+atlas = ExtResource("1_atlas")
+region = Rect2(3115, 2670, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_buffs_front_nocandle_56"]
+atlas = ExtResource("1_atlas")
+region = Rect2(0, 3115, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_buffs_front_nocandle_57"]
+atlas = ExtResource("1_atlas")
+region = Rect2(445, 3115, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_buffs_front_nocandle_58"]
+atlas = ExtResource("1_atlas")
+region = Rect2(890, 3115, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_buffs_front_nocandle_59"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1335, 3115, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_buffs_front_nocandle_60"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1780, 3115, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_buffs_front_nocandle_61"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2225, 3115, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_buffs_front_nocandle_62"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2670, 3115, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_buffs_front_nocandle_63"]
+atlas = ExtResource("1_atlas")
+region = Rect2(3115, 3115, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_buffs_front_nocandle_64"]
+atlas = ExtResource("1_atlas")
+region = Rect2(0, 3560, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_buffs_front_nocandle_65"]
+atlas = ExtResource("1_atlas")
+region = Rect2(445, 3560, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_buffs_front_nocandle_66"]
+atlas = ExtResource("1_atlas")
+region = Rect2(890, 3560, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_buffs_front_nocandle_67"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1335, 3560, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_buffs_front_nocandle_68"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1780, 3560, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_buffs_front_nocandle_69"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2225, 3560, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_buffs_front_nocandle_70"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2670, 3560, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_buffs_front_nocandle_71"]
+atlas = ExtResource("1_atlas")
+region = Rect2(3115, 3560, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_buffs_front_nocandle_72"]
+atlas = ExtResource("1_atlas")
+region = Rect2(0, 4005, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_buffs_front_nocandle_73"]
+atlas = ExtResource("1_atlas")
+region = Rect2(445, 4005, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_buffs_front_nocandle_74"]
+atlas = ExtResource("1_atlas")
+region = Rect2(890, 4005, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_buffs_front_nocandle_75"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1335, 4005, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_buffs_front_nocandle_76"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1780, 4005, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_buffs_front_nocandle_77"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2225, 4005, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_buffs_front_nocandle_78"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2670, 4005, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_buffs_front_nocandle_79"]
+atlas = ExtResource("1_atlas")
+region = Rect2(3115, 4005, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_buffs_front_nocandle_80"]
+atlas = ExtResource("1_atlas")
+region = Rect2(0, 4450, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_buffs_front_nocandle_81"]
+atlas = ExtResource("1_atlas")
+region = Rect2(445, 4450, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_buffs_front_nocandle_82"]
+atlas = ExtResource("1_atlas")
+region = Rect2(890, 4450, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_buffs_front_nocandle_83"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1335, 4450, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_buffs_front_nocandle_84"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1780, 4450, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_buffs_front_nocandle_85"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2225, 4450, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_buffs_front_nocandle_86"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2670, 4450, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_buffs_front_nocandle_87"]
+atlas = ExtResource("1_atlas")
+region = Rect2(3115, 4450, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_buffs_front_nocandle_88"]
+atlas = ExtResource("1_atlas")
+region = Rect2(0, 4895, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_buffs_front_nocandle_89"]
+atlas = ExtResource("1_atlas")
+region = Rect2(445, 4895, 445, 445)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvana_skill_03_buffs_front_nocandle_0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvana_skill_03_buffs_front_nocandle_1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvana_skill_03_buffs_front_nocandle_2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvana_skill_03_buffs_front_nocandle_3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvana_skill_03_buffs_front_nocandle_4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvana_skill_03_buffs_front_nocandle_5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvana_skill_03_buffs_front_nocandle_6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvana_skill_03_buffs_front_nocandle_7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvana_skill_03_buffs_front_nocandle_8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvana_skill_03_buffs_front_nocandle_9")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvana_skill_03_buffs_front_nocandle_10")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvana_skill_03_buffs_front_nocandle_11")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvana_skill_03_buffs_front_nocandle_12")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvana_skill_03_buffs_front_nocandle_13")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvana_skill_03_buffs_front_nocandle_14")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvana_skill_03_buffs_front_nocandle_15")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvana_skill_03_buffs_front_nocandle_16")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvana_skill_03_buffs_front_nocandle_17")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvana_skill_03_buffs_front_nocandle_18")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvana_skill_03_buffs_front_nocandle_19")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvana_skill_03_buffs_front_nocandle_20")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvana_skill_03_buffs_front_nocandle_21")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvana_skill_03_buffs_front_nocandle_22")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvana_skill_03_buffs_front_nocandle_23")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvana_skill_03_buffs_front_nocandle_24")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvana_skill_03_buffs_front_nocandle_25")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvana_skill_03_buffs_front_nocandle_26")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvana_skill_03_buffs_front_nocandle_27")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvana_skill_03_buffs_front_nocandle_28")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvana_skill_03_buffs_front_nocandle_29")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvana_skill_03_buffs_front_nocandle_30")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvana_skill_03_buffs_front_nocandle_31")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvana_skill_03_buffs_front_nocandle_32")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvana_skill_03_buffs_front_nocandle_33")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvana_skill_03_buffs_front_nocandle_34")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvana_skill_03_buffs_front_nocandle_35")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvana_skill_03_buffs_front_nocandle_36")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvana_skill_03_buffs_front_nocandle_37")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvana_skill_03_buffs_front_nocandle_38")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvana_skill_03_buffs_front_nocandle_39")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvana_skill_03_buffs_front_nocandle_40")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvana_skill_03_buffs_front_nocandle_41")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvana_skill_03_buffs_front_nocandle_42")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvana_skill_03_buffs_front_nocandle_43")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvana_skill_03_buffs_front_nocandle_44")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvana_skill_03_buffs_front_nocandle_45")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvana_skill_03_buffs_front_nocandle_46")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvana_skill_03_buffs_front_nocandle_47")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvana_skill_03_buffs_front_nocandle_48")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvana_skill_03_buffs_front_nocandle_49")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvana_skill_03_buffs_front_nocandle_50")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvana_skill_03_buffs_front_nocandle_51")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvana_skill_03_buffs_front_nocandle_52")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvana_skill_03_buffs_front_nocandle_53")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvana_skill_03_buffs_front_nocandle_54")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvana_skill_03_buffs_front_nocandle_55")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvana_skill_03_buffs_front_nocandle_56")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvana_skill_03_buffs_front_nocandle_57")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvana_skill_03_buffs_front_nocandle_58")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvana_skill_03_buffs_front_nocandle_59")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvana_skill_03_buffs_front_nocandle_60")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvana_skill_03_buffs_front_nocandle_61")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvana_skill_03_buffs_front_nocandle_62")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvana_skill_03_buffs_front_nocandle_63")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvana_skill_03_buffs_front_nocandle_64")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvana_skill_03_buffs_front_nocandle_65")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvana_skill_03_buffs_front_nocandle_66")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvana_skill_03_buffs_front_nocandle_67")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvana_skill_03_buffs_front_nocandle_68")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvana_skill_03_buffs_front_nocandle_69")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvana_skill_03_buffs_front_nocandle_70")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvana_skill_03_buffs_front_nocandle_71")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvana_skill_03_buffs_front_nocandle_72")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvana_skill_03_buffs_front_nocandle_73")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvana_skill_03_buffs_front_nocandle_74")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvana_skill_03_buffs_front_nocandle_75")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvana_skill_03_buffs_front_nocandle_76")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvana_skill_03_buffs_front_nocandle_77")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvana_skill_03_buffs_front_nocandle_78")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvana_skill_03_buffs_front_nocandle_79")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvana_skill_03_buffs_front_nocandle_80")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvana_skill_03_buffs_front_nocandle_81")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvana_skill_03_buffs_front_nocandle_82")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvana_skill_03_buffs_front_nocandle_83")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvana_skill_03_buffs_front_nocandle_84")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvana_skill_03_buffs_front_nocandle_85")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvana_skill_03_buffs_front_nocandle_86")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvana_skill_03_buffs_front_nocandle_87")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvana_skill_03_buffs_front_nocandle_88")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvana_skill_03_buffs_front_nocandle_89")
+}],
+"loop": false,
+"name": &"default",
+"speed": 30.0
+}]

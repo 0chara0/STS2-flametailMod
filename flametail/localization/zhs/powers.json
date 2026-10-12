@@ -63,7 +63,7 @@
   "FLAMETAIL_POWER_FLAMETAIL_KNIGHTS_BREW_POWER.title": "骑士特酿",
   "FLAMETAIL_POWER_FLAMETAIL_KNIGHTS_BREW_POWER.description": "本场战斗中，你的所有牌获得反制。",
   "FLAMETAIL_POWER_FLAMETAIL_LEADER_POWER.title": "领导者",
-  "FLAMETAIL_POWER_FLAMETAIL_LEADER_POWER.description": "你存活时，生命值高于一半的玩家获得{Amount}点[gold]力量[/gold]，生命值不高于一半的玩家获得{Amount}点[gold]敏捷[/gold]。",
+  "FLAMETAIL_POWER_FLAMETAIL_LEADER_POWER.description": "你存活时，生命值高于一半的其他玩家获得{Amount}点[gold]力量[/gold]，生命值不高于一半的其他玩家获得{Amount}点[gold]敏捷[/gold]。",
   "FLAMETAIL_POWER_FLAMETAIL_WINDBRINGER_POWER.title": "携风",
   "FLAMETAIL_POWER_FLAMETAIL_WINDBRINGER_POWER.description": "每当你获得[gold]步法[/gold]时，所有玩家获得[blue]{Amount}[/blue]点[gold]格挡[/gold]。",
   "FLAMETAIL_POWER_FLAMETAIL_LEADER_AURA_POWER.title": "领导者-盟友",

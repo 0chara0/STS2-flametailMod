@@ -7,6 +7,7 @@ using flametail.Characters;
 using flametail.Powers;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
+using flametail.Keywords;
 
 namespace flametail.Cards;
 
@@ -28,7 +29,7 @@ public sealed class flametailEvenFaster : ModCardTemplate, IGainFootworkCard
 
     // 虚无：当回合不打出去就消失。
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
-        new[] { CardKeyword.Ethereal };
+        new[] { CardKeyword.Ethereal, FlametailKeywords.Footwork };
 
     public flametailEvenFaster() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)
     {

@@ -13,6 +13,7 @@ using flametail.Keywords;
 using flametail.Powers;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
+using MegaCrit.Sts2.Core.HoverTips;
 
 namespace flametail.Cards;
 
@@ -48,6 +49,10 @@ public sealed class flametailRiposte : ModCardTemplate, ICounterCard
 
     // 无法主动点击打出，只能被自动打出（反制流程，或釜底抽薪/重演等自动打出效果）。
     protected override bool IsPlayable => false;
+
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips => new[] {
+        HoverTipFactory.FromKeyword(CardKeyword.Exhaust)
+    };
 
     public flametailRiposte() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)
     {

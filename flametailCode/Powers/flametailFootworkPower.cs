@@ -20,6 +20,10 @@ public sealed class flametailFootworkPower : ModPowerTemplate
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
 
+    // 注意：不要用 IsVisibleInternal=false 隐藏状态栏图标——PowerModel.HoverTips
+    // 会对 !IsVisible 直接返回空，悬浮介绍也会一起消失。状态栏隐藏由
+    // FootworkDodgeBarSpawnPatch 拦截 NPowerContainer.Add 实现。
+
     private static readonly PowerAssetProfile _assetProfile = new(
         IconPath: $"{Entry.ResPath}/images/powers/flametailFootworkPower.png",
         BigIconPath: $"{Entry.ResPath}/images/powers/flametailFootworkPower.png");

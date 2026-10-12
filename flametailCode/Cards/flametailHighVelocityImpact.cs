@@ -8,6 +8,9 @@ using flametail.Characters;
 using flametail.Powers;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
+using flametail.Keywords;
+using MegaCrit.Sts2.Core.Models.Powers;
+using MegaCrit.Sts2.Core.HoverTips;
 
 namespace flametail.Cards;
 
@@ -23,6 +26,13 @@ public sealed class flametailHighVelocityImpact : ModCardTemplate
     private static readonly CardAssetProfile _assetProfile = new(
         PortraitPath: $"{Entry.ResPath}/images/cards/{"flametailHighVelocityImpact"}.png");
     public override CardAssetProfile AssetProfile => _assetProfile;
+
+    public override IEnumerable<CardKeyword> CanonicalKeywords =>
+        new[] { FlametailKeywords.Footwork };
+
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips => new[] {
+        HoverTipFactory.FromPower<StrengthPower>()
+    };
 
     public flametailHighVelocityImpact() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)
     {

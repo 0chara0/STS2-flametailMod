@@ -4,6 +4,7 @@ using HarmonyLib;
 using MegaCrit.Sts2.Core.Commands.Builders;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
+using flametail.Cards;
 using flametail.Characters;
 using flametail.Keywords;
 using flametail.Nodes.Vfx;
@@ -39,6 +40,84 @@ public sealed class FlametailHitVfxHook : HookedSingletonModel, IAttackHitHookLi
 
     public Task BeforeAttackHit(AttackHitContext context)
     {
+        // 戍夜威光(召唤物斩击)卡专属命中特效:该卡含 Support 关键词,被下方通用
+        // 随机池过滤排除,这里单独接官方合成版 nearl2_skill_03_hits。
+        // 原生 1:1 渲染 + 加色材质(纯亮辉光内容,深色不透明像素=0,加色让淡色
+        // 弧尾透过受击闪白不被吃掉)。
+        if (context.Dealer?.Player?.Character is flametailCharacter
+            && context.CardSource is flametailNocturnalBrightPower)
+        {
+            foreach (Creature? target in context.Targets)
+            {
+                if (target is { IsAlive: true })
+                {
+                    FlipbookHitVfx.Create(target, "nearl2_skill_03_hits");
+                }
+            }
+            return Task.CompletedTask;
+        }
+
+        // 烛火一闪(召唤物斩击)卡专属命中特效:官方三段 hit 合成版
+        // vvana_skill_03_hits。该卡不含 Support 关键词,本会落入通用随机池,
+        // 已在 IsEligible 中排除,避免专属+随机双重特效。
+        if (context.Dealer?.Player?.Character is flametailCharacter
+            && context.CardSource is flametailCandleFlash)
+        {
+            foreach (Creature? target in context.Targets)
+            {
+                if (target is { IsAlive: true })
+                {
+                    FlipbookHitVfx.Create(target, "vvana_skill_03_hits");
+                }
+            }
+            return Task.CompletedTask;
+        }
+
+        // 光箭支援(召唤物射箭)卡专属命中特效:fartth_skill_03_hit_01(HIT_POINT 挂点,
+        // rotation_y 朝向攻击方向)。该卡含 Support 关键词,IsEligible 已排除,无双重特效。
+        if (context.Dealer?.Player?.Character is flametailCharacter
+            && context.CardSource is flametailFeatherSupport)
+        {
+            foreach (Creature? target in context.Targets)
+            {
+                if (target is { IsAlive: true })
+                {
+                    FlipbookHitVfx.Create(target, "fartth_skill_03_hit_01");
+                }
+            }
+            return Task.CompletedTask;
+        }
+
+        // 铳炮支援(召唤物炮击)卡专属命中特效:ashlok_attack_01_hit_02(HIT_POINT 挂点)。
+        // 该卡含 Support 关键词,IsEligible 已排除,无双重特效。
+        if (context.Dealer?.Player?.Character is flametailCharacter
+            && context.CardSource is flametailCannonSupport)
+        {
+            foreach (Creature? target in context.Targets)
+            {
+                if (target is { IsAlive: true })
+                {
+                    FlipbookHitVfx.Create(target, "ashlok_attack_01_hit_02");
+                }
+            }
+            return Task.CompletedTask;
+        }
+
+        // 骑枪支援(召唤物突刺)卡专属命中特效:wildmn_skill_02_hit(HIT_POINT 挂点)。
+        // 该卡含 Support 关键词,IsEligible 已排除,无双重特效。
+        if (context.Dealer?.Player?.Character is flametailCharacter
+            && context.CardSource is flametailLanceSupport)
+        {
+            foreach (Creature? target in context.Targets)
+            {
+                if (target is { IsAlive: true })
+                {
+                    FlipbookHitVfx.Create(target, "wildmn_skill_02_hit");
+                }
+            }
+            return Task.CompletedTask;
+        }
+
         if (!IsEligible(context))
         {
             return Task.CompletedTask;
@@ -103,6 +182,8 @@ public sealed class FlametailHitVfxHook : HookedSingletonModel, IAttackHitHookLi
         return context.Dealer?.Player?.Character is flametailCharacter
             && card?.Pool is flametailCardPool
             && card.Type == CardType.Attack
-            && !card.CanonicalKeywords.Contains(FlametailKeywords.Support);
+            && !card.CanonicalKeywords.Contains(FlametailKeywords.Support)
+            // 烛火一闪走上方专属命中特效(vvana_skill_03_hits),不进随机池。
+            && card is not flametailCandleFlash;
     }
 }

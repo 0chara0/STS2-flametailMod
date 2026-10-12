@@ -9,6 +9,8 @@ using MegaCrit.Sts2.Core.Models;
 using flametail.Characters;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
+using flametail.Keywords;
+using MegaCrit.Sts2.Core.HoverTips;
 
 namespace flametail.Cards;
 
@@ -33,6 +35,10 @@ public sealed class flametailRelentless : ModCardTemplate
     [
         new EnergyVar(2)
     ];
+
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips => new[] {
+        HoverTipFactory.FromKeyword(CardKeyword.Ethereal)
+    };
 
     public flametailRelentless() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)
     {

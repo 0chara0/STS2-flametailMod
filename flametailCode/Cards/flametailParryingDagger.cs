@@ -9,6 +9,7 @@ using flametail.Characters;
 using flametail.Powers;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
+using flametail.Keywords;
 
 namespace flametail.Cards;
 
@@ -29,6 +30,11 @@ public sealed class flametailParryingDagger : ModCardTemplate
     [
         new IntVar("Amount", 4)
     ];
+
+    public override IEnumerable<CardKeyword> CanonicalKeywords =>
+        new[] { FlametailKeywords.Counter };
+
+    public override bool GainsBlock => true;
 
     public flametailParryingDagger() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)
     {

@@ -40,6 +40,20 @@ public partial class FlipbookHitVfx : Node2D
         ["attack_01_hit_02b"] = new Vector2(70.5f, 0f),
         ["skill_03_attack_01_hit_02a"] = new Vector2(0f, -10.5f),
         ["skill_03_attack_01_hit_02b"] = new Vector2(49.5f, -67f),
+        // nearl2_skill_03_hits(戍夜威光卡专用,不在随机池):白光实测帧 0-1 点燃核
+        // 质心 (239.5,212),与 md 锚 (239,211) 吻合;图 692×436 中心 (346,218)
+        // → offset = 中心−冲击点 = (106.5, 6)。
+        ["nearl2_skill_03_hits"] = new Vector2(106.5f, 6f),
+        // vvana_skill_03_hits(烛火一闪卡专用,不在随机池):HIT_POINT 锚 (374,237),
+        // 图 767×393 中心 (383.5,196.5) → offset = (9.5, -40.5)。
+        ["vvana_skill_03_hits"] = new Vector2(9.5f, -40.5f),
+        // fartth_skill_03_hit_01(光箭支援卡专用,不在随机池):HIT_POINT 锚 (183,266),
+        // 图 629×532 中心 (314.5,266) → offset = (131.5, 0)。
+        ["fartth_skill_03_hit_01"] = new Vector2(131.5f, 0f),
+        // ashlok_attack_01_hit_02(铳炮支援卡专用,不在随机池):md 锚 (164,163) 与
+        // 前 9 帧白光质心 (164~184,160~164) 吻合;图 463×423 中心 (231.5,211.5)
+        // → offset = (67.5, 48.5)。
+        ["ashlok_attack_01_hit_02"] = new Vector2(67.5f, 48.5f),
     };
 
     public static string RandomEffectId() => EffectIds[Rng.Next(EffectIds.Length)];
@@ -70,6 +84,12 @@ public partial class FlipbookHitVfx : Node2D
     /// </summary>
     public static FlipbookHitVfx? Create(Creature target)
     {
+        return Create(target, RandomEffectId());
+    }
+
+    /// <summary>指定特效 id 的重载(卡牌专属命中特效,不进随机池)。</summary>
+    public static FlipbookHitVfx? Create(Creature target, string effectId)
+    {
         if (TestMode.IsOn || NCombatRoom.Instance == null)
         {
             return null;
@@ -81,7 +101,6 @@ public partial class FlipbookHitVfx : Node2D
             return null;
         }
 
-        string effectId = RandomEffectId();
         var vfx = PreloadManager.Cache
             .GetScene($"{Entry.ResPath}/scenes/vfx/hits/{effectId}.tscn")
             .Instantiate<FlipbookHitVfx>(PackedScene.GenEditState.Disabled);

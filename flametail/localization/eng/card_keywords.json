@@ -8,5 +8,7 @@
   "FLAMETAIL_KEYWORD_EPHEMERAL.title": "Ephemeral",
   "FLAMETAIL_KEYWORD_EPHEMERAL.description": "After this card is played, it is removed from your deck for the rest of the run.",
   "FLAMETAIL_KEYWORD_FOOTWORK.title": "Footwork",
-  "FLAMETAIL_KEYWORD_FOOTWORK.description": "Every 5 Footwork turns into 1 Dodge. At the start of your turn, lose 1 Footwork."
+  "FLAMETAIL_KEYWORD_FOOTWORK.description": "Every 5 Footwork turns into 1 Dodge. At the start of your turn, lose 1 Footwork.",
+  "FLAMETAIL_KEYWORD_DODGE.title": "Dodge",
+  "FLAMETAIL_KEYWORD_DODGE.description": "Acts as a buffer before Block. Each stack negates 1 attack."
 }

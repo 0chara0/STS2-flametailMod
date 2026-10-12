@@ -11,6 +11,7 @@ using flametail.Powers;
 using STS2RitsuLib.Cards.DynamicVars;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
+using flametail.Keywords;
 
 namespace flametail.Cards;
 
@@ -38,6 +39,9 @@ public sealed class flametailSteadyBlock : ModCardTemplate
         new IntVar("BlockPerFootwork", 3),
         new IntVar("MaxFootwork", 5)
     ];
+
+    public override IEnumerable<CardKeyword> CanonicalKeywords =>
+        new[] { FlametailKeywords.Footwork };
 
     public flametailSteadyBlock() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)
     {

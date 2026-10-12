@@ -9,13 +9,14 @@ using flametail.Characters;
 using flametail.Powers;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
+using flametail.Keywords;
 
 namespace flametail.Cards;
 
 [RegisterCard(typeof(flametailCardPool))]
 public sealed class flametailKnightsDuel : ModCardTemplate
 {
-    private const int BaseEnergyCost = 2;
+    private const int BaseEnergyCost = 3;
     private const CardType CardKind = CardType.Power;
     private const CardRarity CardRarityValue = CardRarity.Rare;
     private const TargetType CardTarget = TargetType.Self;
@@ -29,6 +30,9 @@ public sealed class flametailKnightsDuel : ModCardTemplate
     [
         new IntVar("Amount", 1)
     ];
+
+    public override IEnumerable<CardKeyword> CanonicalKeywords =>
+        new[] { FlametailKeywords.Counter };
 
     public flametailKnightsDuel()
         : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)

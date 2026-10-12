@@ -8,6 +8,15 @@ script = ExtResource("1_vfx")
 EnterAnimationName = "Start"
 AttackAnimationName = "Skill_3"
 LeaveAnimationName = "Skill_2_Die"
+EnterEffectId = "nearl2_birth_01_start"
+EnterEffectOffset = Vector2(-5, -79.5)
+EnterEffectScale = 0.55
+EnterEffectOpacity = 0.6
+AttackEffectId = "nearl2_skill_03_start"
+AttackEffectBone = "F_Weapon"
+AttackEffectOffset = Vector2(46.4, 0)
+AttackEffectScale = 1.5714
+AttackEffectOpacity = 1.0
 
 [node name="SpineSprite" type="SpineSprite" parent="."]
 skeleton_data_res = ExtResource("2_skel")

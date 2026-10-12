@@ -1,0 +1,1166 @@
+[gd_resource type="SpriteFrames" load_steps=167 format=3 uid="uid://b1v255f00vx1v"]
+
+[ext_resource type="Texture2D" uid="uid://bimssly228vnl" path="res://flametail/images/vfx/hits/generated/fartth_skill_03_trail_02/atlas.png" id="1_atlas"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_0"]
+atlas = ExtResource("1_atlas")
+region = Rect2(0, 0, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_1"]
+atlas = ExtResource("1_atlas")
+region = Rect2(503, 0, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_2"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1006, 0, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_3"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1509, 0, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_4"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2012, 0, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_5"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2515, 0, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_6"]
+atlas = ExtResource("1_atlas")
+region = Rect2(3018, 0, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_7"]
+atlas = ExtResource("1_atlas")
+region = Rect2(3521, 0, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_8"]
+atlas = ExtResource("1_atlas")
+region = Rect2(0, 244, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_9"]
+atlas = ExtResource("1_atlas")
+region = Rect2(503, 244, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_10"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1006, 244, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_11"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1509, 244, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_12"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2012, 244, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_13"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2515, 244, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_14"]
+atlas = ExtResource("1_atlas")
+region = Rect2(3018, 244, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_15"]
+atlas = ExtResource("1_atlas")
+region = Rect2(3521, 244, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_16"]
+atlas = ExtResource("1_atlas")
+region = Rect2(0, 488, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_17"]
+atlas = ExtResource("1_atlas")
+region = Rect2(503, 488, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_18"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1006, 488, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_19"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1509, 488, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_20"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2012, 488, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_21"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2515, 488, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_22"]
+atlas = ExtResource("1_atlas")
+region = Rect2(3018, 488, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_23"]
+atlas = ExtResource("1_atlas")
+region = Rect2(3521, 488, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_24"]
+atlas = ExtResource("1_atlas")
+region = Rect2(0, 732, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_25"]
+atlas = ExtResource("1_atlas")
+region = Rect2(503, 732, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_26"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1006, 732, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_27"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1509, 732, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_28"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2012, 732, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_29"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2515, 732, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_30"]
+atlas = ExtResource("1_atlas")
+region = Rect2(3018, 732, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_31"]
+atlas = ExtResource("1_atlas")
+region = Rect2(3521, 732, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_32"]
+atlas = ExtResource("1_atlas")
+region = Rect2(0, 976, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_33"]
+atlas = ExtResource("1_atlas")
+region = Rect2(503, 976, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_34"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1006, 976, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_35"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1509, 976, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_36"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2012, 976, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_37"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2515, 976, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_38"]
+atlas = ExtResource("1_atlas")
+region = Rect2(3018, 976, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_39"]
+atlas = ExtResource("1_atlas")
+region = Rect2(3521, 976, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_40"]
+atlas = ExtResource("1_atlas")
+region = Rect2(0, 1220, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_41"]
+atlas = ExtResource("1_atlas")
+region = Rect2(503, 1220, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_42"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1006, 1220, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_43"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1509, 1220, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_44"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2012, 1220, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_45"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2515, 1220, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_46"]
+atlas = ExtResource("1_atlas")
+region = Rect2(3018, 1220, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_47"]
+atlas = ExtResource("1_atlas")
+region = Rect2(3521, 1220, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_48"]
+atlas = ExtResource("1_atlas")
+region = Rect2(0, 1464, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_49"]
+atlas = ExtResource("1_atlas")
+region = Rect2(503, 1464, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_50"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1006, 1464, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_51"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1509, 1464, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_52"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2012, 1464, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_53"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2515, 1464, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_54"]
+atlas = ExtResource("1_atlas")
+region = Rect2(3018, 1464, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_55"]
+atlas = ExtResource("1_atlas")
+region = Rect2(3521, 1464, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_56"]
+atlas = ExtResource("1_atlas")
+region = Rect2(0, 1708, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_57"]
+atlas = ExtResource("1_atlas")
+region = Rect2(503, 1708, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_58"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1006, 1708, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_59"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1509, 1708, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_60"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2012, 1708, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_61"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2515, 1708, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_62"]
+atlas = ExtResource("1_atlas")
+region = Rect2(3018, 1708, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_63"]
+atlas = ExtResource("1_atlas")
+region = Rect2(3521, 1708, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_64"]
+atlas = ExtResource("1_atlas")
+region = Rect2(0, 1952, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_65"]
+atlas = ExtResource("1_atlas")
+region = Rect2(503, 1952, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_66"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1006, 1952, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_67"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1509, 1952, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_68"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2012, 1952, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_69"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2515, 1952, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_70"]
+atlas = ExtResource("1_atlas")
+region = Rect2(3018, 1952, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_71"]
+atlas = ExtResource("1_atlas")
+region = Rect2(3521, 1952, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_72"]
+atlas = ExtResource("1_atlas")
+region = Rect2(0, 2196, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_73"]
+atlas = ExtResource("1_atlas")
+region = Rect2(503, 2196, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_74"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1006, 2196, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_75"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1509, 2196, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_76"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2012, 2196, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_77"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2515, 2196, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_78"]
+atlas = ExtResource("1_atlas")
+region = Rect2(3018, 2196, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_79"]
+atlas = ExtResource("1_atlas")
+region = Rect2(3521, 2196, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_80"]
+atlas = ExtResource("1_atlas")
+region = Rect2(0, 2440, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_81"]
+atlas = ExtResource("1_atlas")
+region = Rect2(503, 2440, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_82"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1006, 2440, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_83"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1509, 2440, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_84"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2012, 2440, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_85"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2515, 2440, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_86"]
+atlas = ExtResource("1_atlas")
+region = Rect2(3018, 2440, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_87"]
+atlas = ExtResource("1_atlas")
+region = Rect2(3521, 2440, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_88"]
+atlas = ExtResource("1_atlas")
+region = Rect2(0, 2684, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_89"]
+atlas = ExtResource("1_atlas")
+region = Rect2(503, 2684, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_90"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1006, 2684, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_91"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1509, 2684, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_92"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2012, 2684, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_93"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2515, 2684, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_94"]
+atlas = ExtResource("1_atlas")
+region = Rect2(3018, 2684, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_95"]
+atlas = ExtResource("1_atlas")
+region = Rect2(3521, 2684, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_96"]
+atlas = ExtResource("1_atlas")
+region = Rect2(0, 2928, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_97"]
+atlas = ExtResource("1_atlas")
+region = Rect2(503, 2928, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_98"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1006, 2928, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_99"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1509, 2928, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_100"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2012, 2928, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_101"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2515, 2928, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_102"]
+atlas = ExtResource("1_atlas")
+region = Rect2(3018, 2928, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_103"]
+atlas = ExtResource("1_atlas")
+region = Rect2(3521, 2928, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_104"]
+atlas = ExtResource("1_atlas")
+region = Rect2(0, 3172, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_105"]
+atlas = ExtResource("1_atlas")
+region = Rect2(503, 3172, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_106"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1006, 3172, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_107"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1509, 3172, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_108"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2012, 3172, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_109"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2515, 3172, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_110"]
+atlas = ExtResource("1_atlas")
+region = Rect2(3018, 3172, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_111"]
+atlas = ExtResource("1_atlas")
+region = Rect2(3521, 3172, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_112"]
+atlas = ExtResource("1_atlas")
+region = Rect2(0, 3416, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_113"]
+atlas = ExtResource("1_atlas")
+region = Rect2(503, 3416, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_114"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1006, 3416, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_115"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1509, 3416, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_116"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2012, 3416, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_117"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2515, 3416, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_118"]
+atlas = ExtResource("1_atlas")
+region = Rect2(3018, 3416, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_119"]
+atlas = ExtResource("1_atlas")
+region = Rect2(3521, 3416, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_120"]
+atlas = ExtResource("1_atlas")
+region = Rect2(0, 3660, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_121"]
+atlas = ExtResource("1_atlas")
+region = Rect2(503, 3660, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_122"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1006, 3660, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_123"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1509, 3660, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_124"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2012, 3660, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_125"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2515, 3660, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_126"]
+atlas = ExtResource("1_atlas")
+region = Rect2(3018, 3660, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_127"]
+atlas = ExtResource("1_atlas")
+region = Rect2(3521, 3660, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_128"]
+atlas = ExtResource("1_atlas")
+region = Rect2(0, 3904, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_129"]
+atlas = ExtResource("1_atlas")
+region = Rect2(503, 3904, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_130"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1006, 3904, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_131"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1509, 3904, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_132"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2012, 3904, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_133"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2515, 3904, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_134"]
+atlas = ExtResource("1_atlas")
+region = Rect2(3018, 3904, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_135"]
+atlas = ExtResource("1_atlas")
+region = Rect2(3521, 3904, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_136"]
+atlas = ExtResource("1_atlas")
+region = Rect2(0, 4148, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_137"]
+atlas = ExtResource("1_atlas")
+region = Rect2(503, 4148, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_138"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1006, 4148, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_139"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1509, 4148, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_140"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2012, 4148, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_141"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2515, 4148, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_142"]
+atlas = ExtResource("1_atlas")
+region = Rect2(3018, 4148, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_143"]
+atlas = ExtResource("1_atlas")
+region = Rect2(3521, 4148, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_144"]
+atlas = ExtResource("1_atlas")
+region = Rect2(0, 4392, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_145"]
+atlas = ExtResource("1_atlas")
+region = Rect2(503, 4392, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_146"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1006, 4392, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_147"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1509, 4392, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_148"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2012, 4392, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_149"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2515, 4392, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_150"]
+atlas = ExtResource("1_atlas")
+region = Rect2(3018, 4392, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_151"]
+atlas = ExtResource("1_atlas")
+region = Rect2(3521, 4392, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_152"]
+atlas = ExtResource("1_atlas")
+region = Rect2(0, 4636, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_153"]
+atlas = ExtResource("1_atlas")
+region = Rect2(503, 4636, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_154"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1006, 4636, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_155"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1509, 4636, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_156"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2012, 4636, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_157"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2515, 4636, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_158"]
+atlas = ExtResource("1_atlas")
+region = Rect2(3018, 4636, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_159"]
+atlas = ExtResource("1_atlas")
+region = Rect2(3521, 4636, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_160"]
+atlas = ExtResource("1_atlas")
+region = Rect2(0, 4880, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_161"]
+atlas = ExtResource("1_atlas")
+region = Rect2(503, 4880, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_162"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1006, 4880, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_163"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1509, 4880, 503, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fartth_skill_03_trail_02_164"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2012, 4880, 503, 244)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_9")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_10")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_11")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_12")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_13")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_14")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_15")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_16")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_17")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_18")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_19")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_20")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_21")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_22")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_23")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_24")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_25")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_26")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_27")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_28")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_29")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_30")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_31")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_32")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_33")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_34")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_35")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_36")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_37")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_38")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_39")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_40")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_41")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_42")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_43")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_44")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_45")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_46")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_47")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_48")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_49")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_50")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_51")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_52")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_53")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_54")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_55")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_56")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_57")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_58")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_59")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_60")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_61")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_62")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_63")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_64")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_65")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_66")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_67")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_68")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_69")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_70")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_71")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_72")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_73")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_74")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_75")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_76")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_77")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_78")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_79")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_80")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_81")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_82")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_83")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_84")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_85")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_86")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_87")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_88")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_89")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_90")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_91")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_92")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_93")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_94")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_95")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_96")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_97")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_98")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_99")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_100")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_101")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_102")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_103")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_104")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_105")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_106")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_107")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_108")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_109")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_110")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_111")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_112")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_113")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_114")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_115")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_116")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_117")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_118")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_119")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_120")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_121")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_122")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_123")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_124")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_125")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_126")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_127")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_128")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_129")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_130")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_131")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_132")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_133")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_134")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_135")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_136")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_137")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_138")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_139")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_140")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_141")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_142")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_143")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_144")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_145")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_146")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_147")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_148")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_149")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_150")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_151")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_152")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_153")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_154")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_155")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_156")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_157")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_158")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_159")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_160")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_161")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_162")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_163")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fartth_skill_03_trail_02_164")
+}],
+"loop": false,
+"name": &"default",
+"speed": 30.0
+}]

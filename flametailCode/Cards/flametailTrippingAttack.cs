@@ -12,6 +12,7 @@ using flametail.Characters;
 using flametail.Powers;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
+using MegaCrit.Sts2.Core.HoverTips;
 
 namespace flametail.Cards;
 
@@ -33,6 +34,12 @@ public sealed class flametailTrippingAttack : ModCardTemplate
         new DamageVar(8, ValueProp.Move),
         new IntVar("VulnerableAmount", 1)
     ];
+
+    public override bool GainsBlock => true;
+
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips => new[] {
+        HoverTipFactory.FromPower<VulnerablePower>()
+    };
 
     public flametailTrippingAttack() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)
     {

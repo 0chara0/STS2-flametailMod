@@ -7,11 +7,15 @@ using flametail.Characters;
 using flametail.Powers;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
+using System.Collections.Generic;
+using MegaCrit.Sts2.Core.Models.Powers;
+using MegaCrit.Sts2.Core.HoverTips;
 
 namespace flametail.Cards;
 
 /// <summary>
-/// 领导者：你存活时，生命值高于一半的玩家获得 2（3）点力量，生命值不高于一半的玩家获得 2（3）点敏捷。
+/// 领导者：你存活时，生命值高于一半的其他玩家获得 2（3）点力量，生命值不高于一半的其他玩家获得 2（3）点敏捷。
+/// 不对使用者本人生效。
 /// 光环由 flametailLeaderPower 打出时建立连接，玩家生命值跨过半血线（或死亡）时由各自身上的 flametailLeaderAuraPower 实时切换力量/敏捷，无需等待回合开始。多人限定。
 /// </summary>
 [RegisterCard(typeof(flametailCardPool))]
@@ -35,6 +39,11 @@ public sealed class flametailLeader : ModCardTemplate
     // 仅多人模式可用的卡：对全体玩家按血量发放增益，在多人合作中才有完整价值。
     public override CardMultiplayerConstraint MultiplayerConstraint =>
         CardMultiplayerConstraint.MultiplayerOnly;
+
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips => new[] {
+        HoverTipFactory.FromPower<StrengthPower>(),
+        HoverTipFactory.FromPower<DexterityPower>()
+    };
 
     public flametailLeader() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)
     {

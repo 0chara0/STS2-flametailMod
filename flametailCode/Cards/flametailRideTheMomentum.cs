@@ -12,6 +12,7 @@ using flametail.Patches;
 using flametail.Powers;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
+using MegaCrit.Sts2.Core.HoverTips;
 
 namespace flametail.Cards;
 
@@ -29,7 +30,7 @@ public sealed class flametailRideTheMomentum : ModCardTemplate, ICounterCard, IG
     public override CardAssetProfile AssetProfile => _assetProfile;
 
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
-        new[] { FlametailKeywords.Counter, FlametailKeywords.Footwork };
+        new[] { FlametailKeywords.Counter, FlametailKeywords.Footwork, FlametailKeywords.Dodge };
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
@@ -46,6 +47,10 @@ public sealed class flametailRideTheMomentum : ModCardTemplate, ICounterCard, IG
     /// “额外打出下一张反制牌”是无条件的——修改文档 [13][14]）。
     /// </summary>
     public bool CanAutoPlayAsCounter(Creature? attacker) => true;
+
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips => new[] {
+        HoverTipFactory.FromKeyword(CardKeyword.Exhaust)
+    };
 
     public flametailRideTheMomentum() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)
     {

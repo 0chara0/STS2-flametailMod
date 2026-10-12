@@ -46,6 +46,8 @@ public sealed class flametailStrideSlash : ModCardTemplate
         new IntVar("BlockGainBonus", 3)
     ];
 
+    public override bool GainsBlock => true;
+
     public flametailStrideSlash() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)
     {
     }

@@ -10,6 +10,8 @@ using flametail.Keywords;
 using flametail.Powers;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
+using System.Collections.Generic;
+using MegaCrit.Sts2.Core.HoverTips;
 
 namespace flametail.Cards;
 
@@ -34,6 +36,10 @@ public sealed class flametailJab : ModCardTemplate, ICounterCard
         new DamageVar(8, ValueProp.Move),
         new IntVar("VulnerableAmount", 1)
     ];
+
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips => new[] {
+        HoverTipFactory.FromPower<VulnerablePower>()
+    };
 
     public flametailJab() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)
     {

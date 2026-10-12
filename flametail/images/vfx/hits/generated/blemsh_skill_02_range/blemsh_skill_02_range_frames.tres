@@ -1,0 +1,529 @@
+[gd_resource type="SpriteFrames" load_steps=76 format=3 uid="uid://c825l7bbdtv4u"]
+
+[ext_resource type="Texture2D" uid="uid://cq2sq4e6q1kom" path="res://flametail/images/vfx/hits/generated/blemsh_skill_02_range/atlas.png" id="1_atlas"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blemsh_skill_02_range_0"]
+atlas = ExtResource("1_atlas")
+region = Rect2(0, 0, 1229, 1076)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blemsh_skill_02_range_1"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1229, 0, 1229, 1076)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blemsh_skill_02_range_2"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2458, 0, 1229, 1076)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blemsh_skill_02_range_3"]
+atlas = ExtResource("1_atlas")
+region = Rect2(3687, 0, 1229, 1076)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blemsh_skill_02_range_4"]
+atlas = ExtResource("1_atlas")
+region = Rect2(4916, 0, 1229, 1076)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blemsh_skill_02_range_5"]
+atlas = ExtResource("1_atlas")
+region = Rect2(6145, 0, 1229, 1076)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blemsh_skill_02_range_6"]
+atlas = ExtResource("1_atlas")
+region = Rect2(7374, 0, 1229, 1076)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blemsh_skill_02_range_7"]
+atlas = ExtResource("1_atlas")
+region = Rect2(8603, 0, 1229, 1076)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blemsh_skill_02_range_8"]
+atlas = ExtResource("1_atlas")
+region = Rect2(0, 1076, 1229, 1076)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blemsh_skill_02_range_9"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1229, 1076, 1229, 1076)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blemsh_skill_02_range_10"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2458, 1076, 1229, 1076)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blemsh_skill_02_range_11"]
+atlas = ExtResource("1_atlas")
+region = Rect2(3687, 1076, 1229, 1076)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blemsh_skill_02_range_12"]
+atlas = ExtResource("1_atlas")
+region = Rect2(4916, 1076, 1229, 1076)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blemsh_skill_02_range_13"]
+atlas = ExtResource("1_atlas")
+region = Rect2(6145, 1076, 1229, 1076)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blemsh_skill_02_range_14"]
+atlas = ExtResource("1_atlas")
+region = Rect2(7374, 1076, 1229, 1076)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blemsh_skill_02_range_15"]
+atlas = ExtResource("1_atlas")
+region = Rect2(8603, 1076, 1229, 1076)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blemsh_skill_02_range_16"]
+atlas = ExtResource("1_atlas")
+region = Rect2(0, 2152, 1229, 1076)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blemsh_skill_02_range_17"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1229, 2152, 1229, 1076)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blemsh_skill_02_range_18"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2458, 2152, 1229, 1076)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blemsh_skill_02_range_19"]
+atlas = ExtResource("1_atlas")
+region = Rect2(3687, 2152, 1229, 1076)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blemsh_skill_02_range_20"]
+atlas = ExtResource("1_atlas")
+region = Rect2(4916, 2152, 1229, 1076)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blemsh_skill_02_range_21"]
+atlas = ExtResource("1_atlas")
+region = Rect2(6145, 2152, 1229, 1076)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blemsh_skill_02_range_22"]
+atlas = ExtResource("1_atlas")
+region = Rect2(7374, 2152, 1229, 1076)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blemsh_skill_02_range_23"]
+atlas = ExtResource("1_atlas")
+region = Rect2(8603, 2152, 1229, 1076)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blemsh_skill_02_range_24"]
+atlas = ExtResource("1_atlas")
+region = Rect2(0, 3228, 1229, 1076)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blemsh_skill_02_range_25"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1229, 3228, 1229, 1076)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blemsh_skill_02_range_26"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2458, 3228, 1229, 1076)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blemsh_skill_02_range_27"]
+atlas = ExtResource("1_atlas")
+region = Rect2(3687, 3228, 1229, 1076)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blemsh_skill_02_range_28"]
+atlas = ExtResource("1_atlas")
+region = Rect2(4916, 3228, 1229, 1076)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blemsh_skill_02_range_29"]
+atlas = ExtResource("1_atlas")
+region = Rect2(6145, 3228, 1229, 1076)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blemsh_skill_02_range_30"]
+atlas = ExtResource("1_atlas")
+region = Rect2(7374, 3228, 1229, 1076)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blemsh_skill_02_range_31"]
+atlas = ExtResource("1_atlas")
+region = Rect2(8603, 3228, 1229, 1076)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blemsh_skill_02_range_32"]
+atlas = ExtResource("1_atlas")
+region = Rect2(0, 4304, 1229, 1076)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blemsh_skill_02_range_33"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1229, 4304, 1229, 1076)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blemsh_skill_02_range_34"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2458, 4304, 1229, 1076)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blemsh_skill_02_range_35"]
+atlas = ExtResource("1_atlas")
+region = Rect2(3687, 4304, 1229, 1076)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blemsh_skill_02_range_36"]
+atlas = ExtResource("1_atlas")
+region = Rect2(4916, 4304, 1229, 1076)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blemsh_skill_02_range_37"]
+atlas = ExtResource("1_atlas")
+region = Rect2(6145, 4304, 1229, 1076)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blemsh_skill_02_range_38"]
+atlas = ExtResource("1_atlas")
+region = Rect2(7374, 4304, 1229, 1076)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blemsh_skill_02_range_39"]
+atlas = ExtResource("1_atlas")
+region = Rect2(8603, 4304, 1229, 1076)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blemsh_skill_02_range_40"]
+atlas = ExtResource("1_atlas")
+region = Rect2(0, 5380, 1229, 1076)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blemsh_skill_02_range_41"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1229, 5380, 1229, 1076)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blemsh_skill_02_range_42"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2458, 5380, 1229, 1076)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blemsh_skill_02_range_43"]
+atlas = ExtResource("1_atlas")
+region = Rect2(3687, 5380, 1229, 1076)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blemsh_skill_02_range_44"]
+atlas = ExtResource("1_atlas")
+region = Rect2(4916, 5380, 1229, 1076)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blemsh_skill_02_range_45"]
+atlas = ExtResource("1_atlas")
+region = Rect2(6145, 5380, 1229, 1076)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blemsh_skill_02_range_46"]
+atlas = ExtResource("1_atlas")
+region = Rect2(7374, 5380, 1229, 1076)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blemsh_skill_02_range_47"]
+atlas = ExtResource("1_atlas")
+region = Rect2(8603, 5380, 1229, 1076)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blemsh_skill_02_range_48"]
+atlas = ExtResource("1_atlas")
+region = Rect2(0, 6456, 1229, 1076)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blemsh_skill_02_range_49"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1229, 6456, 1229, 1076)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blemsh_skill_02_range_50"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2458, 6456, 1229, 1076)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blemsh_skill_02_range_51"]
+atlas = ExtResource("1_atlas")
+region = Rect2(3687, 6456, 1229, 1076)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blemsh_skill_02_range_52"]
+atlas = ExtResource("1_atlas")
+region = Rect2(4916, 6456, 1229, 1076)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blemsh_skill_02_range_53"]
+atlas = ExtResource("1_atlas")
+region = Rect2(6145, 6456, 1229, 1076)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blemsh_skill_02_range_54"]
+atlas = ExtResource("1_atlas")
+region = Rect2(7374, 6456, 1229, 1076)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blemsh_skill_02_range_55"]
+atlas = ExtResource("1_atlas")
+region = Rect2(8603, 6456, 1229, 1076)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blemsh_skill_02_range_56"]
+atlas = ExtResource("1_atlas")
+region = Rect2(0, 7532, 1229, 1076)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blemsh_skill_02_range_57"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1229, 7532, 1229, 1076)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blemsh_skill_02_range_58"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2458, 7532, 1229, 1076)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blemsh_skill_02_range_59"]
+atlas = ExtResource("1_atlas")
+region = Rect2(3687, 7532, 1229, 1076)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blemsh_skill_02_range_60"]
+atlas = ExtResource("1_atlas")
+region = Rect2(4916, 7532, 1229, 1076)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blemsh_skill_02_range_61"]
+atlas = ExtResource("1_atlas")
+region = Rect2(6145, 7532, 1229, 1076)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blemsh_skill_02_range_62"]
+atlas = ExtResource("1_atlas")
+region = Rect2(7374, 7532, 1229, 1076)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blemsh_skill_02_range_63"]
+atlas = ExtResource("1_atlas")
+region = Rect2(8603, 7532, 1229, 1076)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blemsh_skill_02_range_64"]
+atlas = ExtResource("1_atlas")
+region = Rect2(0, 8608, 1229, 1076)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blemsh_skill_02_range_65"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1229, 8608, 1229, 1076)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blemsh_skill_02_range_66"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2458, 8608, 1229, 1076)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blemsh_skill_02_range_67"]
+atlas = ExtResource("1_atlas")
+region = Rect2(3687, 8608, 1229, 1076)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blemsh_skill_02_range_68"]
+atlas = ExtResource("1_atlas")
+region = Rect2(4916, 8608, 1229, 1076)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blemsh_skill_02_range_69"]
+atlas = ExtResource("1_atlas")
+region = Rect2(6145, 8608, 1229, 1076)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blemsh_skill_02_range_70"]
+atlas = ExtResource("1_atlas")
+region = Rect2(7374, 8608, 1229, 1076)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blemsh_skill_02_range_71"]
+atlas = ExtResource("1_atlas")
+region = Rect2(8603, 8608, 1229, 1076)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blemsh_skill_02_range_72"]
+atlas = ExtResource("1_atlas")
+region = Rect2(0, 9684, 1229, 1076)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blemsh_skill_02_range_73"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1229, 9684, 1229, 1076)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_blemsh_skill_02_range_0")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_blemsh_skill_02_range_1")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_blemsh_skill_02_range_2")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_blemsh_skill_02_range_3")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_blemsh_skill_02_range_4")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_blemsh_skill_02_range_5")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_blemsh_skill_02_range_6")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_blemsh_skill_02_range_7")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_blemsh_skill_02_range_8")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_blemsh_skill_02_range_9")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_blemsh_skill_02_range_10")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_blemsh_skill_02_range_11")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_blemsh_skill_02_range_12")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_blemsh_skill_02_range_13")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_blemsh_skill_02_range_14")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_blemsh_skill_02_range_15")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_blemsh_skill_02_range_16")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_blemsh_skill_02_range_17")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_blemsh_skill_02_range_18")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_blemsh_skill_02_range_19")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_blemsh_skill_02_range_20")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_blemsh_skill_02_range_21")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_blemsh_skill_02_range_22")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_blemsh_skill_02_range_23")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_blemsh_skill_02_range_24")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_blemsh_skill_02_range_25")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_blemsh_skill_02_range_26")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_blemsh_skill_02_range_27")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_blemsh_skill_02_range_28")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_blemsh_skill_02_range_29")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_blemsh_skill_02_range_30")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_blemsh_skill_02_range_31")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_blemsh_skill_02_range_32")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_blemsh_skill_02_range_33")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_blemsh_skill_02_range_34")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_blemsh_skill_02_range_35")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_blemsh_skill_02_range_36")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_blemsh_skill_02_range_37")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_blemsh_skill_02_range_38")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_blemsh_skill_02_range_39")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_blemsh_skill_02_range_40")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_blemsh_skill_02_range_41")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_blemsh_skill_02_range_42")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_blemsh_skill_02_range_43")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_blemsh_skill_02_range_44")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_blemsh_skill_02_range_45")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_blemsh_skill_02_range_46")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_blemsh_skill_02_range_47")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_blemsh_skill_02_range_48")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_blemsh_skill_02_range_49")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_blemsh_skill_02_range_50")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_blemsh_skill_02_range_51")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_blemsh_skill_02_range_52")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_blemsh_skill_02_range_53")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_blemsh_skill_02_range_54")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_blemsh_skill_02_range_55")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_blemsh_skill_02_range_56")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_blemsh_skill_02_range_57")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_blemsh_skill_02_range_58")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_blemsh_skill_02_range_59")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_blemsh_skill_02_range_60")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_blemsh_skill_02_range_61")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_blemsh_skill_02_range_62")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_blemsh_skill_02_range_63")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_blemsh_skill_02_range_64")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_blemsh_skill_02_range_65")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_blemsh_skill_02_range_66")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_blemsh_skill_02_range_67")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_blemsh_skill_02_range_68")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_blemsh_skill_02_range_69")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_blemsh_skill_02_range_70")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_blemsh_skill_02_range_71")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_blemsh_skill_02_range_72")
+}, {
+"duration": 1.98,
+"texture": SubResource("AtlasTexture_blemsh_skill_02_range_73")
+}],
+"loop": false,
+"name": &"default",
+"speed": 30.0
+}]

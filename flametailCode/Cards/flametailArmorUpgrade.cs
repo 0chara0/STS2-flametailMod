@@ -15,6 +15,7 @@ using flametail.Keywords;
 using flametail.Nodes.Vfx;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
+using MegaCrit.Sts2.Core.HoverTips;
 
 namespace flametail.Cards;
 
@@ -77,6 +78,10 @@ public sealed class flametailArmorUpgrade : ModCardTemplate
         new IntVar("BlockAmount", BlockAmount),
         new IntVar("PlatedArmorAmount", PlatedArmorAmount)
     ];
+
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips => new[] {
+        HoverTipFactory.FromPower<PlatingPower>()
+    };
 
     public flametailArmorUpgrade() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)
     {

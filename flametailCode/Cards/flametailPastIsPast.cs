@@ -7,6 +7,8 @@ using flametail.Characters;
 using flametail.Powers;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
+using flametail.Keywords;
+using MegaCrit.Sts2.Core.HoverTips;
 
 namespace flametail.Cards;
 
@@ -28,6 +30,10 @@ public sealed class flametailPastIsPast : ModCardTemplate
     private static readonly CardAssetProfile _assetProfile = new(
         PortraitPath: $"{Entry.ResPath}/images/cards/{"flametailPastIsPast"}.png");
     public override CardAssetProfile AssetProfile => _assetProfile;
+
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips => new[] {
+        HoverTipFactory.FromKeyword(CardKeyword.Exhaust)
+    };
 
     public flametailPastIsPast() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)
     {

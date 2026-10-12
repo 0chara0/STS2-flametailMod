@@ -9,6 +9,7 @@ using flametail.Characters;
 using flametail.Powers;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
+using flametail.Keywords;
 
 namespace flametail.Cards;
 
@@ -30,7 +31,7 @@ public sealed class flametailSwoop : ModCardTemplate, IGainDodgeCard
     public override CardAssetProfile AssetProfile => _assetProfile;
 
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
-        new[] { CardKeyword.Exhaust };
+        new[] { CardKeyword.Exhaust, FlametailKeywords.Dodge };
 
     // 仅多人模式可用的卡：需要选择另一名玩家作为共享对象，单人模式没有意义。
     public override CardMultiplayerConstraint MultiplayerConstraint =>

@@ -12,6 +12,19 @@ ImpactRatio = 1.0
 FadeIn = true
 CutAttackOnImpact = false
 AttackDurationOverride = 0.64
+AttackEffectId = "fartth_skill_03_start"
+AttackEffectBone = "F_Muzzle"
+AttackEffectWorldAligned = true
+AttackEffectOffset = Vector2(30.0, -14.1)
+AttackEffectScale = 1.4143
+AttackEffectOpacity = 1
+ProjectileEffectId = "fartth_skill_03_trail_02"
+ProjectileBone = "F_Muzzle"
+ProjectileOffset = Vector2(0, 0)
+ProjectileDrawOffset = Vector2(-97.5, -4)
+ProjectileDelay = 0.2
+ProjectileDuration = 0.15
+ProjectileScale = 0.495
 
 [node name="SpineSprite" type="SpineSprite" parent="."]
 skeleton_data_res = ExtResource("2_skel")

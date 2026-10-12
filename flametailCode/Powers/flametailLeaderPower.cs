@@ -12,7 +12,7 @@ using STS2RitsuLib.Scaffolding.Content;
 namespace flametail.Powers;
 
 /// <summary>
-/// 领导者：你存活时，生命值高于一半的玩家获得力量，生命值不高于一半的玩家获得敏捷。
+/// 领导者：你存活时，生命值高于一半的其他玩家获得力量，生命值不高于一半的其他玩家获得敏捷。
 /// 打出 N 张（各 Amount=a_i）后每个盟友共获 sum(a_i)：
 /// PowerCmd.Apply 对已有 power 是叠加语义，Evaluate 只传"本次新增的增量"
 /// （Amount 是累计值，直接传会把累计值再叠加到 aura 上 → 一张+3、两张+9 的 BUG）。
@@ -68,7 +68,8 @@ public sealed class flametailLeaderPower : ModPowerTemplate
 
         foreach (Player p in combat.Players)
         {
-            if (p.Creature == null || p.Creature.IsDead)
+            // 不对使用者本人生效，只给其他玩家。
+            if (p.Creature == null || p.Creature.IsDead || p.Creature == Owner)
             {
                 continue;
             }

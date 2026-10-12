@@ -11,6 +11,7 @@ using flametail.Powers;
 using STS2RitsuLib.Cards.DynamicVars;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
+using flametail.Keywords;
 
 namespace flametail.Cards;
 
@@ -33,6 +34,9 @@ public sealed class flametailSuddenHalt : ModCardTemplate
     [
         new IntVar("BlockPerFootwork", 4)
     ];
+
+    public override IEnumerable<CardKeyword> CanonicalKeywords =>
+        new[] { FlametailKeywords.Footwork };
 
     public flametailSuddenHalt() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)
     {
@@ -60,6 +64,6 @@ public sealed class flametailSuddenHalt : ModCardTemplate
 
     protected override void OnUpgrade()
     {
-        DynamicVars["BlockPerFootwork"].UpgradeValueBy(2);
+        DynamicVars["BlockPerFootwork"].UpgradeValueBy(1);
     }
 }

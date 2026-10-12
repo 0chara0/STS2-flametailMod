@@ -10,6 +10,8 @@ using MegaCrit.Sts2.Core.Models;
 using flametail.Characters;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
+using flametail.Keywords;
+using MegaCrit.Sts2.Core.HoverTips;
 
 namespace flametail.Cards;
 
@@ -25,6 +27,10 @@ public sealed class flametailReplay : ModCardTemplate
     private static readonly CardAssetProfile _assetProfile = new(
         PortraitPath: $"{Entry.ResPath}/images/cards/{"flametailReplay"}.png");
     public override CardAssetProfile AssetProfile => _assetProfile;
+
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips => new[] {
+        HoverTipFactory.FromKeyword(CardKeyword.Exhaust)
+    };
 
     public flametailReplay() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)
     {

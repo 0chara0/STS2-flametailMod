@@ -30,6 +30,8 @@ public sealed class flametailTenacity : ModCardTemplate
         new IntVar("Amount", 2)
     ];
 
+    public override bool GainsBlock => true;
+
     public flametailTenacity() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)
     {
     }

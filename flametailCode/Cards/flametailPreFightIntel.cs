@@ -8,6 +8,7 @@ using flametail.Characters;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.HoverTips;
 
 namespace flametail.Cards;
 
@@ -32,6 +33,11 @@ public sealed class flametailPreFightIntel : ModCardTemplate
 
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
         new[] { CardKeyword.Innate, CardKeyword.Exhaust };
+
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips => new[] {
+        HoverTipFactory.FromPower<VulnerablePower>(),
+        HoverTipFactory.FromPower<WeakPower>()
+    };
 
     public flametailPreFightIntel() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)
     {

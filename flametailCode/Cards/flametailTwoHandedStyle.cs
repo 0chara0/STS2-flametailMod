@@ -9,6 +9,7 @@ using flametail.Characters;
 using flametail.Powers;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
+using flametail.Keywords;
 
 namespace flametail.Cards;
 
@@ -27,12 +28,14 @@ public sealed class flametailTwoHandedStyle : ModCardTemplate
 
     // 先古稀有度 + 先天（战斗开始时在手牌中）。
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
-        new[] { CardKeyword.Innate };
+        new[] { CardKeyword.Innate, FlametailKeywords.Footwork };
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new IntVar("BlockPerFootwork", 5)
     ];
+
+    public override bool GainsBlock => true;
 
     public flametailTwoHandedStyle() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)
     {

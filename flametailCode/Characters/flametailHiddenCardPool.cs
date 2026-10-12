@@ -12,7 +12,7 @@ namespace flametail.Characters;
 public sealed class flametailHiddenCardPool : TypeListCardPoolModel
 {
     private static readonly Material? PoolFrameTintMaterial =
-        MaterialUtils.CreateRgbShaderMaterial(0.42f, 0.65f, 0.72f);
+        MaterialUtils.CreateUnmodulatedHsvShaderMaterial();
 
     public override string Title => "flametail_hidden";
     public override string EnergyColorName => "flametail";

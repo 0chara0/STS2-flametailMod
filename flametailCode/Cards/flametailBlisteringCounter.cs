@@ -11,6 +11,7 @@ using flametail.Powers;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
 using System.Collections.Generic;
+using MegaCrit.Sts2.Core.HoverTips;
 
 namespace flametail.Cards;
 
@@ -37,6 +38,10 @@ public sealed class flametailBlisteringCounter : ModCardTemplate, ICounterCard
     ];
 
     public bool HasCounterEffect => true;
+
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips => new[] {
+        HoverTipFactory.FromPower<VulnerablePower>()
+    };
 
     public flametailBlisteringCounter() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)
     {

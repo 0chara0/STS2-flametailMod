@@ -11,6 +11,7 @@ using flametail.Characters;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.HoverTips;
 
 namespace flametail.Cards;
 
@@ -35,6 +36,11 @@ public sealed class flametailSingleFile : ModCardTemplate
         new IntVar("VulnerableAmount", 3),
         new IntVar("WeakAmount", 3)
     ];
+
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips => new[] {
+        HoverTipFactory.FromPower<VulnerablePower>(),
+        HoverTipFactory.FromPower<WeakPower>()
+    };
 
     public flametailSingleFile() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)
     {

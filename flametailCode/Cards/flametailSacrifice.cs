@@ -12,6 +12,7 @@ using MegaCrit.Sts2.Core.HoverTips;
 using flametail.Characters;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
+using flametail.Keywords;
 
 namespace flametail.Cards;
 
@@ -23,8 +24,10 @@ namespace flametail.Cards;
 public sealed class flametailSacrifice : ModCardTemplate
 {
     protected override IEnumerable<IHoverTip> AdditionalHoverTips => new[] {
-        HoverTipFactory.FromCard<Enthralled>()
+        HoverTipFactory.FromCard<Enthralled>(),
+        HoverTipFactory.FromKeyword(CardKeyword.Exhaust)
     };
+
     private const int BaseEnergyCost = 0;
     private const CardType CardKind = CardType.Skill;
     private const CardRarity CardRarityValue = CardRarity.Uncommon;

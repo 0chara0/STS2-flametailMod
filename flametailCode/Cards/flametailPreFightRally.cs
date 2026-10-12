@@ -9,6 +9,7 @@ using MegaCrit.Sts2.Core.Models.Powers;
 using flametail.Characters;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
+using MegaCrit.Sts2.Core.HoverTips;
 
 namespace flametail.Cards;
 
@@ -39,6 +40,10 @@ public sealed class flametailPreFightRally : ModCardTemplate
     // 仅多人模式可用的卡：为全体玩家提供活力，在多人合作中才有完整价值。
     public override CardMultiplayerConstraint MultiplayerConstraint =>
         CardMultiplayerConstraint.MultiplayerOnly;
+
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips => new[] {
+        HoverTipFactory.FromPower<VigorPower>()
+    };
 
     public flametailPreFightRally() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)
     {

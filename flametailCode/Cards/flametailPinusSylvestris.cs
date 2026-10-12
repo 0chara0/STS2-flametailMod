@@ -12,6 +12,7 @@ using flametail.Characters;
 using flametail.Powers;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
+using flametail.Keywords;
 
 namespace flametail.Cards;
 
@@ -29,7 +30,7 @@ public sealed class flametailPinusSylvestris : ModCardTemplate, IGainDodgeCard
     public override CardAssetProfile AssetProfile => _assetProfile;
 
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
-        new[] { CardKeyword.Exhaust };
+        new[] { CardKeyword.Exhaust, FlametailKeywords.Dodge };
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [

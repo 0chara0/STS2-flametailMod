@@ -10,6 +10,8 @@ using flametail.Characters;
 using flametail.Powers;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
+using flametail.Keywords;
+using System.Collections.Generic;
 
 namespace flametail.Cards;
 
@@ -39,6 +41,11 @@ public sealed class flametailWindbringer : ModCardTemplate
     [
         new BlockVar(2, ValueProp.Move)
     ];
+
+    public override IEnumerable<CardKeyword> CanonicalKeywords =>
+        new[] { FlametailKeywords.Footwork };
+
+    public override bool GainsBlock => true;
 
     public flametailWindbringer() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)
     {

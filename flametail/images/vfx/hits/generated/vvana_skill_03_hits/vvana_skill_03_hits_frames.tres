@@ -1,0 +1,300 @@
+[gd_resource type="SpriteFrames" load_steps=43 format=3]
+
+[ext_resource type="Texture2D" path="res://flametail/images/vfx/hits/generated/vvana_skill_03_hits/atlas.png" id="1_atlas"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_hits_0"]
+atlas = ExtResource("1_atlas")
+region = Rect2(0, 0, 767, 393)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_hits_1"]
+atlas = ExtResource("1_atlas")
+region = Rect2(767, 0, 767, 393)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_hits_2"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1534, 0, 767, 393)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_hits_3"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2301, 0, 767, 393)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_hits_4"]
+atlas = ExtResource("1_atlas")
+region = Rect2(3068, 0, 767, 393)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_hits_5"]
+atlas = ExtResource("1_atlas")
+region = Rect2(3835, 0, 767, 393)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_hits_6"]
+atlas = ExtResource("1_atlas")
+region = Rect2(4602, 0, 767, 393)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_hits_7"]
+atlas = ExtResource("1_atlas")
+region = Rect2(5369, 0, 767, 393)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_hits_8"]
+atlas = ExtResource("1_atlas")
+region = Rect2(0, 393, 767, 393)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_hits_9"]
+atlas = ExtResource("1_atlas")
+region = Rect2(767, 393, 767, 393)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_hits_10"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1534, 393, 767, 393)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_hits_11"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2301, 393, 767, 393)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_hits_12"]
+atlas = ExtResource("1_atlas")
+region = Rect2(3068, 393, 767, 393)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_hits_13"]
+atlas = ExtResource("1_atlas")
+region = Rect2(3835, 393, 767, 393)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_hits_14"]
+atlas = ExtResource("1_atlas")
+region = Rect2(4602, 393, 767, 393)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_hits_15"]
+atlas = ExtResource("1_atlas")
+region = Rect2(5369, 393, 767, 393)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_hits_16"]
+atlas = ExtResource("1_atlas")
+region = Rect2(0, 786, 767, 393)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_hits_17"]
+atlas = ExtResource("1_atlas")
+region = Rect2(767, 786, 767, 393)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_hits_18"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1534, 786, 767, 393)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_hits_19"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2301, 786, 767, 393)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_hits_20"]
+atlas = ExtResource("1_atlas")
+region = Rect2(3068, 786, 767, 393)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_hits_21"]
+atlas = ExtResource("1_atlas")
+region = Rect2(3835, 786, 767, 393)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_hits_22"]
+atlas = ExtResource("1_atlas")
+region = Rect2(4602, 786, 767, 393)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_hits_23"]
+atlas = ExtResource("1_atlas")
+region = Rect2(5369, 786, 767, 393)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_hits_24"]
+atlas = ExtResource("1_atlas")
+region = Rect2(0, 1179, 767, 393)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_hits_25"]
+atlas = ExtResource("1_atlas")
+region = Rect2(767, 1179, 767, 393)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_hits_26"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1534, 1179, 767, 393)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_hits_27"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2301, 1179, 767, 393)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_hits_28"]
+atlas = ExtResource("1_atlas")
+region = Rect2(3068, 1179, 767, 393)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_hits_29"]
+atlas = ExtResource("1_atlas")
+region = Rect2(3835, 1179, 767, 393)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_hits_30"]
+atlas = ExtResource("1_atlas")
+region = Rect2(4602, 1179, 767, 393)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_hits_31"]
+atlas = ExtResource("1_atlas")
+region = Rect2(5369, 1179, 767, 393)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_hits_32"]
+atlas = ExtResource("1_atlas")
+region = Rect2(0, 1572, 767, 393)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_hits_33"]
+atlas = ExtResource("1_atlas")
+region = Rect2(767, 1572, 767, 393)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_hits_34"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1534, 1572, 767, 393)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_hits_35"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2301, 1572, 767, 393)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_hits_36"]
+atlas = ExtResource("1_atlas")
+region = Rect2(3068, 1572, 767, 393)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_hits_37"]
+atlas = ExtResource("1_atlas")
+region = Rect2(3835, 1572, 767, 393)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_hits_38"]
+atlas = ExtResource("1_atlas")
+region = Rect2(4602, 1572, 767, 393)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_hits_39"]
+atlas = ExtResource("1_atlas")
+region = Rect2(5369, 1572, 767, 393)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_hits_40"]
+atlas = ExtResource("1_atlas")
+region = Rect2(0, 1965, 767, 393)
+
+[resource]
+animations = [
+{
+"frames": [{
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_vvana_skill_03_hits_0")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_vvana_skill_03_hits_1")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_vvana_skill_03_hits_2")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_vvana_skill_03_hits_3")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_vvana_skill_03_hits_4")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_vvana_skill_03_hits_5")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_vvana_skill_03_hits_6")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_vvana_skill_03_hits_7")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_vvana_skill_03_hits_8")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_vvana_skill_03_hits_9")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_vvana_skill_03_hits_10")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_vvana_skill_03_hits_11")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_vvana_skill_03_hits_12")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_vvana_skill_03_hits_13")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_vvana_skill_03_hits_14")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_vvana_skill_03_hits_15")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_vvana_skill_03_hits_16")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_vvana_skill_03_hits_17")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_vvana_skill_03_hits_18")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_vvana_skill_03_hits_19")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_vvana_skill_03_hits_20")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_vvana_skill_03_hits_21")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_vvana_skill_03_hits_22")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_vvana_skill_03_hits_23")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_vvana_skill_03_hits_24")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_vvana_skill_03_hits_25")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_vvana_skill_03_hits_26")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_vvana_skill_03_hits_27")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_vvana_skill_03_hits_28")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_vvana_skill_03_hits_29")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_vvana_skill_03_hits_30")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_vvana_skill_03_hits_31")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_vvana_skill_03_hits_32")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_vvana_skill_03_hits_33")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_vvana_skill_03_hits_34")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_vvana_skill_03_hits_35")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_vvana_skill_03_hits_36")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_vvana_skill_03_hits_37")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_vvana_skill_03_hits_38")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_vvana_skill_03_hits_39")
+}, {
+"duration": 19.8,
+"texture": SubResource("AtlasTexture_vvana_skill_03_hits_40")
+}],
+"loop": false,
+"name": &"default",
+"speed": 30.0
+}
+]

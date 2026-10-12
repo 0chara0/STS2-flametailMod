@@ -13,6 +13,7 @@ using flametail.Nodes.Vfx;
 using flametail.Keywords;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
+using MegaCrit.Sts2.Core.HoverTips;
 
 namespace flametail.Cards;
 
@@ -36,6 +37,10 @@ public sealed class flametailNocturnalBrightPower : ModCardTemplate
     [
         new DamageVar(24, ValueProp.Move | FlametailValueProps.GetIgnoreAttackerDamageModifiers())
     ];
+
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips => new[] {
+        HoverTipFactory.FromPower<BufferPower>()
+    };
 
     public flametailNocturnalBrightPower() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)
     {

@@ -10,6 +10,12 @@ AttackAnimationName = "Attack01"
 LeaveAnimationName = "Idle"
 LeaveLoop = true
 ImpactRatio = 0.4
+AttackEffectDelay = 0.45
+AttackBackEffectId = "ashlok_skill_02_start"
+AttackBackEffectBone = "F_Muzzle"
+AttackBackEffectOffset = Vector2(38.5, -30.5)
+AttackBackEffectScale = 1.4594
+AttackBackEffectOpacity = 1
 
 [node name="SpineSprite" type="SpineSprite" parent="."]
 skeleton_data_res = ExtResource("2_skel")

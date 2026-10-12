@@ -1,0 +1,174 @@
+[gd_resource type="SpriteFrames" load_steps=25 format=3]
+
+[ext_resource type="Texture2D" path="res://flametail/images/vfx/hits/generated/ashlok_attack_01_hit_02/atlas.png" id="1_atlas"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ashlok_attack_01_hit_02_0"]
+atlas = ExtResource("1_atlas")
+region = Rect2(0, 0, 463, 423)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ashlok_attack_01_hit_02_1"]
+atlas = ExtResource("1_atlas")
+region = Rect2(463, 0, 463, 423)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ashlok_attack_01_hit_02_2"]
+atlas = ExtResource("1_atlas")
+region = Rect2(926, 0, 463, 423)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ashlok_attack_01_hit_02_3"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1389, 0, 463, 423)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ashlok_attack_01_hit_02_4"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1852, 0, 463, 423)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ashlok_attack_01_hit_02_5"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2315, 0, 463, 423)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ashlok_attack_01_hit_02_6"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2778, 0, 463, 423)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ashlok_attack_01_hit_02_7"]
+atlas = ExtResource("1_atlas")
+region = Rect2(3241, 0, 463, 423)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ashlok_attack_01_hit_02_8"]
+atlas = ExtResource("1_atlas")
+region = Rect2(0, 423, 463, 423)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ashlok_attack_01_hit_02_9"]
+atlas = ExtResource("1_atlas")
+region = Rect2(463, 423, 463, 423)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ashlok_attack_01_hit_02_10"]
+atlas = ExtResource("1_atlas")
+region = Rect2(926, 423, 463, 423)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ashlok_attack_01_hit_02_11"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1389, 423, 463, 423)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ashlok_attack_01_hit_02_12"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1852, 423, 463, 423)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ashlok_attack_01_hit_02_13"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2315, 423, 463, 423)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ashlok_attack_01_hit_02_14"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2778, 423, 463, 423)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ashlok_attack_01_hit_02_15"]
+atlas = ExtResource("1_atlas")
+region = Rect2(3241, 423, 463, 423)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ashlok_attack_01_hit_02_16"]
+atlas = ExtResource("1_atlas")
+region = Rect2(0, 846, 463, 423)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ashlok_attack_01_hit_02_17"]
+atlas = ExtResource("1_atlas")
+region = Rect2(463, 846, 463, 423)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ashlok_attack_01_hit_02_18"]
+atlas = ExtResource("1_atlas")
+region = Rect2(926, 846, 463, 423)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ashlok_attack_01_hit_02_19"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1389, 846, 463, 423)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ashlok_attack_01_hit_02_20"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1852, 846, 463, 423)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ashlok_attack_01_hit_02_21"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2315, 846, 463, 423)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ashlok_attack_01_hit_02_22"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2778, 846, 463, 423)
+
+[resource]
+animations = [
+{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ashlok_attack_01_hit_02_0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ashlok_attack_01_hit_02_1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ashlok_attack_01_hit_02_2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ashlok_attack_01_hit_02_3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ashlok_attack_01_hit_02_4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ashlok_attack_01_hit_02_5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ashlok_attack_01_hit_02_6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ashlok_attack_01_hit_02_7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ashlok_attack_01_hit_02_8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ashlok_attack_01_hit_02_9")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ashlok_attack_01_hit_02_10")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ashlok_attack_01_hit_02_11")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ashlok_attack_01_hit_02_12")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ashlok_attack_01_hit_02_13")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ashlok_attack_01_hit_02_14")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ashlok_attack_01_hit_02_15")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ashlok_attack_01_hit_02_16")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ashlok_attack_01_hit_02_17")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ashlok_attack_01_hit_02_18")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ashlok_attack_01_hit_02_19")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ashlok_attack_01_hit_02_20")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ashlok_attack_01_hit_02_21")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ashlok_attack_01_hit_02_22")
+}],
+"loop": false,
+"name": &"default",
+"speed": 30.0
+}
+]

@@ -1,0 +1,195 @@
+[gd_resource type="SpriteFrames" load_steps=28 format=3]
+
+[ext_resource type="Texture2D" path="res://flametail/images/vfx/hits/generated/nearl2_skill_03_hit_01/atlas.png" id="1_atlas"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nearl2_skill_03_hit_01_0"]
+atlas = ExtResource("1_atlas")
+region = Rect2(0, 0, 630, 386)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nearl2_skill_03_hit_01_1"]
+atlas = ExtResource("1_atlas")
+region = Rect2(630, 0, 630, 386)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nearl2_skill_03_hit_01_2"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1260, 0, 630, 386)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nearl2_skill_03_hit_01_3"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1890, 0, 630, 386)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nearl2_skill_03_hit_01_4"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2520, 0, 630, 386)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nearl2_skill_03_hit_01_5"]
+atlas = ExtResource("1_atlas")
+region = Rect2(3150, 0, 630, 386)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nearl2_skill_03_hit_01_6"]
+atlas = ExtResource("1_atlas")
+region = Rect2(3780, 0, 630, 386)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nearl2_skill_03_hit_01_7"]
+atlas = ExtResource("1_atlas")
+region = Rect2(4410, 0, 630, 386)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nearl2_skill_03_hit_01_8"]
+atlas = ExtResource("1_atlas")
+region = Rect2(0, 386, 630, 386)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nearl2_skill_03_hit_01_9"]
+atlas = ExtResource("1_atlas")
+region = Rect2(630, 386, 630, 386)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nearl2_skill_03_hit_01_10"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1260, 386, 630, 386)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nearl2_skill_03_hit_01_11"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1890, 386, 630, 386)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nearl2_skill_03_hit_01_12"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2520, 386, 630, 386)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nearl2_skill_03_hit_01_13"]
+atlas = ExtResource("1_atlas")
+region = Rect2(3150, 386, 630, 386)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nearl2_skill_03_hit_01_14"]
+atlas = ExtResource("1_atlas")
+region = Rect2(3780, 386, 630, 386)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nearl2_skill_03_hit_01_15"]
+atlas = ExtResource("1_atlas")
+region = Rect2(4410, 386, 630, 386)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nearl2_skill_03_hit_01_16"]
+atlas = ExtResource("1_atlas")
+region = Rect2(0, 772, 630, 386)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nearl2_skill_03_hit_01_17"]
+atlas = ExtResource("1_atlas")
+region = Rect2(630, 772, 630, 386)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nearl2_skill_03_hit_01_18"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1260, 772, 630, 386)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nearl2_skill_03_hit_01_19"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1890, 772, 630, 386)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nearl2_skill_03_hit_01_20"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2520, 772, 630, 386)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nearl2_skill_03_hit_01_21"]
+atlas = ExtResource("1_atlas")
+region = Rect2(3150, 772, 630, 386)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nearl2_skill_03_hit_01_22"]
+atlas = ExtResource("1_atlas")
+region = Rect2(3780, 772, 630, 386)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nearl2_skill_03_hit_01_23"]
+atlas = ExtResource("1_atlas")
+region = Rect2(4410, 772, 630, 386)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nearl2_skill_03_hit_01_24"]
+atlas = ExtResource("1_atlas")
+region = Rect2(0, 1158, 630, 386)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nearl2_skill_03_hit_01_25"]
+atlas = ExtResource("1_atlas")
+region = Rect2(630, 1158, 630, 386)
+
+[resource]
+animations = [
+{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nearl2_skill_03_hit_01_0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nearl2_skill_03_hit_01_1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nearl2_skill_03_hit_01_2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nearl2_skill_03_hit_01_3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nearl2_skill_03_hit_01_4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nearl2_skill_03_hit_01_5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nearl2_skill_03_hit_01_6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nearl2_skill_03_hit_01_7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nearl2_skill_03_hit_01_8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nearl2_skill_03_hit_01_9")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nearl2_skill_03_hit_01_10")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nearl2_skill_03_hit_01_11")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nearl2_skill_03_hit_01_12")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nearl2_skill_03_hit_01_13")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nearl2_skill_03_hit_01_14")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nearl2_skill_03_hit_01_15")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nearl2_skill_03_hit_01_16")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nearl2_skill_03_hit_01_17")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nearl2_skill_03_hit_01_18")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nearl2_skill_03_hit_01_19")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nearl2_skill_03_hit_01_20")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nearl2_skill_03_hit_01_21")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nearl2_skill_03_hit_01_22")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nearl2_skill_03_hit_01_23")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nearl2_skill_03_hit_01_24")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nearl2_skill_03_hit_01_25")
+}],
+"loop": false,
+"name": &"default",
+"speed": 30.0
+}
+]

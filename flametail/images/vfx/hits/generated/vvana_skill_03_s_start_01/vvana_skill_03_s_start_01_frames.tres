@@ -1,0 +1,95 @@
+[gd_resource type="SpriteFrames" load_steps=14 format=3 uid="uid://bswf661056t6q"]
+
+[ext_resource type="Texture2D" uid="uid://b0qg8k4t8sjgn" path="res://flametail/images/vfx/hits/generated/vvana_skill_03_s_start_01/atlas.png" id="1_atlas"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_s_start_01_0"]
+atlas = ExtResource("1_atlas")
+region = Rect2(0, 0, 502, 534)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_s_start_01_1"]
+atlas = ExtResource("1_atlas")
+region = Rect2(502, 0, 502, 534)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_s_start_01_2"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1004, 0, 502, 534)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_s_start_01_3"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1506, 0, 502, 534)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_s_start_01_4"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2008, 0, 502, 534)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_s_start_01_5"]
+atlas = ExtResource("1_atlas")
+region = Rect2(2510, 0, 502, 534)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_s_start_01_6"]
+atlas = ExtResource("1_atlas")
+region = Rect2(3012, 0, 502, 534)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_s_start_01_7"]
+atlas = ExtResource("1_atlas")
+region = Rect2(3514, 0, 502, 534)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_s_start_01_8"]
+atlas = ExtResource("1_atlas")
+region = Rect2(0, 534, 502, 534)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_s_start_01_9"]
+atlas = ExtResource("1_atlas")
+region = Rect2(502, 534, 502, 534)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_s_start_01_10"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1004, 534, 502, 534)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvana_skill_03_s_start_01_11"]
+atlas = ExtResource("1_atlas")
+region = Rect2(1506, 534, 502, 534)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_vvana_skill_03_s_start_01_0")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_vvana_skill_03_s_start_01_1")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_vvana_skill_03_s_start_01_2")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_vvana_skill_03_s_start_01_3")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_vvana_skill_03_s_start_01_4")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_vvana_skill_03_s_start_01_5")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_vvana_skill_03_s_start_01_6")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_vvana_skill_03_s_start_01_7")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_vvana_skill_03_s_start_01_8")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_vvana_skill_03_s_start_01_9")
+}, {
+"duration": 0.99,
+"texture": SubResource("AtlasTexture_vvana_skill_03_s_start_01_10")
+}, {
+"duration": 33.66,
+"texture": SubResource("AtlasTexture_vvana_skill_03_s_start_01_11")
+}],
+"loop": false,
+"name": &"default",
+"speed": 30.0
+}]
