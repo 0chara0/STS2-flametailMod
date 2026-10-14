@@ -1,5 +1,6 @@
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Hooks;
@@ -21,7 +22,8 @@ public static class DesignersRulerFinalAdditivePatch
     [HarmonyPatch(typeof(Hook), nameof(Hook.ModifyBlock))]
     private static class ModifyBlockFinalAdditivePatch
     {
-        private static void Postfix(ICombatState combatState, Creature target, ref decimal __result)
+        // cardPlay == null 表示本次格挡不是由打出卡牌直接引起（能力、药水、遗物等）。
+        private static void Postfix(ICombatState combatState, Creature target, CardPlay? cardPlay, ref decimal __result)
         {
             foreach (Player player in combatState.Players)
             {
@@ -29,7 +31,7 @@ public static class DesignersRulerFinalAdditivePatch
                 {
                     if (relic is flametailDesignersRuler ruler)
                     {
-                        __result += ruler.FinalBlockAdditive(target, __result);
+                        __result += ruler.FinalBlockAdditive(target, __result, cardPlay);
                     }
                 }
             }

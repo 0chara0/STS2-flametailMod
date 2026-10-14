@@ -4,6 +4,7 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Hooks;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
@@ -39,10 +40,32 @@ public sealed class flametailStrideSlash : ModCardTemplate
         // 注意：不能用名为 "Damage" 的 ComputedDynamicVar——引擎 DynamicVarSet.Damage
         // 会把该名字的变量强转为 DamageVar（卡图鉴构建升级版时抛 InvalidCastException，
         // InitGrid 任务崩掉 → 卡牌图鉴白屏）。
+        // 修改清单 [5]：预览工厂里过一遍 Hook.ModifyDamage，让卡面数字也吃力量/易伤等修正
+        // （实际伤害由 DamageCmd.Attack 的伤害管线统一应用，两处口径一致）。
         ModCardVars.Computed(
             "StrideDamage", BaseDamage,
             (card, target) => ResolveDamage(card),
-            null),
+            (card, previewMode, target, runGlobalHooks) =>
+            {
+                decimal value = ResolveDamage(card);
+                if (!runGlobalHooks || card?.Owner == null)
+                {
+                    return value;
+                }
+
+                return Hook.ModifyDamage(
+                    card.Owner.RunState,
+                    card.CombatState,
+                    target,
+                    card.Owner.Creature,
+                    value,
+                    ValueProp.Move,
+                    card,
+                    null,
+                    ModifyDamageHookType.All,
+                    previewMode,
+                    out _);
+            }),
         new IntVar("BlockGainBonus", 3)
     ];
 

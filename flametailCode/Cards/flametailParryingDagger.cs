@@ -28,7 +28,8 @@ public sealed class flametailParryingDagger : ModCardTemplate
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new IntVar("Amount", 4)
+        // 修改清单 [11] 增强：4(6)→6(8)。
+        new IntVar("Amount", 6)
     ];
 
     public override IEnumerable<CardKeyword> CanonicalKeywords =>

@@ -70,6 +70,10 @@ public sealed class flametailCandleFlash : ModCardTemplate, ICounterCard
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
         new[] { CardKeyword.Innate, FlametailKeywords.Ephemeral, FlametailKeywords.Counter };
 
+    // 修改清单 [16]：烛火一闪只由《归来》生成，禁止一切随机生成（攻击药水、十字弓等
+    // 随机攻击效果统一走 CardFactory.FilterForCombat → 该属性）。
+    public override bool CanBeGeneratedInCombat => false;
+
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new DamageVar(60, ValueProp.Move | FlametailValueProps.GetIgnoreAttackerDamageModifiers()),

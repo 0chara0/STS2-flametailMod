@@ -35,8 +35,9 @@ public sealed class flametailCrossguardArts : ModCardTemplate, ICounterCard
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new BlockVar(7, ValueProp.Move),
-        new DamageVar(7, ValueProp.Move)
+        // 修改清单 [6] 增强：7(10)→8(11)。
+        new BlockVar(8, ValueProp.Move),
+        new DamageVar(8, ValueProp.Move)
     ];
 
     public bool HasCounterEffect => true;

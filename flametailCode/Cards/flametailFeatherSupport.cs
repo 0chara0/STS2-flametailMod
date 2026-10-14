@@ -36,7 +36,8 @@ public sealed class flametailFeatherSupport : ModCardTemplate, ICounterCard
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(25, ValueProp.Move | FlametailValueProps.GetIgnoreAttackerDamageModifiers())
+        // 修改清单 [12] 削弱：25(32)→18(25)。
+        new DamageVar(18, ValueProp.Move | FlametailValueProps.GetIgnoreAttackerDamageModifiers())
     ];
 
     public flametailFeatherSupport() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)

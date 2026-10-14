@@ -43,6 +43,15 @@ public sealed class flametailImprovise : ModCardTemplate
             Owner.Creature.CombatState!.CreateCard<ThinkingAhead>(Owner),
         };
 
+        // 修改清单 [8]：升级后提供的三张牌均为升级版（本卡自身保留「消耗」）。
+        if (IsUpgraded)
+        {
+            foreach (CardModel choice in choices)
+            {
+                CardCmd.Upgrade(choice);
+            }
+        }
+
         foreach (CardModel choice in choices.Where(c => !c.Keywords.Contains(CardKeyword.Exhaust)))
         {
             choice.AddKeyword(CardKeyword.Exhaust);
@@ -61,10 +70,5 @@ public sealed class flametailImprovise : ModCardTemplate
 
         chosen.SetToFreeThisTurn();
         await CardPileCmd.AddGeneratedCardToCombat(chosen, PileType.Hand, Owner);
-    }
-
-    protected override void OnUpgrade()
-    {
-        RemoveKeyword(CardKeyword.Exhaust);
     }
 }

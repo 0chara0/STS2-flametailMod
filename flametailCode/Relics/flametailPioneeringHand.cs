@@ -15,7 +15,8 @@ using STS2RitsuLib.Scaffolding.Content;
 namespace flametail.Relics;
 
 /// <summary>
-/// 开拓之手：每场战斗开始时（第1个玩家回合），获得 3 点能量，并将战斗抽牌堆中随机一张能力牌放入你的手牌（优先非固有）。
+/// 开拓之手（修改清单 [4] 削弱）：每场战斗开始时（第1个玩家回合），获得 1 点能量，
+/// 并将你卡组中随机一张能力牌放入你的手牌（从战斗抽牌堆选取——战斗开始时抽牌堆即整副卡组的克隆）。
 /// </summary>
 [RegisterRelic(typeof(flametailRelicPool))]
 public sealed class flametailPioneeringHand : ModRelicTemplate
@@ -24,7 +25,7 @@ public sealed class flametailPioneeringHand : ModRelicTemplate
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new EnergyVar(3)
+        new EnergyVar(1)
     ];
 
     private static readonly RelicAssetProfile _assetProfile = new(
@@ -49,7 +50,8 @@ public sealed class flametailPioneeringHand : ModRelicTemplate
 
         await PlayerCmd.GainEnergy(DynamicVars["Energy"].IntValue, Owner);
 
-        // 从战斗内抽牌堆选取能力牌（这些牌属于战斗，移入手牌合法），优先非固有。
+        // 从战斗内抽牌堆选取能力牌（这些牌属于战斗，移入手牌合法），优先非固有
+        // （描述中不写，机制保留——固有能力牌通常开局就在手牌里，本就该跳过）。
         var drawPile = PileType.Draw.GetPile(Owner);
         List<CardModel> powerCards = drawPile.Cards.Where(c => c.Type == CardType.Power).ToList();
         if (powerCards.Count == 0)

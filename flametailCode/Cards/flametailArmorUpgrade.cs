@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -34,31 +35,31 @@ public sealed class flametailArmorUpgrade : ModCardTemplate
     private const int BaseBlock = 3;
     private const int BasePlatedArmor = 2;
 
-    private int _upgradeCount;
-
     /// <summary>
-    /// 已升级次数（灼热攻击式递增升级的核心，[SavedProperty] 持久化）。
-    /// 这是本卡进入联机序列化/校验和的唯一状态（int 可序列化）；实际数值始终由下面的
-    /// 属性从它实时计算，两端必然一致。setter 中同步显示用 DynamicVars：
-    /// DynamicVars 不属于 [SavedProperty] 序列化/校验和范围，改动不会造成联机分歧，
-    /// 但能覆盖“战斗内被外部效果升级”时对端只走反序列化（不跑 OnUpgrade）的显示刷新。
+    /// 已升级次数（修改清单 [17] BUG2 修复）。
+    /// 旧实现把 UpgradeCount 做成 [SavedProperty] 并在 OnUpgrade 里自增——但引擎反序列化
+    /// （读档与联机同步共用 CardModel.FromSerializable）会先恢复 SavedProperties，再按
+    /// CurrentUpgradeLevel 重放 UpgradeInternal→OnUpgrade，导致计数每次反序列化翻倍
+    /// （实测升 1 次后本地 3、远端 4）。改为直接派生自引擎自带的 CurrentUpgradeLevel
+    /// （它本身就随 SerializableCard 序列化/联机同步），不再有任何自持状态。
     /// </summary>
-    [SavedProperty]
+    /// <remarks>
+    /// 兼容垫片：eb5e0b6 时代的存档 Props 里残留 "UpgradeCount" 条目，引擎
+    /// SavedProperties.FillInternal 按属性名反射 SetValue——只读属性会抛
+    /// ArgumentException("Property set method not found")，且 FromSerializable 无
+    /// try/catch，读档直接崩溃。私有 setter 吞掉旧值即可：旧值本来就是被翻倍的脏数据，
+    /// 显示值始终以 CurrentUpgradeLevel 为准。
+    /// </remarks>
     public int UpgradeCount
     {
-        get => _upgradeCount;
-        set
-        {
-            AssertMutable();
-            _upgradeCount = value;
-            SyncDynamicVars();
-        }
+        get => CurrentUpgradeLevel;
+        private set { /* 旧存档残留值，忽略 */ }
     }
 
-    /// <summary>格挡 = 4 + 累加增量（第 n 次升级 +n+1，即 +2,+3,+4…）。</summary>
+    /// <summary>格挡 = 3 + 累加增量（第 n 次升级 +n+1，即 +2,+3,+4…）。</summary>
     public int BlockAmount => BaseBlock + UpgradeCount * (UpgradeCount + 3) / 2;
 
-    /// <summary>覆甲 = 4 + 已升级次数（每次 +1）。</summary>
+    /// <summary>覆甲 = 2 + 已升级次数（每次 +1）。</summary>
     public int PlatedArmorAmount => BasePlatedArmor + UpgradeCount;
 
     // 灼热攻击式：可被多次升级。
@@ -111,9 +112,9 @@ public sealed class flametailArmorUpgrade : ModCardTemplate
 
     protected override void OnUpgrade()
     {
-        // 灼热攻击式递增升级：每次升级 +1 次已升级次数，从而抬升格挡/覆甲数值。
-        // 显示变量的刷新由 UpgradeCount setter 统一处理。
-        UpgradeCount++;
+        // 灼热攻击式递增升级：升级次数由 CurrentUpgradeLevel 派生（见 UpgradeCount），
+        // 这里只负责刷新卡面显示变量（读档/联机同步的重放路径也会经过这里）。
+        SyncDynamicVars();
     }
 
     /// <summary>进入战斗时同步一次动态变量，保证读档恢复后卡面显示值与升级次数一致。</summary>
@@ -158,10 +159,11 @@ public sealed class flametailArmorUpgrade : ModCardTemplate
     /// 两端各自对镜像的卡牌执行一次相同的确定性升级，状态保持一致。
     /// </para>
     /// <para>
-    /// 防重入守卫：CardCmd.Upgrade 会把本卡 Id 记入当前地图点历史的 UpgradedCards
-    /// （该历史随存档/联机状态持久化）。若在休息点内存档后重新进入同一地图点
-    /// （房间恢复会重跑进入流程），历史中已存在本卡的记录，此时跳过自动升级，
-    /// 避免每次读档多升一级。正常首次进入时记录不存在，行为不变。
+    /// 防重入守卫（修改清单 [17] BUG1 修复）：CardCmd.Upgrade 会把本卡 Id 记入当前
+    /// 地图点历史的 UpgradedCards（随存档/联机状态持久化）。同一卡牌类的所有副本
+    /// 共享同一个 ModelId，旧实现的 Contains(Id) 会让第二张开始的副本全部被跳过。
+    /// 改为计数比较：历史中该 Id 的记录数 &lt; 卡组内本卡副本数 ⇒ 本副本尚未自动升级。
+    /// 读档重入同一休息点时记录数已 ≥ 副本数，所有副本都会正确跳过，不会多升。
     /// </para>
     /// </summary>
     public override async Task AfterRoomEntered(AbstractRoom room)
@@ -169,9 +171,14 @@ public sealed class flametailArmorUpgrade : ModCardTemplate
         if (room is RestSiteRoom)
         {
             List<ModelId>? upgradedCards = Owner.RunState?.CurrentMapPointHistoryEntry?.GetEntry(Owner.NetId).UpgradedCards;
-            if (upgradedCards == null || !upgradedCards.Contains(Id))
+            if (upgradedCards != null)
             {
-                CardCmd.Upgrade(this);
+                int copies = PileType.Deck.GetPile(Owner).Cards.Count(c => c is flametailArmorUpgrade);
+                int recorded = upgradedCards.Count(id => id == Id);
+                if (recorded < copies)
+                {
+                    CardCmd.Upgrade(this);
+                }
             }
         }
 

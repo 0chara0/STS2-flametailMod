@@ -11,10 +11,13 @@ using flametail.Keywords;
 
 namespace flametail.Cards;
 
+/// <summary>
+/// 火流星（修改清单 [15]）：耗能 3→2，升级不降费，升级后添加「保留」词条。消耗。
+/// </summary>
 [RegisterCard(typeof(flametailCardPool))]
 public sealed class flametailFireMeteor : ModCardTemplate
 {
-    private const int BaseEnergyCost = 3;
+    private const int BaseEnergyCost = 2;
     private const CardType CardKind = CardType.Skill;
     private const CardRarity CardRarityValue = CardRarity.Rare;
     private const TargetType CardTarget = TargetType.Self;
@@ -25,7 +28,7 @@ public sealed class flametailFireMeteor : ModCardTemplate
     public override CardAssetProfile AssetProfile => _assetProfile;
 
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
-        new[] { FlametailKeywords.Dodge };
+        new[] { CardKeyword.Exhaust, FlametailKeywords.Dodge };
 
     public flametailFireMeteor() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)
     {
@@ -53,6 +56,8 @@ public sealed class flametailFireMeteor : ModCardTemplate
 
     protected override void OnUpgrade()
     {
-        EnergyCost.UpgradeBy(-1);
+        // 修改清单 [15]：升级不降费（耗能保留 2），升级后添加「保留」词条
+        // （升级前没有保留；词条会自动在升级版卡面追加"保留。"说明行）。
+        AddKeyword(CardKeyword.Retain);
     }
 }

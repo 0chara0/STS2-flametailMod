@@ -1,12 +1,15 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
 using flametail.Characters;
 using flametail.Powers;
+using STS2RitsuLib.Cards.DynamicVars;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
 using flametail.Keywords;
@@ -30,6 +33,16 @@ public sealed class flametailSwoop : ModCardTemplate, IGainDodgeCard
         PortraitPath: $"{Entry.ResPath}/images/cards/{"flametailSwoop"}.png");
     public override CardAssetProfile AssetProfile => _assetProfile;
 
+    protected override IEnumerable<DynamicVar> CanonicalVars =>
+    [
+        // 修改清单 [10] BUG：自伤不能致死，最少保留 1 点生命值；卡面数字随当前血量实时显示。
+        ModCardVars.Computed(
+            "SelfDamage", 6m,
+            card => card is { Owner.Creature: { } creature, CombatState: not null }
+                ? Math.Min(6m, Math.Max(0m, creature.CurrentHp - 1m))
+                : 6m)
+    ];
+
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
         new[] { CardKeyword.Exhaust, FlametailKeywords.Dodge };
 
@@ -44,7 +57,9 @@ public sealed class flametailSwoop : ModCardTemplate, IGainDodgeCard
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         // 自己受到 6 点可被格挡抵挡、不受力量影响的伤害（去掉 Unblockable，让格挡能挡掉这 6 点）。
-        await CreatureCmd.Damage(choiceContext, Owner.Creature, 6, ValueProp.Unpowered | ValueProp.Move, this, cardPlay);
+        // 修改清单 [10] BUG：该伤害不能致死——最多打到剩 1 点生命值。
+        decimal selfDamage = DynamicVars.ComputeDynamicValue("SelfDamage", 6m, null);
+        await CreatureCmd.Damage(choiceContext, Owner.Creature, selfDamage, ValueProp.Unpowered | ValueProp.Move, this, cardPlay);
 
         await PowerCmd.Apply<flametailDodgePower>(
             choiceContext,

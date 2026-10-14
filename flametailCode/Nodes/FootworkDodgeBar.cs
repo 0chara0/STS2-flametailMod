@@ -1,6 +1,7 @@
 using Godot;
 using MegaCrit.Sts2.Core.Assets;
 using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.Helpers;
@@ -10,6 +11,7 @@ using MegaCrit.Sts2.Core.Nodes.GodotExtensions;
 using MegaCrit.Sts2.Core.Nodes.HoverTips;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.TestSupport;
+using flametail.Characters;
 using flametail.Powers;
 
 namespace flametail.Nodes;
@@ -54,10 +56,14 @@ public partial class FootworkDodgeBar : Control
     private flametailDodgePower? _dodge;
     private Texture2D? _iconTex;
     private NCreature? _ownerNode;
+    private readonly bool _isFlametail;
 
     public FootworkDodgeBar(Creature owner)
     {
         _owner = owner;
+        // 修改清单 [1] 多人兼容：焰尾常驻显示步法栏；其他角色只在持有步法/闪避时显示。
+        _isFlametail = owner.Player != null
+            && owner.Player.Character.Id == ModelDb.Character<flametailCharacter>().Id;
     }
 
     public override void _Ready()
@@ -84,7 +90,7 @@ public partial class FootworkDodgeBar : Control
             TryTrackPower(power);
         }
 
-        QueueRedraw();
+        Refresh();
     }
 
     public override void _ExitTree()
@@ -188,6 +194,8 @@ public partial class FootworkDodgeBar : Control
 
     private void Refresh()
     {
+        // 焰尾常驻；其他角色两个 power 都不在场时整条隐藏（热区随 Visible=false 一并失效）。
+        Visible = _isFlametail || _footwork != null || _dodge != null;
         QueueRedraw();
     }
 

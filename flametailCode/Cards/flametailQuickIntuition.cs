@@ -45,11 +45,14 @@ public sealed class flametailQuickIntuition : ModCardTemplate, IGainDodgeCard
             DynamicVars["Dodge"].IntValue,
             Owner.Creature,
             this);
+
+        // 修改清单 [9]：抽 1 张牌。
+        await CardPileCmd.Draw(choiceContext, 1, Owner);
     }
 
     protected override void OnUpgrade()
     {
-        // 升级移除「消耗」，耗能保持 1。
-        RemoveKeyword(CardKeyword.Exhaust);
+        // 修改清单 [9]：升级降费 1→0（保留「消耗」）。
+        EnergyCost.UpgradeBy(-1);
     }
 }

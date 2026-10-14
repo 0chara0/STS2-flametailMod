@@ -90,12 +90,12 @@ public sealed class flametailDrain : ModCardTemplate
             return;
         }
 
-        int playCount = 2;
+        // 修改清单 [13] 削弱：基础打出 1 次；每有 1 层闪避额外打出 1 次，随后扣光闪避。
+        int playCount = 1;
         var dodgePower = Owner.Creature.GetPower<flametailDodgePower>();
         if (dodgePower != null && dodgePower.Amount > 0)
         {
-            // 每有 1 层闪避额外打出 1 次，随后扣光闪避。
-            playCount = 2 + (int)dodgePower.Amount;
+            playCount = 1 + (int)dodgePower.Amount;
             await PowerCmd.ModifyAmount(choiceContext, dodgePower, -dodgePower.Amount, Owner.Creature, this);
         }
 

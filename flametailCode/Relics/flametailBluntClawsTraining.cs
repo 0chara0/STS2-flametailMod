@@ -39,7 +39,13 @@ public sealed class flametailBluntClawsTraining : ModRelicTemplate
             1);
 
         // 从卡组中选择一张可被 sown 附魔的牌（附魔选择界面自带预览）。
-        CardModel? card = (await CardSelectCmd.FromDeckForEnchantment(Owner, ModelDb.Enchantment<Sown>(), 1, prefs)).FirstOrDefault();
+        // 修改清单 [3]：已升级的牌不可选。
+        CardModel? card = (await CardSelectCmd.FromDeckForEnchantment(
+            Owner,
+            ModelDb.Enchantment<Sown>(),
+            1,
+            candidate => candidate is not { IsUpgraded: true },
+            prefs)).FirstOrDefault();
         if (card == null)
         {
             return;
