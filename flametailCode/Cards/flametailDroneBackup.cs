@@ -23,7 +23,8 @@ public sealed class flametailDroneBackup : ModCardTemplate
     };
     private const int BaseEnergyCost = 0;
     private const CardType CardKind = CardType.Skill;
-    private const CardRarity CardRarityValue = CardRarity.Rare;
+    // 稀有→罕见并削弱（修改文档）：抽牌 3→2、能量 2→1（升级仍 +1 能量，升级后 2E）。
+    private const CardRarity CardRarityValue = CardRarity.Uncommon;
     private const TargetType CardTarget = TargetType.Self;
     private const bool ShowInCardLibrary = true;
 
@@ -36,8 +37,8 @@ public sealed class flametailDroneBackup : ModCardTemplate
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new IntVar("DrawAmount", 3),
-        new EnergyVar(2)
+        new IntVar("DrawAmount", 2),
+        new EnergyVar(1)
     ];
 
     public flametailDroneBackup() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)

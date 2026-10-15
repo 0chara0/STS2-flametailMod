@@ -12,7 +12,6 @@ using flametail.Patches;
 using flametail.Powers;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
-using MegaCrit.Sts2.Core.HoverTips;
 
 namespace flametail.Cards;
 
@@ -35,7 +34,7 @@ public sealed class flametailRideTheMomentum : ModCardTemplate, ICounterCard, IG
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new IntVar("FootworkAmount", 2),
-        new IntVar("DrawAmount", 2)
+        new IntVar("DrawAmount", 1)
     ];
 
     public bool HasCounterEffect => true;
@@ -43,14 +42,11 @@ public sealed class flametailRideTheMomentum : ModCardTemplate, ICounterCard, IG
     protected override bool IsPlayable => this.GetCounterContext().IsCounterPlay;
 
     /// <summary>
-    /// 只要响应反制链就会被打出（效果按闪避分支：步法/抽牌/消耗只在闪避时发生；
-    /// “额外打出下一张反制牌”是无条件的——修改文档 [13][14]）。
+    /// 只要响应反制链就会被打出（效果按闪避分支：步法/抽牌只在闪避时发生；
+    /// “打出手牌中的下一张反制牌”是无条件的——修改文档 [13][14]）。
+    /// 不再消耗（修改文档：移除“消耗此牌”），升级后获得保留，可跨回合等待反制时机。
     /// </summary>
     public bool CanAutoPlayAsCounter(Creature? attacker) => true;
-
-    protected override IEnumerable<IHoverTip> AdditionalHoverTips => new[] {
-        HoverTipFactory.FromKeyword(CardKeyword.Exhaust)
-    };
 
     public flametailRideTheMomentum() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)
     {
@@ -68,7 +64,8 @@ public sealed class flametailRideTheMomentum : ModCardTemplate, ICounterCard, IG
 
     /// <summary>
     /// 反制时：无条件打出手牌中的下一张反制牌；若闪避了此次攻击，
-    /// 再获得步法、抽牌并消耗此牌（判读 CounterContext.WasDodged，不查全局 dodge 标记）。
+    /// 再获得步法并抽牌（判读 CounterContext.WasDodged，不查全局 dodge 标记）。
+    /// 不再消耗此牌。
     /// </summary>
     public async Task TriggerCounterEffect(PlayerChoiceContext choiceContext, CardPlay cardPlay, Creature? attacker)
     {
@@ -92,13 +89,11 @@ public sealed class flametailRideTheMomentum : ModCardTemplate, ICounterCard, IG
             choiceContext,
             DynamicVars["DrawAmount"].IntValue,
             Owner);
-
-        await CardCmd.Exhaust(choiceContext, this);
     }
 
     protected override void OnUpgrade()
     {
-        // 升级：抽牌 2→3，并添加“保留”词条（保留仅升级后出现）。
+        // 升级：抽牌 1→2，并添加“保留”词条（保留仅升级后出现）。
         DynamicVars["DrawAmount"].UpgradeValueBy(1);
         AddKeyword(CardKeyword.Retain);
     }

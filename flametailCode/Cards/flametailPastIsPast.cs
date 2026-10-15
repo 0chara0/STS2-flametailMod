@@ -15,10 +15,11 @@ namespace flametail.Cards;
 /// <summary>
 /// 已往不谏（旧版）：当一张诅咒牌从你的手牌进入弃牌堆时，改为将其消耗。
 /// 已被自强不息（flametailPerseverance）重做替代（修改文档 [43]）。
-/// 本卡保留类与效果以兼容旧存档读档（CardModel 按 ID 反序列化需要该类存在），
-/// 但不再显示、不进卡池（showInCardLibrary=false）。
+/// <br/><b>已完全下架</b>（2026-10-15 用户裁定：不在意旧存档玩家，本类仅作代码备份）：
+/// 移除 [RegisterCard]，ModelDb 中不存在本卡——卡牌奖励、商店、战斗生成、图鉴等一切
+/// 途径均不可见。持有它的旧存档读档时经 SaveUtil.CardOrDeprecated 兜底为引擎
+/// DeprecatedCard 占位卡。恢复方法：把 [RegisterCard(typeof(flametailCardPool))] 加回即可。
 /// </summary>
-[RegisterCard(typeof(flametailCardPool))]
 public sealed class flametailPastIsPast : ModCardTemplate
 {
     private const int BaseEnergyCost = 2;
@@ -38,6 +39,9 @@ public sealed class flametailPastIsPast : ModCardTemplate
     public flametailPastIsPast() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)
     {
     }
+
+    // 不可获取（见类注释）：挡住跨池修改器（Cursed Run 等）的生成路径。
+    public override bool CanBeGeneratedInCombat => false;
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {

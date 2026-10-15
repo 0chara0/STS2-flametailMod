@@ -174,6 +174,9 @@ public sealed class flametailHardenedVanguardPower : ModPowerTemplate
                         attacker = null;
                     }
 
+                    // 招架匕首（修改文档 ③）：由百战先锋打出反制牌前触发一次。
+                    await flametailParryingDaggerPower.TriggerForOwner(choiceContext, Owner, attacker);
+
                     await CounterSystem.PlayCounterCard(choiceContext, card, attacker);
                 }
                 finally

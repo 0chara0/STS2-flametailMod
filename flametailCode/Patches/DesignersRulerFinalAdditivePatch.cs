@@ -22,8 +22,10 @@ public static class DesignersRulerFinalAdditivePatch
     [HarmonyPatch(typeof(Hook), nameof(Hook.ModifyBlock))]
     private static class ModifyBlockFinalAdditivePatch
     {
-        // cardPlay == null 表示本次格挡不是由打出卡牌直接引起（能力、药水、遗物等）。
-        private static void Postfix(ICombatState combatState, Creature target, CardPlay? cardPlay, ref decimal __result)
+        // cardPlay == null 且 cardSource == null 表示本次格挡不是由卡牌引起（能力、药水、遗物等）。
+        // 卡面预览（BlockVar.UpdateCardPreview）传 cardPlay=null 但 cardSource=卡，同样排除，
+        // 否则卡面格挡数字会比实际打出多 +1。
+        private static void Postfix(ICombatState combatState, Creature target, CardModel? cardSource, CardPlay? cardPlay, ref decimal __result)
         {
             foreach (Player player in combatState.Players)
             {
@@ -31,7 +33,7 @@ public static class DesignersRulerFinalAdditivePatch
                 {
                     if (relic is flametailDesignersRuler ruler)
                     {
-                        __result += ruler.FinalBlockAdditive(target, __result, cardPlay);
+                        __result += ruler.FinalBlockAdditive(target, __result, cardSource, cardPlay);
                     }
                 }
             }

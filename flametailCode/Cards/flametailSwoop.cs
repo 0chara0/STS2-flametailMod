@@ -6,6 +6,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
 using flametail.Characters;
 using flametail.Powers;
@@ -38,10 +39,20 @@ public sealed class flametailSwoop : ModCardTemplate, IGainDodgeCard
         // 修改清单 [10] BUG：自伤不能致死，最少保留 1 点生命值；卡面数字随当前血量实时显示。
         ModCardVars.Computed(
             "SelfDamage", 6m,
-            card => card is { Owner.Creature: { } creature, CombatState: not null }
-                ? Math.Min(6m, Math.Max(0m, creature.CurrentHp - 1m))
-                : 6m)
+            card => ResolveSelfDamage(card))
     ];
+
+    // 卡牌图鉴渲染走的是规范模型（immutable）——get_Owner 会 AssertMutable 抛异常，
+    // 所以必须先判 CombatState（规范模型为 null）提前返回，再访问 Owner。
+    private static decimal ResolveSelfDamage(CardModel? card)
+    {
+        if (card?.CombatState == null || card.Owner?.Creature is not { } creature)
+        {
+            return 6m;
+        }
+
+        return Math.Min(6m, Math.Max(0m, creature.CurrentHp - 1m));
+    }
 
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
         new[] { CardKeyword.Exhaust, FlametailKeywords.Dodge };

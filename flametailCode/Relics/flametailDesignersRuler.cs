@@ -39,10 +39,12 @@ public sealed class flametailDesignersRuler : ModRelicTemplate
     /// 坐在那里会变成 (4+1)×0.75=3 而非要求的 4×0.75+1=4——修改清单 [3] 裁定"最终加算"）。
     /// 只对玩家自身生效；仅当乘算后仍为正格挡时才 +1，避免影响负格挡/减格挡修正。
     /// 修改清单 [2] 削弱：只有"卡牌以外"的格挡（能力、药水等，cardPlay 为 null）才 +1。
+    /// cardSource == null 门槛：卡面预览（BlockVar.UpdateCardPreview）也传 cardPlay=null，
+    /// 但带 cardSource=卡——不排除它会导致"卡面显示 +1、实际打出不加"的错位。
     /// </summary>
-    public decimal FinalBlockAdditive(Creature target, decimal blockAfterMultiplicative, CardPlay? cardPlay)
+    public decimal FinalBlockAdditive(Creature target, decimal blockAfterMultiplicative, CardModel? cardSource, CardPlay? cardPlay)
     {
-        if (target != Owner.Creature || blockAfterMultiplicative <= 0m || cardPlay != null)
+        if (target != Owner.Creature || blockAfterMultiplicative <= 0m || cardPlay != null || cardSource != null)
         {
             return 0m;
         }

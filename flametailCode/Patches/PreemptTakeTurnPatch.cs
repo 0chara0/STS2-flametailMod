@@ -66,10 +66,10 @@ internal static class PreemptTakeTurnPatch
             return true;
         }
 
-        // 没有任何玩家拥有先发制人时，不要拦截 TakeTurn，直接放行原方法。
+        // 没有任何玩家拥有先发制人或招架匕首时，不要拦截 TakeTurn，直接放行原方法。
         // 之前无条件替换原方法：敌人以“已死但待复活”状态进入 TakeTurn 时，
         // 下方的 IsDead 判断会跳过原方法，卡住敌方回合开始的复活效果。
-        if (!AnyPlayerHasPreempt(__instance.CombatState))
+        if (!AnyPlayerHasPreempt(__instance.CombatState) && !AnyPlayerHasParryingDagger(__instance.CombatState))
         {
             return true;
         }
@@ -105,6 +105,27 @@ internal static class PreemptTakeTurnPatch
         return false;
     }
 
+    /// <summary>
+    /// 是否有玩家当前拥有招架匕首能力。
+    /// </summary>
+    private static bool AnyPlayerHasParryingDagger(ICombatState? combatState)
+    {
+        if (combatState == null)
+        {
+            return false;
+        }
+
+        foreach (Player player in combatState.Players)
+        {
+            if (player.Creature?.GetPower<flametailParryingDaggerPower>() != null)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     private static async Task RunPreemptThenOriginal(Creature enemy, MethodBase originalMethod)
     {
         ICombatState? combatState = enemy.CombatState;
@@ -125,17 +146,26 @@ internal static class PreemptTakeTurnPatch
                         continue;
                     }
 
-                    flametailPreemptPower? power = player.Creature.GetPower<flametailPreemptPower>();
-                    if (power == null)
-                    {
-                        continue;
-                    }
-
                     // 在行动执行期间复用当前 GameAction 的 ChoiceContext，
                     // 避免新建 HookPlayerChoiceContext 可能导致的嵌套 action 死锁。
                     PlayerChoiceContext context = RunManager.Instance.ActionExecutor.CurrentlyRunningAction is { } action
                         ? new GameActionPlayerChoiceContext(action)
                         : new ThrowingPlayerChoiceContext();
+
+                    // 招架匕首（修改文档 ①②）：敌人行动前触发一次——拥有先发制人（任意行动）
+                    // 或敌人意图为攻击，且手牌中有能反制的牌。两个条件重叠时该次行动只触发一次。
+                    if (player.Creature.GetPower<flametailParryingDaggerPower>() != null
+                        && (player.Creature.GetPower<flametailPreemptPower>() != null || (enemy.Monster?.IntendsToAttack ?? false))
+                        && flametailParryingDaggerPower.HasCounterableCard(player, enemy))
+                    {
+                        await flametailParryingDaggerPower.TriggerForOwner(context, player.Creature, enemy);
+                    }
+
+                    flametailPreemptPower? power = player.Creature.GetPower<flametailPreemptPower>();
+                    if (power == null)
+                    {
+                        continue;
+                    }
 
                     await power.OnBeforeEnemyAction(context, player, enemy);
                 }

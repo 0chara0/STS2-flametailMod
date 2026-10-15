@@ -82,6 +82,9 @@ public sealed class flametailKnightsDuelPower : ModPowerTemplate
         counterContext.IsKnightsDuelReplication = true;
         try
         {
+            // 招架匕首（修改文档 ③）：由骑士对决打出反制牌前触发一次。
+            await flametailParryingDaggerPower.TriggerForOwner(choiceContext, Owner, cardPlay.Target);
+
             await CounterSystem.PlayCounterCard(choiceContext, card, cardPlay.Target);
         }
         finally
@@ -124,13 +127,12 @@ public sealed class flametailKnightsDuelPower : ModPowerTemplate
             return false;
         }
 
-        // 只对拥有“反制时：”专属效果的反制牌生效；纯反制牌（反制 = 普通效果）不受影响。
-        if (cardPlay.Card is not ICounterCard { HasCounterEffect: true })
-        {
-            return false;
-        }
-
-        if (cardPlay.Card.Pile?.Type == PileType.Exhaust)
+        // 所有反制牌都响应（2026-10-15 用户裁定）：纯反制牌（闪击、破隙等，反制=普通效果）
+        // 也重打，与卡面"主动打出反制牌时触发其反制效果"一致——此前只放行
+        // HasCounterEffect 牌是过滤错误，导致闪击这类牌无法被骑士对决响应。
+        // 消耗型反制牌同样覆盖（2026-10-15 用户裁定）：打出后进消耗堆的由
+        // AfterCardPlayedLate 的取回逻辑取回手牌顶再重打，不在此处排除。
+        if (cardPlay.Card is not ICounterCard)
         {
             return false;
         }
