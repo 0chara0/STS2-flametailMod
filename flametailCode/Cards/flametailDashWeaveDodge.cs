@@ -13,9 +13,10 @@ using flametail.Keywords;
 namespace flametail.Cards;
 
 /// <summary>
-/// 闪！转！腾！挪！（修改清单 [14] 重做）：抽 2 张牌，获得 2 点能量。
-/// 本回合，当你交替打出攻击牌和技能牌时，每打出一张牌，抽 1 张牌，获得 1 点能量。
-/// 效果由 <see cref="flametailDashWeaveDodgePower"/> 实现。消耗。
+/// 闪！转！腾！挪！（修改清单 [14] 重做，2026-10-18 削弱）：抽 2 张牌，获得 2 点能量。
+/// 本回合，当你交替打出攻击牌和技能牌时，打出攻击牌后抽 1 张牌，打出技能牌后获得 1 点能量。
+/// 效果由隐藏管理能力 <see cref="flametailDashWeaveDodgePower"/> 实现，
+/// 上一张牌的类型以 BUFF 栏可见的两个标记能力展示。消耗。
 /// </summary>
 [RegisterCard(typeof(flametailCardPool))]
 public sealed class flametailDashWeaveDodge : ModCardTemplate

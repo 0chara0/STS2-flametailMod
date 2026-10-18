@@ -148,9 +148,15 @@ internal static class PreemptTakeTurnPatch
 
                     // 在行动执行期间复用当前 GameAction 的 ChoiceContext，
                     // 避免新建 HookPlayerChoiceContext 可能导致的嵌套 action 死锁。
+                    // 敌方回合的 TakeTurn 不在 GameAction 内执行（CurrentlyRunningAction == null），
+                    // 此时兜底必须用 BlockingPlayerChoiceContext：先发制人打出的牌可能需要
+                    // 玩家选择（升级版回击的 FromSimpleGrid 选牌）——引擎文档明确该 context 用于
+                    // "敌方回合中阻断敌方回合等待玩家选择"（Centennial Puzzle/Hellraiser 惯例）。
+                    // 曾用 ThrowingPlayerChoiceContext 兜底：升级回击在 SignalPlayerChoiceBegun
+                    // 抛 NotImplementedException，敌方回合循环死亡，战斗永久卡住。
                     PlayerChoiceContext context = RunManager.Instance.ActionExecutor.CurrentlyRunningAction is { } action
                         ? new GameActionPlayerChoiceContext(action)
-                        : new ThrowingPlayerChoiceContext();
+                        : new BlockingPlayerChoiceContext();
 
                     // 招架匕首（修改文档 ①②）：敌人行动前触发一次——拥有先发制人（任意行动）
                     // 或敌人意图为攻击，且手牌中有能反制的牌。两个条件重叠时该次行动只触发一次。
