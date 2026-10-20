@@ -30,8 +30,8 @@ public sealed class flametailTenacity : ModCardTemplate
         new IntVar("Amount", 2)
     ];
 
-    public override bool GainsBlock => true;
-
+    // ⚠ 不设 GainsBlock：格挡由能力在抽牌时发放（非本牌打出时），true 会被灵巧附魔
+    // 错误附魔出假显示（见 flametailWindbringer 注释）。
     public flametailTenacity() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)
     {
     }

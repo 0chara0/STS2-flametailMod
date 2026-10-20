@@ -69,8 +69,8 @@ public sealed class flametailStrideSlash : ModCardTemplate
         new IntVar("BlockGainBonus", 3)
     ];
 
-    public override bool GainsBlock => true;
-
+    // ⚠ 不设 GainsBlock：本牌是攻击牌、按本回合获得格挡的次数加伤，自身不给格挡，
+    // true 会被灵巧附魔错误附魔出假显示（见 flametailWindbringer 注释）。
     public flametailStrideSlash() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)
     {
     }

@@ -35,8 +35,8 @@ public sealed class flametailTrippingAttack : ModCardTemplate
         new IntVar("VulnerableAmount", 1)
     ];
 
-    public override bool GainsBlock => true;
-
+    // ⚠ 不设 GainsBlock：本牌只禁止敌人获得格挡、自身不给格挡，true 会被灵巧附魔
+    // 错误附魔出假显示（见 flametailWindbringer 注释）。
     protected override IEnumerable<IHoverTip> AdditionalHoverTips => new[] {
         HoverTipFactory.FromPower<VulnerablePower>()
     };

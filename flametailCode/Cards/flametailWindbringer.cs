@@ -45,8 +45,10 @@ public sealed class flametailWindbringer : ModCardTemplate
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
         new[] { FlametailKeywords.Footwork };
 
-    public override bool GainsBlock => true;
-
+    // ⚠ 不设 GainsBlock（保持基类 false）：本牌打出时不直接给格挡，格挡由能力在
+    // 获得步法时经 power 发放（cardPlay=null），附魔加成永不生效。而 GainsBlock=true
+    // 是灵巧附魔（Nimble）的 CanEnchant 门槛——设 true 会被菲涅尔透镜附魔出
+    // "格挡+2" 的假显示（2026-10-20 实锤修复）。原版 78 张 GainsBlock 卡无一是能力牌。
     public flametailWindbringer() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)
     {
     }

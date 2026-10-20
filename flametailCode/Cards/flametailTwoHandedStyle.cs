@@ -35,8 +35,8 @@ public sealed class flametailTwoHandedStyle : ModCardTemplate
         new IntVar("BlockPerFootwork", 5)
     ];
 
-    public override bool GainsBlock => true;
-
+    // ⚠ 不设 GainsBlock：格挡由能力在获得步法时发放（非本牌打出时），true 会被灵巧
+    // 附魔错误附魔出假显示（见 flametailWindbringer 注释）。
     public flametailTwoHandedStyle() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)
     {
     }

@@ -48,8 +48,8 @@ public sealed class flametailFeint : ModCardTemplate, IGainFootworkCard
         && Owner.PlayerCombatState is { } pcs
         && _lastDrawTurn != pcs.TurnNumber;
 
-    public override bool GainsBlock => true;
-
+    // ⚠ 不设 GainsBlock：本牌只给步法不给格挡，true 会被灵巧附魔错误附魔出假显示
+    // （见 flametailWindbringer 注释）。
     public flametailFeint() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)
     {
     }

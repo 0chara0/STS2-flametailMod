@@ -35,8 +35,8 @@ public sealed class flametailParryingDagger : ModCardTemplate
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
         new[] { FlametailKeywords.Counter };
 
-    public override bool GainsBlock => true;
-
+    // ⚠ 不设 GainsBlock：格挡由能力在反制时发放（非本牌打出时），true 会被灵巧附魔
+    // 错误附魔出假显示（见 flametailWindbringer 注释）。
     public flametailParryingDagger() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)
     {
     }
