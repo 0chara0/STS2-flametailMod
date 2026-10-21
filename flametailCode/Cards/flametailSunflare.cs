@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using flametail.Characters;
+using flametail.Keywords;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
 
@@ -30,7 +31,7 @@ public sealed class flametailSunflare : ModCardTemplate
     public override CardAssetProfile AssetProfile => _assetProfile;
 
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
-        new[] { CardKeyword.Exhaust };
+        new[] { CardKeyword.Exhaust, FlametailKeywords.Onfield };
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [

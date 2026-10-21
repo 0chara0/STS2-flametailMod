@@ -9,14 +9,21 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
 using flametail.Characters;
+using flametail.Helpers;
+using flametail.Keywords;
 using flametail.Powers;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
-using flametail.Keywords;
 using MegaCrit.Sts2.Core.HoverTips;
 
 namespace flametail.Cards;
 
+/// <summary>
+/// 借过一下（原釜底抽薪，修改文档：调整并更名）：2 费（升级 1 费）。
+/// 选择手牌或抽牌堆中的一张非能力牌，将其打出 2 次；基础版打出后消耗，升级版不消耗。
+/// 不再消耗闪避，改为：你当前每有 1 层闪避，这张牌（借过一下自身）的耗能减少 1——
+/// 由卡牌级 <see cref="TryModifyEnergyCostInCombat"/> 实时折算并显示。
+/// </summary>
 [RegisterCard(typeof(flametailCardPool))]
 public sealed class flametailDrain : ModCardTemplate
 {
@@ -33,12 +40,39 @@ public sealed class flametailDrain : ModCardTemplate
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
         new[] { FlametailKeywords.Dodge };
 
-    protected override IEnumerable<IHoverTip> AdditionalHoverTips => new[] {
-        HoverTipFactory.FromKeyword(CardKeyword.Exhaust)
-    };
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips => IsUpgraded
+        ? []
+        : [HoverTipFactory.FromKeyword(CardKeyword.Exhaust)];
 
     public flametailDrain() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)
     {
+    }
+
+    /// <summary>
+    /// 闪避折扣：当前每有 1 层闪避，此牌耗能 -1（下限 0）。
+    /// 闪避层数变化时由引擎按需重算耗能，卡面实时显示（修改文档：借过一下）。
+    /// </summary>
+    public override bool TryModifyEnergyCostInCombat(CardModel card, decimal originalCost, out decimal modifiedCost)
+    {
+        modifiedCost = originalCost;
+        if (card != this)
+        {
+            return false;
+        }
+
+        int dodge = Owner.Creature?.GetPower<flametailDodgePower>()?.Amount ?? 0;
+        if (dodge <= 0)
+        {
+            return false;
+        }
+
+        modifiedCost = originalCost - dodge;
+        if (modifiedCost < 0m)
+        {
+            modifiedCost = 0m;
+        }
+
+        return true;
     }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -52,7 +86,10 @@ public sealed class flametailDrain : ModCardTemplate
         {
             foreach (CardModel card in hand.Cards)
             {
-                candidates.Add(card);
+                if (card.Type != CardType.Power)
+                {
+                    candidates.Add(card);
+                }
             }
         }
 
@@ -60,7 +97,10 @@ public sealed class flametailDrain : ModCardTemplate
         {
             foreach (CardModel card in drawPile.Cards)
             {
-                candidates.Add(card);
+                if (card.Type != CardType.Power)
+                {
+                    candidates.Add(card);
+                }
             }
         }
 
@@ -90,25 +130,31 @@ public sealed class flametailDrain : ModCardTemplate
             return;
         }
 
-        // 修改清单 [13] 削弱：基础打出 1 次；每有 1 层闪避额外打出 1 次，随后扣光闪避。
-        int playCount = 1;
-        var dodgePower = Owner.Creature.GetPower<flametailDodgePower>();
-        if (dodgePower != null && dodgePower.Amount > 0)
+        // 修改文档：固定打出 2 次（借过一下不再消耗闪避、也不再随闪避加次数）。
+        // 打出前移回手牌顶（与回击一致），保证 AutoPlay 正常工作。
+        if (targetCard.Pile?.Type != PileType.Hand)
         {
-            playCount = 1 + (int)dodgePower.Amount;
-            await PowerCmd.ModifyAmount(choiceContext, dodgePower, -dodgePower.Amount, Owner.Creature, this);
+            await CardPileCmd.Add(targetCard, PileType.Hand, CardPilePosition.Top, this);
         }
 
+        // 目标随选中的牌走：单一目标型牌弹目标选择，其余/取消传 null 由引擎兜底。
+        Creature? target = await AutoPlayTargetResolver.ResolveTargetAsync(targetCard, this);
+
+        // 第二次打出由隐藏的 Echo 能力实现（打出次数 +1，触发后自移除）。
         await PowerCmd.Apply<flametailDrainEchoPower>(
             choiceContext,
             Owner.Creature,
-            playCount - 1,
+            1,
             Owner.Creature,
             this);
 
-        // 与「破灭」对齐：设置一次性 ExhaustOnNextPlay 标志，打出后直接进消耗堆，无需二次 Exhaust。
-        targetCard.ExhaustOnNextPlay = true;
-        await CardCmd.AutoPlay(choiceContext, targetCard, null);
+        // 基础版打出后消耗；升级版不消耗（修改文档：（不）消耗）。
+        if (!IsUpgraded)
+        {
+            targetCard.ExhaustOnNextPlay = true;
+        }
+
+        await CardCmd.AutoPlay(choiceContext, targetCard, target);
     }
 
     protected override void OnUpgrade()

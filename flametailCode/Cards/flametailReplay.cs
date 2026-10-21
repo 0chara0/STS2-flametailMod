@@ -4,10 +4,12 @@ using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
 using flametail.Characters;
+using flametail.Helpers;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
 using flametail.Keywords;
@@ -60,6 +62,10 @@ public sealed class flametailReplay : ModCardTemplate
 
         // 与「破灭」对齐：设置一次性 ExhaustOnNextPlay 标志，打出后直接进消耗堆，避免诅咒牌二次触发回神。
         chosen.ExhaustOnNextPlay = true;
-        await CardCmd.AutoPlay(choiceContext, chosen, null, AutoPlayType.Default);
+
+        // 目标随选中的牌走：单一目标型牌弹目标选择，其余/取消传 null 由引擎兜底（修改文档：故技重施）。
+        Creature? target = await AutoPlayTargetResolver.ResolveTargetAsync(chosen, this);
+
+        await CardCmd.AutoPlay(choiceContext, chosen, target, AutoPlayType.Default);
     }
 }

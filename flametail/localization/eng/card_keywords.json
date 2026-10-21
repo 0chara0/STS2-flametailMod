@@ -10,5 +10,7 @@
   "FLAMETAIL_KEYWORD_FOOTWORK.title": "Footwork",
   "FLAMETAIL_KEYWORD_FOOTWORK.description": "Every 5 Footwork turns into 1 Dodge. At the start of your turn, lose 1 Footwork.",
   "FLAMETAIL_KEYWORD_DODGE.title": "Dodge",
-  "FLAMETAIL_KEYWORD_DODGE.description": "Acts as a buffer before Block. Each stack negates 1 attack."
+  "FLAMETAIL_KEYWORD_DODGE.description": "Acts as a buffer before Block. Each stack negates 1 attack.",
+  "FLAMETAIL_KEYWORD_ONFIELD.title": "On the field",
+  "FLAMETAIL_KEYWORD_ONFIELD.description": "Hand, draw pile and discard pile."
 }

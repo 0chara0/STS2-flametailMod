@@ -29,7 +29,7 @@ public sealed class flametailRideTheMomentum : ModCardTemplate, ICounterCard, IG
     public override CardAssetProfile AssetProfile => _assetProfile;
 
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
-        new[] { FlametailKeywords.Counter, FlametailKeywords.Footwork, FlametailKeywords.Dodge };
+        new[] { FlametailKeywords.Counter, FlametailKeywords.Footwork, FlametailKeywords.Dodge, CardKeyword.Retain };
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
@@ -44,7 +44,7 @@ public sealed class flametailRideTheMomentum : ModCardTemplate, ICounterCard, IG
     /// <summary>
     /// 只要响应反制链就会被打出（效果按闪避分支：步法/抽牌只在闪避时发生；
     /// “打出手牌中的下一张反制牌”是无条件的——修改文档 [13][14]）。
-    /// 不再消耗（修改文档：移除“消耗此牌”），升级后获得保留，可跨回合等待反制时机。
+    /// 保留为常驻词条（修改文档：借势应为常驻保留），未升级也保留，可跨回合等待反制时机。
     /// </summary>
     public bool CanAutoPlayAsCounter(Creature? attacker) => true;
 
@@ -93,8 +93,7 @@ public sealed class flametailRideTheMomentum : ModCardTemplate, ICounterCard, IG
 
     protected override void OnUpgrade()
     {
-        // 升级：抽牌 1→2，并添加“保留”词条（保留仅升级后出现）。
+        // 升级：抽牌 1→2（保留已上移为常驻词条，不再由升级添加）。
         DynamicVars["DrawAmount"].UpgradeValueBy(1);
-        AddKeyword(CardKeyword.Retain);
     }
 }

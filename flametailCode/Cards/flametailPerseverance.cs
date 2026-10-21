@@ -9,6 +9,7 @@ using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using flametail.Characters;
+using flametail.Keywords;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
 
@@ -40,7 +41,7 @@ public sealed class flametailPerseverance : ModCardTemplate
     public override bool CanBeGeneratedInCombat => false;
 
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
-        new[] { CardKeyword.Exhaust };
+        new[] { CardKeyword.Exhaust, FlametailKeywords.Onfield };
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [

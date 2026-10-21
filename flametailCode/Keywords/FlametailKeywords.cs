@@ -36,6 +36,10 @@ namespace flametail.Keywords;
     "Dodge",
     CardDescriptionPlacement = ModKeywordCardDescriptionPlacement.None,
     IncludeInCardHoverTip = true)]
+[RegisterOwnedCardKeyword(
+    "Onfield",
+    CardDescriptionPlacement = ModKeywordCardDescriptionPlacement.None,
+    IncludeInCardHoverTip = true)]
 public static class FlametailKeywords
 {
     /// <summary>
@@ -82,4 +86,12 @@ public static class FlametailKeywords
     /// </summary>
     public static readonly CardKeyword Dodge =
         ModKeywordRegistry.GetCardKeyword("FLAMETAIL_KEYWORD_DODGE");
+
+    /// <summary>
+    /// 场上词条的 CardKeyword 值（手牌、抽牌堆和弃牌堆）。
+    /// 描述用 None 不注入独立行（各卡描述里已以 [gold]场上[/gold] 手动呈现），
+    /// 仅保留 IncludeInCardHoverTip=true 的悬停说明。
+    /// </summary>
+    public static readonly CardKeyword Onfield =
+        ModKeywordRegistry.GetCardKeyword("FLAMETAIL_KEYWORD_ONFIELD");
 }

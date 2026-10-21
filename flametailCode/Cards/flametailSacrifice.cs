@@ -28,6 +28,10 @@ public sealed class flametailSacrifice : ModCardTemplate
         HoverTipFactory.FromKeyword(CardKeyword.Exhaust)
     };
 
+    // 「场上」侧边提示（修改文档：侧边解释词更新）。
+    public override IEnumerable<CardKeyword> CanonicalKeywords =>
+        new[] { FlametailKeywords.Onfield };
+
     private const int BaseEnergyCost = 0;
     private const CardType CardKind = CardType.Skill;
     private const CardRarity CardRarityValue = CardRarity.Uncommon;

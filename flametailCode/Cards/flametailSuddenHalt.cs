@@ -53,11 +53,17 @@ public sealed class flametailSuddenHalt : ModCardTemplate
         decimal amount = footwork.Amount;
         int blockPerFootwork = DynamicVars["BlockPerFootwork"].IntValue;
 
-        await PowerCmd.ModifyAmount(choiceContext, footwork, -amount, Owner.Creature, this);
-
-        // 逐层获得格挡：每失去 1 层步法独立获得一次格挡（可多次触发势不可当等）。
+        // 逐层剥离：每次只移除 1 层步法并立刻获得一次格挡，
+        // 步法一格一格掉，每次失去都是独立的步法减少事件（修改文档：急停）。
+        // 步法在任何变动后 ≥5 层都会立即转化，故打出时层数恒 ≤4，逐层剥离不会触发中途转化。
         for (int i = 0; i < (int)amount; i++)
         {
+            if (footwork.Amount <= 0)
+            {
+                break;
+            }
+
+            await PowerCmd.ModifyAmount(choiceContext, footwork, -1, Owner.Creature, this);
             await CreatureCmd.GainBlock(Owner.Creature, blockPerFootwork, ValueProp.Move, cardPlay);
         }
     }

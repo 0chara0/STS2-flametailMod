@@ -10,5 +10,7 @@
   "FLAMETAIL_KEYWORD_FOOTWORK.title": "步法",
   "FLAMETAIL_KEYWORD_FOOTWORK.description": "每拥有5层步法会立刻转化为1层闪避。",
   "FLAMETAIL_KEYWORD_DODGE.title": "闪避",
-  "FLAMETAIL_KEYWORD_DODGE.description": "闪避优先于格挡，抵消1次攻击伤害。"
+  "FLAMETAIL_KEYWORD_DODGE.description": "闪避优先于格挡，抵消1次攻击伤害。",
+  "FLAMETAIL_KEYWORD_ONFIELD.title": "场上",
+  "FLAMETAIL_KEYWORD_ONFIELD.description": "手牌、抽牌堆和弃牌堆。"
 }

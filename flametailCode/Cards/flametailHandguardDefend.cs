@@ -16,10 +16,14 @@ using STS2RitsuLib.Scaffolding.Content;
 
 namespace flametail.Cards;
 
+/// <summary>
+/// 护手防御（修改文档：调整）：1 费，获得 6（8）点格挡。
+/// 随机将（升级后：由你选择）抽牌堆中的一张攻击（升级后：任意）牌放至抽牌堆顶部。
+/// </summary>
 [RegisterCard(typeof(flametailCardPool))]
 public sealed class flametailHandguardDefend : ModCardTemplate
 {
-    private const int BaseEnergyCost = 0;
+    private const int BaseEnergyCost = 1;
     private const CardType CardKind = CardType.Skill;
     private const CardRarity CardRarityValue = CardRarity.Common;
     private const TargetType CardTarget = TargetType.Self;
@@ -33,7 +37,7 @@ public sealed class flametailHandguardDefend : ModCardTemplate
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new BlockVar(2, ValueProp.Move)
+        new BlockVar(6, ValueProp.Move)
     ];
 
     public flametailHandguardDefend() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)
@@ -45,19 +49,7 @@ public sealed class flametailHandguardDefend : ModCardTemplate
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
 
         var drawPile = Owner.PlayerCombatState?.DrawPile;
-        var attacks = new List<CardModel>(drawPile?.Cards.Count ?? 0);
-        if (drawPile != null)
-        {
-            foreach (CardModel card in drawPile.Cards)
-            {
-                if (card.Type == CardType.Attack)
-                {
-                    attacks.Add(card);
-                }
-            }
-        }
-
-        if (attacks.Count == 0)
+        if (drawPile == null || drawPile.Cards.Count == 0)
         {
             return;
         }
@@ -65,7 +57,7 @@ public sealed class flametailHandguardDefend : ModCardTemplate
         CardModel? chosen;
         if (IsUpgraded)
         {
-            // 升级后由玩家从抽牌堆的攻击牌中选择一张加入手牌顶部（不可取消）。
+            // 升级后由玩家从抽牌堆的任意牌中选择一张放至抽牌堆顶部（不可取消）。
             var prefs = new CardSelectorPrefs(
                 new LocString("cards", "FLAMETAIL_HANDGUARD_DEFEND_PROMPT"),
                 1,
@@ -76,14 +68,28 @@ public sealed class flametailHandguardDefend : ModCardTemplate
 
             chosen = (await CardSelectCmd.FromSimpleGrid(
                 choiceContext,
-                attacks,
+                drawPile.Cards,
                 Owner,
                 prefs)).FirstOrDefault();
         }
         else
         {
-            // 未升级保持随机选择。
-            chosen = Owner.RunState!.Rng.CombatCardSelection.NextItem(attacks)!;
+            // 未升级：随机选一张攻击牌。
+            var attacks = new List<CardModel>(drawPile.Cards.Count);
+            foreach (CardModel card in drawPile.Cards)
+            {
+                if (card.Type == CardType.Attack)
+                {
+                    attacks.Add(card);
+                }
+            }
+
+            if (attacks.Count == 0)
+            {
+                return;
+            }
+
+            chosen = Owner.RunState!.Rng.CombatCardSelection.NextItem(attacks);
         }
 
         if (chosen == null)
@@ -91,7 +97,7 @@ public sealed class flametailHandguardDefend : ModCardTemplate
             return;
         }
 
-        await CardPileCmd.Add(chosen, PileType.Hand, CardPilePosition.Top);
+        await CardPileCmd.Add(chosen, PileType.Draw, CardPilePosition.Top);
     }
 
     protected override void OnUpgrade()
