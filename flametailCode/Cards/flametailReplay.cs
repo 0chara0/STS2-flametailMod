@@ -58,7 +58,8 @@ public sealed class flametailReplay : ModCardTemplate
             return;
         }
 
-        await CardPileCmd.Add(chosen, PileType.Hand, CardPilePosition.Top);
+        // 直接从弃牌堆打出（AutoPlay 支持任意堆），不经过手牌：
+        // 避免手牌满时被重定向进弃牌堆、以及误触进入手牌钩子。
 
         // 与「破灭」对齐：设置一次性 ExhaustOnNextPlay 标志，打出后直接进消耗堆，避免诅咒牌二次触发回神。
         chosen.ExhaustOnNextPlay = true;

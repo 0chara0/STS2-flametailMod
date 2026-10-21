@@ -136,13 +136,8 @@ public sealed class flametailDrain : ModCardTemplate
         }
 
         // 修改文档：固定打出 2 次（借过一下不再消耗闪避、也不再随闪避加次数）。
-        // 打出前移回手牌顶（与回击一致），保证 AutoPlay 正常工作。
-        if (targetCard.Pile?.Type != PileType.Hand)
-        {
-            await CardPileCmd.Add(targetCard, PileType.Hand, CardPilePosition.Top, this);
-        }
-
-        // 目标随选中的牌走：单一目标型牌弹目标选择，其余/取消传 null 由引擎兜底。
+        // 直接从原所在堆打出（AutoPlay 支持任意堆），不经过手牌：
+        // 避免手牌满时被重定向进弃牌堆、以及误触进入手牌钩子。
         Creature? target = await AutoPlayTargetResolver.ResolveTargetAsync(targetCard, this);
 
         // 第二次打出由隐藏的 Echo 能力实现（打出次数 +1，触发后自移除）。
