@@ -17,11 +17,10 @@ namespace flametail.Cards;
 /// 历战形态（原百战先锋，修改文档：重做并更名）：稀有能力牌，5（4）费，保留。
 /// 每回合开始时，你可以选择场上任一张反制牌，将其视作反制打出（由能力实现）。
 /// 这张牌在手牌中时，每反制一次，其耗能-1（见 <see cref="BeforeCardPlayed"/>）。
-/// 同时是反制牌（ICounterCard）：受击时会被反制流程当作反制牌自动打出（打出即施加能力），
-/// 也可被历战形态自身的回合开始选择选中。
+/// 本体不是反制牌（2026-10-21 用户裁定：不受反制系统自动打出，也不被历战形态自身选中）。
 /// </summary>
 [RegisterCard(typeof(flametailCardPool))]
-public sealed class flametailHardenedVanguard : ModCardTemplate, ICounterCard
+public sealed class flametailHardenedVanguard : ModCardTemplate
 {
     private const int BaseEnergyCost = 5;
     private const CardType CardKind = CardType.Power;
@@ -33,9 +32,9 @@ public sealed class flametailHardenedVanguard : ModCardTemplate, ICounterCard
         PortraitPath: $"{Entry.ResPath}/images/cards/{"flametailHardenedVanguard"}.png");
     public override CardAssetProfile AssetProfile => _assetProfile;
 
-    // 保留为常驻词条（修改文档：耗能 5（4）保留）。
+    // 保留为常驻词条（修改文档：耗能 5（4）保留）。本体不带反制词条。
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
-        new[] { FlametailKeywords.Counter, CardKeyword.Retain };
+        new[] { CardKeyword.Retain };
 
     public flametailHardenedVanguard() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget, ShowInCardLibrary)
     {

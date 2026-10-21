@@ -4,7 +4,9 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.MonsterMoves.Intents;
 using MegaCrit.Sts2.Core.Rooms;
 using MegaCrit.Sts2.Core.ValueProps;
 using flametail.Characters;
@@ -31,6 +33,12 @@ public sealed class flametailLanceSupport : ModCardTemplate
 
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
         new[] { CardKeyword.Exhaust, FlametailKeywords.Support };
+
+    // 击晕为原版词条：侧边提示用 StunIntent.GetStaticHoverTip()（标题+描述+intent_stun 图标），
+    // HoverTipFactory.Static(Stun) 只有文字无图标。该 tip 从常驻 intent 图集取图，
+    // 原版注释明确此路径不会被房间切换 dispose（PRG-7151），存 canonical 卡上安全。
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
+        [MegaCrit.Sts2.Core.MonsterMoves.Intents.StunIntent.GetStaticHoverTip()];
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [

@@ -17,8 +17,8 @@ using STS2RitsuLib.Scaffolding.Content;
 namespace flametail.Cards;
 
 /// <summary>
-/// 护手防御（修改文档：调整）：1 费，获得 6（8）点格挡。
-/// 随机将（升级后：由你选择）抽牌堆中的一张攻击（升级后：任意）牌放至抽牌堆顶部。
+/// 护手防御（修改文档 2026-10-21 用户裁定）：1 费，获得 6（8）点格挡。
+/// 选择抽牌堆中的一张攻击（升级后：任意）牌放至抽牌堆顶部。
 /// </summary>
 [RegisterCard(typeof(flametailCardPool))]
 public sealed class flametailHandguardDefend : ModCardTemplate
@@ -54,43 +54,33 @@ public sealed class flametailHandguardDefend : ModCardTemplate
             return;
         }
 
-        CardModel? chosen;
-        if (IsUpgraded)
+        // 基础只在攻击牌中选，升级后任选（修改文档 2026-10-21：基础也是选择，不再随机）。
+        IEnumerable<CardModel> pool = drawPile.Cards;
+        if (!IsUpgraded)
         {
-            // 升级后由玩家从抽牌堆的任意牌中选择一张放至抽牌堆顶部（不可取消）。
-            var prefs = new CardSelectorPrefs(
-                new LocString("cards", "FLAMETAIL_HANDGUARD_DEFEND_PROMPT"),
-                1,
-                1)
-            {
-                Cancelable = false,
-            };
-
-            chosen = (await CardSelectCmd.FromSimpleGrid(
-                choiceContext,
-                drawPile.Cards,
-                Owner,
-                prefs)).FirstOrDefault();
+            pool = pool.Where(card => card.Type == CardType.Attack).ToList();
         }
-        else
+
+        List<CardModel> candidates = pool.ToList();
+        if (candidates.Count == 0)
         {
-            // 未升级：随机选一张攻击牌。
-            var attacks = new List<CardModel>(drawPile.Cards.Count);
-            foreach (CardModel card in drawPile.Cards)
-            {
-                if (card.Type == CardType.Attack)
-                {
-                    attacks.Add(card);
-                }
-            }
-
-            if (attacks.Count == 0)
-            {
-                return;
-            }
-
-            chosen = Owner.RunState!.Rng.CombatCardSelection.NextItem(attacks);
+            return;
         }
+
+        // 由玩家选择一张放至抽牌堆顶部（不可取消）。
+        var prefs = new CardSelectorPrefs(
+            new LocString("cards", "FLAMETAIL_HANDGUARD_DEFEND_PROMPT"),
+            1,
+            1)
+        {
+            Cancelable = false,
+        };
+
+        CardModel? chosen = (await CardSelectCmd.FromSimpleGrid(
+            choiceContext,
+            candidates,
+            Owner,
+            prefs)).FirstOrDefault();
 
         if (chosen == null)
         {

@@ -93,6 +93,14 @@ public partial class Entry
                 // 仅保留 IncludeInCardHoverTip=true 的悬停说明。
                 ModKeywordCardDescriptionPlacement.None,
                 includeInCardHoverTip: true);
+        ModKeywordRegistry.For(ModId)
+            .RegisterCardKeywordOwnedByLocNamespace(
+                "Onfield",
+                iconPath: null,
+                // 场上用 None：不注入独立行（描述里已由各卡以 [gold] 手动呈现），
+                // 仅保留 IncludeInCardHoverTip=true 的悬停说明。
+                ModKeywordCardDescriptionPlacement.None,
+                includeInCardHoverTip: true);
 
         // 应用 Harmony 补丁（闪避的格挡前缓冲逻辑）。
         new Harmony(ModId).PatchAll(assembly);
